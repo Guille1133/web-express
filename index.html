@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>paginaya24.com - Tu web profesional en 24h | 50% OFF</title>
+    <meta name="description" content="Creamos webs profesionales en 24h con dominio y hosting gratis. Oferta 50% OFF por tiempo limitado para coaches, freelancers y empresas.">
+    <title>paginaya24.com - Tu Web Profesional en 24hs | 50% OFF</title>
     <style>
         :root {
             --azul: #2563EB;
@@ -13,6 +14,7 @@
             --gris: #F1F5F9;
             --morado: #7C3AED;
             --gris-oscuro: #94A3B8;
+            --naranja: #F97316;
         }
         * {
             margin: 0;
@@ -23,6 +25,51 @@
         body {
             color: var(--negro);
             line-height: 1.6;
+            padding-top: 80px; /* Para el menú fijo */
+        }
+        /* Menú de navegación */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--azul);
+            text-decoration: none;
+        }
+        .logo img {
+            height: 40px;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 30px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--negro);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--azul);
         }
         .container {
             width: 100%;
@@ -34,7 +81,7 @@
         .hero {
             background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
             color: white;
-            padding: 80px 0;
+            padding: 100px 0 80px;
             text-align: center;
         }
         .hero h1 {
@@ -64,6 +111,40 @@
         .btn-rojo:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(255, 62, 62, 0.6);
+        }
+        /* Sección Beneficios */
+        .beneficios {
+            padding: 80px 0;
+            background-color: white;
+        }
+        .beneficios-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .beneficio-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        .beneficio-card:hover {
+            transform: translateY(-10px);
+        }
+        .beneficio-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--azul);
+        }
+        .beneficio-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--negro);
+        }
+        .beneficio-card p {
+            color: #64748B;
         }
         /* Sección Planes */
         .section {
@@ -164,12 +245,22 @@
             color: white;
             width: 100%;
             text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .btn-verde:hover {
+            background-color: #20b956;
         }
         .btn-morado {
             background-color: var(--morado);
             color: white;
             width: 100%;
             text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .btn-morado:hover {
+            background-color: #6d28d9;
         }
         /* Videos de ejemplo */
         .video-demo {
@@ -201,6 +292,23 @@
             font-weight: bold;
             letter-spacing: 2px;
         }
+        /* Elementos de confianza */
+        .confianza {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .sello-confianza {
+            text-align: center;
+            max-width: 150px;
+        }
+        .sello-confianza img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
         /* Garantía */
         .garantia {
             background-color: var(--gris);
@@ -208,6 +316,7 @@
             border-radius: 10px;
             text-align: center;
             margin-top: 50px;
+            border: 2px dashed var(--azul);
         }
         /* Footer */
         footer {
@@ -231,10 +340,33 @@
             .plan-features {
                 min-height: auto;
             }
+            nav ul {
+                display: none;
+            }
+            body {
+                padding-top: 70px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Menú de navegación -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="https://via.placeholder.com/150x50?text=paginaya24" alt="paginaya24.com">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#beneficios">Beneficios</a></li>
+                    <li><a href="#express">Webs Express</a></li>
+                    <li><a href="#corporativas">Webs Corporativas</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -244,8 +376,50 @@
         </div>
     </section>
 
+    <!-- Sección Beneficios -->
+    <section id="beneficios" class="beneficios">
+        <div class="container">
+            <div class="section-title">
+                <h2>¿Por qué tener tu propia web?</h2>
+                <p>No es solo una web, es tu carta de presentación digital</p>
+            </div>
+            
+            <div class="beneficios-container">
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">💼</div>
+                    <h3>Mostrarte como profesional confiable</h3>
+                    <p>Ya no dependés solo de tus redes sociales. Una web te posiciona con seriedad y autoridad.</p>
+                </div>
+                
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🚀</div>
+                    <h3>Vender incluso mientras dormís</h3>
+                    <p>Tu web trabaja 24/7 por vos: capturando leads, mostrando tus servicios y cerrando ventas.</p>
+                </div>
+                
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🎯</div>
+                    <h3>Atraer clientes que te buscan en Google</h3>
+                    <p>Si no estás en internet, no existís. Una web bien hecha te pone en el mapa.</p>
+                </div>
+                
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🤝</div>
+                    <h3>Generar confianza inmediata</h3>
+                    <p>Testimonios, casos de éxito y una imagen clara de quién sos y qué hacés = confianza al instante.</p>
+                </div>
+                
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🧩</div>
+                    <h3>Diferenciarte del resto</h3>
+                    <p>Una web con estilo y personalidad marca la diferencia frente a tu competencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Sección Webs Express -->
-    <section class="section">
+    <section id="express" class="section">
         <div class="container">
             <div class="section-title">
                 <h2>Webs Express para Profesionales</h2>
@@ -278,7 +452,7 @@
                         <li class="feature-excluded">Pixel de seguimiento (Meta o Google opcional)</li>
                         <li class="feature-excluded">Mantenimiento gratis por 3 meses</li>
                     </ul>
-                    <a href="#contacto" class="btn btn-verde">Quiero este plan con 50% OFF</a>
+                    <a href="#contacto" class="btn btn-verde">¡Quiero este plan con 50% OFF!</a>
                     
                     <div class="video-demo">
                         <p>Ejemplo real:</p>
@@ -310,7 +484,7 @@
                         <li class="feature-included">Mantenimiento gratis por 3 meses</li>
                         <li class="feature-included">Entrega de 3 a 5 días</li>
                     </ul>
-                    <a href="#contacto" class="btn btn-morado">Quiero Elegir este plan</a>
+                    <a href="#contacto" class="btn btn-morado">¡Quiero el PLAN PRO con 50% OFF!</a>
                     
                     <div class="video-demo">
                         <p>Ejemplo para infoproductos:</p>
@@ -322,7 +496,7 @@
     </section>
 
     <!-- Sección Webs Corporativas -->
-    <section class="section" style="background-color: var(--gris);">
+    <section id="corporativas" class="section" style="background-color: var(--gris);">
         <div class="container">
             <div class="section-title">
                 <h2>Webs Corporativas (Multipágina)</h2>
@@ -353,7 +527,7 @@
                         <li class="feature-excluded">Sección de Preguntas Frecuentes</li>
                         <li class="feature-excluded">Integración de agenda o reservas</li>
                     </ul>
-                    <a href="#contacto" class="btn btn-verde">Más información</a>
+                    <a href="#contacto" class="btn btn-verde">¡Más información sobre este plan!</a>
                     
                     <div class="video-demo">
                         <p>Ejemplo para equipos:</p>
@@ -382,7 +556,7 @@
                         <li class="feature-included">Integración de agenda o reservas</li>
                         <li class="feature-included">Dominio y hosting 1 año gratis</li>
                     </ul>
-                    <a href="#contacto" class="btn btn-morado">Más información</a>
+                    <a href="#contacto" class="btn btn-morado">¡Quiero la Web Corporativa PRO!</a>
                     
                     <div class="video-demo">
                         <p>Ejemplo completo:</p>
@@ -392,6 +566,24 @@
             </div>
         </div>
     </section>
+
+    <!-- Elementos de confianza -->
+    <div class="container">
+        <div class="confianza">
+            <div class="sello-confianza">
+                <img src="https://via.placeholder.com/100x100?text=Garantía" alt="Garantía de 7 días">
+                <p>Garantía de 7 días</p>
+            </div>
+            <div class="sello-confianza">
+                <img src="https://via.placeholder.com/100x100?text=Seguro" alt="Pago seguro">
+                <p>Pago 100% seguro</p>
+            </div>
+            <div class="sello-confianza">
+                <img src="https://via.placeholder.com/100x100?text=Soporte" alt="Soporte 24/7">
+                <p>Soporte prioritario</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Countdown Timer -->
     <div class="container">
@@ -404,15 +596,17 @@
     <!-- Garantía -->
     <div class="container">
         <div class="garantia">
-            <h3>✅ Riesgo CERO</h3>
-            <p>Si no te gusta en 7 días, te devolvemos el 100% de tu dinero sin preguntas.</p>
+            <h3>✅ Riesgo CERO - Garantía de Satisfacción</h3>
+            <p>Si en los primeros 7 días no estás 100% satisfecho con tu web, te devolvemos cada centavo sin hacer preguntas.</p>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contacto">
         <div class="container">
-            <p>© 2023 paginaya24.com - Todos los derechos reservados</p>
+            <h3 style="color: white; margin-bottom: 20px;">¿Listo para tener tu web profesional?</h3>
+            <a href="https://wa.me/tunumerodewhatsapp" class="btn btn-verde" style="max-width: 300px; margin: 0 auto;">¡Contáctanos por WhatsApp!</a>
+            <p style="margin-top: 30px;">© 2023 paginaya24.com - Todos los derechos reservados</p>
         </div>
     </footer>
 
