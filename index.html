@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>paginaya24.com - Tu web profesional en 24h | 50% OFF</title>
+    <style>
+        :root {
+            --azul: #2563EB;
+            --verde: #25D366;
+            --rojo: #FF3E3E;
+            --negro: #1E293B;
+            --gris: #F1F5F9;
+            --morado: #7C3AED;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        body {
+            color: var(--negro);
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin: 10px 5px;
+        }
+        .btn-rojo {
+            background-color: var(--rojo);
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4);
+        }
+        .btn-rojo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 62, 62, 0.6);
+        }
+        /* Sección Planes */
+        .section {
+            padding: 60px 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--negro);
+        }
+        .section-title p {
+            color: #64748B;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        /* Contenedor de planes en paralelo */
+        .planes-comparativos {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .plan {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 48%;
+            transition: transform 0.3s;
+        }
+        .plan:hover {
+            transform: translateY(-5px);
+        }
+        .plan-header {
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .plan-header h3 {
+            font-size: 1.5rem;
+        }
+        .plan-basico .plan-header h3 {
+            color: var(--azul);
+        }
+        .plan-pro .plan-header h3 {
+            color: var(--morado);
+        }
+        .plan-price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin: 15px 0 5px;
+        }
+        .plan-price .old-price {
+            text-decoration: line-through;
+            font-size: 1.2rem;
+            color: var(--rojo);
+            display: block;
+        }
+        .oferta-text {
+            color: var(--rojo);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+            min-height: 400px; /* Para igualar altura */
+        }
+        .plan-features li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .plan-features li:before {
+            content: "✓";
+            color: var(--verde);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .btn-verde {
+            background-color: var(--verde);
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+        .btn-morado {
+            background-color: var(--morado);
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+        /* Videos de ejemplo */
+        .video-demo {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .video-demo iframe {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        /* Countdown */
+        .countdown {
+            background-color: var(--negro);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 0 auto 40px;
+            border-radius: 10px;
+            max-width: 500px;
+        }
+        .countdown h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        #timer {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        /* Garantía */
+        .garantia {
+            background-color: var(--gris);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        /* Footer */
+        footer {
+            background-color: var(--negro);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .planes-comparativos {
+                flex-direction: column;
+                align-items: center;
+            }
+            .plan {
+                width: 100%;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .plan-features {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Lo que hacés merece mostrarse bien</h1>
+            <p>Tu web profesional lista en 24hs, sin vueltas. <strong>50% OFF por tiempo limitado</strong>. Dominio + hosting por 1 año incluidos.</p>
+            <a href="#contacto" class="btn btn-rojo">Quiero mi web con 50% OFF</a>
+        </div>
+    </section>
+
+    <!-- Sección Webs Express -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Webs Express para Profesionales</h2>
+                <p>Ideal para coachs, terapeutas o freelancers que necesitan una web simple pero poderosa</p>
+            </div>
+            
+            <!-- Contenedor de planes en paralelo -->
+            <div class="planes-comparativos">
+                <!-- Plan Web Presente (IZQUIERDA) -->
+                <div class="plan plan-basico">
+                    <div class="plan-header">
+                        <h3>PLAN BÁSICO – "Web Presente"</h3>
+                        <div class="plan-price">
+                            <span class="old-price">USD 79</span>
+                            USD 39.5
+                            <span class="oferta-text">Oferta por lanzamiento – por tiempo limitado</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>Diseño One Page responsive (apto para celular y computadora)</li>
+                        <li>Botón de contacto o de venta</li>
+                        <li>Diseño profesional</li>
+                        <li>Dominio y hosting 1 año gratis</li>
+                        <li>3 Secciones básicas (Presentación, Servicios y Contacto)</li>
+                        <li>Entrega en 24hs</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-verde">Quiero este plan con 50% OFF</a>
+                    
+                    <div class="video-demo">
+                        <p>Ejemplo real:</p>
+                        <iframe src="https://www.youtube.com/embed/ejemplo1" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- Plan Web Magnética (DERECHA) -->
+                <div class="plan plan-pro">
+                    <div class="plan-header">
+                        <h3>PLAN PRO – "Web Magnética"</h3>
+                        <div class="plan-price">
+                            <span class="old-price">USD 149</span>
+                            USD 74.5
+                            <span class="oferta-text">Oferta por lanzamiento – por tiempo limitado</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>Diseño responsive con menú (apto para celular y computadora)</li>
+                        <li>Botón de contacto o de venta en caso de ser un infoproducto</li>
+                        <li>Diseño profesional</li>
+                        <li>Dominio y hosting 1 año gratis</li>
+                        <li>3 Secciones básicas (Presentación, Servicios y Contacto)</li>
+                        <li>Sección de Testimonios</li>
+                        <li>Sección de Preguntas Frecuentes (FAQ)</li>
+                        <li>Lead magnet integrado (ej. PDF descargable)</li>
+                        <li>SEO on page básico</li>
+                        <li>Pixel de seguimiento (Meta o Google opcional)</li>
+                        <li>Mantenimiento gratis por 3 meses</li>
+                        <li>Entrega de 3 a 5 días</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-morado">Quiero Elegir este plan</a>
+                    
+                    <div class="video-demo">
+                        <p>Ejemplo para infoproductos:</p>
+                        <iframe src="https://www.youtube.com/embed/ejemplo2" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Webs Corporativas -->
+    <section class="section" style="background-color: var(--gris);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Webs Corporativas (Multipágina)</h2>
+                <p>Para negocios, equipos o consultoras que buscan una presencia profesional completa</p>
+            </div>
+            
+            <!-- Contenedor de planes en paralelo -->
+            <div class="planes-comparativos">
+                <!-- Plan Tu Web Profesional (IZQUIERDA) -->
+                <div class="plan plan-basico">
+                    <div class="plan-header">
+                        <h3>PLAN BÁSICO – "Tu Web Profesional"</h3>
+                        <div class="plan-price">
+                            <span class="old-price">USD 229</span>
+                            USD 114.5
+                            <span class="oferta-text">Oferta por lanzamiento – por tiempo limitado</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>Sitio web multipágina (Home + Nosotros + Servicios)</li>
+                        <li>Diseño responsive con menú de navegación</li>
+                        <li>Contacto directo (WhatsApp/formulario)</li>
+                        <li>Dominio y hosting 1 año gratis</li>
+                        <li>Entrega en 3-5 días</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-verde">Más información</a>
+                    
+                    <div class="video-demo">
+                        <p>Ejemplo para equipos:</p>
+                        <iframe src="https://www.youtube.com/embed/ejemplo3" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- Plan Presencia Experta (DERECHA) -->
+                <div class="plan plan-pro">
+                    <div class="plan-header">
+                        <h3>PLAN PRO – "Presencia Experta"</h3>
+                        <div class="plan-price">
+                            <span class="old-price">USD 499</span>
+                            USD 249.5
+                            <span class="oferta-text">Oferta por lanzamiento – por tiempo limitado</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>Sitio web multipágina</li>
+                        <li>Diseño responsive con menú de navegación</li>
+                        <li>Contacto directo (WhatsApp/formulario)</li>
+                        <li>Sección Portfolio</li>
+                        <li>Lead magnet</li>
+                        <li>SEO on page optimizado</li>
+                        <li>Sección de Preguntas Frecuentes</li>
+                        <li>Integración de agenda o reservas</li>
+                        <li>Dominio y hosting 1 año gratis</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-morado">Más información</a>
+                    
+                    <div class="video-demo">
+                        <p>Ejemplo completo:</p>
+                        <iframe src="https://www.youtube.com/embed/ejemplo4" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Timer -->
+    <div class="container">
+        <div class="countdown">
+            <h3>¡Oferta termina en!</h3>
+            <div id="timer">03:00:00</div>
+        </div>
+    </div>
+
+    <!-- Garantía -->
+    <div class="container">
+        <div class="garantia">
+            <h3>✅ Riesgo CERO</h3>
+            <p>Si no te gusta en 7 días, te devolvemos el 100% de tu dinero sin preguntas.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2023 paginaya24.com - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Script para el Countdown -->
+    <script>
+        function startTimer(duration, display) {
+            let timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = hours + ":" + minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            const threeHours = 3 * 60 * 60,
+                display = document.querySelector('#timer');
+            startTimer(threeHours, display);
+        };
+    </script>
+</body>
+</html>
