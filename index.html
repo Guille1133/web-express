@@ -12,6 +12,7 @@
             --negro: #1E293B;
             --gris: #F1F5F9;
             --morado: #7C3AED;
+            --gris-oscuro: #94A3B8;
         }
         * {
             margin: 0;
@@ -134,16 +135,26 @@
         .plan-features {
             list-style: none;
             margin-bottom: 30px;
-            min-height: 400px; /* Para igualar altura */
+            min-height: 400px;
         }
         .plan-features li {
             padding: 8px 0;
             position: relative;
             padding-left: 25px;
         }
-        .plan-features li:before {
+        .feature-included:before {
             content: "✓";
             color: var(--verde);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .feature-excluded {
+            color: var(--gris-oscuro);
+        }
+        .feature-excluded:before {
+            content: "✕";
+            color: var(--gris-oscuro);
             position: absolute;
             left: 0;
             font-weight: bold;
@@ -254,12 +265,18 @@
                         </div>
                     </div>
                     <ul class="plan-features">
-                        <li>Diseño One Page responsive (apto para celular y computadora)</li>
-                        <li>Botón de contacto o de venta</li>
-                        <li>Diseño profesional</li>
-                        <li>Dominio y hosting 1 año gratis</li>
-                        <li>3 Secciones básicas (Presentación, Servicios y Contacto)</li>
-                        <li>Entrega en 24hs</li>
+                        <li class="feature-included">Diseño One Page responsive (apto para celular y computadora)</li>
+                        <li class="feature-included">Botón de contacto o de venta</li>
+                        <li class="feature-included">Diseño profesional</li>
+                        <li class="feature-included">Dominio y hosting 1 año gratis</li>
+                        <li class="feature-included">3 Secciones básicas (Presentación, Servicios y Contacto)</li>
+                        <li class="feature-included">Entrega en 24hs</li>
+                        <li class="feature-excluded">Sección de Testimonios</li>
+                        <li class="feature-excluded">Sección de Preguntas Frecuentes (FAQ)</li>
+                        <li class="feature-excluded">Lead magnet integrado (ej. PDF descargable)</li>
+                        <li class="feature-excluded">SEO on page básico</li>
+                        <li class="feature-excluded">Pixel de seguimiento (Meta o Google opcional)</li>
+                        <li class="feature-excluded">Mantenimiento gratis por 3 meses</li>
                     </ul>
                     <a href="#contacto" class="btn btn-verde">Quiero este plan con 50% OFF</a>
                     
@@ -280,18 +297,18 @@
                         </div>
                     </div>
                     <ul class="plan-features">
-                        <li>Diseño responsive con menú (apto para celular y computadora)</li>
-                        <li>Botón de contacto o de venta en caso de ser un infoproducto</li>
-                        <li>Diseño profesional</li>
-                        <li>Dominio y hosting 1 año gratis</li>
-                        <li>3 Secciones básicas (Presentación, Servicios y Contacto)</li>
-                        <li>Sección de Testimonios</li>
-                        <li>Sección de Preguntas Frecuentes (FAQ)</li>
-                        <li>Lead magnet integrado (ej. PDF descargable)</li>
-                        <li>SEO on page básico</li>
-                        <li>Pixel de seguimiento (Meta o Google opcional)</li>
-                        <li>Mantenimiento gratis por 3 meses</li>
-                        <li>Entrega de 3 a 5 días</li>
+                        <li class="feature-included">Diseño responsive con menú (apto para celular y computadora)</li>
+                        <li class="feature-included">Botón de contacto o de venta en caso de ser un infoproducto</li>
+                        <li class="feature-included">Diseño profesional</li>
+                        <li class="feature-included">Dominio y hosting 1 año gratis</li>
+                        <li class="feature-included">3 Secciones básicas (Presentación, Servicios y Contacto)</li>
+                        <li class="feature-included">Sección de Testimonios</li>
+                        <li class="feature-included">Sección de Preguntas Frecuentes (FAQ)</li>
+                        <li class="feature-included">Lead magnet integrado (ej. PDF descargable)</li>
+                        <li class="feature-included">SEO on page básico</li>
+                        <li class="feature-included">Pixel de seguimiento (Meta o Google opcional)</li>
+                        <li class="feature-included">Mantenimiento gratis por 3 meses</li>
+                        <li class="feature-included">Entrega de 3 a 5 días</li>
                     </ul>
                     <a href="#contacto" class="btn btn-morado">Quiero Elegir este plan</a>
                     
@@ -325,11 +342,16 @@
                         </div>
                     </div>
                     <ul class="plan-features">
-                        <li>Sitio web multipágina (Home + Nosotros + Servicios)</li>
-                        <li>Diseño responsive con menú de navegación</li>
-                        <li>Contacto directo (WhatsApp/formulario)</li>
-                        <li>Dominio y hosting 1 año gratis</li>
-                        <li>Entrega en 3-5 días</li>
+                        <li class="feature-included">Sitio web multipágina (Home + Nosotros + Servicios)</li>
+                        <li class="feature-included">Diseño responsive con menú de navegación</li>
+                        <li class="feature-included">Contacto directo (WhatsApp/formulario)</li>
+                        <li class="feature-included">Dominio y hosting 1 año gratis</li>
+                        <li class="feature-included">Entrega en 3-5 días</li>
+                        <li class="feature-excluded">Sección Portfolio</li>
+                        <li class="feature-excluded">Lead magnet</li>
+                        <li class="feature-excluded">SEO on page optimizado</li>
+                        <li class="feature-excluded">Sección de Preguntas Frecuentes</li>
+                        <li class="feature-excluded">Integración de agenda o reservas</li>
                     </ul>
                     <a href="#contacto" class="btn btn-verde">Más información</a>
                     
@@ -350,15 +372,15 @@
                         </div>
                     </div>
                     <ul class="plan-features">
-                        <li>Sitio web multipágina</li>
-                        <li>Diseño responsive con menú de navegación</li>
-                        <li>Contacto directo (WhatsApp/formulario)</li>
-                        <li>Sección Portfolio</li>
-                        <li>Lead magnet</li>
-                        <li>SEO on page optimizado</li>
-                        <li>Sección de Preguntas Frecuentes</li>
-                        <li>Integración de agenda o reservas</li>
-                        <li>Dominio y hosting 1 año gratis</li>
+                        <li class="feature-included">Sitio web multipágina</li>
+                        <li class="feature-included">Diseño responsive con menú de navegación</li>
+                        <li class="feature-included">Contacto directo (WhatsApp/formulario)</li>
+                        <li class="feature-included">Sección Portfolio</li>
+                        <li class="feature-included">Lead magnet</li>
+                        <li class="feature-included">SEO on page optimizado</li>
+                        <li class="feature-included">Sección de Preguntas Frecuentes</li>
+                        <li class="feature-included">Integración de agenda o reservas</li>
+                        <li class="feature-included">Dominio y hosting 1 año gratis</li>
                     </ul>
                     <a href="#contacto" class="btn btn-morado">Más información</a>
                     
