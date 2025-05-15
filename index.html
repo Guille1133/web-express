@@ -589,43 +589,20 @@
             
             <div class="galeria-grid">
                 <div class="ejemplo-web">
-    <iframe width="100%" height="315"
-        src="https://www.youtube.com/embed/3oQEbdS21bk?mute=1"
-        title="Infoproducto Web" frameborder="0"
-        allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
-    <div class="ejemplo-info">
-        <h3>Web para Infoproducto</h3>
-        <p>Landing rápida, optimizada para ventas con llamado directo a la acción.</p>
-    </div>
-</div>
-
-              <div class="ejemplo-web">
-  <video autoplay muted loop playsinline style="width: 100%; height: 350px; object-fit: cover; border-radius: 10px;">
-    <source src="https://raw.githubusercontent.com/Guille1133/web-express/main/videos/coach.mp4" type="video/mp4">
-    Tu navegador no soporta video HTML5.
-  </video>
-  <div class="ejemplo-info">
-    <h3>Web para Coach</h3>
-    <p>Diseño limpio y profesional pensado para captar clientes desde el primer impacto.</p>
-  </div>
-</div>
-
-
-           
+                    <img src="https://via.placeholder.com/600x400?text=Ejemplo+Web+1" alt="Ejemplo Web 1">
+                    <div class="ejemplo-info">
+                        <h3>Web para Coach</h3>
+                        <p>Diseño limpio y profesional para coach de vida</p>
+                    </div>
+                </div>
+                
                 <div class="ejemplo-web">
-    <iframe width="100%" height="315"
-        src="https://www.youtube.com/embed/raMxX_xH_iw?mute=1"
-        title="Web para Coach" frameborder="0"
-        allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
-    <div class="ejemplo-info">
-        <h3>Web para Coach</h3>
-        <p>Diseño limpio y profesional pensado para captar clientes desde el primer impacto.</p>
-    </div>
-</div>
+                    <img src="https://via.placeholder.com/600x400?text=Ejemplo+Web+2" alt="Ejemplo Web 2">
+                    <div class="ejemplo-info">
+                        <h3>Infoproductos</h3>
+                        <p>Landing page de alta conversión para curso online</p>
+                    </div>
+                </div>
                 
                 <div class="ejemplo-web">
                     <img src="https://via.placeholder.com/600x400?text=Ejemplo+Web+3" alt="Ejemplo Web 3">
@@ -931,44 +908,5 @@
             startCountdown();
         };
     </script>
-    <script>
-    const iframe = document.querySelector('iframe[src*="raMxX_xH_iw"]');
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const src = iframe.getAttribute('src');
-                if (!src.includes('autoplay=1')) {
-                    iframe.src += "&autoplay=1";
-                }
-                observer.unobserve(iframe);
-            }
-        });
-    }, {
-        threshold: 0.5
-    });
-
-    observer.observe(iframe);
-</script>
-<script>
-    const iframe2 = document.querySelector('iframe[src*="3oQEbdS21bk"]');
-
-    const observer2 = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const src = iframe2.getAttribute('src');
-                if (!src.includes('autoplay=1')) {
-                    iframe2.src += "&autoplay=1";
-                }
-                observer2.unobserve(iframe2);
-            }
-        });
-    }, {
-        threshold: 0.5
-    });
-
-    observer2.observe(iframe2);
-</script>
-
 </body>
 </html>
