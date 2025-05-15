@@ -82,32 +82,39 @@
             cursor: pointer;
         }
         .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 80px;
-            left: 0;
-            width: 100%;
-            background: white;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            z-index: 999;
-        }
-        .mobile-nav.active {
-            display: block;
-        }
-        .mobile-nav ul {
-            list-style: none;
-            padding: 20px;
-        }
-        .mobile-nav ul li {
-            margin-bottom: 15px;
-        }
-        .mobile-nav ul li a {
-            text-decoration: none;
-            color: var(--negro);
-            font-size: 1.1rem;
-        }
-        
-        .container {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background-color: #0f172a; /* negro oscuro */
+  color: white;
+  transition: right 0.3s ease-in-out;
+  z-index: 9999;
+  padding: 60px 30px;
+}
+
+.mobile-nav.active {
+  right: 0;
+}
+
+.mobile-nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  text-align: left;
+}
+
+.mobile-nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+          .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
@@ -562,6 +569,7 @@
             <div class="menu-mobile">☰</div>
         </div>
         <div class="mobile-nav" id="mobileNav">
+<button id="closeMenu" style="background:none;border:none;color:white;font-size:2rem;position:absolute;top:20px;right:25px;cursor:pointer;">✕</button>
             <ul>
                 <li><a href="#beneficios">Beneficios</a></li>
                 <li><a href="#galeria">Ejemplos</a></li>
@@ -912,16 +920,22 @@
     </footer>
 
     <script>
-        // Menú móvil
-        document.querySelector('.menu-mobile').addEventListener('click', function() {
-            document.getElementById('mobileNav').classList.toggle('active');
-        });
+  // Menú móvil
+  document.querySelector('.menu-mobile').addEventListener('click', function() {
+    document.getElementById('mobileNav').classList.toggle('active');
+  });
 
-        // Cerrar menú al hacer clic en un enlace
-        document.querySelectorAll('.mobile-nav a').forEach(item => {
-            item.addEventListener('click', function() {
-                document.getElementById('mobileNav').classList.remove('active');
-            });
+  // Cerrar menú al hacer clic en un enlace
+  document.querySelectorAll('.mobile-nav a').forEach(item => {
+    item.addEventListener('click', function() {
+      document.getElementById('mobileNav').classList.remove('active');
+    });
+  });
+
+  // Cerrar menú al tocar el botón ✕
+  document.getElementById('closeMenu').addEventListener('click', function() {
+    document.getElementById('mobileNav').classList.remove('active');
+  });
         });
 
         // Countdown Timer mejorado
