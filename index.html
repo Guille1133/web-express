@@ -474,54 +474,71 @@
         }
         
         /* Responsive */
-        @media (max-width: 768px) {
-            .planes-comparativos {
-                flex-direction: column;
-                align-items: center;
-            }
-            .plan {
-                width: 100%;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .plan-features {
-                min-height: auto;
-            }
-            nav ul {
-                display: none;
-            }
-            .menu-mobile {
-                display: block;
-            }
-            body {
-                padding-top: 70px;
-            }
-            .countdown-segment {
-                min-width: 60px;
-                padding: 10px 15px;
-            }
-            .countdown-number {
-                font-size: 2rem;
-            }
-.nav-container {
+@media (max-width: 768px) {
+  .planes-comparativos {
     flex-direction: column;
     align-items: center;
-    gap: 10px;
   }
 
-  .logo {
-    justify-content: center;
-    margin-bottom: 10px;
+  .plan {
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .plan-features {
+    min-height: auto;
+  }
+
+  nav ul {
+    display: none;
   }
 
   .menu-mobile {
-    align-self: flex-end;
-  }       
-    .logo img {
-    height: 70px;
+    display: block;
   }
-        }
+
+  body {
+    padding-top: 60px;
+  }
+
+  header {
+    padding: 0;
+    height: 60px;
+  }
+
+  .nav-container {
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .logo {
+    margin: 0;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .menu-mobile {
+    align-self: auto;
+  }
+
+  .countdown-segment {
+    min-width: 60px;
+    padding: 10px 15px;
+  }
+
+  .countdown-number {
+    font-size: 2rem;
+  }
+}
+
     </style>
 </head>
 <body>
