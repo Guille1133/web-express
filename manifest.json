@@ -1,0 +1,21 @@
+{
+    "name": "paginaya24.com",
+    "short_name": "PaginaYa24",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2563EB",
+    "description": "Webs profesionales en 24hs con dominio y hosting gratis. Oferta 50% OFF para coaches, freelancers y empresas.",
+    "icons": [
+        {
+            "src": "/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
