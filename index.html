@@ -614,6 +614,37 @@
 .slick-prev:before, .slick-next:before {
   color: var(--azul);
 }
+    .galeria-carousel img {
+  height: 280px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.slick-dots {
+  display: none !important;
+}
+
+.slick-prev, .slick-next {
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  background-color: var(--azul);
+  border-radius: 50%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+}
+
+.slick-prev:hover, .slick-next:hover {
+  opacity: 1;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: white;
+  font-size: 20px;
+}
     </style>
 </head>
 <body>
@@ -702,67 +733,29 @@
     <p>Una web profesional te permite captar leads, automatizar procesos y crecer sin límites.</p>
   </div>
 </div>
-
-        </div>
+  </div>
     </section>
+<!-- Galería de ejemplos -->
+<section id="galeria" class="galeria">
+  <div class="container">
+    <div class="section-title">
+      <h2>Nuestros Trabajos Recientes</h2>
+      <p>Ejemplos reales de webs que hemos creado para nuestros clientes</p>
+    </div>
 
-    <!-- Galería de ejemplos -->
-    <section id="galeria" class="galeria">
-        <div class="container">
-            <div class="section-title">
-                <h2>Nuestros Trabajos Recientes</h2>
-                <p>Ejemplos reales de webs que hemos creado para nuestros clientes</p>
-            </div>
-            
-<div class="galeria-carousel">
-  <div class="ejemplo-web">
-    <img src="coach1.jpg" alt="Web para Coach - Captura 1">
+    <div class="galeria-carousel">
+      <div class="ejemplo-web"><img src="coach1.jpg" alt="Web para Coach - Captura 1"></div>
+      <div class="ejemplo-web"><img src="coach2.jpg" alt="Web para Coach - Captura 2"></div>
+      <div class="ejemplo-web"><img src="coach3.jpg" alt="Web para Coach - Captura 3"></div>
+      <div class="ejemplo-web"><img src="mp1.jpg" alt="Guía Marca Personal - Captura 1"></div>
+      <div class="ejemplo-web"><img src="mp2.jpg" alt="Guía Marca Personal - Captura 2"></div>
+      <div class="ejemplo-web"><img src="mp3.jpg" alt="Guía Marca Personal - Captura 3"></div>
+      <div class="ejemplo-web"><img src="m1.jpg" alt="Guía IA - Captura 1"></div>
+      <div class="ejemplo-web"><img src="m2.jpg" alt="Guía IA - Captura 2"></div>
+      <div class="ejemplo-web"><img src="m3.jpg" alt="Guía IA - Captura 3"></div>
+    </div>
   </div>
-  <div class="ejemplo-web">
-    <img src="coach2.jpg" alt="Web para Coach - Captura 2">
-  </div>
-  <div class="ejemplo-web">
-    <img src="coach3.jpg" alt="Web para Coach - Captura 3">
-  </div>
-  <div class="ejemplo-web">
-    <img src="mp1.jpg" alt="Guía Marca Personal - Captura 1">
-  </div>
-  <div class="ejemplo-web">
-    <img src="mp2.jpg" alt="Guía Marca Personal - Captura 2">
-  </div>
-  <div class="ejemplo-web">
-    <img src="mp3.jpg" alt="Guía Marca Personal - Captura 3">
-  </div>
-  <div class="ejemplo-web">
-    <img src="m1.jpg" alt="Guía Inteligencia Artificial - Captura 1">
-  </div>
-  <div class="ejemplo-web">
-    <img src="m2.jpg" alt="Guía Inteligencia Artificial - Captura 2">
-  </div>
-  <div class="ejemplo-web">
-    <img src="m3.jpg" alt="Guía Inteligencia Artificial - Captura 3">
-  </div>
-</div>
-                
-                <div class="ejemplo-web">
-                    <img src="https://via.placeholder.com/600x400?text=Ejemplo+Web+2" alt="Diseño de web para infoproducto">
-                    <div class="ejemplo-info">
-                        <h3>Infoproductos</h3>
-                        <p>Landing page de alta conversión para curso online</p>
-                    </div>
-                </div>
-                
-                <div class="ejemplo-web">
-                    <img src="https://via.placeholder.com/600x400?text=Ejemplo+Web+3" alt="Diseño de web para equipo de arquitectos">
-                    <div class="ejemplo-info">
-                        <h3>Consultoría</h3>
-                        <p>Web corporativa para equipo de consultores</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+</section>
     <!-- Sección Webs Express -->
     <section id="express" class="section">
         <div class="container">
