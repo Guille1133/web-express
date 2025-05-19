@@ -661,6 +661,39 @@
 .slick-dots {
   display: none !important;
 }
+        /* --- Elementos de confianza mejorados --- */
+.confianza-mejorada {
+  background-color: #ffffff;
+  padding: 40px 0;
+}
+
+.container-confianza {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.item-confianza {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 180px;
+  text-align: center;
+}
+
+.item-confianza img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 10px;
+}
+
+.item-confianza p {
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 1rem;
+}
+
 /* --- Personalización de flechas del carrusel --- */
 .slick-prev, .slick-next {
   width: 40px;
@@ -986,23 +1019,24 @@
   </div>
 </section>
 
-    <!-- Elementos de confianza -->
-   <div class="container">
-  <div class="confianza">
-    <div class="sello-confianza">
-      <div style="font-size: 2rem;">✅</div>
+    <!-- Elementos de confianza mejorados -->
+<section class="confianza-mejorada">
+  <div class="container-confianza">
+    <div class="item-confianza">
+      <img src="https://www.svgrepo.com/show/312259/shield-check.svg" alt="Garantía" />
       <p>Garantía de 7 días</p>
     </div>
-    <div class="sello-confianza">
-      <div style="font-size: 2rem;">🔒</div>
+    <div class="item-confianza">
+      <img src="https://www.svgrepo.com/show/171452/credit-card-secure.svg" alt="Pago seguro" />
       <p>Pago 100% seguro</p>
     </div>
-    <div class="sello-confianza">
-      <div style="font-size: 2rem;">💬</div>
+    <div class="item-confianza">
+      <img src="https://www.svgrepo.com/show/444202/chat-check.svg" alt="Soporte" />
       <p>Soporte prioritario</p>
     </div>
   </div>
-</div>
+</section>
+
 
     <!-- Countdown Timer mejorado -->
     <div class="container">
