@@ -24,11 +24,15 @@
         
         /* Header y Navegación */
         header {
-            background: linear-gradient(135deg, var(--primary) 0%, #FF6B95 100%);
+            background: linear-gradient(135deg, rgba(255,45,117,0.9) 0%, rgba(255,107,149,0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
             color: var(--light);
             padding: 1rem 0;
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         .header-container {
@@ -38,6 +42,7 @@
             width: 85%;
             max-width: 1200px;
             margin: 0 auto;
+            z-index: 2;
         }
         
         .logo-container {
@@ -46,9 +51,9 @@
         }
         
         .logo-img {
-            width: 50px; /* Espacio para tu logo */
+            width: 50px;
             height: 50px;
-            background: rgba(255,255,255,0.2); /* Placeholder para logo */
+            background: rgba(255,255,255,0.2);
             margin-right: 15px;
             border-radius: 50%;
         }
@@ -95,13 +100,19 @@
         
         .hero {
             text-align: center;
-            padding: 3rem 0 4rem;
+            padding: 3rem 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 2;
         }
         
         .tagline {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             max-width: 700px;
             margin: 1rem auto 2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
         .btn {
@@ -124,17 +135,6 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        header::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 20px;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23ffffff" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23ffffff"/></svg>');
-            background-size: cover;
         }
         
         /* Secciones */
@@ -186,13 +186,10 @@
         .about-image {
             flex: 1;
             min-width: 300px;
-            background: var(--primary);
-            height: 350px;
+            background: url('https://images.unsplash.com/photo-1677442135136-760c813a743e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover;
+            height: 400px;
             border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
         /* Servicios */
@@ -424,10 +421,16 @@
             
             .about-image {
                 height: 250px;
+                order: -1;
             }
             
             .section-title {
                 font-size: 1.8rem;
+            }
+            
+            header {
+                min-height: auto;
+                padding-bottom: 4rem;
             }
         }
         
@@ -443,7 +446,7 @@
             }
             
             .tagline {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -474,25 +477,23 @@
         </div>
         
         <div class="hero container">
-            <p class="tagline">Transformamos tu empresa uniendo la potencia de la IA con el bienestar emocional</p>
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Transformación Digital con Alma</h1>
+            <p class="tagline">Donde la inteligencia artificial se encuentra con el bienestar emocional para crear empresas más eficientes y humanas</p>
             <a href="#contact" class="btn btn-primary">Descubre cómo</a>
-            <a href="#services" class="btn">Nuestros servicios</a>
+            <a href="#services" class="btn">Explora servicios</a>
         </div>
     </header>
     
     <section id="about" class="about">
         <div class="container">
+            <h2 class="section-title">Más que IA, una transformación</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h2 class="section-title">Más que IA, una transformación</h2>
                     <p>En Nova Agency no solo implementamos soluciones tecnológicas; acompañamos a tu empresa en un proceso de transformación integral donde la eficiencia operativa se encuentra con el bienestar emocional.</p>
                     <p>Creemos que la verdadera innovación ocurre cuando la tecnología sirve a las personas, no al revés. Por eso, cada solución que implementamos está diseñada para potenciar tanto tus resultados como la experiencia de tu equipo.</p>
                     <p>Nuestro enfoque personalizado asegura que cada integración se adapte perfectamente a tus necesidades específicas, creando una transición fluida y sin estrés hacia operaciones más inteligentes.</p>
-                    <a href="#services" class="btn" style="margin-top: 1rem;">Ver nuestros servicios</a>
                 </div>
-                <div class="about-image">
-                    <i class="fas fa-brain" style="font-size: 3rem;"></i>
-                </div>
+                <div class="about-image"></div>
             </div>
         </div>
     </section>
