@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Agency | Transformación con IA y Bienestar</title>
+    <style>
+        :root {
+            --primary: #FF2D75; /* Rosa Nova */
+            --secondary: #000000;
+            --light: #FFFFFF;
+            --accent: #F8E8EE;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--secondary);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header y Navegación */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #FF6B95 100%);
+            color: var(--light);
+            padding: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            width: 50px; /* Espacio para tu logo */
+            height: 50px;
+            background: rgba(255,255,255,0.2); /* Placeholder para logo */
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 0 4rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 1rem auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--light);
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--light);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23ffffff" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23ffffff"/></svg>');
+            background-size: cover;
+        }
+        
+        /* Secciones */
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 15px auto;
+        }
+        
+        .about {
+            background: var(--accent);
+            position: relative;
+            padding: 3rem 0;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            background: var(--primary);
+            height: 350px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        /* Servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .service-card {
+            background: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            background: var(--primary);
+            color: var(--light);
+            font-size: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        /* Testimonios */
+        .testimonials {
+            background: var(--secondary);
+            color: var(--light);
+            padding: 3rem 0;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: """;
+            font-size: 4rem;
+            color: var(--primary);
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            opacity: 0.2;
+            font-family: serif;
+        }
+        
+        /* FAQ */
+        .faq {
+            padding: 3rem 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background: var(--light);
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question::after {
+            content: "+";
+            font-size: 1.2rem;
+        }
+        
+        .faq-question.active::after {
+            content: "-";
+        }
+        
+        .faq-answer {
+            display: none;
+            padding-top: 1rem;
+        }
+        
+        /* Lead Magnet */
+        .lead-magnet {
+            padding: 3rem 0;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--accent);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+        }
+        
+        /* Contacto */
+        .contact-cta {
+            text-align: center;
+            background: var(--primary);
+            color: var(--light);
+            padding: 2.5rem 0;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.3s;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: var(--light);
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        .social-links {
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: opacity 0.3s;
+        }
+        
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                width: 90%;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.3s;
+                z-index: 1000;
+                padding: 0;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+            
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                height: 250px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .btn {
+                display: block;
+                width: 90%;
+                margin: 0.5rem auto;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-img"></div>
+                <div class="logo-text">NOVA AGENCY</div>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="hero container">
+            <p class="tagline">Transformamos tu empresa uniendo la potencia de la IA con el bienestar emocional</p>
+            <a href="#contact" class="btn btn-primary">Descubre cómo</a>
+            <a href="#services" class="btn">Nuestros servicios</a>
+        </div>
+    </header>
+    
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">Más que IA, una transformación</h2>
+                    <p>En Nova Agency no solo implementamos soluciones tecnológicas; acompañamos a tu empresa en un proceso de transformación integral donde la eficiencia operativa se encuentra con el bienestar emocional.</p>
+                    <p>Creemos que la verdadera innovación ocurre cuando la tecnología sirve a las personas, no al revés. Por eso, cada solución que implementamos está diseñada para potenciar tanto tus resultados como la experiencia de tu equipo.</p>
+                    <p>Nuestro enfoque personalizado asegura que cada integración se adapte perfectamente a tus necesidades específicas, creando una transición fluida y sin estrés hacia operaciones más inteligentes.</p>
+                    <a href="#services" class="btn" style="margin-top: 1rem;">Ver nuestros servicios</a>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-brain" style="font-size: 3rem;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Automatizaciones Inteligentes</h3>
+                        <p>Libera a tu equipo de tareas repetitivas con nuestros sistemas de automatización personalizados que aprenden y se adaptan a tus procesos.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>SaaS Personalizados</h3>
+                        <p>Soluciones software a medida que escalan con tu negocio, diseñadas específicamente para tus desafíos únicos.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Agentes de IA Telefónicos</h3>
+                        <p>Asistentes virtuales que gestionan llamadas con naturalidad, reduciendo costos mientras mejoran la experiencia del cliente.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Agentes de IA de Texto</h3>
+                        <p>Sistemas conversacionales avanzados para atención al cliente, ventas y soporte, disponibles 24/7.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--light);">Lo que dicen nuestros clientes</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>"La verdad tío, me has ayudado a tener claridad mental a la hora de querer mandar propuestas en LinkedIn. No solo es la tecnología, es cómo la implementaste en mi flujo de trabajo sin añadir estrés."</p>
+                    <p><strong>Carlos M., Emprendedor</strong></p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p>"Nova Agency transformó nuestro centro de llamadas. Los agentes de IA manejan el 70% de las consultas rutinarias, permitiendo a nuestro equipo humano enfocarse en casos complejos."</p>
+                    <p><strong>María L., Directora de Operaciones</strong></p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p>"El SaaS personalizado que desarrollaron para nosotros ha sido un cambio radical. Es como tener un miembro adicional del equipo que entiende perfectamente nuestras necesidades."</p>
+                    <p><strong>David R., CEO de Startup Tech</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Qué retos encuentra mi empresa al implementar IA?</div>
+                <div class="faq-answer">
+                    <p>Los principales desafíos son: resistencia al cambio, integración con sistemas existentes, calidad de los datos y expectativas poco realistas. En Nova Agency abordamos estos desafíos con un enfoque gradual y centrado en las personas.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Qué puede hacer la IA por mi empresa?</div>
+                <div class="faq-answer">
+                    <p>La IA puede optimizar procesos, reducir costos, mejorar la experiencia del cliente, proporcionar insights valiosos y liberar a tu equipo para tareas de mayor valor. Pero más importante, puede transformar cómo operas, permitiéndote hacer cosas que antes no eran posibles.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Cómo integran el bienestar emocional?</div>
+                <div class="faq-answer">
+                    <p>Consideramos factores como la curva de aprendizaje y el impacto en los flujos de trabajo. Diseñamos interfaces intuitivas, proporcionamos capacitación personalizada y establecemos métricas de satisfacción del equipo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="lead-magnet">
+        <div class="container">
+            <div class="form-container">
+                <h2 style="text-align: center; color: var(--primary); margin-bottom: 1.5rem;">Descubre lo que la IA puede hacer por tu empresa</h2>
+                <p style="text-align: center; margin-bottom: 1.5rem;">Descarga nuestro whitepaper "5 Formas en que la IA Transformará tu Negocio" y recibe un diagnóstico gratuito.</p>
+                
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Empresa">
+                    </div>
+                    <div class="form-group" style="text-align: center;">
+                        <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer;">Enviar y Descargar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact-cta">
+        <div class="container">
+            <h2 style="margin-bottom: 1rem; font-size: 1.8rem;">¿Listo para transformar tu empresa?</h2>
+            <p style="max-width: 700px; margin: 0 auto 1.5rem;">Habla directamente con nuestro equipo de expertos. Estamos aquí para entender tus desafíos y proponer soluciones personalizadas.</p>
+            <a href="https://wa.me/tunumerodewhatsapp" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Hablar por WhatsApp
+            </a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-logo">NOVA AGENCY</div>
+            <p>Transformación Tecnológica con Enfoque Humano</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2024 Nova Agency. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Menú Hamburguesa
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // FAQ
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                question.classList.toggle('active');
+                
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                } else {
+                    answer.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
