@@ -23,9 +23,11 @@
         }
         
         /* Header y Navegación */
-        header {
-    background: linear-gradient(135deg, rgba(255,45,117,0.9) 0%, rgba(255,107,149,0.9) 100%), 
-                url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+   header {
+    background: linear-gradient(135deg, rgba(255,45,117,0.5) 0%, rgba(255,107,149,0.5) 100%),
+            url('./fondo.png') center/cover no-repeat;
+
+
 
             color: var(--light);
             padding: 1rem 0;
@@ -116,19 +118,21 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
-        .btn {
+       .btn {
     display: inline-block;
     background: var(--light);
     color: var(--primary);
-    padding: 10px 20px;
+    padding: 12px 28px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 500;
     margin: 0.5rem;
     transition: all 0.3s ease;
-    min-width: 180px;
+    max-width: 240px;
+    width: auto;
     text-align: center;
 }
+
 
         
         .btn-primary {
@@ -248,8 +252,8 @@
             position: relative;
         }
         
-        .testimonial-card::before {
-            content: """;
+       .testimonial-card::before {
+    content: "❝";
             font-size: 4rem;
             color: var(--primary);
             position: absolute;
@@ -496,23 +500,13 @@
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">Más que IA, una transformación</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>En Nova Agency no solo implementamos soluciones tecnológicas; acompañamos a tu empresa en un proceso de transformación integral donde la eficiencia operativa se encuentra con el bienestar emocional.</p>
-                    <p>Creemos que la verdadera innovación ocurre cuando la tecnología sirve a las personas, no al revés. Por eso, cada solución que implementamos está diseñada para potenciar tanto tus resultados como la experiencia de tu equipo.</p>
-                    <p>Nuestro enfoque personalizado asegura que cada integración se adapte perfectamente a tus necesidades específicas, creando una transición fluida y sin estrés hacia operaciones más inteligentes.</p>
-                </div>
-                <div class="about-image" style="display: flex; align-items: center; justify-content: center; text-align: center; padding: 1rem;">
-    <div>
-        <i class="fas fa-heartbeat" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
-        <p style="font-size: 1rem; line-height: 1.5; color: white;">
-            🌟 Mejora la cultura interna de tu empresa<br>con tecnología consciente.
-        </p>
+            <div class="about-content" style="flex-direction: column; text-align: center;">
+    <div class="about-text" style="max-width: 800px; margin: 0 auto;">
+        <p>En Nova Agency no solo implementamos soluciones tecnológicas; acompañamos a tu empresa en un proceso de transformación integral donde la eficiencia operativa se encuentra con el bienestar emocional.</p>
+        <p>Creemos que la verdadera innovación ocurre cuando la tecnología sirve a las personas, no al revés. Por eso, cada solución que implementamos está diseñada para potenciar tanto tus resultados como la experiencia de tu equipo.</p>
+        <p>Nuestro enfoque personalizado asegura que cada integración se adapte perfectamente a tus necesidades específicas, creando una transición fluida y sin estrés hacia operaciones más inteligentes.</p>
     </div>
 </div>
-
-            </div>
-        </div>
     </section>
     
     <section id="services" class="services">
