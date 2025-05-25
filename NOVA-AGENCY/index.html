@@ -67,43 +67,58 @@
             letter-spacing: 1px;
         }
         
-        nav {
-            display: flex;
-            align-items: center;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 2rem;
-        }
-        
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-        
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-        
-       .hamburger {
+       nav {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
     display: block;
     position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1001;
+    top: 20px;
+    right: 20px;
+    z-index: 10002;
     background: none;
     border: none;
     color: var(--light);
+    font-size: 2rem;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100vw;
+    height: 100vh;
+    background: var(--secondary);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  nav.active {
+    right: 0;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-links li {
+    margin: 0;
+  }
+
+  .nav-links a {
     font-size: 1.8rem;
+    color: var(--light);
+  }
 }
+
         .hero {
     text-align: center;
     padding: 3rem 0;
@@ -462,7 +477,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             
-            <nav>
+            <nav id="nav">
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#about">Nosotros</a></li>
                     <li><a href="#services">Servicios</a></li>
@@ -638,23 +653,23 @@
     
     <script>
         // Menú Hamburguesa
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-        
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.innerHTML = navLinks.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Cerrar menú al hacer clic en un enlace
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
+       const hamburger = document.getElementById('hamburger');
+const nav = document.getElementById('nav');
+
+hamburger.addEventListener('click', () => {
+  nav.classList.toggle('active');
+  hamburger.innerHTML = nav.classList.contains('active')
+    ? '<i class="fas fa-times"></i>'
+    : '<i class="fas fa-bars"></i>';
+});
+
+// Cerrar al hacer clic en un enlace
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('active');
+    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+  });
+});
         // FAQ
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
