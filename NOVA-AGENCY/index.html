@@ -109,12 +109,13 @@ nav {
     right: -100%;
     width: 100vw;
     height: 100vh;
-    background: var(--secondary);
+    background: rgba(0, 0, 0, 0.95); /* negro suave semitransparente */
     flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: right 0.3s ease-in-out;
     z-index: 1000;
+    padding-top: 4rem; /* espacio para que la X no choque con los enlaces */
   }
 
   nav.active {
@@ -124,18 +125,28 @@ nav {
   .nav-links {
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 2.5rem; /* más espacio entre enlaces */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-links li a {
+    font-size: 1.8rem;
+    color: var(--light);
+    text-decoration: none;
   }
 
   .nav-links li {
     margin: 0;
   }
 
-  .nav-links a {
-    font-size: 1.8rem;
+  .hamburger i {
+    font-size: 2rem;
     color: var(--light);
   }
 }
+
 
         .hero {
     text-align: center;
@@ -475,9 +486,11 @@ nav {
             .tagline {
                 font-size: 1.1rem;
             }
-             .services-grid {
-        grid-template-columns: 1fr;
-    } 
+     @media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr; /* solo 1 columna en mobile */
+  }
+}
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
