@@ -67,11 +67,29 @@
             letter-spacing: 1px;
         }
         
-       nav {
+       /* Estilos por defecto: ESCRITORIO */
+nav {
   display: flex;
   align-items: center;
 }
 
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links li a {
+  color: var(--light);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.hamburger {
+  display: none;
+}
+
+/* SOLO en móvil */
 @media (max-width: 768px) {
   .hamburger {
     display: block;
