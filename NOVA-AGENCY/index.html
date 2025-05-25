@@ -94,13 +94,18 @@ nav {
   .hamburger {
     display: block;
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
     z-index: 10002;
     background: none;
     border: none;
     color: var(--light);
-    font-size: 2rem;
+    font-size: 1.3rem;
+  }
+
+  .header-container {
+    align-items: center;
   }
 
   nav {
@@ -109,13 +114,13 @@ nav {
     right: -100%;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.95); /* negro suave semitransparente */
+    background: rgba(0, 0, 0, 0.95);
     flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: right 0.3s ease-in-out;
     z-index: 1000;
-    padding-top: 4rem; /* espacio para que la X no choque con los enlaces */
+    padding-top: 4rem;
   }
 
   nav.active {
@@ -125,9 +130,13 @@ nav {
   .nav-links {
     flex-direction: column;
     align-items: center;
-    gap: 2.5rem; /* más espacio entre enlaces */
+    gap: 2.5rem;
     list-style: none;
     padding: 0;
+    margin: 0;
+  }
+
+  .nav-links li {
     margin: 0;
   }
 
@@ -137,28 +146,16 @@ nav {
     text-decoration: none;
   }
 
-  .nav-links li {
-    margin: 0;
-  }
-
   .hamburger i {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--light);
   }
-    @media (max-width: 768px) {
-  .hamburger {
-    font-size: 1.4rem; /* Tamaño más chico */
-    top: 50%;
-    transform: translateY(-50%); /* Lo alinea verticalmente con el logo */
-    right: 15px;
-  }
 
-  .header-container {
-    align-items: center;
+  header {
+    min-height: auto;
+    padding-bottom: 4rem;
   }
 }
-}
-
 
         .hero {
     text-align: center;
@@ -453,17 +450,6 @@ nav {
     position: relative;
     z-index: 10000;
   }
-           .hamburger {
-  display: block;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 10002;
-  background: none;
-  border: none;
-  color: var(--light);
-  font-size: 2rem;
-}
 
   .nav-links.active {
     right: 0;
@@ -690,7 +676,7 @@ nav {
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
-            <p>&copy; 2024 Nova Agency. Todos los derechos reservados.</p>
+            <p>&copy; 2025 Nova Agency. Todos los derechos reservados.</p>
         </div>
     </footer>
     
