@@ -3,290 +3,733 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Médicos Estéticos - Agenda Llena</title>
+    <title>Solución Digital para Médicos Estéticos | Agenda Completa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
+        :root {
+            --primary: #4A3AFF;
+            --primary-dark: #3A2CE6;
+            --secondary: #FF6B9D;
+            --dark: #1E1A3E;
+            --light: #F9F9FF;
+            --gray: #6B6B84;
+            --light-gray: #E6E6F0;
+            --success: #4CAF50;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(74, 58, 255, 0.15);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
         
-        /* ETAPA 1: Anuncio */
-        .ad-container {
-            background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        /* Header */
+        .header {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .ad-title {
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
             font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
+            color: var(--primary);
+            text-decoration: none;
         }
         
-        .ad-subtitle {
-            font-size: 18px;
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(74,58,255,0.08) 0%, rgba(74,58,255,0) 70%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .badge {
+            background-color: var(--secondary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
             margin-bottom: 20px;
+            display: inline-block;
         }
         
-        .ad-benefits {
-            text-align: left;
-            display: inline-block;
-            margin: 20px 0;
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--dark);
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--gray);
+            max-width: 700px;
+            margin-bottom: 30px;
         }
         
         .cta-button {
-            display: inline-block;
-            background-color: #ff6b6b;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary);
             color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
+            padding: 16px 32px;
+            border-radius: var(--border-radius);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 18px;
-            margin-top: 15px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--box-shadow);
         }
         
         .cta-button:hover {
-            background-color: #ff5252;
+            background-color: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 30px rgba(74, 58, 255, 0.25);
         }
         
-        /* ETAPA 2: Landing Page */
-        .landing-section {
+        .cta-button.secondary {
             background-color: white;
-            border-radius: 10px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            color: var(--primary);
+            border: 1px solid var(--light-gray);
+            box-shadow: none;
+            margin-left: 15px;
         }
         
-        .landing-title {
-            font-size: 32px;
-            color: #2c3e50;
-            margin-bottom: 20px;
+        .cta-button.secondary:hover {
+            background-color: var(--light);
+            border-color: var(--primary);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+            border-radius: var(--border-radius);
+            margin: 40px 0;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
             text-align: center;
-            font-weight: 800;
+            margin-bottom: 60px;
+            position: relative;
         }
         
-        .landing-subtitle {
-            font-size: 20px;
-            color: #6e48aa;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 600;
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 15px auto 0;
+            border-radius: 2px;
         }
         
-        .benefits-grid {
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow);
+            border-color: white;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon i {
+            color: white;
+            font-size: 24px;
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .feature-text {
+            color: var(--gray);
+        }
+        
+        /* Results Section */
+        .results {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+        
+        .results .section-title {
+            color: white;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
-            margin: 30px 0;
+            text-align: center;
         }
         
-        .benefit-item {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #9d50bb;
+        .result-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(5px);
         }
         
-        .benefit-title {
-            font-weight: bold;
-            color: #2c3e50;
+        .result-number {
+            font-size: 42px;
+            font-weight: 700;
             margin-bottom: 10px;
-            font-size: 18px;
+            font-family: 'Playfair Display', serif;
         }
         
-        /* ETAPA 3: Formulario */
-        .form-section {
+        .result-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+        }
+        
+        .testimonial-card {
             background-color: white;
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             padding: 40px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: var(--box-shadow);
+            margin: 0 auto;
+            max-width: 800px;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            color: var(--light-gray);
+            line-height: 1;
+            z-index: 0;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 3px solid var(--primary);
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        /* Form Section */
+        .form-section {
+            padding: 80px 0;
+        }
+        
+        .form-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 60px;
+            box-shadow: var(--box-shadow);
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .form-title {
-            font-size: 24px;
-            color: #2c3e50;
-            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
             text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+        
+        .form-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 40px;
+            font-size: 18px;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .form-label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 600;
-            color: #2c3e50;
+            color: var(--dark);
         }
         
         .form-control {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 16px 20px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
             font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 58, 255, 0.1);
         }
         
         select.form-control {
-            height: 48px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236B6B84' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            background-size: 16px;
+        }
+        
+        .form-note {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(76, 175, 80, 0.1);
+            border-radius: var(--border-radius);
+            margin-top: 30px;
+        }
+        
+        .success-message i {
+            font-size: 50px;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+        
+        .success-message h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--success);
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--gray);
+            font-size: 14px;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 40px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 768px) {
-            .benefits-grid {
+            .header {
+                padding: 15px 0;
+            }
+            
+            .hero {
+                padding: 40px 0;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 40px;
+            }
+            
+            .cta-button {
+                padding: 14px 24px;
+                font-size: 16px;
+            }
+            
+            .form-container {
+                padding: 40px 30px;
+            }
+            
+            .feature-card {
+                padding: 25px;
+            }
+            
+            .testimonial-card {
+                padding: 30px 25px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .cta-button.secondary {
+                margin-left: 0;
+            }
+            
+            .results-grid {
                 grid-template-columns: 1fr;
             }
             
-            .landing-title {
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .form-title {
                 font-size: 28px;
             }
             
-            .landing-subtitle {
-                font-size: 18px;
+            .form-subtitle {
+                font-size: 16px;
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <!-- ETAPA 1: Anuncio (simulado) -->
-        <div class="ad-container">
-            <div class="ad-title">🔥 ¿Sos médico estético y querés tener tu agenda llena sin depender de recomendaciones?</div>
-            <div class="ad-subtitle">💻 Creamos tu presencia online profesional + embudo que atrae pacientes calificados 24/7.</div>
-            
-            <div class="ad-benefits">
-                ✔️ Ideal para tratamientos faciales, botox, rellenos, plasma, etc.<br>
-                ✔️ Dejá de perder consultas por no estar online.
-            </div>
-            
-            <a href="#formulario" class="cta-button">Quiero atraer más pacientes</a>
-        </div>
+        <!-- Header -->
+        <header class="header">
+            <a href="#" class="logo">Medi<span>Digital</span></a>
+        </header>
         
-        <!-- ETAPA 2: Landing Page -->
-        <div class="landing-section">
-            <h1 class="landing-title">Convertimos tu conocimiento médico en una máquina de atracción de pacientes</h1>
-            <h2 class="landing-subtitle">Creamos tu web profesional + embudo automatizado para atraer pacientes calificados todos los días, sin complicarte</h2>
-            
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-title">Agenda automatizada</div>
-                    <p>Los pacientes pueden reservar turnos directamente desde tu web, a cualquier hora.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-title">Web que genera confianza</div>
-                    <p>Diseño profesional que transmite seguridad y experiencia a tus potenciales pacientes.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-title">Aumentá tus consultas sin redes sociales</div>
-                    <p>Sistema que atrae pacientes sin necesidad de publicar contenido constantemente.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-title">Posicionamiento como médico premium</div>
-                    <p>Destacá tu experiencia y diferenciales para atraer pacientes que valoren tu trabajo.</p>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="badge">SOLUCIÓN EXCLUSIVA PARA MÉDICOS ESTÉTICOS</span>
+                <h1>Convierte tu conocimiento en una agenda llena de pacientes cualificados</h1>
+                <p class="hero-subtitle">Desarrollamos tu presencia digital profesional con un sistema automatizado que atrae pacientes 24/7 para tus tratamientos estéticos, sin que dependas de recomendaciones o redes sociales.</p>
+                <div class="hero-buttons">
+                    <a href="#formulario" class="cta-button">Quiero más pacientes</a>
                 </div>
             </div>
-            
-            <!-- Testimonio opcional -->
-            <div style="text-align: center; margin: 40px 0; font-style: italic; color: #555;">
-                "En 3 meses pasé de tener consultas esporádicas a tener agenda completa. La web profesional hizo toda la diferencia."<br>
-                - Dra. Laura M., Especialista en Medicina Estética
-            </div>
-        </div>
+        </section>
         
-        <!-- ETAPA 3: Formulario -->
-        <div id="formulario" class="form-section">
-            <h2 class="form-title">Reservá tu asesoría gratuita</h2>
-            
-            <form>
-                <div class="form-group">
-                    <label class="form-label">Nombre completo</label>
-                    <input type="text" class="form-control" required>
+        <!-- Features Section -->
+        <section class="features">
+            <h2 class="section-title">La solución completa para tu consulta</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="feature-title">Agenda digital inteligente</h3>
+                    <p class="feature-text">Sistema de reservas automatizado que reduce las no-presentaciones y optimiza tu tiempo.</p>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label">Correo electrónico</label>
-                    <input type="email" class="form-control" required>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop-medical"></i>
+                    </div>
+                    <h3 class="feature-title">Web profesional médica</h3>
+                    <p class="feature-text">Diseño clínico premium que genera confianza inmediata en tus pacientes.</p>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label">Teléfono</label>
-                    <input type="tel" class="form-control" required>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="feature-title">Atracción de pacientes local</h3>
+                    <p class="feature-text">Posicionamiento en Google para que te encuentren cuando buscan tus tratamientos.</p>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label">¿Hace cuánto ejercés como médico estético?</label>
-                    <select class="form-control" required>
-                        <option value="" disabled selected>Seleccionar</option>
-                        <option value="menos1">Menos de 1 año</option>
-                        <option value="1-3">1 a 3 años</option>
-                        <option value="3-5">3 a 5 años</option>
-                        <option value="mas5">Más de 5 años</option>
-                    </select>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Seguimiento de conversiones</h3>
+                    <p class="feature-text">Panel de control con métricas claras para que veas el retorno de tu inversión.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Results Section -->
+        <section class="results">
+            <h2 class="section-title">Resultados comprobados</h2>
+            <div class="results-grid">
+                <div class="result-item">
+                    <div class="result-number">3-5x</div>
+                    <div class="result-label">Más consultas mensuales</div>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label">¿Actualmente ofrecés tus servicios en consultorio, clínica o ambas?</label>
-                    <select class="form-control" required>
-                        <option value="" disabled selected>Seleccionar</option>
-                        <option value="consultorio">Consultorio propio</option>
-                        <option value="clinica">Clínica</option>
-                        <option value="ambas">Ambas</option>
-                        <option value="otro">Otro</option>
-                    </select>
+                <div class="result-item">
+                    <div class="result-number">90%</div>
+                    <div class="result-label">Reducción en no-presentaciones</div>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label">¿Cuál es tu principal tratamiento?</label>
-                    <input type="text" class="form-control" required>
+                <div class="result-item">
+                    <div class="result-number">24/7</div>
+                    <div class="result-label">Captación automática</div>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label">¿Tenés página web o solo usás Instagram?</label>
-                    <select class="form-control" required>
-                        <option value="" disabled selected>Seleccionar</option>
-                        <option value="soloig">Solo Instagram</option>
-                        <option value="web">Tengo página web</option>
-                        <option value="ninguna">No tengo presencia online</option>
-                    </select>
+                <div class="result-item">
+                    <div class="result-number">100%</div>
+                    <div class="result-label">Enfoque en tu especialidad</div>
                 </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <div class="testimonial-card">
+                <p class="testimonial-content">Antes dependía completamente de recomendaciones y grupos de WhatsApp. Desde que implementamos el sistema digital, mi agenda se llena sola con pacientes que ya vienen convencidos de mis tratamientos. Lo mejor es que puedo enfocarme en lo que realmente importa: la medicina.</p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="Dra. Laura Méndez" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Dra. Laura Méndez</h4>
+                        <p>Especialista en Medicina Estética - Buenos Aires</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Form Section -->
+        <section id="formulario" class="form-section">
+            <div class="form-container">
+                <h2 class="form-title">Agenda tu consultoría estratégica gratuita</h2>
+                <p class="form-subtitle">Completa este formulario y nos pondremos en contacto para analizar tu caso específico.</p>
                 
-                <div class="form-group">
-                    <label class="form-label">¿Estás dispuesto/a a invertir para atraer pacientes de forma profesional?</label>
-                    <select class="form-control" required>
-                        <option value="" disabled selected>Seleccionar</option>
-                        <option value="si">Sí, estoy listo/a para invertir</option>
-                        <option value="depende">Depende de la propuesta</option>
-                        <option value="no">No en este momento</option>
-                    </select>
-                </div>
+                <form id="leadForm">
+                    <div class="form-group">
+                        <label for="nombre" class="form-label">Nombre completo *</label>
+                        <input type="text" id="nombre" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Correo electrónico *</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefono" class="form-label">Teléfono *</label>
+                        <input type="tel" id="telefono" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experiencia" class="form-label">¿Hace cuánto ejerces como médico estético? *</label>
+                        <select id="experiencia" class="form-control" required>
+                            <option value="" disabled selected>Selecciona una opción</option>
+                            <option value="menos1">Menos de 1 año</option>
+                            <option value="1-3">1 a 3 años</option>
+                            <option value="3-5">3 a 5 años</option>
+                            <option value="mas5">Más de 5 años</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modalidad" class="form-label">¿Dónde atiendes actualmente? *</label>
+                        <select id="modalidad" class="form-control" required>
+                            <option value="" disabled selected>Selecciona una opción</option>
+                            <option value="consultorio">Consultorio propio</option>
+                            <option value="clinica">Clínica estética</option>
+                            <option value="ambas">Ambas opciones</option>
+                            <option value="otro">Otra modalidad</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tratamiento" class="form-label">¿Cuál es tu tratamiento principal? *</label>
+                        <input type="text" id="tratamiento" class="form-control" required placeholder="Ej: Toxina botulínica, Rellenos, Plasma Rico en Plaquetas...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="presencia" class="form-label">¿Cómo manejas tu presencia digital actualmente? *</label>
+                        <select id="presencia" class="form-control" required>
+                            <option value="" disabled selected>Selecciona una opción</option>
+                            <option value="soloig">Solo Instagram personal</option>
+                            <option value="igprofesional">Instagram profesional</option>
+                            <option value="web">Tengo página web</option>
+                            <option value="ninguna">No tengo presencia online</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inversion" class="form-label">¿Estás dispuesto/a a invertir en tu crecimiento profesional? *</label>
+                        <select id="inversion" class="form-control" required>
+                            <option value="" disabled selected>Selecciona una opción</option>
+                            <option value="si">Sí, busco una solución profesional</option>
+                            <option value="depende">Depende de la propuesta y resultados</option>
+                            <option value="noahora">No en este momento</option>
+                        </select>
+                        <p class="form-note">* Inversión promedio: $XXX-$XXX mensuales según necesidades</p>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <button type="submit" class="cta-button">Reservar consultoría gratuita</button>
+                    </div>
+                </form>
                 
-                <div style="text-align: center;">
-                    <button type="submit" class="cta-button">Reservar asesoría gratuita</button>
+                <div id="successMessage" class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>¡Gracias por tu interés!</h3>
+                    <p>Hemos recibido tu información. Uno de nuestros especialistas se pondrá en contacto contigo en las próximas 24 horas para programar tu consultoría.</p>
                 </div>
-            </form>
-        </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2023 MediDigital. Todos los derechos reservados.</p>
+        </footer>
     </div>
+    
+    <script>
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simular envío del formulario
+            document.getElementById('leadForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Scroll suave al mensaje de éxito
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            
+            // Aquí iría el código real para enviar el formulario a tu CRM o email
+            // Ejemplo con Fetch API:
+            /*
+            const formData = new FormData(this);
+            
+            fetch('tu-endpoint', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if(response.ok) {
+                    document.getElementById('leadForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Ocurrió un error al enviar el formulario. Por favor inténtalo nuevamente.');
+            });
+            */
+        });
+    </script>
 </body>
 </html>
