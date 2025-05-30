@@ -1,1 +1,725 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos Biofílicos en Tulum - Lujo en Armonía con la Naturaleza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2a5c45;
+            --secondary: #d4b483;
+            --light: #f5f5f0;
+            --dark: #1a1a1a;
+            --accent: #7aa095;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Form Section */
+        .form-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .form-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .form-content p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .form-box {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .testimonial-text::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -20px;
+            left: -15px;
+            color: var(--secondary);
+            opacity: 0.3;
+            font-family: serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Gallery */
+        .gallery {
+            padding: 80px 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(rgba(42, 92, 69, 0.9), rgba(42, 92, 69, 0.9)), url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-col h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            color: var(--secondary);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .form-container {
+                flex-direction: column;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .form-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Tulum<span>Bio</span></a>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>¿Y si tu inversión también te regenera a vos?</h1>
+            <p>Descubrí los proyectos que están redefiniendo el lujo en armonía con la naturaleza en Tulum</p>
+            <button class="cta-button" id="hero-cta">Descubrir Proyectos</button>
+        </div>
+    </section>
+    
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="container form-container">
+            <div class="form-content">
+                <h2>Viví donde otros sanan</h2>
+                <p>Proyectos biofílicos en Tulum que transforman tu inversión en bienestar. Conectamos con la esencia de la naturaleza para ofrecerte espacios que nutren el alma mientras generan rentabilidad.</p>
+                <p>Descargá nuestra <strong>Guía Gratuita:</strong> "5 razones por las que Tulum es el epicentro del real estate consciente en LATAM"</p>
+                <ul style="margin-left: 20px; margin-bottom: 30px;">
+                    <li>Inversiones con propósito ecológico</li>
+                    <li>Comunidades conscientes y conectadas</li>
+                    <li>Arquitectura que dialoga con la selva</li>
+                    <li>ROI superior al mercado tradicional</li>
+                    <li>Estilo de vida regenerativo</li>
+                </ul>
+            </div>
+            <div class="form-box">
+                <h3>Recibí información exclusiva</h3>
+                <form id="lead-form">
+                    <div class="form-group">
+                        <label for="property-type">¿Qué tipo de propiedad te interesa?</label>
+                        <select id="property-type" required>
+                            <option value="" disabled selected>Seleccionar</option>
+                            <option value="departamento">Departamento</option>
+                            <option value="lote">Lote</option>
+                            <option value="villa">Villa</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="purpose">¿Es para vivir o invertir?</label>
+                        <select id="purpose" required>
+                            <option value="" disabled selected>Seleccionar</option>
+                            <option value="vivir">Vivir</option>
+                            <option value="invertir">Invertir</option>
+                            <option value="ambos">Ambos</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">¿Cuál es tu presupuesto estimado?</label>
+                        <select id="budget" required>
+                            <option value="" disabled selected>Seleccionar</option>
+                            <option value="100-300">USD 100k - 300k</option>
+                            <option value="300-500">USD 300k - 500k</option>
+                            <option value="500-1M">USD 500k - 1M</option>
+                            <option value="1M+">Más de USD 1M</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeline">¿Cuándo te gustaría mudarte o invertir?</label>
+                        <select id="timeline" required>
+                            <option value="" disabled selected>Seleccionar</option>
+                            <option value="3m">En los próximos 3 meses</option>
+                            <option value="6m">En los próximos 6 meses</option>
+                            <option value="1y">En el próximo año</option>
+                            <option value="flexible">Tengo flexibilidad</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nombre Completo</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp</label>
+                        <input type="tel" id="whatsapp" required>
+                    </div>
+                    <button type="submit" class="cta-button" style="width: 100%;">Descargar Guía Gratis</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Por qué elegir nuestros proyectos biofílicos</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌿</div>
+                    <h3>Diseño Consciente</h3>
+                    <p>Arquitectura que integra la selva, materiales naturales y principios de sostenibilidad.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💧</div>
+                    <h3>Agua Regenerada</h3>
+                    <p>Sistemas de captación pluvial y tratamiento de aguas para cero impacto ambiental.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☀️</div>
+                    <h3>Energía Limpia</h3>
+                    <p>Paneles solares y tecnologías de eficiencia energética en todas nuestras propiedades.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌎</div>
+                    <h3>Comunidad</h3>
+                    <p>Espacios diseñados para conectar con vecinos afines y crear redes de valor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--primary);">Historias que inspiran</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Invertir en Tulum fue la mejor decisión financiera y personal que he tomado. No solo mi propiedad ha aumentado su valor un 35% en dos años, sino que cada visita me recarga de energía.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="María G." class="author-img">
+                        <div class="author-info">
+                            <h4>María González</h4>
+                            <p>Inversionista desde 2021</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Me mudé buscando un cambio de vida y encontré mucho más. La comunidad consciente, el contacto con la naturaleza y la calidad de los espacios han transformado mi salud y mi negocio.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos R." class="author-img">
+                        <div class="author-info">
+                            <h4>Carlos Rodríguez</h4>
+                            <p>Residente desde 2020</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Como desarrolladora, trabajar con proyectos que respetan la tierra era mi sueño. Estos proyectos combinan perfectamente rentabilidad con regeneración ambiental.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana M." class="author-img">
+                        <div class="author-info">
+                            <h4>Ana Martínez</h4>
+                            <p>Desarrolladora de proyectos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--primary);">Nuestros espacios que sanan</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Casa en la selva">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Piscina natural">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Interior con diseño biofílico">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Comunidad sostenible">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>¿Listo para invertir en tu bienestar y futuro?</h2>
+            <p>Agendá una consulta personalizada con nuestro equipo y descubrí cómo tu próxima inversión puede generar rentabilidad mientras cuida del planeta.</p>
+            <button class="cta-button" id="final-cta">Agendar Consulta</button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>TulumBio</h3>
+                    <p>Real estate consciente que conecta lujo, naturaleza y comunidad en el corazón de Tulum.</p>
+                    <div class="social-links">
+                        <a href="#"><span>FB</span></a>
+                        <a href="#"><span>IG</span></a>
+                        <a href="#"><span>LI</span></a>
+                        <a href="#"><span>YT</span></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Proyectos</h3>
+                    <ul>
+                        <li><a href="#">Villas Selváticas</a></li>
+                        <li><a href="#">Condominios Biofílicos</a></li>
+                        <li><a href="#">Lotes Sustentables</a></li>
+                        <li><a href="#">Desarrollos Comerciales</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Recursos</h3>
+                    <ul>
+                        <li><a href="#">Guía de Inversión</a></li>
+                        <li><a href="#">Reporte de Mercado</a></li>
+                        <li><a href="#">Sostenibilidad</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><a href="tel:+529841234567">+52 984 123 4567</a></li>
+                        <li><a href="mailto:hola@tulumbio.com">hola@tulumbio.com</a></li>
+                        <li><a href="#">WhatsApp</a></li>
+                        <li><a href="#">Oficina en Tulum Centro</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 TulumBio. Todos los derechos reservados. | <a href="#" style="color: var(--secondary);">Aviso de Privacidad</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Form submission
+        document.getElementById('lead-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the form data to your server or CRM
+            alert('¡Gracias por tu interés! Te enviaremos la guía por email y nos pondremos en contacto contigo pronto.');
+            this.reset();
+        });
+        
+        // CTA buttons click handlers
+        document.getElementById('hero-cta').addEventListener('click', function() {
+            document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        document.getElementById('final-cta').addEventListener('click', function() {
+            document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
