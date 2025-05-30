@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asesoría Inmobiliaria en Mérida | Encuentra tu Propiedad Ideal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #C19A6B;
+            --primary-dark: #8C6D46;
+            --secondary: #1E555C;
+            --light: #F8F5F0;
+            --dark: #2A2A2A;
+            --success: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-desktop {
+            display: none;
+        }
+        
+        .nav-desktop a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-desktop a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Lead Form */
+        .lead-form-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            max-width: 450px;
+            margin: -50px auto 0;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .lead-form-container h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+        }
+        
+        .form-group input:focus, 
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 100px 0 60px;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .benefit-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 0 15px;
+            text-align: center;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .testimonial-text:before,
+        .testimonial-text:after {
+            content: '"';
+            font-size: 24px;
+            color: var(--primary);
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(rgba(30, 85, 92, 0.9), rgba(30, 85, 92, 0.9)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100vh;
+            background-color: white;
+            z-index: 1100;
+            transition: left 0.3s;
+            padding: 30px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .close-menu-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .mobile-nav {
+            list-style: none;
+        }
+        
+        .mobile-nav li {
+            margin-bottom: 20px;
+        }
+        
+        .mobile-nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Thank You Page */
+        .thank-you {
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .thank-you h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--success);
+        }
+        
+        .thank-you p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .video-container {
+            max-width: 800px;
+            margin: 50px auto;
+        }
+        
+        .video-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .nav-desktop {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .hero {
+                padding: 200px 0 120px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Mérida<span>Estate</span></a>
+            <nav class="nav-desktop">
+                <a href="#benefits">Beneficios</a>
+                <a href="#testimonials">Testimonios</a>
+                <a href="#contact">Contacto</a>
+            </nav>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="#" class="logo">Mérida<span>Estate</span></a>
+            <button class="close-menu-btn">×</button>
+        </div>
+        <ul class="mobile-nav">
+            <li><a href="#benefits">Beneficios</a></li>
+            <li><a href="#testimonials">Testimonios</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Asesoría inmobiliaria especializada en Mérida</h1>
+            <p>Encuentra la propiedad perfecta para vivir, invertir o retirarte en la ciudad más segura de México con nuestro equipo de expertos locales.</p>
+        </div>
+    </section>
+    
+    <!-- Lead Form -->
+    <div class="container">
+        <div class="lead-form-container">
+            <h3>Agenda una consulta gratuita</h3>
+            <form id="leadForm">
+                <div class="form-group">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">WhatsApp</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="property_type">¿Qué tipo de propiedad te interesa?</label>
+                    <select id="property_type" name="property_type" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="Casa">Casa</option>
+                        <option value="Departamento">Departamento</option>
+                        <option value="Terreno">Terreno</option>
+                        <option value="Comercial">Local Comercial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="purpose">¿Para qué la necesitas?</label>
+                    <select id="purpose" name="purpose" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="Vivir">Para vivir</option>
+                        <option value="Inversion">Inversión</option>
+                        <option value="Retiro">Retiro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="budget">Presupuesto estimado</label>
+                    <select id="budget" name="budget" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="1-2M">$1M - $2M MXN</option>
+                        <option value="2-4M">$2M - $4M MXN</option>
+                        <option value="4-6M">$4M - $6M MXN</option>
+                        <option value="6M+">Más de $6M MXN</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Agendar Consulta Gratis</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro enfoque personalizado</h2>
+                <p>Por qué trabajar con un asesor especializado en Mérida marca la diferencia</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔍</div>
+                    <h3>Conocimiento local profundo</h3>
+                    <p>Te mostramos las mejores zonas según tus necesidades, evitando áreas con problemas de inundación o plusvalía estancada.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <h3>Negociación experta</h3>
+                    <p>Obtenemos los mejores precios y condiciones gracias a nuestras relaciones con desarrolladores y vendedores locales.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3>Protección contra riesgos</h3>
+                    <p>Verificamos escrituras, usos de suelo y regulaciones para que tu inversión esté completamente segura.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3>Análisis de inversión</h3>
+                    <p>Te proporcionamos proyecciones realistas de rentabilidad y crecimiento según el tipo de propiedad y ubicación.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">👨‍⚖️</div>
+                    <h3>Asesoría legal</h3>
+                    <p>Coordinamos todos los trámites notariales y fiscales, especialmente importantes para compradores extranjeros.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔑</div>
+                    <h3>Servicio post-venta</h3>
+                    <p>Te ayudamos con recomendaciones de mantenimiento, administración y renta después de tu compra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Clientes satisfechos</h2>
+                <p>Experiencias reales de quienes confiaron en nosotros</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p class="testimonial-text">"Gracias a su asesoría, encontré exactamente lo que buscaba: una casa en una zona tranquila pero cercana a servicios, con excelente potencial de plusvalía. El proceso fue impecable."</p>
+                    <p class="testimonial-author">- Ana R., compradora de Canadá</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Como inversionista, valoro su conocimiento del mercado local. Me mostraron opciones que no había considerado y que resultaron ser excelentes negocios."</p>
+                    <p class="testimonial-author">- Carlos M., inversionista de CDMX</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"El trámite de compra como extranjero parecía complicado, pero su equipo lo hizo todo sencillo. Ahora disfruto mi retiro en Mérida con total tranquilidad."</p>
+                    <p class="testimonial-author">- Susan K., retirada de Estados Unidos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>¿Listo para encontrar tu propiedad ideal en Mérida?</h2>
+            <p>Habla directamente con nuestro equipo de expertos y descubre cómo podemos ayudarte a realizar la compra o inversión perfecta.</p>
+            <a href="#leadForm" class="btn">Quiero hablar con un asesor</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MéridaEstate</h3>
+                    <p>Especialistas en bienes raíces en Mérida, Yucatán. Más de 15 años ayudando a clientes nacionales e internacionales.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Tel: 999 123 4567</li>
+                        <li>Email: asesoria@meridaestate.com</li>
+                        <li>Dirección: Av. Paseo de Montejo, Mérida</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">LI</a>
+                        <a href="#">YT</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MéridaEstate. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Thank You Page (hidden by default) -->
+    <div id="thankYouPage" style="display: none;">
+        <section class="thank-you">
+            <div class="container">
+                <h1>¡Gracias por contactarnos!</h1>
+                <p>Hemos recibido tu información y uno de nuestros asesores se pondrá en contacto contigo en las próximas 24 horas.</p>
+                <p>Mientras tanto, te invitamos a conocer más sobre el mercado inmobiliario de Mérida con este video de nuestro director:</p>
+                
+                <div class="video-container">
+                    <!-- Reemplaza con tu video real -->
+                    <iframe src="https://www.youtube.com/embed/ejemplo" allowfullscreen></iframe>
+                </div>
+                
+                <p>Para atención inmediata, puedes contactarnos directamente al: <strong>999 123 4567</strong></p>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const closeMenuBtn = document.querySelector('.close-menu-btn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('overlay');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+        });
+        
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+        
+        overlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+        
+        // Form Submission
+        const leadForm = document.getElementById('leadForm');
+        const thankYouPage = document.getElementById('thankYouPage');
+        
+        leadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Aquí iría el código para enviar los datos a tu CRM o servicio de email
+            // Por ahora simulamos el envío mostrando la página de gracias
+            
+            // Ocultar todo el contenido actual
+            document.querySelector('header').style.display = 'none';
+            document.querySelector('.hero').style.display = 'none';
+            document.querySelector('.lead-form-container').style.display = 'none';
+            document.querySelector('.benefits').style.display = 'none';
+            document.querySelector('.testimonials').style.display = 'none';
+            document.querySelector('.cta').style.display = 'none';
+            document.querySelector('footer').style.display = 'none';
+            
+            // Mostrar la página de gracias
+            thankYouPage.style.display = 'block';
+            
+            // Desplazarse al inicio de la página de gracias
+            window.scrollTo(0, 0);
+            
+            // Aquí puedes agregar el código para enviar los datos a tu sistema
+            // Ejemplo con Fetch API:
+            /*
+            const formData = new FormData(leadForm);
+            
+            fetch('tu_endpoint_de_api', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+            */
+        });
+        
+        // Simple testimonial slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        let currentTestimonial = 0;
+        
+        function showTestimonial(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.style.display = i === index ? 'block' : 'none';
+            });
+        }
+        
+        // Rotate testimonials every 5 seconds
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+        
+        // Show first testimonial initially
+        showTestimonial(0);
+    </script>
+</body>
+</html>
