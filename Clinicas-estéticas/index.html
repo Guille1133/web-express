@@ -17,6 +17,7 @@
             --gray: #6B6B84;
             --light-gray: #E6E6F0;
             --success: #4CAF50;
+            --warning: #FFC107;
             --border-radius: 12px;
             --box-shadow: 0 10px 30px rgba(74, 58, 255, 0.15);
             --transition: all 0.3s ease;
@@ -65,7 +66,7 @@
         
         /* Hero Section */
         .hero {
-            padding: 60px 0;
+            padding: 80px 0 60px;
             position: relative;
             overflow: hidden;
         }
@@ -91,12 +92,13 @@
         .badge {
             background-color: var(--secondary);
             color: white;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border-radius: 50px;
             font-size: 14px;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: inline-block;
+            letter-spacing: 0.5px;
         }
         
         h1 {
@@ -112,7 +114,7 @@
             font-size: 20px;
             color: var(--gray);
             max-width: 700px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
         
         .cta-button {
@@ -121,7 +123,7 @@
             justify-content: center;
             background-color: var(--primary);
             color: white;
-            padding: 16px 32px;
+            padding: 18px 36px;
             border-radius: var(--border-radius);
             text-decoration: none;
             font-weight: 600;
@@ -153,10 +155,10 @@
         
         /* Features Section */
         .features {
-            padding: 80px 0;
+            padding: 100px 0;
             background-color: white;
             border-radius: var(--border-radius);
-            margin: 40px 0;
+            margin: 60px 0;
             box-shadow: var(--box-shadow);
         }
         
@@ -187,9 +189,11 @@
         .feature-card {
             background-color: var(--light);
             border-radius: var(--border-radius);
-            padding: 30px;
+            padding: 35px 30px;
             transition: var(--transition);
             border: 1px solid var(--light-gray);
+            position: relative;
+            overflow: hidden;
         }
         
         .feature-card:hover {
@@ -206,7 +210,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .feature-icon i {
@@ -215,22 +219,24 @@
         }
         
         .feature-title {
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 22px;
+            font-weight: 700;
             margin-bottom: 15px;
+            color: var(--dark);
         }
         
         .feature-text {
             color: var(--gray);
+            font-size: 16px;
         }
         
         /* Results Section */
         .results {
-            padding: 80px 0;
+            padding: 100px 0;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border-radius: var(--border-radius);
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
         
         .results .section-title {
@@ -240,15 +246,21 @@
         .results-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 25px;
             text-align: center;
         }
         
         .result-item {
             background-color: rgba(255, 255, 255, 0.1);
-            padding: 30px 20px;
+            padding: 35px 20px;
             border-radius: var(--border-radius);
             backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+        
+        .result-item:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.15);
         }
         
         .result-number {
@@ -263,18 +275,77 @@
             opacity: 0.9;
         }
         
+        /* Guarantee Section */
+        .guarantee {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 60px;
+            margin-bottom: 60px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+        
+        .guarantee-badge {
+            background-color: var(--warning);
+            color: var(--dark);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .guarantee-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+        
+        .guarantee-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .guarantee-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .guarantee-icon {
+            color: var(--primary);
+            font-size: 24px;
+            margin-top: 3px;
+        }
+        
+        .guarantee-content h4 {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .guarantee-content p {
+            color: var(--gray);
+        }
+        
         /* Testimonials */
         .testimonials {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         
         .testimonial-card {
             background-color: white;
             border-radius: var(--border-radius);
-            padding: 40px;
+            padding: 50px;
             box-shadow: var(--box-shadow);
             margin: 0 auto;
-            max-width: 800px;
+            max-width: 900px;
             position: relative;
         }
         
@@ -282,9 +353,9 @@
             content: '"';
             position: absolute;
             top: 20px;
-            left: 20px;
+            left: 30px;
             font-family: 'Playfair Display', serif;
-            font-size: 80px;
+            font-size: 100px;
             color: var(--light-gray);
             line-height: 1;
             z-index: 0;
@@ -293,7 +364,7 @@
         .testimonial-content {
             position: relative;
             z-index: 1;
-            font-size: 18px;
+            font-size: 20px;
             font-style: italic;
             color: var(--dark);
             margin-bottom: 30px;
@@ -306,33 +377,34 @@
         }
         
         .author-avatar {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             object-fit: cover;
-            margin-right: 15px;
+            margin-right: 20px;
             border: 3px solid var(--primary);
         }
         
         .author-info h4 {
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 5px;
+            font-size: 18px;
         }
         
         .author-info p {
             color: var(--gray);
-            font-size: 14px;
+            font-size: 15px;
         }
         
         /* Form Section */
         .form-section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         
         .form-container {
             background-color: white;
             border-radius: var(--border-radius);
-            padding: 60px;
+            padding: 70px;
             box-shadow: var(--box-shadow);
             max-width: 800px;
             margin: 0 auto;
@@ -340,7 +412,7 @@
         
         .form-title {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
+            font-size: 36px;
             text-align: center;
             margin-bottom: 30px;
             color: var(--dark);
@@ -349,8 +421,11 @@
         .form-subtitle {
             text-align: center;
             color: var(--gray);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             font-size: 18px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .form-group {
@@ -396,44 +471,56 @@
         
         .form-footer {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 40px;
         }
         
         .success-message {
             display: none;
             text-align: center;
-            padding: 30px;
+            padding: 40px;
             background-color: rgba(76, 175, 80, 0.1);
             border-radius: var(--border-radius);
             margin-top: 30px;
         }
         
         .success-message i {
-            font-size: 50px;
+            font-size: 60px;
             color: var(--success);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .success-message h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 15px;
             color: var(--success);
         }
         
+        .success-message p {
+            font-size: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
         /* Footer */
         .footer {
-            padding: 40px 0;
+            padding: 50px 0;
             text-align: center;
             color: var(--gray);
-            font-size: 14px;
+            font-size: 15px;
             border-top: 1px solid var(--light-gray);
         }
         
         /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 30px;
+            }
+        }
+        
         @media (max-width: 992px) {
             h1 {
-                font-size: 40px;
+                font-size: 42px;
             }
             
             .hero-subtitle {
@@ -443,6 +530,18 @@
             .results-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .guarantee {
+                padding: 50px 30px;
+            }
+            
+            .guarantee-title {
+                font-size: 28px;
+            }
+            
+            .form-container {
+                padding: 50px 40px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -451,11 +550,59 @@
             }
             
             .hero {
-                padding: 40px 0;
+                padding: 60px 0 40px;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 30px;
+                margin-bottom: 50px;
+            }
+            
+            .feature-card {
+                padding: 30px 25px;
+            }
+            
+            .feature-title {
+                font-size: 20px;
+            }
+            
+            .testimonial-card {
+                padding: 40px 30px;
+            }
+            
+            .testimonial-content {
+                font-size: 18px;
+            }
+            
+            .form-title {
+                font-size: 30px;
+            }
+            
+            .form-subtitle {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 50px 0 30px;
             }
             
             h1 {
                 font-size: 32px;
+            }
+            
+            .badge {
+                font-size: 13px;
+                padding: 8px 16px;
+            }
+            
+            .hero-subtitle {
+                font-size: 17px;
             }
             
             .section-title {
@@ -463,49 +610,34 @@
                 margin-bottom: 40px;
             }
             
-            .cta-button {
-                padding: 14px 24px;
-                font-size: 16px;
+            .results-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
             
-            .form-container {
-                padding: 40px 30px;
-            }
-            
-            .feature-card {
-                padding: 25px;
+            .guarantee-items {
+                grid-template-columns: 1fr;
             }
             
             .testimonial-card {
                 padding: 30px 25px;
             }
-        }
-        
-        @media (max-width: 576px) {
-            .hero-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
+            
+            .testimonial-content {
+                font-size: 16px;
             }
             
-            .cta-button.secondary {
-                margin-left: 0;
-            }
-            
-            .results-grid {
-                grid-template-columns: 1fr;
+            .author-avatar {
+                width: 60px;
+                height: 60px;
             }
             
             .form-container {
-                padding: 30px 20px;
+                padding: 40px 25px;
             }
             
             .form-title {
                 font-size: 28px;
-            }
-            
-            .form-subtitle {
-                font-size: 16px;
             }
         }
     </style>
@@ -536,11 +668,12 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-calendar-check"></i>
+                        <i class="fas fa-user-check"></i>
                     </div>
-                    <h3 class="feature-title">Pacientes calificados, listos para agendar contigo.</h3>
+                    <h3 class="feature-title">Pacientes calificados, listos para agendar contigo</h3>
                     <p class="feature-text">Solo vas a hablar con personas que ya quieren agendar. Validamos cada lead con preguntas clave, así evitás perder tiempo y ganás pacientes reales.</p>
                 </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-laptop-medical"></i>
@@ -553,10 +686,17 @@
                     <div class="feature-icon">
                         <i class="fas fa-bullseye"></i>
                     </div>
-                    <h3 class="feature-title">Agenda llena sin esperar a que te busquen.</h3>
+                    <h3 class="feature-title">Agenda llena sin esperar a que te busquen</h3>
                     <p class="feature-text">Llená tu agenda sin esperar a que te busquen. Mostramos tus tratamientos con anuncios estratégicos que atraen pacientes listos para reservar.</p>
                 </div>
-        
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Resultados medibles y garantizados</h3>
+                    <p class="feature-text">Accedé a un dashboard con métricas claras de cada paciente generado. Sabrás exactamente el retorno de tu inversión.</p>
+                </div>
             </div>
         </section>
         
@@ -586,20 +726,53 @@
             </div>
         </section>
         
-        <!-- Testimonials -->
-        <section class="testimonials">
-            <div class="testimonial-card">
-                <p class="testimonial-content">Antes dependía completamente de recomendaciones y grupos de WhatsApp. Desde que implementamos el sistema digital, mi agenda se llena sola con pacientes que ya vienen convencidos de mis tratamientos. Lo mejor es que puedo enfocarme en lo que realmente importa: la medicina.</p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="Dra. Laura Méndez" class="author-avatar">
-                    <div class="author-info">
-                        <h4>Dra. Laura Méndez</h4>
-                        <p>Especialista en Medicina Estética - Buenos Aires</p>
+        <!-- Guarantee Section -->
+        <section class="guarantee">
+            <span class="guarantee-badge">GARANTÍA DE RESULTADOS</span>
+            <h2 class="guarantee-title">Invertís con confianza, nosotros ponemos el resultado</h2>
+            
+            <div class="guarantee-items">
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="guarantee-content">
+                        <h4>Sin riesgos, sin sorpresas</h4>
+                        <p>La inversión es 100% transparente y acordada desde el inicio.</p>
+                    </div>
+                </div>
+                
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="guarantee-content">
+                        <h4>Garantía de performance</h4>
+                        <p>Si en el primer mes no generamos resultados reales, te damos otro mes gratis.</p>
+                    </div>
+                </div>
+                
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="guarantee-content">
+                        <h4>Solo leads reales</h4>
+                        <p>No vendemos promesas, entregamos pacientes interesados y validados.</p>
+                    </div>
+                </div>
+                
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="guarantee-content">
+                        <h4>Prueba sin compromiso</h4>
+                        <p>Probalo un mes y mirá cómo empieza a moverse tu agenda.</p>
                     </div>
                 </div>
             </div>
         </section>
-        
         <!-- Form Section -->
         <section id="formulario" class="form-section">
             <div class="form-container">
