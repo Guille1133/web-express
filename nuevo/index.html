@@ -1461,6 +1461,31 @@
     font-weight: 700;
     font-size: 1rem;
 }
+.plan-precio-llamativo .new-price-con-icono {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 2rem;
+  color: var(--morado);
+  font-weight: bold;
+}
+
+.icon-precio {
+  color: var(--rojo);
+  font-size: 1.8rem;
+  animation: brillo 1.5s infinite;
+}
+
+@keyframes brillo {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
 
     </style>
        <link rel="canonical" href="https://paginaya24.com">
@@ -1650,11 +1675,15 @@
                     <div class="plan-header">
                         <h3>Web Magnética</h3>
                         <p class="plan-descripcion">Convierte visitantes en clientes. Todo lo necesario para posicionarte como autoridad en tu nicho.</p>
-                      <div class="plan-price-mejorado">
-    <div class="old-price">USD 149</div>
-    <div class="new-price">USD 74.5</div>
-    <div class="oferta-text">Oferta por lanzamiento – por tiempo limitado</div>
+                      <div class="plan-price plan-precio-llamativo">
+  <span class="old-price">USD 149</span>
+  <div class="new-price-con-icono">
+    <i class="fas fa-fire icon-precio"></i>
+    <strong>USD 74.5</strong>
+  </div>
+  <span class="oferta-text">50% OFF - Oferta por tiempo limitado</span>
 </div>
+
 
                     </div>
                     <ul class="plan-features">
