@@ -1004,13 +1004,15 @@
         }
 
         .container-confianza {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 
         .item-confianza {
             display: flex;
@@ -1503,6 +1505,37 @@
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+}
+.container-confianza {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+  text-align: center;
+}
+
+.item-confianza {
+  flex: 1 1 160px;
+  max-width: 160px;
+}
+@media (max-width: 576px) {
+  .badge-top {
+    top: 10px;
+    right: 10px;
+    transform: scale(0.9);
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    z-index: 1;
+  }
+
+  .plan-header h3 {
+    margin-top: 25px;
+  }
+}
+.garantia {
+  background-color: #1f2937; /* gris oscuro más claro */
+  color: white;
 }
 
     </style>
