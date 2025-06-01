@@ -1486,6 +1486,46 @@
     transform: scale(1.2);
   }
 }
+/* 💸 Estilos para precio llamativo con ícono y aclaración de pago único */
+.precio-actual {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--negro);
+  margin-top: 10px;
+}
+
+.precio-actual i {
+  color: var(--rojo);
+  font-size: 1.2rem;
+  animation: brillo 1.5s infinite;
+}
+
+.precio-actual .moneda {
+  font-size: 1rem;
+  color: var(--negro);
+  font-weight: 600;
+}
+
+.precio-actual .numero {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--negro);
+}
+
+.aclaracion-pago {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--gris-oscuro);
+  margin: 5px 0 5px;
+}
+
+@keyframes brillo {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
 
     </style>
        <link rel="canonical" href="https://paginaya24.com">
@@ -1675,14 +1715,20 @@
                     <div class="plan-header">
                         <h3>Web Magnética</h3>
                         <p class="plan-descripcion">Convierte visitantes en clientes. Todo lo necesario para posicionarte como autoridad en tu nicho.</p>
-                      <div class="plan-price plan-precio-llamativo">
+                     <div class="plan-price">
   <span class="old-price">USD 149</span>
-  <div class="new-price-con-icono">
-    <i class="fas fa-fire icon-precio"></i>
-    <strong>USD 74.5</strong>
+  
+  <div class="precio-actual">
+    <i class="fas fa-fire"></i>
+    <span class="moneda">USD</span>
+    <span class="numero">74.5</span>
   </div>
-  <span class="oferta-text">50% OFF - Oferta por tiempo limitado</span>
+  
+  <span class="aclaracion-pago">(Pago único)</span>
+
+  <span class="oferta-text">50% OFF – Oferta por tiempo limitado</span>
 </div>
+
 
 
                     </div>
