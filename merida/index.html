@@ -3,37 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asesoría Inmobiliaria en Mérida | Encuentra tu Propiedad Ideal</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Hacienda Kikteil | Desarrollo Inmobiliario Premium en Mérida</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Estilos generales */
         :root {
-            --primary: #C19A6B;
-            --primary-dark: #8C6D46;
-            --secondary: #1E555C;
-            --light: #F8F5F0;
-            --dark: #2A2A2A;
-            --success: #28a745;
+            --primary: #1a5632;
+            --secondary: #d4af37;
+            --dark: #1e1e1e;
+            --light: #f8f8f8;
+            --gray: #666;
+            --light-gray: #eaeaea;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
             color: var(--dark);
             line-height: 1.6;
-            background-color: #fff;
+            overflow-x: hidden;
         }
         
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            color: var(--secondary);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
         }
         
         .container {
@@ -43,95 +51,112 @@
             padding: 0 20px;
         }
         
-        /* Header */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--secondary);
-        }
-        
-        .nav-desktop {
-            display: none;
-        }
-        
-        .nav-desktop a {
-            margin-left: 25px;
-            text-decoration: none;
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
             color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-desktop a:hover {
-            color: var(--primary);
-        }
-        
-        .mobile-menu-btn {
-            background: none;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
             border: none;
-            font-size: 24px;
-            color: var(--dark);
             cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            color: white;
-            padding: 180px 0 100px;
             text-align: center;
         }
         
-        .hero h1 {
+        .btn:hover {
+            background-color: #c19b2e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
             color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #134526;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
             font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Hero Section - VERSIÓN CORREGIDA */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .hero-text {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-text h1 {
+            font-size: 2.8rem;
             margin-bottom: 20px;
             line-height: 1.2;
         }
         
-        .hero p {
+        .hero-text p {
             font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
+            margin-bottom: 30px;
         }
         
-        /* Lead Form */
-        .lead-form-container {
-            background-color: white;
-            border-radius: 10px;
+        .hero-form {
+            background: rgba(255,255,255,0.9);
             padding: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            max-width: 450px;
-            margin: -50px auto 0;
-            position: relative;
-            z-index: 10;
+            border-radius: 8px;
+            color: var(--dark);
+            width: 100%;
+            max-width: 400px;
         }
         
-        .lead-form-container h3 {
-            text-align: center;
+        .hero-form h3 {
+            color: var(--primary);
             margin-bottom: 20px;
-            color: var(--secondary);
+            font-size: 1.5rem;
         }
         
         .form-group {
@@ -141,622 +166,719 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 500;
+            font-weight: 600;
         }
         
-        .form-group input, 
-        .form-group select {
+        .form-control {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-        }
-        
-        .form-group input:focus, 
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 14px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-align: center;
-            width: 100%;
-        }
-        
-        .btn:hover {
-            background-color: var(--primary-dark);
+            border-radius: 4px;
+            font-size: 1rem;
         }
         
         /* Benefits Section */
         .benefits {
-            padding: 100px 0 60px;
             background-color: var(--light);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
         }
         
         .benefits-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
         }
         
-        .benefit-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        .benefit-item {
             text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-10px);
         }
         
         .benefit-icon {
-            font-size: 40px;
+            font-size: 3rem;
             color: var(--primary);
             margin-bottom: 20px;
         }
         
-        .benefit-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+        .benefit-item h3 {
+            color: var(--primary);
         }
         
-        /* Testimonials */
-        .testimonials {
-            padding: 80px 0;
-            background-color: white;
+        /* Gallery Section */
+        .gallery {
+            position: relative;
+            background-color: var(--dark);
+            color: white;
+            padding: 0;
         }
         
-        .testimonial-slider {
-            max-width: 800px;
-            margin: 0 auto;
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
         }
         
-        .testimonial {
-            background-color: var(--light);
-            padding: 30px;
-            border-radius: 10px;
-            margin: 0 15px;
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 60px 20px 30px;
             text-align: center;
         }
         
-        .testimonial-text {
-            font-style: italic;
+        .gallery-overlay h2 {
+            color: white;
             margin-bottom: 20px;
-            position: relative;
         }
         
-        .testimonial-text:before,
-        .testimonial-text:after {
-            content: '"';
-            font-size: 24px;
-            color: var(--primary);
+        /* Story Section */
+        .story {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
         }
         
-        .testimonial-author {
-            font-weight: 600;
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .story-content p {
+            font-size: 1.1rem;
+        }
+        
+        /* Amenities Section */
+        .amenities {
+            background-color: var(--light);
+        }
+        
+        .amenities-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .amenities-tab {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid var(--light-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .amenities-tab:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .amenities-tab:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .amenities-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .amenities-content {
+            display: none;
+        }
+        
+        .amenities-content.active {
+            display: block;
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .amenity-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .amenity-icon {
+            margin-right: 15px;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        /* Location Section */
+        .location {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .location-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+        
+        .location-map {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: var(--light-gray);
+            border-radius: 8px;
+            overflow: hidden;
         }
         
         /* CTA Section */
         .cta {
-            padding: 80px 0;
-            background: linear-gradient(rgba(30, 85, 92, 0.9), rgba(30, 85, 92, 0.9)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(26, 86, 50, 0.9), rgba(26, 86, 50, 0.9)), url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             color: white;
+        }
+        
+        .cta-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            color: var(--dark);
+        }
+        
+        .cta-form h2 {
+            color: var(--primary);
             text-align: center;
-        }
-        
-        .cta h2 {
-            color: white;
-            margin-bottom: 20px;
-        }
-        
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 30px;
-            font-size: 1.1rem;
+            margin-bottom: 30px;
         }
         
         /* Footer */
         footer {
-            background-color: var(--dark);
+            background: var(--dark);
             color: white;
-            padding: 50px 0 20px;
+            padding: 40px 0;
+            text-align: center;
         }
         
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            color: white;
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
             margin-bottom: 20px;
-            font-size: 1.2rem;
+            color: var(--secondary);
         }
         
-        .footer-column ul {
-            list-style: none;
+        .footer-contact {
+            margin-bottom: 20px;
         }
         
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-column ul li a:hover {
-            color: var(--primary);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
+        .footer-social a {
             color: white;
-            font-size: 20px;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            color: var(--secondary);
         }
         
         .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #aaa;
-            font-size: 14px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
         }
         
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 80%;
-            height: 100vh;
-            background-color: white;
-            z-index: 1100;
-            transition: left 0.3s;
-            padding: 30px;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        /* Responsive */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2rem;
+            }
         }
         
-        .mobile-menu.active {
-            left: 0;
-        }
-        
-        .mobile-menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .close-menu-btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        
-        .mobile-nav {
-            list-style: none;
-        }
-        
-        .mobile-nav li {
-            margin-bottom: 20px;
-        }
-        
-        .mobile-nav a {
-            text-decoration: none;
-            color: var(--dark);
-            font-size: 18px;
-            font-weight: 500;
-        }
-        
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1050;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-        }
-        
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Thank You Page */
-        .thank-you {
-            padding: 150px 0 100px;
-            text-align: center;
-        }
-        
-        .thank-you h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--success);
-        }
-        
-        .thank-you p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        .video-container {
-            max-width: 800px;
-            margin: 50px auto;
-        }
-        
-        .video-container iframe {
-            width: 100%;
-            height: 450px;
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        /* Responsive Styles */
-        @media (min-width: 768px) {
-            .mobile-menu-btn {
-                display: none;
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
             }
             
-            .nav-desktop {
-                display: block;
+            .hero-text h1 {
+                font-size: 2.2rem;
             }
             
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(3, 1fr);
+            .location-text {
+                padding-right: 0;
+                margin-bottom: 30px;
             }
         }
         
-        @media (min-width: 992px) {
+        @media (max-width: 576px) {
             .hero {
-                padding: 200px 0 120px;
+                min-height: 700px;
+                height: auto;
+                padding: 60px 0;
             }
             
-            .section-title h2 {
-                font-size: 2.5rem;
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .hero-form, .cta-form {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">Mérida<span>Estate</span></a>
-            <nav class="nav-desktop">
-                <a href="#benefits">Beneficios</a>
-                <a href="#testimonials">Testimonios</a>
-                <a href="#contact">Contacto</a>
-            </nav>
-            <button class="mobile-menu-btn">☰</button>
-        </div>
-    </header>
-    
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <a href="#" class="logo">Mérida<span>Estate</span></a>
-            <button class="close-menu-btn">×</button>
-        </div>
-        <ul class="mobile-nav">
-            <li><a href="#benefits">Beneficios</a></li>
-            <li><a href="#testimonials">Testimonios</a></li>
-            <li><a href="#contact">Contacto</a></li>
-        </ul>
-    </div>
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- Hero Section -->
+    <!-- Hero Section - VERSIÓN CORREGIDA -->
     <section class="hero">
-        <div class="container">
-            <h1>Asesoría inmobiliaria especializada en Mérida</h1>
-            <p>Encuentra la propiedad perfecta para vivir, invertir o retirarte en la ciudad más segura de México con nuestro equipo de expertos locales.</p>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>🏛️ Viví o Invertí en una Hacienda Premium con más de 20 amenidades exclusivas</h1>
+                <p>Terrenos desde $1,988,000 MXN | Financiamiento hasta 48 meses sin intereses</p>
+                <p>A solo minutos del centro de Mérida</p>
+            </div>
+            <div class="hero-form">
+                <h3>Recibí información exclusiva</h3>
+                <form id="hero-form">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">WhatsApp</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Quiero la info completa</button>
+                </form>
+            </div>
         </div>
     </section>
-    
-    <!-- Lead Form -->
-    <div class="container">
-        <div class="lead-form-container">
-            <h3>Agenda una consulta gratuita</h3>
-            <form id="leadForm">
-                <div class="form-group">
-                    <label for="name">Nombre completo</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">WhatsApp</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="property_type">¿Qué tipo de propiedad te interesa?</label>
-                    <select id="property_type" name="property_type" required>
-                        <option value="">Selecciona una opción</option>
-                        <option value="Casa">Casa</option>
-                        <option value="Departamento">Departamento</option>
-                        <option value="Terreno">Terreno</option>
-                        <option value="Comercial">Local Comercial</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="purpose">¿Para qué la necesitas?</label>
-                    <select id="purpose" name="purpose" required>
-                        <option value="">Selecciona una opción</option>
-                        <option value="Vivir">Para vivir</option>
-                        <option value="Inversion">Inversión</option>
-                        <option value="Retiro">Retiro</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="budget">Presupuesto estimado</label>
-                    <select id="budget" name="budget" required>
-                        <option value="">Selecciona una opción</option>
-                        <option value="1-2M">$1M - $2M MXN</option>
-                        <option value="2-4M">$2M - $4M MXN</option>
-                        <option value="4-6M">$4M - $6M MXN</option>
-                        <option value="6M+">Más de $6M MXN</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn">Agendar Consulta Gratis</button>
-            </form>
-        </div>
-    </div>
     
     <!-- Benefits Section -->
-    <section class="benefits" id="benefits">
+    <section class="section benefits">
         <div class="container">
-            <div class="section-title">
-                <h2>Nuestro enfoque personalizado</h2>
-                <p>Por qué trabajar con un asesor especializado en Mérida marca la diferencia</p>
-            </div>
+            <h2 class="section-title">Vive una experiencia única</h2>
             <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">🔍</div>
-                    <h3>Conocimiento local profundo</h3>
-                    <p>Te mostramos las mejores zonas según tus necesidades, evitando áreas con problemas de inundación o plusvalía estancada.</p>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Casa Club Hacienda única en Yucatán</h3>
+                    <p>Un espacio exclusivo diseñado para el disfrute de nuestros residentes.</p>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🤝</div>
-                    <h3>Negociación experta</h3>
-                    <p>Obtenemos los mejores precios y condiciones gracias a nuestras relaciones con desarrolladores y vendedores locales.</p>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-swimming-pool"></i>
+                    </div>
+                    <h3>Más de 20 amenidades</h3>
+                    <p>Albercas, Canal de Nado, Gym, Canchas, Biblioteca, Kids Club y mucho más.</p>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🛡️</div>
-                    <h3>Protección contra riesgos</h3>
-                    <p>Verificamos escrituras, usos de suelo y regulaciones para que tu inversión esté completamente segura.</p>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Seguridad 24/7</h3>
+                    <p>Acceso controlado y vialidades amplias para tu tranquilidad.</p>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">📊</div>
-                    <h3>Análisis de inversión</h3>
-                    <p>Te proporcionamos proyecciones realistas de rentabilidad y crecimiento según el tipo de propiedad y ubicación.</p>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Financiamiento especial</h3>
+                    <p>Hasta 48 meses sin intereses para que hagas realidad tu sueño.</p>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">👨‍⚖️</div>
-                    <h3>Asesoría legal</h3>
-                    <p>Coordinamos todos los trámites notariales y fiscales, especialmente importantes para compradores extranjeros.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🔑</div>
-                    <h3>Servicio post-venta</h3>
-                    <p>Te ayudamos con recomendaciones de mantenimiento, administración y renta después de tu compra.</p>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Alta plusvalía</h3>
+                    <p>Zona en desarrollo con infraestructura de primer nivel.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Clientes satisfechos</h2>
-                <p>Experiencias reales de quienes confiaron en nosotros</p>
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="video-container">
+            <!-- Video placeholder - replace with actual video embed -->
+            <iframe src="https://www.youtube.com/embed/placeholder" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="gallery-overlay">
+            <div class="container">
+                <h2>Mirá cómo se vive en Hacienda Kikteil</h2>
+                <p>Sentí la diferencia de vivir con historia y lujo.</p>
+                <a href="#" class="btn btn-primary">Ver el video completo</a>
             </div>
-            <div class="testimonial-slider">
-                <div class="testimonial">
-                    <p class="testimonial-text">"Gracias a su asesoría, encontré exactamente lo que buscaba: una casa en una zona tranquila pero cercana a servicios, con excelente potencial de plusvalía. El proceso fue impecable."</p>
-                    <p class="testimonial-author">- Ana R., compradora de Canadá</p>
+        </div>
+    </section>
+    
+    <!-- Story Section -->
+    <section class="section story">
+        <div class="container">
+            <div class="story-content">
+                <h2 class="section-title">Un lugar donde el pasado y el futuro se encuentran</h2>
+                <p>Hacienda Kikteil es más que un desarrollo: es una obra de arte restaurada. Una comunidad con historia, amenidades de lujo y diseño arquitectónico que honra sus raíces mayas.</p>
+                <p>Cada detalle ha sido cuidadosamente pensado para ofrecerte un estilo de vida único, donde la tradición y la modernidad se fusionan en perfecta armonía.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Amenities Section -->
+    <section class="section amenities">
+        <div class="container">
+            <h2 class="section-title">Amenidades Exclusivas</h2>
+            
+            <div class="amenities-tabs">
+                <div class="amenities-tab active" data-tab="club">Casa Club</div>
+                <div class="amenities-tab" data-tab="areas">Áreas Comunes</div>
+                <div class="amenities-tab" data-tab="seguridad">Seguridad</div>
+            </div>
+            
+            <div class="amenities-content active" id="club-content">
+                <div class="amenities-grid">
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div>
+                            <h3>Biblioteca</h3>
+                            <p>Espacio tranquilo para lectura y estudio.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div>
+                            <h3>Workcenter</h3>
+                            <p>Área de coworking totalmente equipada.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <div>
+                            <h3>Cafetería</h3>
+                            <p>Disfruta de bebidas y snacks premium.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-cocktail"></i>
+                        </div>
+                        <div>
+                            <h3>Bar</h3>
+                            <p>Ambiente sofisticado para reuniones sociales.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div>
+                            <h3>Gimnasio</h3>
+                            <p>Equipo de última generación para tu rutina.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-swimmer"></i>
+                        </div>
+                        <div>
+                            <h3>Albercas</h3>
+                            <p>Múltiples opciones para refrescarte.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div>
+                            <h3>Canal de nado</h3>
+                            <p>Para los amantes de la natación.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <div>
+                            <h3>Kids Club</h3>
+                            <p>Espacio seguro y divertido para los más pequeños.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"Como inversionista, valoro su conocimiento del mercado local. Me mostraron opciones que no había considerado y que resultaron ser excelentes negocios."</p>
-                    <p class="testimonial-author">- Carlos M., inversionista de CDMX</p>
+            </div>
+            
+            <div class="amenities-content" id="areas-content">
+                <div class="amenities-grid">
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <div>
+                            <h3>Parques</h3>
+                            <p>Áreas verdes para disfrutar con la familia.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div>
+                            <h3>Áreas de picnic</h3>
+                            <p>Disfruta de comidas al aire libre.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-golf-ball"></i>
+                        </div>
+                        <div>
+                            <h3>Minigolf</h3>
+                            <p>Diversión para todas las edades.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div>
+                            <h3>Teatro al aire libre</h3>
+                            <p>Eventos culturales bajo las estrellas.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-basketball-ball"></i>
+                        </div>
+                        <div>
+                            <h3>Canchas deportivas</h3>
+                            <p>Variedad de opciones para mantenerse activo.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div>
+                            <h3>Petpark</h3>
+                            <p>Zona especial para tus mascotas.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"El trámite de compra como extranjero parecía complicado, pero su equipo lo hizo todo sencillo. Ahora disfruto mi retiro en Mérida con total tranquilidad."</p>
-                    <p class="testimonial-author">- Susan K., retirada de Estados Unidos</p>
+            </div>
+            
+            <div class="amenities-content" id="seguridad-content">
+                <div class="amenities-grid">
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Vigilancia 24/7</h3>
+                            <p>Caseta de seguridad con personal capacitado.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-road"></i>
+                        </div>
+                        <div>
+                            <h3>Vialidades amplias</h3>
+                            <p>Diseño urbano pensado en tu comodidad.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div>
+                            <h3>Infraestructura lista</h3>
+                            <p>Energía, agua potable y telefonía disponibles.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <div class="amenity-icon">
+                            <i class="fas fa-bicycle"></i>
+                        </div>
+                        <div>
+                            <h3>Ciclovía interna</h3>
+                            <p>Recorre la hacienda de manera segura.</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Location Section -->
+    <section class="section location">
+        <div class="container">
+            <div class="location-text">
+                <h2 class="section-title">Ubicación Privilegiada</h2>
+                <p>Hacienda Kikteil se encuentra estratégicamente ubicada a solo 15 minutos del centro histórico de Mérida y a 25 minutos de las playas más cercanas.</p>
+                <p>Con conectividad directa al anillo periférico y zona norte, tendrás acceso rápido a todas las comodidades de la ciudad mientras disfrutas de la tranquilidad de un entorno exclusivo.</p>
+                <ul style="margin-top: 20px; list-style-position: inside;">
+                    <li>15 min del centro de Mérida</li>
+                    <li>25 min de las playas</li>
+                    <li>Acceso rápido a periférico</li>
+                    <li>Cercanía a escuelas y hospitales</li>
+                </ul>
+            </div>
+            <div class="location-map">
+                <!-- Google Maps Embed -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0964841660016!2d-89.62438892403914!3d21.02884498062703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5676881f5fd0ab%3A0x0x0!2sM%C3%A9rida%2C%20Yuc.!5e0!3m2!1ses-419!2smx!4v1620000000000!5m2!1ses-419!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
     
     <!-- CTA Section -->
-    <section class="cta" id="contact">
+    <section class="section cta">
         <div class="container">
-            <h2>¿Listo para encontrar tu propiedad ideal en Mérida?</h2>
-            <p>Habla directamente con nuestro equipo de expertos y descubre cómo podemos ayudarte a realizar la compra o inversión perfecta.</p>
-            <a href="#leadForm" class="btn">Quiero hablar con un asesor</a>
+            <h2 class="section-title" style="color: white;">Últimos lotes disponibles</h2>
+            <p class="text-center" style="color: white; margin-bottom: 40px; font-size: 1.2rem;">Financiamiento hasta 48 meses sin intereses</p>
+            
+            <div class="cta-form">
+                <h2>Recibí información completa</h2>
+                <p style="text-align: center; margin-bottom: 30px;">Completá tus datos y recibí el catálogo, video + asesoría personalizada</p>
+                
+                <form id="cta-form">
+                    <div class="form-group">
+                        <label for="fullname">Nombre completo</label>
+                        <input type="text" id="fullname" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cta-email">Email</label>
+                        <input type="email" id="cta-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cta-phone">WhatsApp</label>
+                        <input type="tel" id="cta-phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Ciudad de residencia</label>
+                        <input type="text" id="city" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="purpose">¿Buscás para vivir, rentar o invertir?</label>
+                        <select id="purpose" class="form-control" required>
+                            <option value="">Seleccionar</option>
+                            <option value="vivir">Vivir</option>
+                            <option value="rentar">Rentar</option>
+                            <option value="invertir">Invertir</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">¿Cuál es tu presupuesto aproximado?</label>
+                        <select id="budget" class="form-control" required>
+                            <option value="">Seleccionar</option>
+                            <option value="1-2">$1M - $2M MXN</option>
+                            <option value="2-3">$2M - $3M MXN</option>
+                            <option value="3-4">$3M - $4M MXN</option>
+                            <option value="4+">Más de $4M MXN</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="delivery">¿Te interesa entrega inmediata o financiamiento?</label>
+                        <select id="delivery" class="form-control" required>
+                            <option value="">Seleccionar</option>
+                            <option value="inmediata">Entrega inmediata</option>
+                            <option value="financiamiento">Financiamiento</option>
+                            <option value="ambas">Ambas opciones</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Quiero reservar mi lote</button>
+                </form>
+            </div>
         </div>
     </section>
     
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>MéridaEstate</h3>
-                    <p>Especialistas en bienes raíces en Mérida, Yucatán. Más de 15 años ayudando a clientes nacionales e internacionales.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Contacto</h3>
-                    <ul>
-                        <li>Tel: 999 123 4567</li>
-                        <li>Email: asesoria@meridaestate.com</li>
-                        <li>Dirección: Av. Paseo de Montejo, Mérida</li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Síguenos</h3>
-                    <div class="social-links">
-                        <a href="#">FB</a>
-                        <a href="#">IG</a>
-                        <a href="#">LI</a>
-                        <a href="#">YT</a>
-                    </div>
-                </div>
+            <div class="footer-logo">Hacienda Kikteil</div>
+            <div class="footer-contact">
+                <p><i class="fas fa-phone-alt"></i> (999) 123 4567</p>
+                <p><i class="fas fa-envelope"></i> info@haciendakikteil.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Mérida, Yucatán, México</p>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 MéridaEstate. Todos los derechos reservados.</p>
+                &copy; 2023 Hacienda Kikteil. Todos los derechos reservados.
             </div>
         </div>
     </footer>
     
-    <!-- Thank You Page (hidden by default) -->
-    <div id="thankYouPage" style="display: none;">
-        <section class="thank-you">
-            <div class="container">
-                <h1>¡Gracias por contactarnos!</h1>
-                <p>Hemos recibido tu información y uno de nuestros asesores se pondrá en contacto contigo en las próximas 24 horas.</p>
-                <p>Mientras tanto, te invitamos a conocer más sobre el mercado inmobiliario de Mérida con este video de nuestro director:</p>
-                
-                <div class="video-container">
-                    <!-- Reemplaza con tu video real -->
-                    <iframe src="https://www.youtube.com/embed/ejemplo" allowfullscreen></iframe>
-                </div>
-                
-                <p>Para atención inmediata, puedes contactarnos directamente al: <strong>999 123 4567</strong></p>
-            </div>
-        </section>
-    </div>
-    
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const closeMenuBtn = document.querySelector('.close-menu-btn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const overlay = document.getElementById('overlay');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            overlay.classList.add('active');
-        });
-        
-        closeMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-        
-        overlay.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-        
-        // Form Submission
-        const leadForm = document.getElementById('leadForm');
-        const thankYouPage = document.getElementById('thankYouPage');
-        
-        leadForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+        // Tab functionality for amenities section
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.amenities-tab');
             
-            // Aquí iría el código para enviar los datos a tu CRM o servicio de email
-            // Por ahora simulamos el envío mostrando la página de gracias
-            
-            // Ocultar todo el contenido actual
-            document.querySelector('header').style.display = 'none';
-            document.querySelector('.hero').style.display = 'none';
-            document.querySelector('.lead-form-container').style.display = 'none';
-            document.querySelector('.benefits').style.display = 'none';
-            document.querySelector('.testimonials').style.display = 'none';
-            document.querySelector('.cta').style.display = 'none';
-            document.querySelector('footer').style.display = 'none';
-            
-            // Mostrar la página de gracias
-            thankYouPage.style.display = 'block';
-            
-            // Desplazarse al inicio de la página de gracias
-            window.scrollTo(0, 0);
-            
-            // Aquí puedes agregar el código para enviar los datos a tu sistema
-            // Ejemplo con Fetch API:
-            /*
-            const formData = new FormData(leadForm);
-            
-            fetch('tu_endpoint_de_api', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and content
+                    document.querySelectorAll('.amenities-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.amenities-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId + '-content').classList.add('active');
+                });
             });
-            */
-        });
-        
-        // Simple testimonial slider
-        const testimonials = document.querySelectorAll('.testimonial');
-        let currentTestimonial = 0;
-        
-        function showTestimonial(index) {
-            testimonials.forEach((testimonial, i) => {
-                testimonial.style.display = i === index ? 'block' : 'none';
+            
+            // Form submission handlers
+            document.getElementById('hero-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Gracias por tu interés. Te enviaremos la información completa pronto.');
+                // Here you would typically send the form data to your server
             });
-        }
-        
-        // Rotate testimonials every 5 seconds
-        setInterval(() => {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            showTestimonial(currentTestimonial);
-        }, 5000);
-        
-        // Show first testimonial initially
-        showTestimonial(0);
+            
+            document.getElementById('cta-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Gracias por contactarnos. Un asesor se comunicará contigo a la brevedad.');
+                // Here you would typically send the form data to your server
+            });
+        });
     </script>
 </body>
 </html>
