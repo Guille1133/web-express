@@ -105,32 +105,36 @@
             text-align: center;
         }
         
-        /* Hero Section - VERSIÓN CORREGIDA */
+        /* Hero Section - VERSIÓN FINAL CORREGIDA */
         .hero {
             position: relative;
-            height: 100vh;
-            min-height: 600px;
+            min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             color: white;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .hero-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
         .hero-content {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             align-items: center;
+            justify-content: space-between;
+            gap: 40px;
         }
         
         .hero-text {
-            width: 100%;
-            max-width: 800px;
-            margin-bottom: 40px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
         }
         
         .hero-text h1 {
@@ -144,19 +148,25 @@
             margin-bottom: 30px;
         }
         
+        .hero-form-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+        }
+        
         .hero-form {
             background: rgba(255,255,255,0.9);
             padding: 30px;
             border-radius: 8px;
             color: var(--dark);
             width: 100%;
-            max-width: 400px;
         }
         
         .hero-form h3 {
             color: var(--primary);
             margin-bottom: 20px;
             font-size: 1.5rem;
+            text-align: center;
         }
         
         .form-group {
@@ -411,6 +421,10 @@
             .section-title {
                 font-size: 2rem;
             }
+            
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
         }
         
         @media (max-width: 768px) {
@@ -418,8 +432,16 @@
                 padding: 60px 0;
             }
             
-            .hero-text h1 {
-                font-size: 2.2rem;
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text, .hero-form-container {
+                max-width: 100%;
             }
             
             .location-text {
@@ -429,14 +451,8 @@
         }
         
         @media (max-width: 576px) {
-            .hero {
-                min-height: 700px;
-                height: auto;
-                padding: 60px 0;
-            }
-            
             .hero-text h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .section-title {
@@ -454,31 +470,35 @@
     </style>
 </head>
 <body>
-    <!-- Hero Section - VERSIÓN CORREGIDA -->
+    <!-- Hero Section - VERSIÓN FINAL CORREGIDA -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>🏛️ Viví o Invertí en una Hacienda Premium con más de 20 amenidades exclusivas</h1>
-                <p>Terrenos desde $1,988,000 MXN | Financiamiento hasta 48 meses sin intereses</p>
-                <p>A solo minutos del centro de Mérida</p>
-            </div>
-            <div class="hero-form">
-                <h3>Recibí información exclusiva</h3>
-                <form id="hero-form">
-                    <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" id="name" class="form-control" required>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>🏛️ Viví o Invertí en una Hacienda Premium con más de 20 amenidades exclusivas</h1>
+                    <p>Terrenos desde $1,988,000 MXN | Financiamiento hasta 48 meses sin intereses</p>
+                    <p>A solo minutos del centro de Mérida</p>
+                </div>
+                <div class="hero-form-container">
+                    <div class="hero-form">
+                        <h3>Recibí información exclusiva</h3>
+                        <form id="hero-form">
+                            <div class="form-group">
+                                <label for="name">Nombre</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">WhatsApp</label>
+                                <input type="tel" id="phone" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Quiero la info completa</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">WhatsApp</label>
-                        <input type="tel" id="phone" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Quiero la info completa</button>
-                </form>
+                </div>
             </div>
         </div>
     </section>
