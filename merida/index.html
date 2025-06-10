@@ -237,12 +237,14 @@
         }
         
         .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Asegura que el overlay se vea encima */
+}
+
         
         .gallery-overlay {
             position: absolute;
@@ -475,7 +477,7 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>🏛️ Viví o Invertí en una Hacienda Premium con más de 20 amenidades exclusivas</h1>
+                    <h1>Invertí en un desarrollo con historia, lujo y más de 20 amenidades premium</h1>
                     <p>Terrenos desde $1,988,000 MXN | Financiamiento hasta 48 meses sin intereses</p>
                     <p>A solo minutos del centro de Mérida</p>
                 </div>
