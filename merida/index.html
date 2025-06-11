@@ -957,7 +957,7 @@ Apartá tu terreno hoy con el 10% y asegurá tu espacio en Hacienda Kikteil.
 </footer>
 
     
-   <script>
+<script>
   document.addEventListener("DOMContentLoaded", function () {
     const phoneInputs = document.querySelectorAll("input[type='tel']");
 
@@ -970,25 +970,42 @@ Apartá tu terreno hoy con el 10% y asegurá tu espacio en Hacienda Kikteil.
         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
       });
 
-      // ✅ Forzar que se agregue el código del país automáticamente al salir del campo
-      input.addEventListener("blur", () => {
-        input.value = iti.getNumber();
-      });
+      const form = input.form;
 
-      input.form.addEventListener("submit", function (e) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
         const formattedNumber = iti.getNumber();
 
         if (!iti.isValidNumber()) {
-          e.preventDefault();
           alert("Por favor ingresá un número válido de WhatsApp.");
           return;
         }
 
         input.value = formattedNumber;
+
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: "POST",
+          body: formData
+        })
+        .then(response => {
+          if (response.ok) {
+            window.location.href = "https://paginaya24.com/merida/gracias";
+          } else {
+            alert("Ocurrió un error al enviar el formulario.");
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          alert("Ocurrió un error al enviar el formulario.");
+        });
       });
     });
   });
 </script>
+
 
     <!-- Plugin CSS y JS para selector de teléfono -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
@@ -999,33 +1016,7 @@ Apartá tu terreno hoy con el 10% y asegurá tu espacio en Hacienda Kikteil.
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const heroForm = document.getElementById("hero-form");
 
-  heroForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(heroForm);
-
-    fetch(heroForm.action, {
-      method: "POST",
-      body: formData
-    })
-    .then(response => {
-      if (response.ok) {
-        window.location.href = "https://paginaya24.com/merida/gracias";
-      } else {
-        alert("Ocurrió un error al enviar el formulario.");
-      }
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      alert("Ocurrió un error al enviar el formulario.");
-    });
-  });
-});
-</script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const ctaForm = document.getElementById("cta-form");
