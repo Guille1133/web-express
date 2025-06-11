@@ -977,11 +977,7 @@ iti.setNumber(iti.getNumber());
   e.preventDefault();
 
   // Si el input tiene valor, forzamos el número completo con el país
-  if (input.value.trim() !== "") {
-    const selectedCountryData = iti.getSelectedCountryData();
-    const completeNumber = `+${selectedCountryData.dialCode}${input.value.replace(/\D/g, '')}`;
-    iti.setNumber(completeNumber);
-  }
+ 
 
   const formattedNumber = iti.getNumber();
 
