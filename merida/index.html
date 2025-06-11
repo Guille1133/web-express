@@ -534,8 +534,9 @@
     <input type="email" id="email" name="email" class="form-control" required>
   </div>
   <div class="form-group">
-    <label for="phone">WhatsApp</label>
-    <input type="tel" id="phone" name="whatsapp" class="form-control" required>
+   <label for="phone">WhatsApp</label>
+<input type="tel" id="phone" name="whatsapp" class="form-control" required>
+
   </div>
   <div class="form-group">
     <label for="intencion">¿Buscás para vivir o invertir?</label>
@@ -985,5 +986,27 @@ Apartá tu terreno hoy con el 10% y asegurá tu espacio en Hacienda Kikteil.
             });
         });
     </script>
+    <!-- Plugin CSS y JS para selector de teléfono -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const input = document.querySelector("#phone");
+    const iti = window.intlTelInput(input, {
+      initialCountry: "mx",
+      preferredCountries: ["mx", "us", "ar", "co"],
+      nationalMode: false,
+      formatOnDisplay: true,
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+    });
+
+    // Reemplaza el valor al enviar para que vaya con código internacional
+    document.querySelector("form").addEventListener("submit", function () {
+      input.value = iti.getNumber(); // Ej: +521234567890
+    });
+  });
+</script>
+
 </body>
 </html>
