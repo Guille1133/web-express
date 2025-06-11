@@ -1056,15 +1056,36 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     heroForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
       if (!itiHero.isValidNumber()) {
-        e.preventDefault();
         alert("Por favor ingresá un número válido de WhatsApp.");
         return;
       }
-      heroPhoneInput.value = itiHero.getNumber();
+
+      heroPhoneInput.value = itiHero.getNumber(); // Formato internacional
+
+      const formData = new FormData(heroForm);
+
+      fetch(heroForm.action, {
+        method: "POST",
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "https://paginaya24.com/merida/gracias";
+        } else {
+          alert("Ocurrió un error al enviar el formulario.");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("Ocurrió un error al enviar el formulario.");
+      });
     });
   });
 </script>
+
 
 </body>
 </html>
