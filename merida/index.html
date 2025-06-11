@@ -997,6 +997,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+        
 </script>
 
 
@@ -1038,6 +1039,29 @@ document.addEventListener("DOMContentLoaded", function () {
           contents[tabName].classList.add('active');
         }
       });
+    });
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const heroForm = document.getElementById("hero-form");
+    const heroPhoneInput = document.getElementById("phone");
+
+    const itiHero = window.intlTelInput(heroPhoneInput, {
+      initialCountry: "us",
+      preferredCountries: ["mx", "us", "ar", "co"],
+      nationalMode: false,
+      formatOnDisplay: true,
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+    });
+
+    heroForm.addEventListener("submit", function (e) {
+      if (!itiHero.isValidNumber()) {
+        e.preventDefault();
+        alert("Por favor ingresá un número válido de WhatsApp.");
+        return;
+      }
+      heroPhoneInput.value = itiHero.getNumber();
     });
   });
 </script>
