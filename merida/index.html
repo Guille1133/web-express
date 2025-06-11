@@ -956,70 +956,27 @@ Apartá tu terreno hoy con el 10% y asegurá tu espacio en Hacienda Kikteil.
   </div>
 </footer>
     <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const phoneInputs = document.querySelectorAll("input[type='tel']");
-    const formHandled = new Set();
-
-    phoneInputs.forEach((input) => {
-      const form = input.form;
-
-      const iti = window.intlTelInput(input, {
-        initialCountry: "us",
-        preferredCountries: ["mx", "us", "ar", "co"],
-        nationalMode: false,
-        formatOnDisplay: true,
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
-      });
-
-      if (!formHandled.has(form)) {
-        formHandled.add(form);
-
-        form.addEventListener("submit", function (e) {
-          const allPhoneInputs = form.querySelectorAll("input[type='tel']");
-          let allValid = true;
-
-          allPhoneInputs.forEach(phoneInput => {
-            const instance = window.intlTelInputGlobals.getInstance(phoneInput);
-            const number = instance.getNumber();
-
-            if (!instance.isValidNumber()) {
-              alert("Por favor ingresá un número válido de WhatsApp.");
-              allValid = false;
-              return;
-            } else {
-              phoneInput.value = number;
-            }
-          });
-
-          if (!allValid) {
-            e.preventDefault();
-            return;
-          }
-
-          // Si todo está ok, dejar que el formulario se envíe
-        });
-      }
-    });
-  });
-</script>
-
-
-    <!-- Plugin CSS y JS para selector de teléfono -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-
-
-<!-- Librería intl-tel-input -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-
-
-<script>
 document.addEventListener("DOMContentLoaded", function () {
   const ctaForm = document.getElementById("cta-form");
+  const phoneInput = document.getElementById("cta-phone");
+
+  const iti = window.intlTelInput(phoneInput, {
+    initialCountry: "us",
+    preferredCountries: ["mx", "us", "ar", "co"],
+    nationalMode: false,
+    formatOnDisplay: true,
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+  });
 
   ctaForm.addEventListener("submit", function (e) {
     e.preventDefault();
+
+    if (!iti.isValidNumber()) {
+      alert("Por favor ingresá un número válido de WhatsApp.");
+      return;
+    }
+
+    phoneInput.value = iti.getNumber(); // Establecer el número formateado correctamente
 
     const formData = new FormData(ctaForm);
 
@@ -1041,6 +998,20 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+
+
+
+    <!-- Plugin CSS y JS para selector de teléfono -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+
+<!-- Librería intl-tel-input -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const tabs = document.querySelectorAll('.amenities-tab');
