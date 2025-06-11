@@ -1007,6 +1007,38 @@ Apartá tu terreno hoy con el 10% y asegurá tu espacio en Hacienda Kikteil.
     });
   });
 </script>
+<!-- Librería intl-tel-input -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+<!-- Script para manejar ambos formularios -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const phoneInputs = document.querySelectorAll("input[type='tel']");
+
+    phoneInputs.forEach((input) => {
+      const iti = window.intlTelInput(input, {
+        initialCountry: "mx",
+        preferredCountries: ["mx", "us", "ar", "co"],
+        nationalMode: false,
+        formatOnDisplay: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+      });
+
+      input.form.addEventListener("submit", function (e) {
+        const formattedNumber = iti.getNumber();
+
+        if (!iti.isValidNumber()) {
+          e.preventDefault();
+          alert("Por favor ingresá un número válido de WhatsApp.");
+          return;
+        }
+
+        input.value = formattedNumber;
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
