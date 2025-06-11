@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Andrés Martínez - Medicina Alternativa | Cuerpo-Mente-Alma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a8b4c;
+            --secondary-color: #f8f1e5;
+            --accent-color: #d4a762;
+            --text-color: #333;
+            --light-text: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: var(--light-text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--light-text);
+        }
+        
+        nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .header-content {
+            max-width: 800px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--light-text);
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #c09555;
+            transform: translateY(-3px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        section {
+            margin-bottom: 60px;
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-img {
+            background: url('https://images.unsplash.com/photo-1551601651-bc60f254d532?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 500px;
+            border-radius: 10px;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+        }
+        
+        .philosophy {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .philosophy-icons {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        
+        .philosophy-icon {
+            margin: 0 30px;
+            text-align: center;
+        }
+        
+        .philosophy-icon i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            height: 150px;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .social-icons {
+            margin: 20px 0;
+        }
+        
+        .social-icons a {
+            color: var(--light-text);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            header {
+                height: auto;
+                padding: 100px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            nav {
+                position: static;
+                margin-top: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .about {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                height: 300px;
+                order: -1;
+            }
+            
+            .philosophy-icons {
+                flex-direction: column;
+            }
+            
+            .philosophy-icon {
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Dr. Andrés Martínez</div>
+        <nav>
+            <ul>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#about">Sobre Mí</a></li>
+                <li><a href="#philosophy">Filosofía</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="header-content">
+            <h1>Medicina Alternativa Integral</h1>
+            <p class="tagline">Armonizando cuerpo, mente y alma para una salud holística</p>
+            <a href="#contact" class="btn">Agenda una cita</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="services" class="container">
+            <h2>Mis Servicios</h2>
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1543357480-c60d400e2ef9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Acupuntura</h3>
+                        <p>Terapia milenaria que estimula puntos específicos del cuerpo para equilibrar el flujo de energía, aliviar el dolor y promover la curación natural.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Terapia con Ventosas</h3>
+                        <p>Técnica que mejora la circulación, alivia la tensión muscular y promueve la relajación profunda mediante la creación de succión en puntos estratégicos.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1544168212-513b8b5f0d3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Masajes Terapéuticos</h3>
+                        <p>Terapias manuales personalizadas que alivian el estrés, mejoran la movilidad y restauran el equilibrio energético del cuerpo.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Cultivo de Vida</h3>
+                        <p>Programas integrales que combinan nutrición, ejercicio, meditación y hábitos saludables para una transformación profunda y duradera.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <h2>Sobre el Dr. Andrés Martínez</h2>
+            <div class="about">
+                <div class="about-content">
+                    <p>Con más de 15 años de experiencia en medicina alternativa, el Dr. Martínez ha dedicado su vida al estudio y práctica de terapias holísticas que integran el conocimiento ancestral con avances contemporáneos.</p>
+                    <p>Graduado en Medicina Tradicional China por la Universidad de Beijing y con especializaciones en terapias integrativas, su enfoque combina lo mejor de Oriente y Occidente para ofrecer tratamientos personalizados.</p>
+                    <p>Creo firmemente que la verdadera sanación ocurre cuando abordamos al ser humano en su totalidad: cuerpo, mente y espíritu. Cada tratamiento es diseñado considerando tus necesidades únicas y tu camino hacia el bienestar integral.</p>
+                </div>
+                <div class="about-img"></div>
+            </div>
+        </section>
+
+        <section id="philosophy" class="philosophy">
+            <div class="philosophy-content">
+                <h2>Nuestra Filosofía: Cuerpo - Mente - Alma</h2>
+                <p>La verdadera salud es un estado de completo equilibrio y armonía entre todas las dimensiones del ser humano.</p>
+                
+                <div class="philosophy-icons">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>Cuerpo</h3>
+                        <p>Terapias físicas para restaurar el equilibrio y vitalidad</p>
+                    </div>
+                    
+                    <div class="philosophy-icon">
+                        <i class="fas fa-brain"></i>
+                        <h3>Mente</h3>
+                        <p>Técnicas para calmar el estrés y cultivar claridad</p>
+                    </div>
+                    
+                    <div class="philosophy-icon">
+                        <i class="fas fa-spa"></i>
+                        <h3>Alma</h3>
+                        <p>Reconexión con tu esencia y propósito vital</p>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="btn">Inicia tu Transformación</a>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2>Contacto</h2>
+            <div class="contact-form">
+                <form id="appointmentForm">
+                    <div class="form-group">
+                        <label for="name">Nombre Completo</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Servicio de Interés</label>
+                        <select id="service" name="service">
+                            <option value="">Selecciona un servicio</option>
+                            <option value="acupuntura">Acupuntura</option>
+                            <option value="ventosas">Terapia con Ventosas</option>
+                            <option value="masajes">Masajes Terapéuticos</option>
+                            <option value="cultivo">Cultivo de Vida</option>
+                            <option value="consulta">Consulta Integral</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje o Síntomas</label>
+                        <textarea id="message" name="message"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Enviar Solicitud</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <h3>Dr. Andrés Martínez</h3>
+            <p>Medicina Alternativa Integral</p>
+            
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+            
+            <p>&copy; 2023 Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Form submission
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to a server
+            // For this example, we'll just show an alert
+            alert('Gracias por tu mensaje. El Dr. Martínez se pondrá en contacto contigo pronto.');
+            
+            // Reset the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
