@@ -1049,6 +1049,35 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll('.amenities-tab');
+    const contents = {
+      club: document.getElementById('club-content'),
+      areas: document.getElementById('areas-content'),
+      seguridad: document.getElementById('seguridad-content'),
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function () {
+        // Sacar clase activa de todos los tabs
+        tabs.forEach(t => t.classList.remove('active'));
+
+        // Ocultar todos los contenidos
+        Object.values(contents).forEach(c => c.classList.remove('active'));
+
+        // Activar el tab clickeado
+        this.classList.add('active');
+
+        // Mostrar contenido correspondiente
+        const tabName = this.getAttribute('data-tab');
+        if (contents[tabName]) {
+          contents[tabName].classList.add('active');
+        }
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
