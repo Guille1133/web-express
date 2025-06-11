@@ -874,26 +874,26 @@ Elegí una ubicación que no solo te conecta con la ciudad, sino también con un
                 <p style="text-align: center; margin-bottom: 30px;">Completá tus datos y recibí el catálogo, video + asesoría personalizada</p>
                 
                 <form id="cta-form" action="https://hook.us2.make.com/6dd3rnhc48atfqgwoksthbqq2x0fk9os" method="POST">
+    <div class="form-group">
+        <label for="fullname">Nombre completo</label>
+        <input type="text" id="fullname" name="nombre" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="cta-email">Email</label>
+        <input type="email" id="cta-email" name="email" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="cta-phone">WhatsApp</label>
+        <input type="tel" id="cta-phone" name="whatsapp" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="city">Ciudad de residencia</label>
+        <input type="text" id="city" name="ciudad" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="purpose">¿Buscás para vivir o invertir?</label>
+        <select id="purpose" name="proposito" class="form-control" required>
 
-                    <div class="form-group">
-                        <label for="fullname">Nombre completo</label>
-                        <input type="text" id="fullname" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cta-email">Email</label>
-                        <input type="email" id="cta-email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cta-phone">WhatsApp</label>
-                        <input type="tel" id="cta-phone" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">Ciudad de residencia</label>
-                        <input type="text" id="city" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="purpose">¿Buscás para vivir o invertir?</label>
-                        <select id="purpose" class="form-control" required>
                             <option value="">Seleccionar</option>
                             <option value="vivir">Vivir</option>
                             <option value="invertir">Invertir</option>
@@ -901,7 +901,7 @@ Elegí una ubicación que no solo te conecta con la ciudad, sino también con un
                     </div>
                     <div class="form-group">
                         <label for="budget">¿Cuál es tu presupuesto aproximado?</label>
-                        <select id="budget" class="form-control" required>
+                       <select id="budget" name="presupuesto" class="form-control" required>
                             <option value="">Seleccionar</option>
                             <option value="1-2">$1M - $2M MXN</option>
                             <option value="2-3">$2M - $3M MXN</option>
