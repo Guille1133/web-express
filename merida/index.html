@@ -955,13 +955,14 @@ Apartá tu terreno hoy con el 10% y asegurá tu espacio en Hacienda Kikteil.
     </div>
   </div>
 </footer>
-
-    
-<script>
+    <script>
   document.addEventListener("DOMContentLoaded", function () {
     const phoneInputs = document.querySelectorAll("input[type='tel']");
+    const formHandled = new Set();
 
     phoneInputs.forEach((input) => {
+      const form = input.form;
+
       const iti = window.intlTelInput(input, {
         initialCountry: "us",
         preferredCountries: ["mx", "us", "ar", "co"],
@@ -969,44 +970,35 @@ Apartá tu terreno hoy con el 10% y asegurá tu espacio en Hacienda Kikteil.
         formatOnDisplay: true,
         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
       });
-iti.setNumber(iti.getNumber());
 
-      const form = input.form;
+      if (!formHandled.has(form)) {
+        formHandled.add(form);
 
-      form.addEventListener("submit", function (e) {
-  e.preventDefault();
+        form.addEventListener("submit", function (e) {
+          const allPhoneInputs = form.querySelectorAll("input[type='tel']");
+          let allValid = true;
 
-  // Si el input tiene valor, forzamos el número completo con el país
- 
+          allPhoneInputs.forEach(phoneInput => {
+            const instance = window.intlTelInputGlobals.getInstance(phoneInput);
+            const number = instance.getNumber();
 
-  const formattedNumber = iti.getNumber();
+            if (!instance.isValidNumber()) {
+              alert("Por favor ingresá un número válido de WhatsApp.");
+              allValid = false;
+              return;
+            } else {
+              phoneInput.value = number;
+            }
+          });
 
-  if (!iti.isValidNumber()) {
-    alert("Por favor ingresá un número válido de WhatsApp.");
-    return;
-  }
+          if (!allValid) {
+            e.preventDefault();
+            return;
+          }
 
-  input.value = formattedNumber;
-
-  const formData = new FormData(form);
-
-  fetch(form.action, {
-    method: "POST",
-    body: formData
-  })
-    .then(response => {
-      if (response.ok) {
-        window.location.href = "https://paginaya24.com/merida/gracias";
-      } else {
-        alert("Ocurrió un error al enviar el formulario.");
+          // Si todo está ok, dejar que el formulario se envíe
+        });
       }
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      alert("Ocurrió un error al enviar el formulario.");
-    });
-});
-
     });
   });
 </script>
