@@ -823,7 +823,30 @@
         .navire-section {
             background: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
         }
-        
+        /* Estilos del video de Navire */
+.kikteil-video#navire-video-section {
+    background-color: #e6f5fb; /* azul celeste claro */
+    color: #00334e; /* azul oscuro */
+}
+
+.kikteil-video#navire-video-section .video-overlay {
+    background: linear-gradient(transparent, rgba(0, 91, 150, 0.8));
+}
+
+.kikteil-video#navire-video-section h3,
+.kikteil-video#navire-video-section p {
+    color: white;
+}
+
+.kikteil-video#navire-video-section .btn-navire {
+    background-color: #0077b6;
+    color: white;
+}
+
+.kikteil-video#navire-video-section .btn-navire:hover {
+    background-color: #005b96;
+}
+
         .navire-header {
             text-align: center;
             padding: 60px 0 40px;
@@ -1600,6 +1623,26 @@
                 </div>
             </div>
         </div>
+      <!-- Video de Navire -->
+<div class="kikteil-video" id="navire-video-section" style="margin-top: 60px;">
+    <div class="video-container">
+        <iframe 
+            src="https://www.youtube.com/embed/CYj5YXBgJlA?autoplay=0&mute=0&rel=0" 
+            title="Navire Santa Clara - Video"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+    <div class="video-overlay">
+        <div class="container">
+            <h3>Descubrí la experiencia de vivir frente al mar</h3>
+            <p>Conocé Navire Santa Clara en este video inspirador</p>
+            <a href="#navire-video-section" class="btn btn-navire">Ver video</a>
+        </div>
+    </div>
+</div>
+
     </section>
     
     <!-- Separador Visual -->
