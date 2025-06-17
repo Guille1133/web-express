@@ -146,6 +146,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Estilos generales */
+
         :root {
             --primary: #1a5632;
             --secondary: #d4af37;
@@ -458,7 +459,15 @@
                 padding: 40px 0;
             }
         }
-        
+        /* Mostrar solo la amenidad activa */
+.amenity-content {
+  display: none;
+}
+
+.amenity-content.active {
+  display: block;
+}
+
         /* Hero con ajuste para header fijo */
         .hero {
             margin-top: 70px;
@@ -1271,11 +1280,12 @@
             <div class="container">
                 <h2 class="section-title">Amenidades Exclusivas de Hacienda Kikteil</h2>
                 
-                <div class="amenities-tabs">
-                    <div class="amenities-tab active" data-tab="club">Casa Club</div>
-                    <div class="amenities-tab" data-tab="areas">Áreas Comunes</div>
-                    <div class="amenities-tab" data-tab="seguridad">Seguridad</div>
-                </div>
+             <div class="amenities-tabs">
+  <div class="amenity-item active" data-target="amenity1">Club de Playa</div>
+  <div class="amenity-item" data-target="amenity2">Cancha de Pádel</div>
+  <div class="amenity-item" data-target="amenity3">Senderos</div>
+</div>
+
                 
                 <div class="amenities-content active" id="club-content">
                     <div class="amenities-grid">
@@ -1916,5 +1926,39 @@
     <!-- Plugin CSS y JS para selector de teléfono -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<script>
+  const amenityItems = document.querySelectorAll('.amenity-item');
+  const amenityContents = document.querySelectorAll('.amenity-content');
+
+  amenityItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const target = item.getAttribute('data-target');
+
+      amenityItems.forEach(i => i.classList.remove('active'));
+      amenityContents.forEach(c => c.classList.remove('active'));
+
+      item.classList.add('active');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+</script>
+<script>
+  const amenityItems = document.querySelectorAll('.amenity-item');
+  const amenityContents = document.querySelectorAll('.amenity-content');
+
+  amenityItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const target = item.getAttribute('data-target');
+
+      amenityItems.forEach(i => i.classList.remove('active'));
+      amenityContents.forEach(c => c.classList.remove('active'));
+
+      item.classList.add('active');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+</script>
+
 </body>
+
 </html>
