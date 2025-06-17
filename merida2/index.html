@@ -529,14 +529,19 @@
             justify-content: center;
             margin-bottom: 30px;
             flex-wrap: wrap;
+            gap: 0;
         }
         
         .amenities-tab {
-            padding: 10px 20px;
+            padding: 12px 25px;
             background: white;
             border: 1px solid var(--light-gray);
             cursor: pointer;
             transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--dark);
+            text-align: center;
+            user-select: none;
         }
         
         .amenities-tab:first-child {
@@ -547,18 +552,31 @@
             border-radius: 0 4px 4px 0;
         }
         
+        .amenities-tab:hover {
+            background-color: #f5f5f5;
+            transform: translateY(-1px);
+        }
+        
         .amenities-tab.active {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(26, 86, 50, 0.3);
         }
         
         .amenities-content {
             display: none;
+            animation: fadeIn 0.3s ease-in-out;
         }
         
         .amenities-content.active {
             display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .amenities-grid {
@@ -1601,3 +1619,21 @@
                                 window.location.href = "https://paginaya24.com/merida/gracias";
                             } else {
                                 alert("Ocurrió un error al enviar el formulario.");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            alert("Ocurrió un error al enviar el formulario.");
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Plugin CSS y JS para selector de teléfono -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+</body>
+</html>
