@@ -2082,6 +2082,30 @@ document.addEventListener("DOMContentLoaded", function () {
     <!-- Plugin CSS y JS para selector de teléfono -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabs = document.querySelectorAll(".amenities-tab");
+        const contents = document.querySelectorAll(".amenities-content");
+
+        tabs.forEach((tab) => {
+            tab.addEventListener("click", function () {
+                const target = tab.getAttribute("data-tab");
+
+                tabs.forEach((t) => t.classList.remove("active"));
+                tab.classList.add("active");
+
+                contents.forEach((content) => {
+                    content.classList.remove("active");
+                });
+
+                const targetContent = document.getElementById(target + "-content");
+                if (targetContent) {
+                    targetContent.classList.add("active");
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 
