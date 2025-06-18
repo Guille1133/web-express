@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finca El Relevo - Café de Santa Elena, Colombia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --cafe-oscuro: #3E2723;
+            --verde-hoja: #4A6B3D;
+            --beige-claro: #F5F0E6;
+            --tierra-tostada: #8D6E63;
+            --blanco-roto: #FFF8F0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--cafe-oscuro);
+            background-color: var(--blanco-roto);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        header p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--verde-hoja);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--tierra-tostada);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Secciones */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--verde-hoja);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--tierra-tostada);
+            margin: 20px auto;
+        }
+        
+        /* Nuestra Historia */
+        .historia {
+            background-color: var(--beige-claro);
+        }
+        
+        .historia-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .historia-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .historia-img {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .historia-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .historia-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .quote {
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--tierra-tostada);
+            text-align: center;
+            margin: 40px auto;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .quote:before, .quote:after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--tierra-tostada);
+            opacity: 0.5;
+        }
+        
+        /* Tours */
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .tour-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .tour-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tour-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .tour-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .tour-card:hover .tour-img img {
+            transform: scale(1.1);
+        }
+        
+        .tour-info {
+            padding: 20px;
+        }
+        
+        .tour-info h3 {
+            color: var(--verde-hoja);
+            margin-bottom: 10px;
+        }
+        
+        /* Galería */
+        .galeria {
+            background-color: var(--beige-claro);
+        }
+        
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .galeria-item {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .galeria-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Ubicación */
+        .mapa {
+            height: 400px;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ubicacion-text {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.2rem;
+        }
+        
+        /* Contacto */
+        .contacto-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--cafe-oscuro);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--beige-claro);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--beige-claro);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            header p {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .historia-content {
+                flex-direction: column;
+            }
+            
+            .historia-text, .historia-img {
+                min-width: 100%;
+            }
+        }
+
+        /* Logo personalizado */
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .logo span {
+            color: var(--beige-claro);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <div class="logo">Finca El <span>Relevo</span></div>
+
+    <!-- Hero Section -->
+    <header>
+        <div class="hero-content">
+            <h1>Viví la magia del café colombiano</h1>
+            <p>Una finca familiar en Santa Elena donde la tradición cafetera pasa de generación en generación.</p>
+            <a href="#" class="btn">Reservá en Airbnb</a>
+        </div>
+    </header>
+
+    <!-- Nuestra Historia -->
+    <section class="historia">
+        <div class="container">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <div class="historia-content">
+                <div class="historia-text">
+                    <p>En Finca El Relevo, el nombre lo dice todo: somos el relevo generacional de una tradición cafetera que comenzó en 1950. Lo que empezó como un sueño de nuestros abuelos hoy es un legado que cuidamos con orgullo.</p>
+                    <p>En nuestras montañas de Santa Elena, cultivamos café con métodos tradicionales que hemos perfeccionado a lo largo de los años. Cada grano es testigo del trabajo familiar y del amor que ponemos en lo que hacemos.</p>
+                    <p>El "relevo" no es solo entre generaciones, sino también la conexión que queremos crear contigo, transmitiéndote nuestra pasión por el café colombiano.</p>
+                </div>
+                <div class="historia-img">
+                    <img src="https://images.unsplash.com/photo-1604977047416-8b6d62df6a54?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Familia trabajando en la finca de café">
+                </div>
+            </div>
+            <p class="quote">"En cada taza de café servimos el fruto de nuestro relevo generacional"</p>
+        </div>
+    </section>
+
+    <!-- Experiencias / Tours -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Experiencias en la Finca</h2>
+            <div class="tours-grid">
+                <!-- Tour 1 -->
+                <div class="tour-card">
+                    <div class="tour-img">
+                        <img src="https://images.unsplash.com/photo-1517457210348-703079e57d4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Caminata entre cafetales">
+                    </div>
+                    <div class="tour-info">
+                        <h3>Caminata entre cafetales</h3>
+                        <p>Recorrido guiado por nuestros cultivos, conociendo el proceso desde la semilla hasta la cosecha. Duración: 2 horas.</p>
+                    </div>
+                </div>
+                
+                <!-- Tour 2 -->
+                <div class="tour-card">
+                    <div class="tour-img">
+                        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Tostado artesanal">
+                    </div>
+                    <div class="tour-info">
+                        <h3>Tostado tradicional</h3>
+                        <p>Aprendé los secretos del tostado como lo hacían nuestros abuelos. Incluye degustación. Duración: 1.5 horas.</p>
+                    </div>
+                </div>
+                
+                <!-- Tour 3 -->
+                <div class="tour-card">
+                    <div class="tour-img">
+                        <img src="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cata de café">
+                    </div>
+                    <div class="tour-info">
+                        <h3>Cata de café</h3>
+                        <p>Descubrí los sabores únicos de nuestra finca con una experiencia sensorial guiada. Duración: 1 hora.</p>
+                    </div>
+                </div>
+                
+                <!-- Tour 4 -->
+                <div class="tour-card">
+                    <div class="tour-img">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Comida local">
+                    </div>
+                    <div class="tour-info">
+                        <h3>Almuerzo campesino</h3>
+                        <p>Disfrutá de platos típicos preparados con ingredientes de nuestra huerta y productos regionales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section class="galeria">
+        <div class="container">
+            <h2 class="section-title">Nuestro Relevo en Imágenes</h2>
+            <div class="galeria-grid">
+                <div class="galeria-item">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cafetales">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Proceso de café">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.unsplash.com/photo-1512034400317-de97d7d2c1ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Visitantes en la finca">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Paisaje de Santa Elena">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Taza de café">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Familia trabajando">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Ubicación</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d-75.50000068573445!3d6.201505595493807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4429a4ddd71e01%3A0x4dee1fe8efb825a6!2sSanta%20Elena%2C%20Medell%C3%ADn%2C%20Antioquia%2C%20Colombia!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" class="mapa" allowfullscreen="" loading="lazy"></iframe>
+            <p class="ubicacion-text">A solo 45 minutos de Medellín, entre las montañas de Santa Elena.</p>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contacto-form">
+                <form>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensaje</button>
+                </form>
+                <a href="https://wa.me/573001234567" class="whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Hablanos por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>Finca El Relevo</h3>
+            <p>Santa Elena, Medellín - Colombia</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-airbnb"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="#">Inicio</a>
+                <a href="#historia">Nuestra Historia</a>
+                <a href="#tours">Experiencias</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <p class="copyright">© 2023 Finca El Relevo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
