@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconexión Sistémica - Seminario de Constelaciones Familiares</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos generales */
+        :root {
+            --rojo-profundo: #A21F18;
+            --rojo-claro: #C7241B;
+            --mostaza: #DEAC46;
+            --crema: #F9F5F2;
+            --marron: #3C1F0F;
+            --negro: #000000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--marron);
+            background-color: var(--crema);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="30" r="0.8" fill="white" opacity="0.8"/><circle cx="50" cy="15" r="0.5" fill="white" opacity="0.6"/><circle cx="80" cy="40" r="0.7" fill="white" opacity="0.7"/><circle cx="10" cy="70" r="0.6" fill="white" opacity="0.5"/><circle cx="40" cy="85" r="0.9" fill="white" opacity="0.9"/><circle cx="70" cy="60" r="0.4" fill="white" opacity="0.4"/><circle cx="90" cy="90" r="0.5" fill="white" opacity="0.6"/></svg>');
+            background-size: 200px;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Anton', sans-serif;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        
+        .highlight-text {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--rojo-profundo);
+            color: white;
+            border: 2px solid var(--rojo-profundo);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--rojo-claro);
+            border-color: var(--rojo-claro);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background-color: var(--mostaza);
+            color: var(--marron);
+            border: 2px solid var(--mostaza);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #E8BA5A;
+            border-color: #E8BA5A;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(to bottom, var(--rojo-profundo), var(--marron));
+            color: white;
+            padding: 30px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="30" r="1" fill="white" opacity="0.3"/><circle cx="50" cy="15" r="0.8" fill="white" opacity="0.2"/><circle cx="80" cy="40" r="1.2" fill="white" opacity="0.25"/><circle cx="10" cy="70" r="0.9" fill="white" opacity="0.2"/><circle cx="40" cy="85" r="1.1" fill="white" opacity="0.3"/><circle cx="70" cy="60" r="0.7" fill="white" opacity="0.15"/><circle cx="90" cy="90" r="0.8" fill="white" opacity="0.2"/></svg>');
+            background-size: 150px;
+            opacity: 0.4;
+        }
+        
+        .logo {
+            font-family: 'Anton', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo span {
+            display: block;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .hero-text {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+        }
+        
+        /* Formulario */
+        .form-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: -50px auto 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-section h2 {
+            color: var(--rojo-profundo);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .form-step {
+            margin-bottom: 25px;
+        }
+        
+        .form-step h3 {
+            color: var(--mostaza);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--mostaza);
+            outline: none;
+        }
+        
+        /* Sección de contenido */
+        .content-section {
+            padding: 50px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--rojo-profundo);
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--mostaza);
+            margin: 10px auto 0;
+        }
+        
+        /* Clases - Diseño de constelación */
+        .constellation-path {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .constellation-line {
+            position: absolute;
+            height: calc(100% - 160px);
+            width: 4px;
+            background: linear-gradient(to bottom, var(--mostaza), var(--rojo-profundo));
+            top: 80px;
+            z-index: 0;
+            border-radius: 2px;
+        }
+        
+        .class-node {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin: 30px 0;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+            border: 3px solid var(--mostaza);
+            overflow: hidden;
+        }
+        
+        .class-node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .class-node::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px dashed var(--mostaza);
+            animation: pulse 3s infinite ease-in-out;
+            pointer-events: none;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 0.4; }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
+        
+        .class-node i {
+            font-size: 2.5rem;
+            color: var(--rojo-profundo);
+            margin-bottom: 10px;
+        }
+        
+        .class-node h3 {
+            font-size: 1.1rem;
+            color: var(--rojo-profundo);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        
+        .class-node p {
+            font-size: 0.85rem;
+            color: var(--marron);
+            line-height: 1.3;
+        }
+        
+        /* Fondo estrellado mejorado para la sección de círculos */
+        .content-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 10L55 20L65 22L58 30L60 40L50 35L40 40L42 30L35 22L45 20Z" fill="%23DEAC46" opacity="0.3"/><path d="M20 30L25 35L35 36L30 42L32 50L25 45L15 50L18 42L10 36L20 35Z" fill="%23DEAC46" opacity="0.25"/><path d="M80 50L83 55L90 56L85 60L87 65L80 62L73 65L75 60L70 56L77 55Z" fill="%23DEAC46" opacity="0.28"/><path d="M30 70L33 75L40 76L35 80L37 85L30 82L23 85L25 80L20 76L27 75Z" fill="%23DEAC46" opacity="0.22"/><path d="M70 80L73 85L80 86L75 90L77 95L70 92L63 95L65 90L60 86L67 85Z" fill="%23DEAC46" opacity="0.3"/><circle cx="15" cy="15" r="1" fill="%23DEAC46" opacity="0.2"/><circle cx="85" cy="15" r="0.8" fill="%23DEAC46" opacity="0.18"/><circle cx="15" cy="85" r="0.7" fill="%23DEAC46" opacity="0.15"/><circle cx="85" cy="85" r="0.9" fill="%23DEAC46" opacity="0.25"/><circle cx="50" cy="50" r="0.5" fill="%23DEAC46" opacity="0.15"/></svg>');
+            background-size: 200px;
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Facilitador */
+        .facilitator-section {
+            background-color: white;
+            padding: 50px 0;
+            position: relative;
+        }
+        
+        .facilitator-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="30" r="0.8" fill="%23DEAC46" opacity="0.2"/><circle cx="50" cy="15" r="0.5" fill="%23DEAC46" opacity="0.15"/><circle cx="80" cy="40" r="0.7" fill="%23DEAC46" opacity="0.18"/><circle cx="10" cy="70" r="0.6" fill="%23DEAC46" opacity="0.12"/><circle cx="40" cy="85" r="0.9" fill="%23DEAC46" opacity="0.2"/><circle cx="70" cy="60" r="0.4" fill="%23DEAC46" opacity="0.1"/><circle cx="90" cy="90" r="0.5" fill="%23DEAC46" opacity="0.15"/></svg>');
+            background-size: 200px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .facilitator-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+        }
+        
+        .facilitator-image {
+            flex: 1 1 300px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .facilitator-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 5px solid white;
+            outline: 1px solid var(--mostaza);
+        }
+        
+        .facilitator-content {
+            flex: 1 1 300px;
+        }
+        
+        .facilitator-content h2 {
+            color: var(--rojo-profundo);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .facilitator-content h3 {
+            color: var(--marron);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .facilitator-content p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .facilitator-content em {
+            display: block;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--rojo-profundo);
+        }
+        
+        .signature {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: var(--marron);
+        }
+        
+        /* CTA Final */
+        .final-cta {
+            background: linear-gradient(to right, var(--rojo-profundo), var(--marron));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .final-cta::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="30" r="0.8" fill="white" opacity="0.3"/><circle cx="50" cy="15" r="0.5" fill="white" opacity="0.2"/><circle cx="80" cy="40" r="0.7" fill="white" opacity="0.25"/><circle cx="10" cy="70" r="0.6" fill="white" opacity="0.2"/><circle cx="40" cy="85" r="0.9" fill="white" opacity="0.3"/><circle cx="70" cy="60" r="0.4" fill="white" opacity="0.15"/><circle cx="90" cy="90" r="0.5" fill="white" opacity="0.2"/></svg>');
+            background-size: 150px;
+            opacity: 0.2;
+        }
+        
+        .final-cta .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .final-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .final-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--marron);
+            color: var(--crema);
+            padding: 30px 0 20px;
+            font-size: 0.8rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="30" r="0.5" fill="%23DEAC46" opacity="0.2"/><circle cx="50" cy="15" r="0.3" fill="%23DEAC46" opacity="0.15"/><circle cx="80" cy="40" r="0.4" fill="%23DEAC46" opacity="0.18"/><circle cx="10" cy="70" r="0.3" fill="%23DEAC46" opacity="0.12"/><circle cx="40" cy="85" r="0.5" fill="%23DEAC46" opacity="0.2"/><circle cx="70" cy="60" r="0.2" fill="%23DEAC46" opacity="0.1"/><circle cx="90" cy="90" r="0.3" fill="%23DEAC46" opacity="0.15"/></svg>');
+            background-size: 150px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            position: relative;
+        }
+        
+        .footer-logo {
+            flex: 1 1 200px;
+        }
+        
+        .footer-logo h3 {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            font-size: 0.8rem;
+        }
+        
+        .footer-links {
+            flex: 1 1 150px;
+        }
+        
+        .footer-links h4 {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: var(--mostaza);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.8rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--crema);
+            text-decoration: underline;
+        }
+        
+        .disclaimer {
+            margin-top: 30px;
+            font-size: 0.7rem;
+            color: var(--mostaza);
+            text-align: center;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .logo span {
+                font-size: 1rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero-text p {
+                font-size: 1rem;
+            }
+            
+            .form-section {
+                padding: 25px;
+                margin: -40px auto 40px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+            }
+            
+            .class-node {
+                width: 150px;
+                height: 150px;
+                padding: 12px;
+            }
+            
+            .class-node i {
+                font-size: 2rem;
+                margin-bottom: 8px;
+            }
+            
+            .class-node h3 {
+                font-size: 1rem;
+                margin-bottom: 6px;
+            }
+            
+            .class-node p {
+                font-size: 0.75rem;
+            }
+            
+            .facilitator-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .final-cta h2 {
+                font-size: 1.6rem;
+            }
+            
+            .final-cta p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .constellation-line {
+                display: none;
+            }
+            
+            .class-node {
+                width: 130px;
+                height: 130px;
+                margin: 20px 0;
+                padding: 10px;
+            }
+            
+            .class-node i {
+                font-size: 1.8rem;
+            }
+            
+            .class-node h3 {
+                font-size: 0.9rem;
+            }
+            
+            .class-node p {
+                font-size: 0.7rem;
+            }
+            
+            .facilitator-image {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                RECONEXIÓN SISTÉMICA<br>
+                <span>SEMINARIO 29,30,31 DE JULIO</span>
+            </div>
+            <div class="hero-text">
+                <h1>Haz las paces con tu historia afectiva</h1>
+                <p class="highlight-text">"Incluso si sientes que tus heridas son muy profundas, con el poder del enfoque sistémico… en solo 3 días"</p>
+                <a href="#form" class="btn btn-secondary">QUIERO PARTICIPAR</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Formulario -->
+    <section id="form" class="container">
+        <div class="form-section">
+            <h2>✅ Paso #1 ¡Regístrate para asegurar tu espacio!</h2>
+            <p>Después de registrarte te llevaré a hablarme en WhatsApp.</p>
+            
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Escribe tu primer nombre</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">¿Cuál es tu correo?</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="whatsapp">Tu número de WhatsApp</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Quiero asistir al seminario</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Qué vas a aprender -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Tu Camino de Reconexión</h2>
+            
+            <div class="constellation-path">
+                <div class="constellation-line"></div>
+                
+                <div class="class-node">
+                    <i class="fas fa-star"></i>
+                    <h3>CLASE #1</h3>
+                    <p>EL PODER DE LAS CONSTELACIONES FAMILIARES</p>
+                </div>
+                
+                <div class="class-node">
+                    <i class="fas fa-heart"></i>
+                    <h3>CLASE #2</h3>
+                    <p>LEALTADES INVISIBLES - ESE DOLOR NO ES MÍO</p>
+                </div>
+                
+                <div class="class-node">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>CLASE #3</h3>
+                    <p>RECONCILIACIÓN ENTRE HOMBRES Y MUJERES</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Facilitador -->
+    <section class="facilitator-section">
+        <div class="container">
+            <div class="facilitator-container">
+                <div class="facilitator-image">
+                    <!-- Reemplaza con la imagen real del facilitador -->
+                    <img src="https://via.placeholder.com/400x500" alt="Renzo Alfaro Guillén">
+                </div>
+                <div class="facilitator-content">
+                    <h2>SOBRE EL FACILITADOR</h2>
+                    <h3>Renzo Alfaro Guillén</h3>
+                    <em>Referente en liderazgo sistémico y desarrollo humano con alma.</em>
+                    
+                    <p>Renzo Alfaro lidera el despertar de la conciencia en América Latina, habiendo impactado a más de 70.000 personas a través de viajes formativos que integran alma, cuerpo y propósito.</p>
+                    
+                    <p>Ha formado a más de 1.300 profesionales en metodologías que unen ontología, constelaciones familiares y organizacionales, pedagogía espiritual y liderazgo consciente - siempre con un enfoque en la práctica vivencial y la sanación de sistemas.</p>
+                    
+                    <p>Reconocido por su presencia integral y escucha sensible, ha facilitado procesos transformadores en más de 10 países, incluyendo Brasil, Perú, Colombia, México, Argentina y España, además de trabajar como consultor sistémico para empresas líderes.</p>
+                    
+                    <p class="signature">Renzo Alfaro Guillén</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Final -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>¿Listo para transformar tu historia afectiva?</h2>
+            <p>Únete a este seminario gratuito de 3 días y comienza tu camino de reconciliación emocional con el poder del enfoque sistémico.</p>
+            <a href="#form" class="btn btn-secondary">RESERVA TU LUGAR GRATUITO</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>RECONEXIÓN SISTÉMICA</h3>
+                    <p>Inmersión de 3 días para reconciliación emocional</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="#">Políticas de privacidad</a></li>
+                        <li><a href="#">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="disclaimer">
+                <p>Este sitio no forma parte ni está respaldado por Facebook™️. Facebook™️ es una marca comercial de Facebook™️, Inc.</p>
+                <p>Los testimonios o resultados mencionados corresponden a procesos personales reales, pero no garantizan que tú necesariamente obtendrás los mismos resultados. Cada proceso de transformación emocional es único y depende de múltiples factores, como tu historia, disposición, compromiso y contexto.</p>
+                <p>Este evento gratuito no es una terapia individual ni reemplaza el acompañamiento terapéutico profesional. Es un proceso formativo basado en enfoque sistémico y constelaciones familiares, creado para ayudarte a reconciliar tu historia afectiva y transformar tu manera de relacionarte.</p>
+                <p>Durante este evento de 3 clases en directo, compartiré un camino práctico y profundo para comenzar tu proceso de reconciliación emocional. Al finalizar, ofreceré una opción de acceso a un programa completo para quienes deseen profundizar y transformar de forma más integrada sus vínculos. Esta oferta es completamente opcional.</p>
+                <p>Puedes participar en el evento gratuito, aprender e implementar los contenidos por tu cuenta, sin compromiso alguno. Gracias por tu interés y por estar abierto/a a este viaje de transformación.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
