@@ -231,13 +231,13 @@
         
         /* Sección de contenido */
         .content-section {
-            padding: 50px 0;
+            padding: 50px 0 20px; /* Reducido el padding inferior */
             position: relative;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px; /* Reducido el margen inferior */
             color: var(--rojo-profundo);
             font-size: 1.8rem;
             position: relative;
@@ -255,12 +255,12 @@
             margin: 10px auto 0;
         }
         
-        /* Nuevo estilo para las imágenes de las clases */
+        /* Estilo para las imágenes de las clases */
         .classes-images {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 20px; /* Reducido el margen inferior */
             flex-wrap: wrap;
         }
         
@@ -271,6 +271,7 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+            margin-bottom: 0; /* Eliminado margen inferior */
         }
         
         .class-image:hover {
@@ -330,14 +331,30 @@
             flex: 1 1 300px;
             max-width: 400px;
             margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .facilitator-image::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5));
+            z-index: 1;
         }
         
         .facilitator-image img {
             width: 100%;
+            display: block;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border: 5px solid white;
             outline: 1px solid var(--mostaza);
+            position: relative;
         }
         
         .facilitator-content {
@@ -539,7 +556,15 @@
             
             .section-title {
                 font-size: 1.5rem;
-                margin-bottom: 30px;
+                margin-bottom: 20px;
+            }
+            
+            .content-section {
+                padding: 30px 0 10px;
+            }
+            
+            .classes-images {
+                margin-bottom: 10px;
             }
             
             .facilitator-content h2 {
@@ -576,10 +601,17 @@
             .classes-images {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
+                margin-bottom: 5px;
             }
             
             .class-image {
                 max-width: 100%;
+                margin-bottom: 0;
+            }
+            
+            .section-title {
+                margin-bottom: 15px;
             }
         }
     </style>
@@ -652,8 +684,8 @@
         <div class="container">
             <div class="facilitator-container">
                 <div class="facilitator-image">
-                    <!-- Reemplaza con la imagen real del facilitador -->
-                    <img src="https://via.placeholder.com/400x500" alt="Renzo Alfaro Guillén">
+                    <!-- Imagen del facilitador con degradé -->
+                    <img src="foto.png" alt="Renzo Alfaro Guillén">
                 </div>
                 <div class="facilitator-content">
                     <h2>SOBRE EL FACILITADOR</h2>
