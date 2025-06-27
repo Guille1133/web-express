@@ -236,7 +236,7 @@
         
         .section-title {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             color: var(--rojo-profundo);
             font-size: 1.8rem;
             position: relative;
@@ -254,51 +254,49 @@
             margin: 10px auto 0;
         }
         
-        /* Imágenes de las clases */
+        /* Imágenes de las clases (1280x720px) */
         .classes-images {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 30px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
-            padding: 0 15px;
+        }
+        
+        .class-image-container {
+            flex: 1 1 400px;
+            max-width: 420px;
+            height: 236px; /* 420 * (720/1280) para mantener proporción */
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
         
         .class-image {
-            flex: 1 1 300px;
-            max-width: 350px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            height: 350px;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .class-image img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            display: block;
-            padding: 15px;
         }
         
-        /* Ajuste para móvil */
+        /* Móvil */
         @media (max-width: 768px) {
-            .class-image {
+            .class-image-container {
                 flex: 1 1 100%;
                 max-width: 100%;
                 height: auto;
                 aspect-ratio: 16/9;
+                padding: 0;
             }
             
-            .class-image img {
+            .class-image {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                padding: 0;
             }
         }
         
@@ -499,7 +497,7 @@
             
             .section-title {
                 font-size: 1.5rem;
-                margin-bottom: 20px;
+                margin-bottom: 30px;
             }
             
             .facilitator-content h2 {
@@ -585,14 +583,14 @@
             <h2 class="section-title">¿Qué vas a aprender en este curso?</h2>
             
             <div class="classes-images">
-                <div class="class-image">
-                    <img src="1.png" alt="Clase 1 - El poder de las constelaciones familiares">
+                <div class="class-image-container">
+                    <img src="1.png" alt="Clase 1 - El poder de las constelaciones familiares" class="class-image">
                 </div>
-                <div class="class-image">
-                    <img src="2.png" alt="Clase 2 - Lealtades invisibles - Ese dolor no es mío">
+                <div class="class-image-container">
+                    <img src="2.png" alt="Clase 2 - Lealtades invisibles - Ese dolor no es mío" class="class-image">
                 </div>
-                <div class="class-image">
-                    <img src="3.png" alt="Clase 3 - Reconciliación entre hombres y mujeres">
+                <div class="class-image-container">
+                    <img src="3.png" alt="Clase 3 - Reconciliación entre hombres y mujeres" class="class-image">
                 </div>
             </div>
         </div>
