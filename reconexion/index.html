@@ -256,6 +256,7 @@
         .country-selector span {
             font-size: 0.9rem;
             color: #000;
+            white-space: nowrap;
         }
 
         .country-selector::after {
@@ -269,14 +270,14 @@
             position: absolute;
             top: 100%;
             left: 0;
-            width: 100%;
+            width: 250px; /* Aumentado para mostrar mejor los nombres */
             background: white;
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             z-index: 1000;
             display: none;
-            max-height: 200px;
+            max-height: 300px;
             overflow-y: auto;
         }
 
@@ -290,6 +291,7 @@
             align-items: center;
             cursor: pointer;
             color: #000;
+            white-space: nowrap;
         }
 
         .country-option:hover {
@@ -300,10 +302,13 @@
             width: 20px;
             height: 15px;
             margin-right: 8px;
+            flex-shrink: 0;
         }
 
         .country-option span {
             color: #000;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .phone-input {
@@ -621,6 +626,10 @@
             .final-cta p {
                 font-size: 0.9rem;
             }
+
+            .country-dropdown {
+                width: 100%;
+            }
         }
         
         @media (max-width: 480px) {
@@ -645,6 +654,10 @@
                 width: 100%;
                 margin-right: 0;
                 margin-bottom: 10px;
+            }
+
+            .phone-input-container {
+                flex-direction: column;
             }
         }
     </style>
@@ -682,11 +695,7 @@
                         <div class="form-group">
                             <label for="whatsapp">Tu número de WhatsApp</label>
                            <div class="phone-input-container">
-  <div 
-    class="country-selector" 
-    id="countrySelector"
-     style="flex: 0 0 60px; min-width: 60px;"
-  >
+                                <div class="country-selector" id="countrySelector">
                                     <img src="https://flagcdn.com/w20/pe.png" alt="Perú">
                                     <span>+51</span>
                                     <div class="country-dropdown" id="countryDropdown">
