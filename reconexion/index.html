@@ -160,7 +160,7 @@
         }
 
         .logo img {
-            max-width: 350px; /* Logo más grande */
+            max-width: 350px;
             height: auto;
             display: block;
             margin: 0 auto;
@@ -275,6 +275,8 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             z-index: 10;
             display: none;
+            max-height: 200px;
+            overflow-y: auto;
         }
 
         .country-dropdown.show {
@@ -310,6 +312,7 @@
         /* Mostrar código de país en el input */
         .phone-with-code {
             position: relative;
+            flex: 1;
         }
 
         .phone-code {
@@ -323,6 +326,7 @@
 
         .phone-number-input {
             padding-left: 40px !important;
+            width: 100%;
         }
         
         /* Sección de contenido */
@@ -695,9 +699,17 @@
                                             <img src="https://flagcdn.com/w20/es.png" alt="España">
                                             <span>España (+34)</span>
                                         </div>
+                                        <div class="country-option" data-code="55" data-flag="br">
+                                            <img src="https://flagcdn.com/w20/br.png" alt="Brasil">
+                                            <span>Brasil (+55)</span>
+                                        </div>
+                                        <div class="country-option" data-code="1" data-flag="us">
+                                            <img src="https://flagcdn.com/w20/us.png" alt="Estados Unidos">
+                                            <span>EE.UU. (+1)</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="phone-with-code" style="flex: 1;">
+                                <div class="phone-with-code">
                                     <span class="phone-code" id="phoneCode">+51</span>
                                     <input type="tel" id="whatsapp" name="whatsapp" required placeholder="987654321" class="phone-number-input">
                                 </div>
