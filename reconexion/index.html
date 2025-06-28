@@ -373,16 +373,13 @@
         }
         
         .class-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            height: 350px;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
+    border-radius: 0;               /* opcional: quita esquinas redondeadas */
+    overflow: hidden;
+    box-shadow: none;               /* quita la sombra */
+    background-color: transparent;  /* quita el fondo blanco */
+    margin-bottom: 0;               /* opcional: quita el espacio si lo deseas */
+}
+
         
         .class-image img {
             max-width: 100%;
