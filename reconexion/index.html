@@ -365,9 +365,12 @@
             padding: 0 15px;
         }
         
-        .class-image {
+        .class-container {
             flex: 1 1 300px;
             max-width: 350px;
+        }
+        
+        .class-image {
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -376,6 +379,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 15px;
         }
         
         .class-image img {
@@ -386,11 +390,21 @@
             padding: 15px;
         }
         
+        .class-title {
+            text-align: center;
+            font-family: 'Anton', sans-serif;
+            color: var(--rojo-profundo);
+            font-size: 1.2rem;
+        }
+        
         /* Ajuste para móvil */
         @media (max-width: 768px) {
-            .class-image {
+            .class-container {
                 flex: 1 1 100%;
                 max-width: 100%;
+            }
+            
+            .class-image {
                 height: auto;
                 aspect-ratio: 16/9;
             }
@@ -729,14 +743,23 @@
             <h2 class="section-title">¿Qué vas a aprender en este curso?</h2>
             
             <div class="classes-images">
-                <div class="class-image">
-                    <img src="1.png" alt="Clase 1 - El poder de las constelaciones familiares">
+                <div class="class-container">
+                    <div class="class-image">
+                        <img src="1.png" alt="Clase 1 - El poder de las constelaciones familiares">
+                    </div>
+                    <div class="class-title">CLASE #1:<br>El poder de las constelaciones familiares.</div>
                 </div>
-                <div class="class-image">
-                    <img src="2.png" alt="Clase 2 - Lealtades invisibles - Ese dolor no es mío">
+                <div class="class-container">
+                    <div class="class-image">
+                        <img src="2.png" alt="Clase 2 - Lealtades invisibles - Ese dolor no es mío">
+                    </div>
+                    <div class="class-title">CLASE #2:<br>Lealtades invisibles. Ese dolor no es mío.</div>
                 </div>
-                <div class="class-image">
-                    <img src="3.png" alt="Clase 3 - Reconciliación entre hombres y mujeres">
+                <div class="class-container">
+                    <div class="class-image">
+                        <img src="3.png" alt="Clase 3 - Reconciliación entre hombres y mujeres">
+                    </div>
+                    <div class="class-title">CLASE #3:<br>Reconciliación entre hombres y mujeres.</div>
                 </div>
             </div>
         </div>
