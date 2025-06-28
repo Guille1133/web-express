@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias por registrarte!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rojo-profundo: #A21F18;
+            --rojo-claro: #C7241B;
+            --mostaza: #DEAC46;
+            --crema: #F9F5F2;
+            --marron: #3C1F0F;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--marron);
+            background-color: var(--crema);
+            line-height: 1.6;
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo {
+            margin-bottom: 30px;
+            max-width: 300px;
+        }
+        
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        h1, h2 {
+            font-family: 'Anton', sans-serif;
+            font-weight: normal;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: var(--rojo-profundo);
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+        
+        .facilitator-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 30px;
+            border: 5px solid var(--mostaza);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .facilitator-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        p {
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            background-color: var(--rojo-profundo);
+            color: white;
+            border: 2px solid var(--rojo-profundo);
+            margin-bottom: 30px;
+        }
+        
+        .btn:hover {
+            background-color: var(--rojo-claro);
+            border-color: var(--rojo-claro);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .countdown {
+            font-size: 0.9rem;
+            color: var(--marron);
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .facilitator-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="imageni.png" alt="Logo Reconexión Sistémica">
+    </div>
+    
+    <h1>¡Ahora el paso #2!</h1>
+    
+    <div class="facilitator-image">
+        <img src="foto.png" alt="Renzo Alfaro Guillén">
+    </div>
+    
+    <p>Háblame a mi WhatsApp ya mismo para confirmar tu registro al evento.</p>
+    
+    <a href="https://wa.me/51987654321?text=Hola%20Renzo,%20quiero%20confirmar%20mi%20registro%20al%20evento%20de%20Constelaciones%20Familiares" class="btn" id="whatsappBtn">CONTACTAR POR WHATSAPP</a>
+    
+    <p class="countdown">Redireccionando automáticamente en <span id="countdown">5</span> segundos...</p>
+    
+    <script>
+        // Redirección automática después de 5 segundos
+        let seconds = 5;
+        const countdownElement = document.getElementById('countdown');
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        
+        const countdown = setInterval(function() {
+            seconds--;
+            countdownElement.textContent = seconds;
+            
+            if(seconds <= 0) {
+                clearInterval(countdown);
+                // Redirigir a WhatsApp
+                window.location.href = whatsappBtn.href;
+            }
+        }, 1000);
+        
+        // Si el usuario hace clic manualmente, cancelar el countdown
+        whatsappBtn.addEventListener('click', function() {
+            clearInterval(countdown);
+            document.querySelector('.countdown').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
