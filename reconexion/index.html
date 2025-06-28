@@ -160,7 +160,7 @@
         }
 
         .logo img {
-            max-width: 250px;
+            max-width: 350px; /* Logo más grande */
             height: auto;
             display: block;
             margin: 0 auto;
@@ -175,28 +175,6 @@
             width: 100%;
             height: auto;
             display: block;
-        }
-        
-        .hero-text {
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-text h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-            text-align: left;
-        }
-        
-        .hero-text p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            font-family: 'Libre Baskerville', serif;
-            font-style: italic;
-            text-align: left;
         }
         
         /* Formulario */
@@ -276,14 +254,14 @@
 
         .country-selector span {
             font-size: 0.9rem;
-            color: #000; /* Texto en negro */
+            color: #000;
         }
 
         .country-selector::after {
             content: "▼";
             font-size: 0.6rem;
             margin-left: 5px;
-            color: #000; /* Flecha en negro */
+            color: #000;
         }
 
         .country-dropdown {
@@ -308,7 +286,7 @@
             display: flex;
             align-items: center;
             cursor: pointer;
-            color: #000; /* Texto en negro */
+            color: #000;
         }
 
         .country-option:hover {
@@ -322,11 +300,29 @@
         }
 
         .country-option span {
-            color: #000; /* Texto en negro */
+            color: #000;
         }
 
         .phone-input {
             flex: 1;
+        }
+
+        /* Mostrar código de país en el input */
+        .phone-with-code {
+            position: relative;
+        }
+
+        .phone-code {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #555;
+            pointer-events: none;
+        }
+
+        .phone-number-input {
+            padding-left: 40px !important;
         }
         
         /* Sección de contenido */
@@ -571,10 +567,6 @@
                 flex: 1 1 100%;
                 text-align: center;
             }
-            
-            .hero-text h1, .hero-text p {
-                text-align: center;
-            }
         }
         
         @media (max-width: 768px) {
@@ -586,12 +578,8 @@
                 font-size: 1rem;
             }
             
-            .hero-text h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero-text p {
-                font-size: 1rem;
+            .logo img {
+                max-width: 280px;
             }
             
             .form-section {
@@ -621,8 +609,8 @@
                 font-size: 1.5rem;
             }
             
-            .hero-text h1 {
-                font-size: 1.4rem;
+            .logo img {
+                max-width: 250px;
             }
             
             .btn {
@@ -657,10 +645,6 @@
                 
                 <div class="hero-image">
                     <img src="fondo.png" alt="Texto del evento">
-                </div>
-                
-                <div class="hero-text">
-                    <a href="#form" class="btn btn-secondary">QUIERO PARTICIPAR</a>
                 </div>
             </div>
             
@@ -713,7 +697,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="987654321" class="phone-input">
+                                <div class="phone-with-code" style="flex: 1;">
+                                    <span class="phone-code" id="phoneCode">+51</span>
+                                    <input type="tel" id="whatsapp" name="whatsapp" required placeholder="987654321" class="phone-number-input">
+                                </div>
                             </div>
                         </div>
                         
@@ -811,6 +798,7 @@
             const countryDropdown = document.getElementById('countryDropdown');
             const countryOptions = document.querySelectorAll('.country-option');
             const whatsappInput = document.getElementById('whatsapp');
+            const phoneCode = document.getElementById('phoneCode');
             let currentCountryCode = '51'; // Perú por defecto
             
             // Mostrar/ocultar dropdown
@@ -834,24 +822,17 @@
                     selectorImg.alt = countryName;
                     selectorSpan.textContent = `+${code}`;
                     
-                    // Actualizar código de país
+                    // Actualizar código de país en el input
+                    phoneCode.textContent = `+${code}`;
                     currentCountryCode = code;
-                    
-                    // Actualizar el valor del input si ya tenía contenido
-                    if(whatsappInput.value) {
-                        whatsappInput.value = whatsappInput.value.replace(/^\+?\d+/, '');
-                    }
                     
                     // Ocultar dropdown
                     countryDropdown.classList.remove('show');
                 });
             });
             
-            // Validar y formatear número de teléfono
+            // Validar número de teléfono
             whatsappInput.addEventListener('input', function() {
-                // Eliminar cualquier código de país que haya podido ser ingresado
-                this.value = this.value.replace(/^\+?\d+/, '');
-                
                 // Limitar a solo números y máximo 15 caracteres
                 this.value = this.value.replace(/\D/g, '').substring(0, 15);
             });
@@ -860,7 +841,7 @@
             document.querySelector('form').addEventListener('submit', function(e) {
                 const phoneNumber = whatsappInput.value;
                 if(phoneNumber) {
-                    whatsappInput.value = `+${currentCountryCode}${phoneNumber}`;
+                    whatsappInput.value = `${currentCountryCode}${phoneNumber}`;
                 }
             });
             
