@@ -245,6 +245,7 @@
             height: 46px;
             cursor: pointer;
             min-width: 90px;
+            flex-shrink: 0;
         }
 
         .country-selector img {
@@ -270,7 +271,7 @@
             position: absolute;
             top: 100%;
             left: 0;
-            width: 250px; /* Aumentado para mostrar mejor los nombres */
+            width: 250px;
             background: white;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -311,11 +312,6 @@
             text-overflow: ellipsis;
         }
 
-        .phone-input {
-            flex: 1;
-        }
-
-        /* Mostrar código de país en el input */
         .phone-with-code {
             position: relative;
             flex: 1;
@@ -401,26 +397,6 @@
             font-family: 'Anton', sans-serif;
             color: var(--rojo-profundo);
             font-size: 1.2rem;
-        }
-        
-        /* Ajuste para móvil */
-        @media (max-width: 768px) {
-            .class-container {
-                flex: 1 1 100%;
-                max-width: 100%;
-            }
-            
-            .class-image {
-                height: auto;
-                aspect-ratio: 16/9;
-            }
-            
-            .class-image img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                padding: 0;
-            }
         }
         
         /* Facilitador */
@@ -650,14 +626,20 @@
                 margin-bottom: 20px;
             }
 
-            .country-selector {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 10px;
+            /* Selector de teléfono en móvil */
+            .phone-input-container {
+                flex-direction: row;
+                align-items: center;
             }
 
-            .phone-input-container {
-                flex-direction: column;
+            .country-selector {
+                width: auto;
+                margin-right: 10px;
+                margin-bottom: 0;
+            }
+
+            .phone-with-code {
+                flex: 1;
             }
         }
     </style>
@@ -681,7 +663,7 @@
                     <h2>✅ Paso #1 ¡Regístrate para asegurar tu espacio!</h2>
                     <p>Después de registrarte te llevaré a hablarme en WhatsApp.</p>
                     
-                    <form action="gracias.html" method="POST">
+                    <form id="registrationForm" action="gracias.html" method="POST">
                         <div class="form-group">
                             <label for="name">Escribe tu primer nombre</label>
                             <input type="text" id="name" name="name" required placeholder="Ej: María">
@@ -694,7 +676,7 @@
                         
                         <div class="form-group">
                             <label for="whatsapp">Tu número de WhatsApp</label>
-                           <div class="phone-input-container">
+                            <div class="phone-input-container">
                                 <div class="country-selector" id="countrySelector">
                                     <img src="https://flagcdn.com/w20/pe.png" alt="Perú">
                                     <span>+51</span>
@@ -882,12 +864,23 @@
                 this.value = this.value.replace(/\D/g, '').substring(0, 15);
             });
             
-            // Antes de enviar el formulario, agregar el código de país
-            document.querySelector('form').addEventListener('submit', function(e) {
-                const phoneNumber = whatsappInput.value;
-                if(phoneNumber) {
-                    whatsappInput.value = `${currentCountryCode}${phoneNumber}`;
+            // Manejar el envío del formulario
+            document.getElementById('registrationForm').addEventListener('submit', function(e) {
+                // Validar campos
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phoneNumber = whatsappInput.value.trim();
+                
+                if(!name || !email || !phoneNumber) {
+                    alert('Por favor completa todos los campos');
+                    return;
                 }
+                
+                // Construir número completo
+                const fullPhoneNumber = `${currentCountryCode}${phoneNumber}`;
+                
+                // Redirigir a la página de gracias
+                window.location.href = 'gracias.html';
             });
             
             // Cerrar dropdown al hacer clic fuera
