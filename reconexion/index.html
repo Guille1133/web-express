@@ -183,8 +183,6 @@
             max-width: 400px;
             width: 100%;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             display: block;
             margin: 0 auto;
         }
@@ -390,8 +388,9 @@
         }
         
         .class-container {
-            flex: 1 1 31%;
-            max-width: 31%;
+            flex: 1 1 30%;
+            max-width: 30%;
+            min-width: 280px;
         }
         
         .class-image {
@@ -426,28 +425,13 @@
         }
         
         .facilitator-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 30px;
             position: relative;
-        }
-        
-        .facilitator-image {
-            flex: 1 1 300px;
-            max-width: 400px;
+            max-width: 800px;
             margin: 0 auto;
         }
         
-        .facilitator-image img {
-            width: 100%;
-            border-radius: 10px;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
         .facilitator-content {
-            flex: 1 1 300px;
+            text-align: center;
         }
         
         .facilitator-content h2 {
@@ -803,9 +787,6 @@
     <section class="facilitator-section">
         <div class="container">
             <div class="facilitator-container">
-                <div class="facilitator-image">
-                    <img src="foto.png" alt="Renzo Alfaro Guillén">
-                </div>
                 <div class="facilitator-content">
                     <h3>Renzo Alfaro Guillén</h3>
                     <em>Referente en liderazgo sistémico y desarrollo humano con alma.</em>
