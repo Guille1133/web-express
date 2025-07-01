@@ -136,8 +136,9 @@
             text-align: left;
         }
         
-        .header-form {
+        .header-photo {
             flex: 1 1 500px;
+            text-align: center;
         }
         
         .logo {
@@ -176,9 +177,26 @@
             height: auto;
             display: block;
         }
+
+        /* Foto de Renzo en el header */
+        .renzo-photo {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: block;
+            margin: 0 auto;
+        }
         
         /* Formulario */
         .form-section {
+            background-color: white;
+            padding: 40px 0;
+            position: relative;
+        }
+
+        .form-container {
             background-color: white;
             padding: 30px;
             border-radius: 10px;
@@ -186,18 +204,22 @@
             position: relative;
             z-index: 2;
             overflow: visible;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
-        .form-section h2 {
+        .form-container h2 {
             color: var(--rojo-profundo);
             margin-bottom: 20px;
             font-size: 1.5rem;
+            text-align: center;
         }
         
-        .form-section p {
+        .form-container p {
             color: var(--marron);
             margin-bottom: 20px;
             font-size: 0.95rem;
+            text-align: center;
         }
         
         .form-group {
@@ -367,32 +389,27 @@
             padding: 0 15px;
         }
         
-       .class-container {
-    flex: 1 1 31%;
-    max-width: 31%;
-}
-
+        .class-container {
+            flex: 1 1 31%;
+            max-width: 31%;
+        }
         
         .class-image {
-    border-radius: 0;               /* opcional: quita esquinas redondeadas */
-    overflow: hidden;
-    box-shadow: none;               /* quita la sombra */
-    background-color: transparent;  /* quita el fondo blanco */
-    margin-bottom: 0;               /* opcional: quita el espacio si lo deseas */
-}
-
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            background-color: transparent;
+            margin-bottom: 0;
+        }
         
-      .class-image img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    border-radius: 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-
-
+        .class-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            border-radius: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
         
         .class-title {
             text-align: center;
@@ -565,7 +582,7 @@
                 flex-direction: column;
             }
             
-            .header-content, .header-form {
+            .header-content, .header-photo {
                 flex: 1 1 100%;
                 text-align: center;
             }
@@ -584,7 +601,7 @@
                 max-width: 280px;
             }
             
-            .form-section {
+            .form-container {
                 padding: 25px;
             }
             
@@ -608,15 +625,21 @@
             .country-dropdown {
                 width: 100%;
             }
-        .class-container {
-    flex: 1 1 100%;
-    max-width: 100%;
-}
 
-.class-image img {
-    height: auto; /* En mobile no forzamos altura */
-}
+            .class-container {
+                flex: 1 1 100%;
+                max-width: 100%;
             }
+
+            .class-image img {
+                height: auto;
+            }
+            
+            .renzo-photo {
+                max-width: 300px;
+            }
+        }
+        
         @media (max-width: 480px) {
             .logo {
                 font-size: 1.5rem;
@@ -635,7 +658,6 @@
                 margin-bottom: 20px;
             }
 
-            /* Selector de teléfono en móvil */
             .phone-input-container {
                 flex-direction: row;
                 align-items: center;
@@ -649,6 +671,10 @@
 
             .phone-with-code {
                 flex: 1;
+            }
+            
+            .renzo-photo {
+                max-width: 250px;
             }
         }
     </style>
@@ -667,76 +693,83 @@
                 </div>
             </div>
             
-            <div class="header-form">
-                <div class="form-section" id="form">
-                    <h2>✅ Paso #1 ¡Regístrate para asegurar tu espacio!</h2>
-                    <p>Después de registrarte te llevaré a hablarme en WhatsApp.</p>
-                    
-                    <form id="registrationForm" action="gracias.html" method="GET">
-                        <div class="form-group">
-                            <label for="name">Escribe tu primer nombre</label>
-                            <input type="text" id="name" name="name" required placeholder="Ej: María">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">¿Cuál es tu correo?</label>
-                            <input type="email" id="email" name="email" required placeholder="Ej: ejemplo@correo.com">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="whatsapp">Tu número de WhatsApp</label>
-                            <div class="phone-input-container">
-                                <div class="country-selector" id="countrySelector">
-                                    <img src="https://flagcdn.com/w20/pe.png" alt="Perú">
-                                    <span>+51</span>
-                                    <div class="country-dropdown" id="countryDropdown">
-                                        <div class="country-option" data-code="51" data-flag="pe">
-                                            <img src="https://flagcdn.com/w20/pe.png" alt="Perú">
-                                            <span>Perú (+51)</span>
-                                        </div>
-                                        <div class="country-option" data-code="54" data-flag="ar">
-                                            <img src="https://flagcdn.com/w20/ar.png" alt="Argentina">
-                                            <span>Argentina (+54)</span>
-                                        </div>
-                                        <div class="country-option" data-code="56" data-flag="cl">
-                                            <img src="https://flagcdn.com/w20/cl.png" alt="Chile">
-                                            <span>Chile (+56)</span>
-                                        </div>
-                                        <div class="country-option" data-code="57" data-flag="co">
-                                            <img src="https://flagcdn.com/w20/co.png" alt="Colombia">
-                                            <span>Colombia (+57)</span>
-                                        </div>
-                                        <div class="country-option" data-code="52" data-flag="mx">
-                                            <img src="https://flagcdn.com/w20/mx.png" alt="México">
-                                            <span>México (+52)</span>
-                                        </div>
-                                        <div class="country-option" data-code="34" data-flag="es">
-                                            <img src="https://flagcdn.com/w20/es.png" alt="España">
-                                            <span>España (+34)</span>
-                                        </div>
-                                        <div class="country-option" data-code="55" data-flag="br">
-                                            <img src="https://flagcdn.com/w20/br.png" alt="Brasil">
-                                            <span>Brasil (+55)</span>
-                                        </div>
-                                        <div class="country-option" data-code="1" data-flag="us">
-                                            <img src="https://flagcdn.com/w20/us.png" alt="Estados Unidos">
-                                            <span>EE.UU. (+1)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="phone-with-code">
-                                    <span class="phone-code" id="phoneCode">+51</span>
-                                    <input type="tel" id="whatsapp" name="whatsapp" required placeholder="987654321" class="phone-number-input">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Quiero asistir al seminario</button>
-                    </form>
-                </div>
+            <div class="header-photo">
+                <img src="foto.png" alt="Renzo Alfaro Guillén" class="renzo-photo">
             </div>
         </div>
     </header>
+    
+    <!-- Formulario después del header -->
+    <section class="form-section" id="form">
+        <div class="container">
+            <div class="form-container">
+                <h2>✅ Paso #1 ¡Regístrate para asegurar tu espacio!</h2>
+                <p>Después de registrarte te llevaré a hablarme en WhatsApp.</p>
+                
+                <form id="registrationForm" action="gracias.html" method="GET">
+                    <div class="form-group">
+                        <label for="name">Escribe tu primer nombre</label>
+                        <input type="text" id="name" name="name" required placeholder="Ej: María">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">¿Cuál es tu correo?</label>
+                        <input type="email" id="email" name="email" required placeholder="Ej: ejemplo@correo.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whatsapp">Tu número de WhatsApp</label>
+                        <div class="phone-input-container">
+                            <div class="country-selector" id="countrySelector">
+                                <img src="https://flagcdn.com/w20/pe.png" alt="Perú">
+                                <span>+51</span>
+                                <div class="country-dropdown" id="countryDropdown">
+                                    <div class="country-option" data-code="51" data-flag="pe">
+                                        <img src="https://flagcdn.com/w20/pe.png" alt="Perú">
+                                        <span>Perú (+51)</span>
+                                    </div>
+                                    <div class="country-option" data-code="54" data-flag="ar">
+                                        <img src="https://flagcdn.com/w20/ar.png" alt="Argentina">
+                                        <span>Argentina (+54)</span>
+                                    </div>
+                                    <div class="country-option" data-code="56" data-flag="cl">
+                                        <img src="https://flagcdn.com/w20/cl.png" alt="Chile">
+                                        <span>Chile (+56)</span>
+                                    </div>
+                                    <div class="country-option" data-code="57" data-flag="co">
+                                        <img src="https://flagcdn.com/w20/co.png" alt="Colombia">
+                                        <span>Colombia (+57)</span>
+                                    </div>
+                                    <div class="country-option" data-code="52" data-flag="mx">
+                                        <img src="https://flagcdn.com/w20/mx.png" alt="México">
+                                        <span>México (+52)</span>
+                                    </div>
+                                    <div class="country-option" data-code="34" data-flag="es">
+                                        <img src="https://flagcdn.com/w20/es.png" alt="España">
+                                        <span>España (+34)</span>
+                                    </div>
+                                    <div class="country-option" data-code="55" data-flag="br">
+                                        <img src="https://flagcdn.com/w20/br.png" alt="Brasil">
+                                        <span>Brasil (+55)</span>
+                                    </div>
+                                    <div class="country-option" data-code="1" data-flag="us">
+                                        <img src="https://flagcdn.com/w20/us.png" alt="Estados Unidos">
+                                        <span>EE.UU. (+1)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="phone-with-code">
+                                <span class="phone-code" id="phoneCode">+51</span>
+                                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="987654321" class="phone-number-input">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Quiero asistir al seminario</button>
+                </form>
+            </div>
+        </div>
+    </section>
     
     <!-- Qué vas a aprender -->
     <section class="content-section">
@@ -774,7 +807,6 @@
                     <img src="foto.png" alt="Renzo Alfaro Guillén">
                 </div>
                 <div class="facilitator-content">
-        
                     <h3>Renzo Alfaro Guillén</h3>
                     <em>Referente en liderazgo sistémico y desarrollo humano con alma.</em>
                     
@@ -790,12 +822,79 @@
         </div>
     </section>
     
-    <!-- CTA Final -->
+    <!-- CTA Final con formulario -->
     <section class="final-cta">
         <div class="container">
             <h2>¿Listo para transformar tu historia afectiva?</h2>
             <p>Únete a este seminario gratuito de 3 días y comienza tu camino de reconciliación emocional con el poder del enfoque sistémico.</p>
-            <a href="#form" class="btn btn-secondary">RESERVA TU LUGAR GRATUITO</a>
+            
+            <!-- Formulario duplicado en CTA -->
+            <div class="form-container" style="background-color: rgba(255,255,255,0.95); margin-top: 30px;">
+                <h2 style="color: var(--rojo-profundo);">✅ ¡Reserva tu lugar ahora!</h2>
+                <p style="color: var(--marron);">Después de registrarte te llevaré a hablarme en WhatsApp.</p>
+                
+                <form id="registrationForm2" action="gracias.html" method="GET">
+                    <div class="form-group">
+                        <label for="name2">Escribe tu primer nombre</label>
+                        <input type="text" id="name2" name="name" required placeholder="Ej: María">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email2">¿Cuál es tu correo?</label>
+                        <input type="email" id="email2" name="email" required placeholder="Ej: ejemplo@correo.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whatsapp2">Tu número de WhatsApp</label>
+                        <div class="phone-input-container">
+                            <div class="country-selector" id="countrySelector2">
+                                <img src="https://flagcdn.com/w20/pe.png" alt="Perú">
+                                <span>+51</span>
+                                <div class="country-dropdown" id="countryDropdown2">
+                                    <div class="country-option" data-code="51" data-flag="pe">
+                                        <img src="https://flagcdn.com/w20/pe.png" alt="Perú">
+                                        <span>Perú (+51)</span>
+                                    </div>
+                                    <div class="country-option" data-code="54" data-flag="ar">
+                                        <img src="https://flagcdn.com/w20/ar.png" alt="Argentina">
+                                        <span>Argentina (+54)</span>
+                                    </div>
+                                    <div class="country-option" data-code="56" data-flag="cl">
+                                        <img src="https://flagcdn.com/w20/cl.png" alt="Chile">
+                                        <span>Chile (+56)</span>
+                                    </div>
+                                    <div class="country-option" data-code="57" data-flag="co">
+                                        <img src="https://flagcdn.com/w20/co.png" alt="Colombia">
+                                        <span>Colombia (+57)</span>
+                                    </div>
+                                    <div class="country-option" data-code="52" data-flag="mx">
+                                        <img src="https://flagcdn.com/w20/mx.png" alt="México">
+                                        <span>México (+52)</span>
+                                    </div>
+                                    <div class="country-option" data-code="34" data-flag="es">
+                                        <img src="https://flagcdn.com/w20/es.png" alt="España">
+                                        <span>España (+34)</span>
+                                    </div>
+                                    <div class="country-option" data-code="55" data-flag="br">
+                                        <img src="https://flagcdn.com/w20/br.png" alt="Brasil">
+                                        <span>Brasil (+55)</span>
+                                    </div>
+                                    <div class="country-option" data-code="1" data-flag="us">
+                                        <img src="https://flagcdn.com/w20/us.png" alt="Estados Unidos">
+                                        <span>EE.UU. (+1)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="phone-with-code">
+                                <span class="phone-code" id="phoneCode2">+51</span>
+                                <input type="tel" id="whatsapp2" name="whatsapp" required placeholder="987654321" class="phone-number-input">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Quiero asistir al seminario</button>
+                </form>
+            </div>
         </div>
     </section>
     
@@ -828,13 +927,13 @@
     </footer>
 
     <script>
-        // Selector de país funcional
-        document.addEventListener('DOMContentLoaded', function() {
-            const countrySelector = document.getElementById('countrySelector');
-            const countryDropdown = document.getElementById('countryDropdown');
-            const countryOptions = document.querySelectorAll('.country-option');
-            const whatsappInput = document.getElementById('whatsapp');
-            const phoneCode = document.getElementById('phoneCode');
+        // Función para manejar el selector de país
+        function setupCountrySelector(selectorId, dropdownId, phoneCodeId, whatsappId) {
+            const countrySelector = document.getElementById(selectorId);
+            const countryDropdown = document.getElementById(dropdownId);
+            const countryOptions = countryDropdown.querySelectorAll('.country-option');
+            const whatsappInput = document.getElementById(whatsappId);
+            const phoneCode = document.getElementById(phoneCodeId);
             let currentCountryCode = '51'; // Perú por defecto
             
             // Mostrar/ocultar dropdown
@@ -873,28 +972,54 @@
                 this.value = this.value.replace(/\D/g, '').substring(0, 15);
             });
             
-            // Manejar el envío del formulario
+            // Cerrar dropdown al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                if (!countrySelector.contains(e.target)) {
+                    countryDropdown.classList.remove('show');
+                }
+            });
+            
+            return currentCountryCode;
+        }
+
+        // Configurar formularios cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar primer formulario
+            let currentCountryCode1 = setupCountrySelector('countrySelector', 'countryDropdown', 'phoneCode', 'whatsapp');
+            
+            // Configurar segundo formulario
+            let currentCountryCode2 = setupCountrySelector('countrySelector2', 'countryDropdown2', 'phoneCode2', 'whatsapp2');
+            
+            // Manejar el envío del primer formulario
             document.getElementById('registrationForm').addEventListener('submit', function(e) {
                 // Validar campos
                 const name = document.getElementById('name').value.trim();
                 const email = document.getElementById('email').value.trim();
-                const phoneNumber = whatsappInput.value.trim();
+                const phoneNumber = document.getElementById('whatsapp').value.trim();
                 
                 if(!name || !email || !phoneNumber) {
                     alert('Por favor completa todos los campos');
                     return;
                 }
                 
-                // Construir número completo
-                const fullPhoneNumber = `${currentCountryCode}${phoneNumber}`;
-                
                 // Redirigir a la página de gracias
                 window.location.href = 'gracias.html';
             });
             
-            // Cerrar dropdown al hacer clic fuera
-            document.addEventListener('click', function() {
-                countryDropdown.classList.remove('show');
+            // Manejar el envío del segundo formulario
+            document.getElementById('registrationForm2').addEventListener('submit', function(e) {
+                // Validar campos
+                const name = document.getElementById('name2').value.trim();
+                const email = document.getElementById('email2').value.trim();
+                const phoneNumber = document.getElementById('whatsapp2').value.trim();
+                
+                if(!name || !email || !phoneNumber) {
+                    alert('Por favor completa todos los campos');
+                    return;
+                }
+                
+                // Redirigir a la página de gracias
+                window.location.href = 'gracias.html';
             });
         });
     </script>
