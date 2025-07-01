@@ -474,7 +474,8 @@
             padding: 60px 0;
             text-align: center;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+    z-index: 1;
         }
         
         .final-cta h2 {
@@ -553,14 +554,17 @@
             text-decoration: underline;
         }
         
-        .disclaimer {
-            margin-top: 30px;
-            font-size: 0.7rem;
-            color: var(--mostaza);
-            text-align: center;
-            opacity: 0.8;
-            line-height: 1.5;
-        }
+       .disclaimer {
+    margin-top: 30px;
+    font-size: 0.8rem;
+    color: var(--mostaza);
+    text-align: justify; /* ✅ Justifica el texto */
+    opacity: 0.85;
+    line-height: 1.6;
+    max-width: 900px;     /* ✅ Máximo ancho para lectura cómoda */
+    margin-left: auto;
+    margin-right: auto;
+}
         
         /* Responsive */
         @media (max-width: 992px) {
@@ -894,7 +898,7 @@
                     <h4>Enlaces</h4>
                     <ul>
                         <li><a href="https://unoinstitutoholistico.com/politicas-de-privacidad/">Políticas de privacidad</a></li>
-                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="https://unoinstitutoholistico.com/politicas-de-privacidad/">Términos y condiciones</a></li>
                     </ul>
                 </div>
             </div>
