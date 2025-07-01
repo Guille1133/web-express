@@ -368,8 +368,8 @@
         }
         
        .class-container {
-    flex: 1 1 28%;
-    max-width: 28%;
+    flex: 1 1 31%;
+    max-width: 31%;
 }
 
         
@@ -384,10 +384,11 @@
         
       .class-image img {
     width: 100%;
-    height: auto;
+    height: 280px; /* más alto */
+    object-fit: cover;
     display: block;
     border-radius: 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 
@@ -608,10 +609,14 @@
                 width: 100%;
             }
         .class-container {
-        flex: 1 1 100%;
-        max-width: 100%;
-    }
+    flex: 1 1 100%;
+    max-width: 100%;
 }
+
+.class-image img {
+    height: auto; /* En mobile no forzamos altura */
+}
+            }
         @media (max-width: 480px) {
             .logo {
                 font-size: 1.5rem;
