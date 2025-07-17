@@ -293,6 +293,13 @@
         .stat-label {
             font-size: 1.1rem;
             color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-sublabel {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
         }
         
         /* Features Section */
@@ -428,6 +435,9 @@
         .testimonials-slider {
             margin-top: 3rem;
             position: relative;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
         
         .testimonial-card {
@@ -435,7 +445,6 @@
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 2rem;
-            margin: 0 1rem;
             transition: all 0.3s;
         }
         
@@ -469,27 +478,12 @@
         }
         
         .testimonial-author {
-            display: flex;
-            align-items: center;
+            text-align: center;
         }
         
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 1rem;
-            border: 2px solid white;
-        }
-        
-        .author-info h4 {
+        .testimonial-author h4 {
             font-weight: 600;
-            margin-bottom: 0.2rem;
-        }
-        
-        .author-info p {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 1.1rem;
         }
         
         /* Pricing Section */
@@ -498,12 +492,45 @@
             background-color: white;
         }
         
+        /* Pricing Toggle */
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0 4rem;
+        }
+        
+        .toggle-container {
+            background-color: var(--light);
+            border-radius: 50px;
+            padding: 4px;
+            display: flex;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .toggle-option {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            background: none;
+            color: var(--text);
+        }
+        
+        .toggle-option.active {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+        
         .pricing-grid {
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            align-items: stretch;
         }
         
         .pricing-card {
@@ -514,6 +541,9 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .pricing-card.popular {
@@ -524,14 +554,15 @@
         .pricing-card.popular::after {
             content: 'MÁS POPULAR';
             position: absolute;
-            top: 15px;
-            right: -30px;
+            top: 20px;
+            right: -35px;
             background-color: var(--accent);
             color: white;
-            padding: 0.3rem 3rem;
-            font-size: 0.8rem;
+            padding: 0.4rem 3rem;
+            font-size: 0.75rem;
             font-weight: 600;
             transform: rotate(45deg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
         
         .pricing-card:hover {
@@ -574,22 +605,37 @@
         
         .pricing-features {
             margin-bottom: 2rem;
+            flex-grow: 1;
         }
         
         .pricing-feature {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 0.8rem;
         }
         
         .pricing-feature i {
             color: var(--success);
             margin-right: 0.5rem;
+            margin-top: 0.1rem;
+            flex-shrink: 0;
         }
         
         .pricing-button {
             width: 100%;
             text-align: center;
+            margin-top: auto;
+        }
+        
+        .monthly-note {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 1rem;
+            text-align: center;
+            padding: 0.5rem;
+            background-color: rgba(108, 99, 255, 0.1);
+            border-radius: 8px;
         }
         
         /* FAQ Section */
@@ -837,6 +883,15 @@
             transform: translateY(0);
         }
         
+        .fade-transition {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .fade-transition.visible {
+            opacity: 1;
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -929,6 +984,11 @@
             .pricing-card.popular:hover {
                 transform: scale(1) translateY(-10px);
             }
+            
+            .toggle-option {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1009,8 +1069,9 @@
     <section class="stats">
         <div class="stats-container">
             <div class="stat-item fade-in">
-                <div class="stat-number" data-count="300">0</div>
-                <div class="stat-label">Clientes Satisfechos</div>
+                <div class="stat-number" data-count="50">0</div>
+                <div class="stat-label">Proyectos entregados con éxito</div>
+                <div class="stat-sublabel">Y cada uno hecho a medida, sin plantillas.</div>
             </div>
             <div class="stat-item fade-in">
                 <div class="stat-number" data-count="97">0</div>
@@ -1019,10 +1080,6 @@
             <div class="stat-item fade-in">
                 <div class="stat-number" data-count="24">0</div>
                 <div class="stat-label">Horas de Entrega</div>
-            </div>
-            <div class="stat-item fade-in">
-                <div class="stat-number" data-count="500">0</div>
-                <div class="stat-label">Páginas Creadas</div>
             </div>
         </div>
     </section>
@@ -1053,10 +1110,10 @@
             
             <div class="feature-card fade-in">
                 <div class="feature-icon">
-                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-globe"></i>
                 </div>
-                <h3>Versiones Multiples</h3>
-                <p>Te proporcionamos variantes probadas para que puedas testear qué versión funciona mejor con tu audiencia.</p>
+                <h3>🟣 Tu web lista para salir al mundo</h3>
+                <p>Incluimos dominio, hosting y todo lo necesario para que tu página funcione al 100% desde el primer clic.</p>
             </div>
             
             <div class="feature-card fade-in">
@@ -1090,7 +1147,7 @@
         <div class="testimonials-container">
             <div class="section-header light fade-in">
                 <h2>Lo que dicen nuestros clientes</h2>
-                <p>Más de 300 emprendedores y empresas han aumentado sus conversiones con nuestras páginas de captura.</p>
+                <p>Emprendedores y empresas ya están aumentando sus conversiones con nuestras páginas de captura diseñadas para convertir.</p>
             </div>
             
             <div class="testimonials-slider">
@@ -1099,10 +1156,8 @@
                         "Después de implementar la página de captura de CapturePro, nuestras conversiones aumentaron un 220% en solo dos semanas. El diseño es impecable y la atención al detalle en los elementos de persuasión es increíble."
                     </div>
                     <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="María González" class="author-avatar">
                         <div class="author-info">
                             <h4>María González</h4>
-                            <p>CEO, Wellness360</p>
                         </div>
                     </div>
                 </div>
@@ -1112,10 +1167,8 @@
                         "Como marketer, he trabajado con muchas plantillas de landing pages, pero ninguna se acerca al nivel de optimización para conversión que ofrece CapturePro. Nuestro costo por lead bajó un 65%."
                     </div>
                     <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Mendoza" class="author-avatar">
                         <div class="author-info">
                             <h4>Carlos Mendoza</h4>
-                            <p>Director de Marketing, TechSolutions</p>
                         </div>
                     </div>
                 </div>
@@ -1125,10 +1178,8 @@
                         "Increíble servicio al cliente y diseños que realmente funcionan. Hemos probado varias versiones y todas superan a nuestras páginas anteriores. ¡Recomendado 100%!"
                     </div>
                     <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ana Rodríguez" class="author-avatar">
                         <div class="author-info">
                             <h4>Ana Rodríguez</h4>
-                            <p>Emprendedora, FitLife</p>
                         </div>
                     </div>
                 </div>
@@ -1143,8 +1194,17 @@
             <p>Elige el paquete que mejor se adapte a tus necesidades. Todos incluyen diseño profesional y optimización para conversión.</p>
         </div>
         
-        <div class="pricing-grid">
-            <div class="pricing-card fade-in">
+        <!-- Pricing Toggle -->
+        <div class="pricing-toggle">
+            <div class="toggle-container">
+                <button class="toggle-option active" data-plan="onetime">Pago único</button>
+                <button class="toggle-option" data-plan="monthly">Pago mensual</button>
+            </div>
+        </div>
+        
+        <div class="pricing-grid" id="pricing-grid">
+            <!-- One-time payment plans (default) -->
+            <div class="pricing-card fade-in fade-transition visible" data-plan="onetime">
                 <div class="pricing-header">
                     <h3 class="pricing-name">Básico</h3>
                     <div class="pricing-price">$297<span>.00</span></div>
@@ -1166,11 +1226,23 @@
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Optimización SEO Básica</span>
+                        <span>Optimización SEO</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Formulario de Contacto</span>
+                        <span>Formulario de Contacto automatizado</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>3 meses de hosting y dominio incluidos</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>3 meses de mantenimiento técnico incluido</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Integración de Pixel de Meta y/o Google</span>
                     </div>
                 </div>
                 
@@ -1179,7 +1251,7 @@
                 </div>
             </div>
             
-            <div class="pricing-card popular fade-in">
+            <div class="pricing-card popular fade-in fade-transition visible" data-plan="onetime">
                 <div class="pricing-header">
                     <h3 class="pricing-name">Profesional</h3>
                     <div class="pricing-price">$597<span>.00</span></div>
@@ -1201,15 +1273,23 @@
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Optimización SEO Avanzada</span>
+                        <span>Optimización SEO</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Integración con Email Marketing</span>
+                        <span>Formularios automatizados</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>2 Versiones A/B</span>
+                        <span>3 meses de hosting y dominio incluidos</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>3 meses de mantenimiento técnico incluido</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Integración de Pixel de Meta y/o Google</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
@@ -1222,7 +1302,7 @@
                 </div>
             </div>
             
-            <div class="pricing-card fade-in">
+            <div class="pricing-card fade-in fade-transition visible" data-plan="onetime">
                 <div class="pricing-header">
                     <h3 class="pricing-name">Empresarial</h3>
                     <div class="pricing-price">$997<span>.00</span></div>
@@ -1232,41 +1312,169 @@
                 <div class="pricing-features">
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Páginas Ilimitadas</span>
+                        <span>10 Páginas de Captura</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Diseño Premium Personalizado</span>
+                        <span>Diseño Ultra Personalizado</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Revisiones Ilimitadas</span>
+                        <span>Revisiones ilimitadas</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>SEO Avanzado + Velocidad</span>
+                        <span>Optimización SEO</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Integración Completa</span>
+                        <span>Formularios automatizados</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>5 Versiones A/B</span>
+                        <span>3 meses de hosting y dominio incluidos</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Soporte 24/7</span>
+                        <span>3 meses de mantenimiento técnico incluido</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Análisis de Conversión</span>
+                        <span>Integración de Pixel de Meta y/o Google</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Sesión de Estrategia</span>
+                        <span>Soporte Prioritario</span>
                     </div>
                 </div>
+                
+                <div class="pricing-button">
+                    <a href="#" class="cta-button">Comprar Ahora</a>
+                </div>
+            </div>
+            
+            <!-- Monthly payment plans (hidden by default) -->
+            <div class="pricing-card fade-in fade-transition" data-plan="monthly" style="display: none;">
+                <div class="pricing-header">
+                    <h3 class="pricing-name">Básico</h3>
+                    <div class="pricing-price">$99<span> USD</span></div>
+                    <p class="pricing-period">/ mes</p>
+                </div>
+                
+                <div class="pricing-features">
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>1 Página de Captura</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Diseño Personalizado</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>2 Revisiones</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Optimización SEO</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Formulario automatizado</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Hosting, dominio y mantenimiento incluidos mientras esté activa la suscripción</span>
+                    </div>
+                </div>
+                
+                <div class="monthly-note">
+                    <strong>Podés cancelar cuando quieras. A los 3 meses, la página ya es 100% tuya.</strong>
+                </div>
+                
+                <div class="pricing-button">
+                    <a href="#" class="cta-button">Comprar Ahora</a>
+                </div>
+            </div>
+            
+            <div class="pricing-card popular fade-in fade-transition" data-plan="monthly" style="display: none;">
+                <div class="pricing-header">
+                    <h3 class="pricing-name">Profesional</h3>
+                    <div class="pricing-price">$199<span> USD</span></div>
+                    <p class="pricing-period">/ mes</p>
+                </div>
+                
+                <div class="pricing-features">
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>3 Páginas de Captura</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Diseño Ultra Personalizado</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>5 Revisiones</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Optimización SEO</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Soporte técnico</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Hosting, dominio y mantenimiento incluidos</span>
+                    </div>
+                </div>
+                
+                <div class="monthly-note">
+                    <strong>A partir del tercer mes, el sistema está completamente pago.</strong>
+                </div>
+                
+                <div class="pricing-button">
+                    <a href="#" class="cta-button">Comprar Ahora</a>
+                </div>
+            </div>
+            
+            <div class="pricing-card fade-in fade-transition" data-plan="monthly" style="display: none;">
+                <div class="pricing-header">
+                    <h3 class="pricing-name">Empresarial</h3>
+                    <div class="pricing-price">$333<span> USD</span></div>
+                    <p class="pricing-period">/ mes</p>
+                </div>
+                
+                <div class="pricing-features">
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>10 Páginas de Captura</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Diseño Ultra Personalizado</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Revisiones ilimitadas</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Optimización SEO</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Soporte prioritario</span>
+                    </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Hosting, dominio y mantenimiento incluidos</span>
+                    </div>
+                </div>
+                
+
                 
                 <div class="pricing-button">
                     <a href="#" class="cta-button">Comprar Ahora</a>
@@ -1299,7 +1507,11 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>Sí, cada plan incluye un número determinado de revisiones (2 para Básico, 5 para Profesional e ilimitadas para Empresarial). Estas revisiones permiten ajustar elementos como colores, textos, imágenes y disposición de secciones.</p>
+                    <p>Sí, cada plan incluye un número determinado de revisiones:</p>
+                    <p>🔹 2 revisiones en el Plan Básico<br>
+                    🔹 5 revisiones en el Plan Profesional<br>
+                    🔹 Revisiones ilimitadas en el Plan Empresarial</p>
+                    <p>Estas revisiones permiten ajustar colores, textos, imágenes y la disposición de secciones para que tu página quede exactamente como la imaginás.</p>
                 </div>
             </div>
             
@@ -1329,7 +1541,22 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>No incluimos hosting ni dominio en nuestros paquetes estándar, pero podemos recomendarte los mejores proveedores según tus necesidades. Sin embargo, sí te ayudamos a configurar tu página en tu hosting una vez finalizado el diseño (este servicio tiene un costo adicional si no tienes personal técnico).</p>
+                    <p>Sí, incluimos dominio y hosting por 1 año en nuestros paquetes. Tu página estará 100% online desde el primer día, sin que tengas que preocuparte por configuraciones técnicas. Luego del primer año, podés renovar el servicio con nosotros o migrarlo a otro proveedor si lo preferís. ¡Vos elegís!</p>
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Qué pasa cuando se terminan los 3 meses de mantenimiento, hosting y dominio incluidos?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Una vez finalizados los 3 meses incluidos en tu plan, podés renovar el servicio para mantener tu página activa, visible y funcionando al 100%.</p>
+                    <p>Ofrecemos un abono mensual según el plan que hayas contratado:</p>
+                    <p>🔹 Plan Básico → USD 15/mes<br>
+                    🔹 Plan Profesional → USD 30/mes<br>
+                    🔹 Plan Empresarial → USD 60/mes</p>
+                    <p>Esto cubre el hosting, dominio, soporte técnico y las actualizaciones correspondientes.</p>
                 </div>
             </div>
         </div>
@@ -1426,6 +1653,37 @@
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
 
+        // Pricing Toggle
+        const toggleOptions = document.querySelectorAll('.toggle-option');
+        const pricingCards = document.querySelectorAll('.pricing-card');
+        
+        toggleOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const planType = this.getAttribute('data-plan');
+                
+                // Update toggle buttons
+                toggleOptions.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Hide all cards first
+                pricingCards.forEach(card => {
+                    card.classList.remove('visible');
+                    card.style.display = 'none';
+                });
+                
+                // Show cards for selected plan type with delay for smooth transition
+                setTimeout(() => {
+                    const targetCards = document.querySelectorAll(`[data-plan="${planType}"]`);
+                    targetCards.forEach(card => {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, 50);
+                    });
+                }, 150);
+            });
+        });
+
         // FAQ Accordion
         const faqItems = document.querySelectorAll('.faq-item');
         
@@ -1468,19 +1726,27 @@
         // Counter Animation
         const statNumbers = document.querySelectorAll('.stat-number');
         const speed = 200;
+        let countersStarted = false;
         
         function animateCounters() {
+            if (countersStarted) return;
+            countersStarted = true;
+            
             statNumbers.forEach(statNumber => {
                 const target = parseInt(statNumber.getAttribute('data-count'));
-                const count = parseInt(statNumber.innerText);
+                const hasPlus = statNumber.getAttribute('data-count') === '50';
+                let count = 0;
                 const increment = Math.ceil(target / speed);
                 
-                if (count < target) {
-                    statNumber.innerText = count + increment;
-                    setTimeout(animateCounters, 1);
-                } else {
-                    statNumber.innerText = target + (statNumber.getAttribute('data-count').includes('.') ? '.' + statNumber.getAttribute('data-count').split('.')[1] : '');
-                }
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        statNumber.innerText = target + (hasPlus ? '+' : '');
+                        clearInterval(timer);
+                    } else {
+                        statNumber.innerText = count + (hasPlus ? '+' : '');
+                    }
+                }, 10);
             });
         }
         
