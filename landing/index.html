@@ -950,32 +950,47 @@
         
         .cta-form {
             display: flex;
+            flex-direction: column;
             max-width: 500px;
             margin: 0 auto;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
         
         .cta-input {
             flex: 1;
             padding: 1rem;
             border: none;
-            border-radius: 50px 0 0 50px;
+            border-radius: 10px;
             font-size: 1rem;
             outline: none;
+            background: white;
+            color: var(--text);
+        }
+        
+        .cta-input::placeholder {
+            color: var(--text-light);
         }
         
         .cta-submit {
             background-color: var(--accent);
             color: white;
             border: none;
-            padding: 0 2rem;
-            border-radius: 0 50px 50px 0;
+            padding: 1rem 2rem;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1rem;
         }
         
         .cta-submit:hover {
             background-color: #ff4d6d;
+            transform: translateY(-2px);
         }
         
         /* Footer */
@@ -1826,11 +1841,14 @@
     <section class="cta" id="contact">
         <div class="cta-container">
             <h2 class="fade-in">¿Listo para aumentar tus conversiones?</h2>
-            <p class="fade-in">Déjanos tu email y te contactaremos en menos de 24 horas para discutir cómo podemos crear la página de captura perfecta para tu negocio.</p>
+            <p class="fade-in">Déjanos tus datos y te contactaremos en menos de 24 horas para discutir cómo podemos crear la página de captura perfecta para tu negocio.</p>
             
             <form class="cta-form fade-in">
-                <input type="email" placeholder="Tu mejor email" class="cta-input" required>
-                <button type="submit" class="cta-submit">Enviar</button>
+                <div class="form-row">
+                    <input type="text" placeholder="Tu nombre completo" class="cta-input" required>
+                    <input type="tel" placeholder="Tu WhatsApp" class="cta-input" required>
+                </div>
+                <button type="submit" class="cta-submit">Enviar Datos</button>
             </form>
         </div>
     </section>
