@@ -961,6 +961,33 @@
             margin-bottom: 1rem;
         }
         
+        .whatsapp-input-container {
+            display: flex;
+            width: 100%;
+        }
+        
+        .country-code {
+            width: 80px;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px 0 0 10px;
+            font-size: 1rem;
+            outline: none;
+            background: white;
+            color: var(--text);
+        }
+        
+        .whatsapp-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 0 10px 10px 0;
+            font-size: 1rem;
+            outline: none;
+            background: white;
+            color: var(--text);
+        }
+        
         .cta-input {
             flex: 1;
             padding: 1rem;
@@ -972,7 +999,8 @@
             color: var(--text);
         }
         
-        .cta-input::placeholder {
+        .cta-input::placeholder,
+        .whatsapp-input::placeholder {
             color: var(--text-light);
         }
         
@@ -1198,13 +1226,23 @@
                 flex-direction: column;
             }
             
+            .form-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .cta-input, 
+            .whatsapp-input-container {
+                width: 100%;
+            }
+            
             .cta-input {
-                border-radius: 50px;
-                margin-bottom: 1rem;
+                border-radius: 10px;
+                margin-bottom: 0;
             }
             
             .cta-submit {
-                border-radius: 50px;
+                border-radius: 10px;
                 padding: 1rem;
             }
             
@@ -1403,7 +1441,7 @@
                 <div class="feature-icon">
                     <i class="fas fa-globe"></i>
                 </div>
-                <h3>🟣 Tu web lista para salir al mundo</h3>
+                <h3>Tu web lista para salir al mundo</h3>
                 <p>Incluimos dominio, hosting y todo lo necesario para que tu página funcione al 100% desde el primer clic.</p>
             </div>
             
@@ -1846,7 +1884,23 @@
             <form class="cta-form fade-in">
                 <div class="form-row">
                     <input type="text" placeholder="Tu nombre completo" class="cta-input" required>
-                    <input type="tel" placeholder="Tu WhatsApp" class="cta-input" required>
+                    <div class="whatsapp-input-container">
+                        <select class="country-code">
+                            <option value="+1">+1 (US)</option>
+                            <option value="+52">+52 (MX)</option>
+                            <option value="+54">+54 (AR)</option>
+                            <option value="+56">+56 (CL)</option>
+                            <option value="+57">+57 (CO)</option>
+                            <option value="+58">+58 (VE)</option>
+                            <option value="+34">+34 (ES)</option>
+                            <option value="+51">+51 (PE)</option>
+                            <option value="+593">+593 (EC)</option>
+                            <option value="+591">+591 (BO)</option>
+                            <option value="+598">+598 (UY)</option>
+                            <option value="+595">+595 (PY)</option>
+                        </select>
+                        <input type="tel" placeholder="Tu WhatsApp" class="whatsapp-input" required>
+                    </div>
                 </div>
                 <button type="submit" class="cta-submit">Enviar Datos</button>
             </form>
