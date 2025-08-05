@@ -907,6 +907,60 @@
             padding: 0 1.5rem 1.5rem;
         }
         
+        /* Portfolio Section */
+        .portfolio {
+            padding: 5rem 5%;
+            background-color: white;
+        }
+        
+        .portfolio-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .portfolio-slider {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem 0;
+            scroll-snap-type: x mandatory;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .portfolio-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .portfolio-slider::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .portfolio-slider::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        .portfolio-item {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .portfolio-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
         /* CTA Section */
         .cta {
             padding: 5rem 5%;
@@ -1321,7 +1375,7 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1 class="fade-in">Páginas de Captura que <span>Convierten</span></h1>
+                <h1 class="fade-in">Páginas de <span id="rotating-title">Captura</span> que <span>Convierten</span></h1>
                 <p class="fade-in">Diseños que activan la decisión de compra. Basados en NeuroMarketing y pensados para convertir más, conectar mejor y hacer crecer tu negocio con cada visita.</p>
                 <div class="hero-buttons fade-in">
                     <a href="#pricing" class="cta-button">Ver Precios</a>
@@ -1552,10 +1606,6 @@
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>2 Revisiones</span>
-                    </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
                         <span>Optimización SEO</span>
                     </div>
                     <div class="pricing-feature">
@@ -1564,11 +1614,11 @@
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>3 meses de hosting y dominio incluidos</span>
+                        <span>1 año de hosting y dominio incluidos</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>3 meses de mantenimiento técnico incluido</span>
+                        <span>3 meses de mantenimiento incluido</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
@@ -1599,10 +1649,6 @@
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>5 Revisiones</span>
-                    </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
                         <span>Optimización SEO</span>
                     </div>
                     <div class="pricing-feature">
@@ -1611,19 +1657,15 @@
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>3 meses de hosting y dominio incluidos</span>
+                        <span>1 año de hosting y dominio incluidos</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>3 meses de mantenimiento técnico incluido</span>
+                        <span>3 meses de mantenimiento incluido</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
                         <span>Integración de Pixel de Meta y/o Google</span>
-                    </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Soporte Prioritario</span>
                     </div>
                 </div>
                 
@@ -1650,10 +1692,6 @@
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Revisiones ilimitadas</span>
-                    </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
                         <span>Optimización SEO</span>
                     </div>
                     <div class="pricing-feature">
@@ -1662,19 +1700,15 @@
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>3 meses de hosting y dominio incluidos</span>
+                        <span>1 año de hosting y dominio incluidos</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>3 meses de mantenimiento técnico incluido</span>
+                        <span>3 meses de mantenimiento incluido</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
                         <span>Integración de Pixel de Meta y/o Google</span>
-                    </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Soporte Prioritario</span>
                     </div>
                 </div>
                 
@@ -1712,9 +1746,11 @@
                         <i class="fas fa-check"></i>
                         <span>Hosting, dominio y mantenimiento incluidos</span>
                     </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Integración de Pixel de Meta y/o Google</span>
+                    </div>
                 </div>
-                
-
                 
                 <div class="pricing-button">
                     <a href="#" class="cta-button">Comprar Ahora</a>
@@ -1743,15 +1779,17 @@
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Soporte técnico</span>
+                        <span>Formulario automatizado</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
                         <span>Hosting, dominio y mantenimiento incluidos</span>
                     </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Integración de Pixel de Meta y/o Google</span>
+                    </div>
                 </div>
-                
-
                 
                 <div class="pricing-button">
                     <a href="#" class="cta-button">Comprar Ahora</a>
@@ -1780,15 +1818,17 @@
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
-                        <span>Soporte prioritario</span>
+                        <span>Formulario automatizado</span>
                     </div>
                     <div class="pricing-feature">
                         <i class="fas fa-check"></i>
                         <span>Hosting, dominio y mantenimiento incluidos</span>
                     </div>
+                    <div class="pricing-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Integración de Pixel de Meta y/o Google</span>
+                    </div>
                 </div>
-                
-
                 
                 <div class="pricing-button">
                     <a href="#" class="cta-button">Comprar Ahora</a>
@@ -1877,6 +1917,28 @@ El tiempo de entrega varía según la complejidad del proyecto:<br><br>
                     🔹 Plan Profesional → USD 30/mes<br>
                     🔹 Plan Empresarial → USD 60/mes</p>
                     <p>Esto cubre el hosting, dominio, soporte técnico y las actualizaciones correspondientes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio">
+        <div class="section-header fade-in">
+            <h2>Trabajos Realizados</h2>
+            <p>Algunos ejemplos de nuestras páginas de captura diseñadas para convertir.</p>
+        </div>
+        
+        <div class="portfolio-container">
+            <div class="portfolio-slider">
+                <div class="portfolio-item fade-in">
+                    <img src="c1.webp" alt="Captura 1" class="portfolio-image">
+                </div>
+                <div class="portfolio-item fade-in">
+                    <img src="c2.webp" alt="Captura 2" class="portfolio-image">
+                </div>
+                <div class="portfolio-item fade-in">
+                    <img src="c3.webp" alt="Captura 3" class="portfolio-image">
                 </div>
             </div>
         </div>
@@ -1991,6 +2053,18 @@ El tiempo de entrega varía según la complejidad del proyecto:<br><br>
             const header = document.querySelector('header');
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
+
+        // Rotating Title
+        const rotatingTitle = document.getElementById('rotating-title');
+        const words = ['Captura', 'ventas', 'lanzamientos', 'presentación'];
+        let currentIndex = 0;
+        
+        function rotateTitle() {
+            currentIndex = (currentIndex + 1) % words.length;
+            rotatingTitle.textContent = words[currentIndex];
+        }
+        
+        setInterval(rotateTitle, 2000);
 
         // Pricing Toggle
         const toggleOptions = document.querySelectorAll('.toggle-option');
