@@ -543,8 +543,20 @@
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+        }
+        
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         .feature-card {
@@ -1011,8 +1023,20 @@
         
         .form-row {
             display: flex;
+            flex-direction: column;
             gap: 1rem;
             margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-group label {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
         
         .whatsapp-input-container {
@@ -1043,7 +1067,7 @@
         }
         
         .cta-input {
-            flex: 1;
+            width: 100%;
             padding: 1rem;
             border: none;
             border-radius: 10px;
@@ -1068,6 +1092,7 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
             font-size: 1rem;
+            margin-top: 1rem;
         }
         
         .cta-submit:hover {
@@ -1952,23 +1977,35 @@ El tiempo de entrega varía según la complejidad del proyecto:<br><br>
             
             <form class="cta-form fade-in">
                 <div class="form-row">
-                    <input type="text" placeholder="Tu nombre completo" class="cta-input" required>
-                    <div class="whatsapp-input-container">
-                        <select class="country-code">
-                            <option value="+1">+1 (US)</option>
-                            <option value="+52">+52 (MX)</option>
-                            <option value="+54">+54 (AR)</option>
-                            <option value="+56">+56 (CL)</option>
-                            <option value="+57">+57 (CO)</option>
-                            <option value="+58">+58 (VE)</option>
-                            <option value="+34">+34 (ES)</option>
-                            <option value="+51">+51 (PE)</option>
-                            <option value="+593">+593 (EC)</option>
-                            <option value="+591">+591 (BO)</option>
-                            <option value="+598">+598 (UY)</option>
-                            <option value="+595">+595 (PY)</option>
-                        </select>
-                        <input type="tel" placeholder="Tu WhatsApp" class="whatsapp-input" required>
+                    <div class="form-group">
+                        <label for="fullname">Nombre completo</label>
+                        <input type="text" id="fullname" placeholder="Tu nombre completo" class="cta-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" placeholder="Tu correo electrónico" class="cta-input" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp</label>
+                        <div class="whatsapp-input-container">
+                            <select class="country-code">
+                                <option value="+1">+1 (US)</option>
+                                <option value="+52">+52 (MX)</option>
+                                <option value="+54">+54 (AR)</option>
+                                <option value="+56">+56 (CL)</option>
+                                <option value="+57">+57 (CO)</option>
+                                <option value="+58">+58 (VE)</option>
+                                <option value="+34">+34 (ES)</option>
+                                <option value="+51">+51 (PE)</option>
+                                <option value="+593">+593 (EC)</option>
+                                <option value="+591">+591 (BO)</option>
+                                <option value="+598">+598 (UY)</option>
+                                <option value="+595">+595 (PY)</option>
+                            </select>
+                            <input type="tel" id="whatsapp" placeholder="Tu WhatsApp" class="whatsapp-input" required>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="cta-submit">Enviar Datos</button>
