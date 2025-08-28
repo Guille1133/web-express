@@ -1,0 +1,2695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapturePro | Páginas de Captura que Convierten</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --secondary: #4a42e8;
+            --accent: #ff6584;
+            --dark: #2a2a72;
+            --light: #f8f9fa;
+            --success: #28a745;
+            --text: #333333;
+            --text-light: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        /* Efecto de carga */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(108, 99, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 10rem 5% 5rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, rgba(108, 99, 255, 0) 70%);
+            z-index: 0;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 2rem;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--dark);
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .secondary-button {
+            background-color: white;
+            color: var(--primary);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .secondary-button:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        /* Live Capture Demo */
+        .live-capture-demo {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            max-width: 500px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-header {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-url {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        .demo-url i {
+            margin-right: 0.5rem;
+            color: var(--success);
+        }
+        
+        .demo-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .control-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .control-dot.red { background: #ff5f56; }
+        .control-dot.yellow { background: #ffbd2e; }
+        .control-dot.green { background: #27ca3f; }
+        
+        .demo-content {
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        
+        .demo-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--accent) 0%, #ff4d6d 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .demo-badge i {
+            margin-right: 0.3rem;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .demo-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .demo-title .highlight {
+            color: var(--accent);
+            position: relative;
+        }
+        
+        .demo-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(135deg, var(--accent) 0%, #ff4d6d 100%);
+            border-radius: 2px;
+        }
+        
+        .demo-subtitle {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .demo-benefits {
+            margin-bottom: 1.5rem;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        
+        .benefit-item i {
+            color: var(--success);
+            margin-right: 0.8rem;
+            flex-shrink: 0;
+        }
+        
+        .demo-form {
+            margin-bottom: 1.5rem;
+        }
+        
+        .demo-cta {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .demo-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .demo-trust {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .trust-item i {
+            color: var(--primary);
+        }
+        
+        .demo-timer {
+            background: rgba(255, 101, 132, 0.1);
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .demo-timer i {
+            animation: tick 1s infinite;
+        }
+        
+        @keyframes tick {
+            0%, 50% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+        }
+        
+        /* Responsive adjustments for demo */
+        @media (max-width: 992px) {
+            .live-capture-demo {
+                max-width: 90%;
+            }
+            
+            .demo-title {
+                font-size: 1.5rem;
+            }
+            
+            .demo-trust {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .demo-content {
+                padding: 1.5rem 1rem;
+            }
+            
+            .demo-title {
+                font-size: 1.3rem;
+            }
+            
+            .benefit-item {
+                font-size: 0.85rem;
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateY(5deg); }
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 5rem 5%;
+            background-color: white;
+        }
+        
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-sublabel {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 5rem 5%;
+            background-color: var(--light);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background: var(--primary);
+            transition: height 0.3s;
+            z-index: -1;
+        }
+        
+        .feature-card:hover::before {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .feature-card:hover .feature-icon {
+            color: white;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            transition: color 0.3s;
+        }
+        
+        .feature-card:hover h3 {
+            color: white;
+        }
+        
+        .feature-card p {
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        
+        .feature-card:hover p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            z-index: 0;
+        }
+        
+        .testimonials-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-header.light h2,
+        .section-header.light p {
+            color: white;
+        }
+        
+        .testimonials-slider {
+            margin-top: 3rem;
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .testimonial-content::before,
+        .testimonial-content::after {
+            content: '"';
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.3);
+            position: absolute;
+        }
+        
+        .testimonial-content::before {
+            top: -20px;
+            left: -10px;
+        }
+        
+        .testimonial-content::after {
+            bottom: -40px;
+            right: -10px;
+        }
+        
+        .testimonial-author {
+            text-align: center;
+        }
+        
+        .testimonial-author h4 {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 5rem 5%;
+            background-color: white;
+        }
+        
+        /* Custom Plans Section */
+        .custom-plans {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .custom-plans p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Form Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .quote-modal {
+            background-color: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        
+        .form-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .form-progress::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #eee;
+            z-index: 1;
+        }
+        
+        .progress-step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: white;
+            border: 2px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .progress-step.active {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .progress-step.completed {
+            border-color: var(--success);
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            text-align: center;
+        }
+        
+        .step-description {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .option-card {
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .option-card.selected {
+            border-color: var(--primary);
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+        
+        .option-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checkbox-option:hover {
+            border-color: var(--primary);
+        }
+        
+        .checkbox-option input {
+            margin-right: 1rem;
+        }
+        
+        .checkbox-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+        
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .form-summary {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eee;
+        }
+        
+        .transparency-note {
+            background-color: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        /* Responsive adjustments for form */
+        @media (max-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 5rem 5%;
+            background-color: var(--light);
+        }
+        
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question {
+            background-color: #f8f9fa;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 5rem 5%;
+            background-color: white;
+        }
+        
+        .portfolio-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .portfolio-slider {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem 0;
+            scroll-snap-type: x mandatory;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .portfolio-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .portfolio-slider::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .portfolio-slider::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        .portfolio-item {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .portfolio-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a4a 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.03)" d="M0,0 L100,0 L100,100 L0,100 Z"></path></svg>');
+            background-size: cover;
+            opacity: 0.1;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-group label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .whatsapp-input-container {
+            display: flex;
+            width: 100%;
+        }
+        
+        .country-code {
+            width: 80px;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px 0 0 10px;
+            font-size: 1rem;
+            outline: none;
+            background: white;
+            color: var(--text);
+        }
+        
+        .whatsapp-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 0 10px 10px 0;
+            font-size: 1rem;
+            outline: none;
+            background: white;
+            color: var(--text);
+        }
+        
+        .cta-input {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            background: white;
+            color: var(--text);
+        }
+        
+        .cta-input::placeholder,
+        .whatsapp-input::placeholder {
+            color: var(--text-light);
+        }
+        
+        .cta-submit {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .cta-submit:hover {
+            background-color: #ff4d6d;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 5rem 5% 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .footer-contact i {
+            margin-right: 0.8rem;
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Animaciones */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-transition {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .fade-transition.visible {
+            opacity: 1;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 3rem;
+            }
+            
+            .hero p {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .device-mockup {
+                max-width: 80%;
+            }
+            
+            .live-capture-demo {
+                max-width: 95%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .cta-form {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .cta-input, 
+            .whatsapp-input-container {
+                width: 100%;
+            }
+            
+            .cta-input {
+                border-radius: 10px;
+                margin-bottom: 0;
+            }
+            
+            .cta-submit {
+                border-radius: 10px;
+                padding: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding-top: 8rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .cta h2 {
+                font-size: 2rem;
+            }
+            
+            .stat-item {
+                min-width: 150px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <i class="fas fa-bolt"></i>
+                <span>CapturePro</span>
+            </a>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="#features">Características</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#pricing">Precios</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            
+            <a href="#pricing" class="cta-button">Comprar Ahora</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="fade-in">Páginas de <span id="rotating-title">Captura</span> que <span>Convierten</span></h1>
+                <p class="fade-in">Diseños que activan la decisión de compra. Basados en NeuroMarketing y pensados para convertir más, conectar mejor y hacer crecer tu negocio con cada visita.</p>
+                <div class="hero-buttons fade-in">
+                    <a href="#pricing" class="cta-button">Ver Precios</a>
+                    <a href="#features" class="secondary-button">Saber Más</a>
+                </div>
+            </div>
+            <div class="hero-image fade-in">
+                <div class="live-capture-demo">
+                    <div class="demo-header">
+                        <div class="demo-url">
+                            <i class="fas fa-lock"></i>
+                            <span>capturepro-demo.com</span>
+                        </div>
+                        <div class="demo-controls">
+                            <div class="control-dot red"></div>
+                            <div class="control-dot yellow"></div>
+                            <div class="control-dot green"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-content">
+                        <div class="demo-badge">
+                            <i class="fas fa-star"></i>
+                            <span>OFERTA LIMITADA</span>
+                        </div>
+                        
+                        <h3 class="demo-title">Aumenta tus Ventas un <span class="highlight">300%</span></h3>
+                        <p class="demo-subtitle">Página de captura que convierte visitantes en clientes reales</p>
+                        
+                        <div class="demo-benefits">
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Diseño basado en NeuroMarketing</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Optimizado para conversión</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Resultados garantizados</span>
+                            </div>
+                        </div>
+                        
+                        <div class="demo-form">
+                            <button class="demo-cta">
+                                <span>QUIERO MI PÁGINA</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="demo-trust">
+                            <div class="trust-item">
+                                <i class="fas fa-users"></i>
+                                <span>+50 empresas confían en nosotros</span>
+                            </div>
+                            <div class="trust-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>100% seguro y confiable</span>
+                            </div>
+                        </div>
+                        
+                        <div class="demo-timer">
+                            <i class="fas fa-clock"></i>
+                            <span>Oferta termina en: <strong id="demo-countdown">23:59:45</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item fade-in">
+                <div class="stat-number" data-count="50">50+</div>
+                <div class="stat-label">Proyectos entregados con éxito</div>
+                <div class="stat-sublabel">Y cada uno hecho a medida, sin plantillas.</div>
+            </div>
+            <div class="stat-item fade-in">
+                <div class="stat-number" data-count="3X">3X</div>
+                <div class="stat-label"> Aumento en tasas de conversión</div>
+            </div>
+            <div class="stat-item fade-in">
+                <div class="stat-number" data-count="≤ 72h">≤ 72h</div>
+                <div class="stat-label">Listo en 72hs o menos</div>
+                <div class="stat-sublabel">Diseños profesionales que priorizan resultados reales, no solo velocidad.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header fade-in">
+            <h2>Diseños que <span>Convierten</span></h2>
+            <p>Nuestras páginas de captura utilizan principios de NeuroMarketing para guiar a tus visitantes hacia la acción que deseas que realicen.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Psicología del Color</h3>
+                <p>Utilizamos combinaciones de colores que generan las emociones y respuestas deseadas en tus visitantes.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-mouse-pointer"></i>
+                </div>
+                <h3>Jerarquía Visual</h3>
+                <p>Diseño cuidadosamente estructurado para dirigir la atención hacia los elementos clave de conversión.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Tu web lista para salir al mundo</h3>
+                <p>Incluimos dominio, hosting y todo lo necesario para que tu página funcione al 100% desde el primer clic.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>100% Responsive</h3>
+                <p>Diseños que se adaptan perfectamente a cualquier dispositivo, garantizando la mejor experiencia de usuario.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h3>Velocidad de Carga</h3>
+                <p>Páginas optimizadas para cargar en menos de 2 segundos, reduciendo la tasa de rebote.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Seguridad Integrada</h3>
+                <p>Tu página estará protegida con conexión SSL, garantizando la seguridad de los datos tanto tuyos como de tus clientes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-container">
+            <div class="section-header light fade-in">
+                <h2>Lo que dicen nuestros clientes</h2>
+                <p>Emprendedores y empresas ya están aumentando sus conversiones con nuestras páginas de captura diseñadas para convertir.</p>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-content">
+                        "Después de implementar la página de captura de CapturePro, nuestras conversiones aumentaron un 220% en solo dos semanas. El diseño es impecable y la atención al detalle en los elementos de persuasión es increíble."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>María González</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-content">
+                        "Como marketer, he trabajado con muchas plantillas de landing pages, pero ninguna se acerca al nivel de optimización para conversión que ofrece CapturePro. Nuestro costo por lead bajó un 65%."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Carlos Mendoza</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-content">
+                        "Increíble servicio al cliente y diseños que realmente funcionan. Hemos probado varias versiones y todas superan a nuestras páginas anteriores. ¡Recomendado 100%!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Ana Rodríguez</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-header fade-in">
+            <h2>Planes a Medida</h2>
+            <div class="custom-plans">
+                <p>No todos los negocios son iguales, por eso diseñamos landing pages a tu medida. Responde unas preguntas y recibe un presupuesto personalizado al instante.</p>
+                <button class="cta-button" id="quote-button">Cotización al instante</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Modal -->
+    <div class="modal-overlay" id="quote-modal">
+        <div class="quote-modal">
+            <button class="modal-close" id="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="form-progress">
+                <div class="progress-step active" id="step-1-indicator">1</div>
+                <div class="progress-step" id="step-2-indicator">2</div>
+                <div class="progress-step" id="step-3-indicator">3</div>
+                <div class="progress-step" id="step-4-indicator">4</div>
+                <div class="progress-step" id="step-5-indicator">5</div>
+            </div>
+            
+            <form id="quote-form">
+                <!-- Step 1: Landing Type -->
+                <div class="form-step active" id="step-1">
+                    <h3 class="step-title">¿Qué tipo de landing page necesitás?</h3>
+                    <p class="step-description">Selecciona el objetivo principal de tu página</p>
+                    
+                    <div class="options-grid">
+                        <div class="option-card" data-value="captura">
+                            <i class="fas fa-user-plus"></i>
+                            <h4>Captura de Leads</h4>
+                        </div>
+                        <div class="option-card" data-value="venta">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h4>Página de Venta</h4>
+                        </div>
+                        <div class="option-card" data-value="ebook">
+                            <i class="fas fa-book"></i>
+                            <h4>Promoción de E-book</h4>
+                        </div>
+                        <div class="option-card" data-value="evento">
+                            <i class="fas fa-calendar-day"></i>
+                            <h4>Página para Evento</h4>
+                        </div>
+                        <div class="option-card" data-value="marca">
+                            <i class="fas fa-user-tie"></i>
+                            <h4>Marca Personal</h4>
+                        </div>
+                        <div class="option-card" data-value="otro">
+                            <i class="fas fa-ellipsis-h"></i>
+                            <h4>Otro</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="secondary-button" id="close-form">Cancelar</button>
+                        <button type="button" class="cta-button next-step" data-step="2">Siguiente</button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Number of Landings -->
+                <div class="form-step" id="step-2">
+                    <h3 class="step-title">¿Cuántas landing pages necesitás?</h3>
+                    <p class="step-description">Selecciona la cantidad</p>
+                    
+                    <div class="options-grid">
+                        <div class="option-card" data-value="1">
+                            <h4>1</h4>
+                            <p>Landing page</p>
+                        </div>
+                        <div class="option-card" data-value="2">
+                            <h4>2</h4>
+                            <p>Landing pages</p>
+                        </div>
+                        <div class="option-card" data-value="3">
+                            <h4>3</h4>
+                            <p>Landing pages</p>
+                        </div>
+                        <div class="option-card" data-value="custom">
+                            <h4>Más de 3</h4>
+                            <p>Especificar cantidad</p>
+                        </div>
+                    </div>
+                    
+                    <div id="custom-quantity" style="display: none; margin-top: 1rem;">
+                        <label for="landing-quantity">¿Cuántas landing pages necesitás?</label>
+                        <input type="number" id="landing-quantity" min="4" value="4" class="cta-input">
+                    </div>
+                    
+                    <div id="same-style-question" style="display: none; margin-top: 1rem;">
+                        <p>¿Todas las landing pages serán del mismo estilo?</p>
+                        <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                            <button type="button" class="secondary-button style-option" data-same="true">Sí</button>
+                            <button type="button" class="secondary-button style-option" data-same="false">No</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="secondary-button prev-step" data-step="1">Anterior</button>
+                        <button type="button" class="cta-button next-step" data-step="3">Siguiente</button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Additional Features -->
+                <div class="form-step" id="step-3">
+                    <h3 class="step-title">Funcionalidades adicionales</h3>
+                    <p class="step-description">Selecciona todas las funcionalidades que necesites</p>
+                    <p><small>Todos los planes incluyen 1 año de hosting y dominio + 3 meses de mantenimiento básico</small></p>
+                    
+                    <div class="checkbox-grid">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="seo"> SEO On-Page (+$50)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="analytics"> Píxeles & Analytics (Meta/Google/GA4) (+$30)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="gracias"> Página de Gracias (+$40)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="contador"> Contador de tiempo/Urgencia (+$25)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="popup"> Pop-up (WhatsApp, captura, oferta) (+$45)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="crm"> Integración a CRM/Email marketing (+$80)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="pagos"> Integración a Pasarela de Pago/Checkout (+$100)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="agenda"> Integración a Agenda/Calendario (+$70)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="copywriting"> Copywriting persuasivo con Neuromarketing (+$150)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="imagenes"> Imágenes premium/banco de stock (+$60)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="testimonios"> Testimonios Pro (carrusel + logos) (+$50)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="faq"> FAQ (Preguntas frecuentes) (+$40)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="cookies"> Cookies/Consentimiento legal (+$35)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="optimizacion"> Optimización de Velocidad + Accesibilidad (+$90)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="multiidioma"> Multi-idioma (+$70 por idioma)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="descarga"> Entrega/Descarga segura (+$55)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="express"> Entrega express (menos de 72hs) (+$120)
+                        </label>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="secondary-button prev-step" data-step="2">Anterior</button>
+                        <button type="button" class="cta-button next-step" data-step="4">Siguiente</button>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Summary and Price -->
+                <div class="form-step" id="step-4">
+                    <h3 class="step-title">Resumen de tu cotización</h3>
+                    <p class="step-description">Revisá los detalles y el precio final de tu landing page personalizada</p>
+                    
+                    <div class="form-summary">
+                        <div class="summary-item">
+                            <span>Tipo de landing:</span>
+                            <span id="summary-type">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Cantidad:</span>
+                            <span id="summary-quantity">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Mismo estilo:</span>
+                            <span id="summary-style">-</span>
+                        </div>
+                        <div id="features-summary">
+                            <!-- Features will be added here dynamically -->
+                        </div>
+                        <div class="summary-total">
+                            <span>Total estimado:</span>
+                            <span id="total-price">$0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="transparency-note">
+                        <p><i class="fas fa-check-circle"></i> Presupuesto transparente, sin costos ocultos. Solo pagás lo que necesitás.</p>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="secondary-button prev-step" data-step="3">Anterior</button>
+                        <button type="button" class="cta-button next-step" data-step="5">Continuar</button>
+                    </div>
+                </div>
+                
+                <!-- Step 5: Final Action -->
+                <div class="form-step" id="step-5">
+                    <h3 class="step-title">¡Perfecto! Tu cotización está lista</h3>
+                    <p class="step-description">¿Cómo querés continuar?</p>
+                    
+                    <div class="action-buttons">
+                        <button type="button" class="cta-button" id="hire-now">
+                            <i class="fas fa-credit-card"></i> Contratar ahora
+                        </button>
+                        <button type="button" class="secondary-button" id="schedule-call">
+                            <i class="fas fa-phone"></i> Agendar una llamada
+                        </button>
+                    </div>
+                    
+                    <div id="contact-form" style="display: none; margin-top: 2rem;">
+                        <div class="form-group">
+                            <label for="contact-name">Nombre completo</label>
+                            <input type="text" id="contact-name" class="cta-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Correo electrónico</label>
+                            <input type="email" id="contact-email" class="cta-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone">WhatsApp</label>
+                            <div class="whatsapp-input-container">
+                                <select class="country-code" id="contact-country">
+                                    <option value="+1">+1 (US)</option>
+                                    <option value="+52">+52 (MX)</option>
+                                    <option value="+54">+54 (AR)</option>
+                                    <option value="+56">+56 (CL)</option>
+                                    <option value="+57">+57 (CO)</option>
+                                    <option value="+58">+58 (VE)</option>
+                                    <option value="+34">+34 (ES)</option>
+                                    <option value="+51">+51 (PE)</option>
+                                    <option value="+593">+593 (EC)</option>
+                                    <option value="+591">+591 (BO)</option>
+                                    <option value="+598">+598 (UY)</option>
+                                    <option value="+595">+595 (PY)</option>
+                                </select>
+                                <input type="tel" id="contact-phone" class="whatsapp-input" required>
+                            </div>
+                        </div>
+                        <button type="button" class="cta-button" id="submit-contact">Enviar información</button>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="secondary-button prev-step" data-step="4">Anterior</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="section-header fade-in">
+            <h2>Preguntas Frecuentes</h2>
+            <p>Aquí respondemos a las dudas más comunes sobre nuestros servicios de páginas de captura.</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Cuánto tiempo tarda en entregarse mi página de captura?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>El tiempo de entrega varía según la complejidad del proyecto. Para la mayoría de nuestros clientes, la entrega inicial se realiza en 5-7 días hábiles. Si necesitas una entrega más rápida, ofrecemos el servicio express con entrega en menos de 72 horas.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Puedo hacer cambios después de que se entregue el diseño?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, todos nuestros planes incluyen 3 meses de mantenimiento básico, durante los cuales puedes solicitar ajustes y cambios menores sin costo adicional.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Qué necesito proporcionar para comenzar?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Necesitaremos: 1) Tu logotipo (si tienes uno), 2) Los textos que deseas incluir (titulares, descripciones, llamados a acción), 3) Imágenes que deseas utilizar (o podemos sugerir bancos de imágenes), 4) Información sobre tu público objetivo y 5) Ejemplos de páginas que te gusten (opcional).</p>
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Las páginas son realmente optimizadas para conversión?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutamente. Cada diseño incorpora principios probados de NeuroMarketing, psicología del color, jerarquía visual y UX/UI optimizado. Utilizamos técnicas como: contraste visual en CTAs, eliminación de distracciones, secuencia lógica de información, testimonios estratégicamente ubicados y urgencia/scarcity cuando aplica.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Ofrecen servicio de hosting y dominio?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, todos nuestros planes incluyen dominio y hosting por 1 año. Tu página estará 100% online desde el primer día, sin que tengas que preocuparte por configuraciones técnicas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio">
+        <div class="section-header fade-in">
+            <h2>Trabajos Realizados</h2>
+            <p>Algunos ejemplos de nuestras páginas de captura diseñadas para convertir.</p>
+        </div>
+        
+        <div class="portfolio-container">
+            <div class="portfolio-slider">
+                <div class="portfolio-item fade-in">
+                    <img src="https://via.placeholder.com/300x200?text=Captura+1" alt="Captura 1" class="portfolio-image">
+                </div>
+                <div class="portfolio-item fade-in">
+                    <img src="https://via.placeholder.com/300x200?text=Captura+2" alt="Captura 2" class="portfolio-image">
+                </div>
+                <div class="portfolio-item fade-in">
+                    <img src="https://via.placeholder.com/300x200?text=Captura+3" alt="Captura 3" class="portfolio-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="cta-container">
+            <h2 class="fade-in">¿Listo para aumentar tus conversiones?</h2>
+            <p class="fade-in">Déjanos tus datos y te contactaremos en menos de 24 horas para discutir cómo podemos crear la página de captura perfecta para tu negocio.</p>
+            
+            <form class="cta-form fade-in">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullname">Nombre completo</label>
+                        <input type="text" id="fullname" placeholder="Tu nombre completo" class="cta-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" placeholder="Tu correo electrónico" class="cta-input" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp</label>
+                        <div class="whatsapp-input-container">
+                            <select class="country-code">
+                                <option value="+1">+1 (US)</option>
+                                <option value="+52">+52 (MX)</option>
+                                <option value="+54">+54 (AR)</option>
+                                <option value="+56">+56 (CL)</option>
+                                <option value="+57">+57 (CO)</option>
+                                <option value="+58">+58 (VE)</option>
+                                <option value="+34">+34 (ES)</option>
+                                <option value="+51">+51 (PE)</option>
+                                <option value="+593">+593 (EC)</option>
+                                <option value="+591">+591 (BO)</option>
+                                <option value="+598">+598 (UY)</option>
+                                <option value="+595">+595 (PY)</option>
+                            </select>
+                            <input type="tel" id="whatsapp" placeholder="Tu WhatsApp" class="whatsapp-input" required>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="cta-submit">Enviar Datos</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <a href="#" class="footer-logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>CapturePro</span>
+                </a>
+                <p>Especialistas en diseño de páginas de captura que convierten. Utilizamos NeuroMarketing y principios de persuasión para maximizar tus resultados.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                    <li><a href="#pricing">Precios</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="#">Diseño de Landing Pages</a></li>
+                    <li><a href="#">Optimización para Conversión</a></li>
+                    <li><a href="#">Pruebas A/B</a></li>
+                    <li><a href="#">Consultoría de NeuroMarketing</a></li>
+                    <li><a href="#">Soporte Técnico</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Av. Ejemplo 123, Ciudad</p>
+                <p><i class="fas fa-phone-alt"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> info@capturepro.com</p>
+                <p><i class="fas fa-clock"></i> Lunes - Viernes: 9am - 6pm</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 CapturePro. Todos los derechos reservados. | <a href="#">Política de Privacidad</a> | <a href="#">Términos de Servicio</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Loader
+        window.addEventListener('load', function() {
+            const loader = document.querySelector('.loader');
+            setTimeout(function() {
+                loader.classList.add('fade-out');
+            }, 1000);
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            this.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Sticky Header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Rotating Title
+        const rotatingTitle = document.getElementById('rotating-title');
+        const words = ['Captura', 'ventas', 'lanzamientos', 'presentación'];
+        let currentIndex = 0;
+        
+        function rotateTitle() {
+            currentIndex = (currentIndex + 1) % words.length;
+            rotatingTitle.textContent = words[currentIndex];
+        }
+        
+        setInterval(rotateTitle, 2000);
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Close other open items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+
+        // Animate on Scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        function checkScroll() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // Initial check
+        checkScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', checkScroll);
+
+        // Counter Animation
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let countersStarted = false;
+        
+        function animateCounters() {
+            if (countersStarted) return;
+            countersStarted = true;
+            
+            statNumbers.forEach(statNumber => {
+                const target = parseInt(statNumber.getAttribute('data-count'));
+                const hasPlus = statNumber.getAttribute('data-count') === '50';
+                let count = 0;
+                
+                const timer = setInterval(() => {
+                    if (target <= 24) {
+                        count += 1;
+                    } else if (target <= 50) {
+                        count += 1;
+                    } else {
+                        count += 2;
+                    }
+                    
+                    if (count >= target) {
+                        statNumber.innerText = target + (hasPlus ? '+' : '');
+                        clearInterval(timer);
+                    } else {
+                        statNumber.innerText = count + (hasPlus ? '+' : '');
+                    }
+                }, 50);
+            });
+        }
+        
+        // Start counters when stats section is visible
+        const statsSection = document.querySelector('.stats');
+        
+        function startCountersWhenVisible() {
+            const sectionTop = statsSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (sectionTop < windowHeight - 100) {
+                animateCounters();
+                window.removeEventListener('scroll', startCountersWhenVisible);
+            }
+        }
+        
+        // Live Demo Interactions
+        const demoCta = document.querySelector('.demo-cta');
+        
+        if (demoCta) {
+            // CTA click effect
+            demoCta.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.6);
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                
+                this.style.position = 'relative';
+                this.appendChild(ripple);
+                
+                // Success message and redirect
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-check"></i> ¡Enviado!';
+                    this.style.background = 'var(--success)';
+                    
+                    setTimeout(() => {
+                        // Scroll to pricing section
+                        const pricingSection = document.getElementById('pricing');
+                        if (pricingSection) {
+                            pricingSection.scrollIntoView({ 
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                        
+                        // Reset button after redirect
+                        setTimeout(() => {
+                            this.innerHTML = '<span>QUIERO MI PÁGINA</span><i class="fas fa-arrow-right"></i>';
+                            this.style.background = 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)';
+                            ripple.remove();
+                        }, 1000);
+                    }, 1000);
+                }, 300);
+            });
+        }
+        
+        // Demo countdown timer
+        function updateCountdown() {
+            const countdownElement = document.getElementById('demo-countdown');
+            if (!countdownElement) return;
+            
+            const now = new Date().getTime();
+            const midnight = new Date();
+            midnight.setHours(24, 0, 0, 0);
+            const timeLeft = midnight.getTime() - now;
+            
+            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            countdownElement.textContent = 
+                (hours < 10 ? '0' + hours : hours) + ':' +
+                (minutes < 10 ? '0' + minutes : minutes) + ':' +
+                (seconds < 10 ? '0' + seconds : seconds);
+        }
+        
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Add ripple animation to CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Quote Form Functionality
+        const quoteButton = document.getElementById('quote-button');
+        const quoteModal = document.getElementById('quote-modal');
+        const modalClose = document.getElementById('modal-close');
+        const closeFormButton = document.getElementById('close-form');
+        const nextStepButtons = document.querySelectorAll('.next-step');
+        const prevStepButtons = document.querySelectorAll('.prev-step');
+        const optionCards = document.querySelectorAll('.option-card');
+        const styleOptions = document.querySelectorAll('.style-option');
+        const featureCheckboxes = document.querySelectorAll('input[name="features"]');
+        const hireNowButton = document.getElementById('hire-now');
+        const scheduleCallButton = document.getElementById('schedule-call');
+        const submitContactButton = document.getElementById('submit-contact');
+        
+        // Store form data
+        const formData = {
+            type: '',
+            quantity: 1,
+            sameStyle: true,
+            features: [],
+            basePrice: 297,
+            totalPrice: 0
+        };
+        
+        // Pricing for different types
+        const typePrices = {
+            'captura': 297,
+            'venta': 397,
+            'ebook': 347,
+            'evento': 447,
+            'marca': 397,
+            'otro': 497
+        };
+        
+        // Feature prices
+        const featurePrices = {
+            'seo': 50,
+            'analytics': 30,
+            'gracias': 40,
+            'contador': 25,
+            'popup': 45,
+            'crm': 80,
+            'pagos': 100,
+            'agenda': 70,
+            'copywriting': 150,
+            'imagenes': 60,
+            'testimonios': 50,
+            'faq': 40,
+            'cookies': 35,
+            'optimizacion': 90,
+            'multiidioma': 70,
+            'descarga': 55,
+            'express': 120
+        };
+        
+        // Open modal
+        quoteButton.addEventListener('click', () => {
+            quoteModal.classList.add('active');
+        });
+        
+        // Close modal
+        modalClose.addEventListener('click', closeModal);
+        closeFormButton.addEventListener('click', closeModal);
+        
+        function closeModal() {
+            quoteModal.classList.remove('active');
+            // Reset form to first step
+            document.querySelectorAll('.form-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById('step-1').classList.add('active');
+            
+            // Reset progress indicators
+            document.querySelectorAll('.progress-step').forEach(step => {
+                step.classList.remove('active', 'completed');
+            });
+            document.getElementById('step-1-indicator').classList.add('active');
+        }
+        
+        // Next step navigation
+        nextStepButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const currentStep = e.target.getAttribute('data-step');
+                const nextStep = parseInt(currentStep) + 1;
+                
+                // Validate current step before proceeding
+                if (currentStep === '1' && !formData.type) {
+                    alert('Por favor selecciona un tipo de landing page');
+                    return;
+                }
+                
+                if (currentStep === '2' && !formData.quantity) {
+                    alert('Por favor selecciona la cantidad de landing pages');
+                    return;
+                }
+                
+                // If moving to step 4, calculate the price
+                if (currentStep === '3') {
+                    calculatePrice();
+                    updateSummary();
+                }
+                
+                // Hide current step
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                // Show next step
+                document.getElementById(`step-${nextStep}`).classList.add('active');
+                
+                // Update progress indicators
+                document.getElementById(`step-${currentStep}-indicator`).classList.remove('active');
+                document.getElementById(`step-${currentStep}-indicator`).classList.add('completed');
+                document.getElementById(`step-${nextStep}-indicator`).classList.add('active');
+            });
+        });
+        
+        // Previous step navigation
+        prevStepButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const currentStep = e.target.getAttribute('data-step');
+                const prevStep = parseInt(currentStep) - 1;
+                
+                // Hide current step
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                // Show previous step
+                document.getElementById(`step-${prevStep}`).classList.add('active');
+                
+                // Update progress indicators
+                document.getElementById(`step-${currentStep}-indicator`).classList.remove('active');
+                document.getElementById(`step-${prevStep}-indicator`).classList.add('active');
+            });
+        });
+        
+        // Option card selection for step 1
+        optionCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Remove selected class from all cards in the same step
+                const parentStep = card.closest('.form-step');
+                parentStep.querySelectorAll('.option-card').forEach(c => {
+                    c.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked card
+                card.classList.add('selected');
+                
+                // Store the selected value
+                const value = card.getAttribute('data-value');
+                
+                if (parentStep.id === 'step-1') {
+                    formData.type = value;
+                    formData.basePrice = typePrices[value] || 297;
+                } else if (parentStep.id === 'step-2') {
+                    if (value === 'custom') {
+                        document.getElementById('custom-quantity').style.display = 'block';
+                        const customQuantity = document.getElementById('landing-quantity').value;
+                        formData.quantity = parseInt(customQuantity);
+                    } else {
+                        document.getElementById('custom-quantity').style.display = 'none';
+                        formData.quantity = parseInt(value);
+                    }
+                    
+                    // Show same style question if more than 1 landing
+                    if (formData.quantity > 1) {
+                        document.getElementById('same-style-question').style.display = 'block';
+                    } else {
+                        document.getElementById('same-style-question').style.display = 'none';
+                    }
+                }
+            });
+        });
+        
+        // Custom quantity input
+        const landingQuantityInput = document.getElementById('landing-quantity');
+        if (landingQuantityInput) {
+            landingQuantityInput.addEventListener('change', () => {
+                formData.quantity = parseInt(landingQuantityInput.value);
+                
+                // Show same style question if more than 1 landing
+                if (formData.quantity > 1) {
+                    document.getElementById('same-style-question').style.display = 'block';
+                } else {
+                    document.getElementById('same-style-question').style.display = 'none';
+                }
+            });
+        }
+        
+        // Style options (same or different)
+        styleOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                styleOptions.forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                
+                // Store the selection
+                formData.sameStyle = option.getAttribute('data-same') === 'true';
+            });
+        });
+        
+        // Feature selection
+        featureCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const value = checkbox.value;
+                
+                if (checkbox.checked) {
+                    // Add to features array if not already there
+                    if (!formData.features.includes(value)) {
+                        formData.features.push(value);
+                    }
+                } else {
+                    // Remove from features array
+                    formData.features = formData.features.filter(f => f !== value);
+                }
+            });
+        });
+        
+        // Calculate total price
+        function calculatePrice() {
+            // Base price based on type
+            let total = formData.basePrice;
+            
+            // Multiply by quantity if same style, or add base price for each if different style
+            if (formData.quantity > 1) {
+                if (formData.sameStyle) {
+                    total *= formData.quantity;
+                } else {
+                    total += formData.basePrice * (formData.quantity - 1);
+                }
+            }
+            
+            // Add feature prices
+            formData.features.forEach(feature => {
+                total += featurePrices[feature] || 0;
+            });
+            
+            formData.totalPrice = total;
+        }
+        
+        // Update summary in step 4
+        function updateSummary() {
+            // Update type
+            const typeNames = {
+                'captura': 'Captura de Leads',
+                'venta': 'Página de Venta',
+                'ebook': 'Promoción de E-book',
+                'evento': 'Página para Evento',
+                'marca': 'Marca Personal',
+                'otro': 'Otro'
+            };
+            
+            document.getElementById('summary-type').textContent = typeNames[formData.type] || '-';
+            document.getElementById('summary-quantity').textContent = formData.quantity;
+            document.getElementById('summary-style').textContent = formData.sameStyle ? 'Sí' : 'No';
+            
+            // Update features
+            const featuresSummary = document.getElementById('features-summary');
+            featuresSummary.innerHTML = '';
+            
+            if (formData.features.length > 0) {
+                formData.features.forEach(feature => {
+                    const featureItem = document.createElement('div');
+                    featureItem.className = 'summary-item';
+                    
+                    const featureNames = {
+                        'seo': 'SEO On-Page',
+                        'analytics': 'Píxeles & Analytics',
+                        'gracias': 'Página de Gracias',
+                        'contador': 'Contador de tiempo/Urgencia',
+                        'popup': 'Pop-up (WhatsApp, captura, oferta)',
+                        'crm': 'Integración a CRM/Email marketing',
+                        'pagos': 'Integración a Pasarela de Pago',
+                        'agenda': 'Integración a Agenda/Calendario',
+                        'copywriting': 'Copywriting persuasivo',
+                        'imagenes': 'Imágenes premium',
+                        'testimonios': 'Testimonios Pro',
+                        'faq': 'FAQ (Preguntas frecuentes)',
+                        'cookies': 'Cookies/Consentimiento legal',
+                        'optimizacion': 'Optimización de Velocidad',
+                        'multiidioma': 'Multi-idioma',
+                        'descarga': 'Entrega/Descarga segura',
+                        'express': 'Entrega express (menos de 72hs)'
+                    };
+                    
+                    featureItem.innerHTML = `
+                        <span>${featureNames[feature]}:</span>
+                        <span>+$${featurePrices[feature]}</span>
+                    `;
+                    
+                    featuresSummary.appendChild(featureItem);
+                });
+            }
+            
+            // Update total price
+            document.getElementById('total-price').textContent = `$${formData.totalPrice}`;
+        }
+        
+        // Final action buttons
+        hireNowButton.addEventListener('click', () => {
+            document.getElementById('contact-form').style.display = 'block';
+            hireNowButton.style.display = 'none';
+            scheduleCallButton.style.display = 'none';
+        });
+        
+        scheduleCallButton.addEventListener('click', () => {
+            document.getElementById('contact-form').style.display = 'block';
+            hireNowButton.style.display = 'none';
+            scheduleCallButton.style.display = 'none';
+        });
+        
+        submitContactButton.addEventListener('click', () => {
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const countryCode = document.getElementById('contact-country').value;
+            const phone = document.getElementById('contact-phone').value;
+            
+            if (!name || !email || !phone) {
+                alert('Por favor completa todos los campos');
+                return;
+            }
+            
+            // Here you would normally send the data to your server
+            alert('¡Gracias! Nos pondremos en contacto contigo pronto para continuar con el proceso.');
+            closeModal();
+        });
+        
+        // Make option cards and checkboxes more interactive
+        document.querySelectorAll('.option-card, .checkbox-option').forEach(element => {
+            element.addEventListener('click', function(e) {
+                if (this.classList.contains('option-card')) {
+                    // For option cards, toggle selected class
+                    const parent = this.closest('.form-step');
+                    if (parent) {
+                        parent.querySelectorAll('.option-card').forEach(card => {
+                            card.classList.remove('selected');
+                        });
+                    }
+                    this.classList.add('selected');
+                    
+                    // If it's a feature checkbox, toggle the checkbox
+                } else if (this.classList.contains('checkbox-option')) {
+                    const checkbox = this.querySelector('input[type="checkbox"]');
+                    checkbox.checked = !checkbox.checked;
+                    this.classList.toggle('selected', checkbox.checked);
+                    
+                    // Trigger change event
+                    const event = new Event('change');
+                    checkbox.dispatchEvent(event);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
