@@ -731,6 +731,26 @@
             margin-right: auto;
         }
         
+        .quote-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+        
+        .quote-button:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
         /* Form Modal */
         .modal-overlay {
             position: fixed;
@@ -854,6 +874,7 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
+            position: relative;
         }
         
         .option-card:hover {
@@ -870,6 +891,44 @@
             font-size: 2rem;
             color: var(--primary);
             margin-bottom: 1rem;
+        }
+        
+        .option-price {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .option-includes {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-align: left;
+            padding: 0 0.5rem;
+        }
+        
+        .option-includes ul {
+            list-style-type: none;
+            margin-top: 0.5rem;
+        }
+        
+        .option-includes li {
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option-includes li i {
+            font-size: 0.7rem;
+            color: var(--success);
+            margin-right: 0.5rem;
+            margin-bottom: 0;
         }
         
         .checkbox-grid {
@@ -900,6 +959,12 @@
         .checkbox-option.selected {
             border-color: var(--primary);
             background-color: rgba(108, 99, 255, 0.1);
+        }
+        
+        .feature-price {
+            margin-left: auto;
+            color: var(--primary);
+            font-weight: 600;
         }
         
         .form-navigation {
@@ -946,6 +1011,82 @@
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
             margin-top: 2rem;
+        }
+        
+        .action-button {
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .action-button.primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+        
+        .action-button.secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-form {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .whatsapp-input-container {
+            display: flex;
+        }
+        
+        .country-code {
+            width: 80px;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+            background: #f1f1f1;
+        }
+        
+        .whatsapp-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 0 5px 5px 0;
+            font-size: 1rem;
+            border-left: none;
         }
         
         /* Responsive adjustments for form */
@@ -1222,6 +1363,7 @@
             color: white;
             margin-bottom: 1.5rem;
             display: inline-block;
+            text-decoration: none;
         }
         
         .footer-about p {
@@ -1690,7 +1832,9 @@
             <h2>Planes a Medida</h2>
             <div class="custom-plans">
                 <p>No todos los negocios son iguales, por eso diseñamos landing pages a tu medida. Responde unas preguntas y recibe un presupuesto personalizado al instante.</p>
-                <button class="cta-button" id="quote-button">Cotización al instante</button>
+                <button class="quote-button" id="quote-button">
+                    <i class="fas fa-calculator"></i> Cotización al instante
+                </button>
             </div>
         </div>
     </section>
@@ -1707,7 +1851,6 @@
                 <div class="progress-step" id="step-2-indicator">2</div>
                 <div class="progress-step" id="step-3-indicator">3</div>
                 <div class="progress-step" id="step-4-indicator">4</div>
-                <div class="progress-step" id="step-5-indicator">5</div>
             </div>
             
             <form id="quote-form">
@@ -1717,29 +1860,89 @@
                     <p class="step-description">Selecciona el objetivo principal de tu página</p>
                     
                     <div class="options-grid">
-                        <div class="option-card" data-value="captura">
+                        <div class="option-card" data-value="captura" data-price="150">
+                            <div class="option-price">$150</div>
                             <i class="fas fa-user-plus"></i>
                             <h4>Captura de Leads</h4>
+                            <div class="option-includes">
+                                <p><strong>Incluye:</strong></p>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Diseño personalizado</li>
+                                    <li><i class="fas fa-check"></i> Titular y propuesta de valor</li>
+                                    <li><i class="fas fa-check"></i> Formulario de contacto</li>
+                                    <li><i class="fas fa-check"></i> CTA claro</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="option-card" data-value="venta">
+                        
+                        <div class="option-card" data-value="venta" data-price="200">
+                            <div class="option-price">$200</div>
                             <i class="fas fa-shopping-cart"></i>
                             <h4>Página de Venta</h4>
+                            <div class="option-includes">
+                                <p><strong>Incluye:</strong></p>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Encabezado atractivo</li>
+                                    <li><i class="fas fa-check"></i> Descripción del producto</li>
+                                    <li><i class="fas fa-check"></i> Testimonios</li>
+                                    <li><i class="fas fa-check"></i> CTA de compra</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="option-card" data-value="ebook">
+                        
+                        <div class="option-card" data-value="ebook" data-price="190">
+                            <div class="option-price">$190</div>
                             <i class="fas fa-book"></i>
                             <h4>Promoción de E-book</h4>
+                            <div class="option-includes">
+                                <p><strong>Incluye:</strong></p>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Título convincente</li>
+                                    <li><i class="fas fa-check"></i> Portada del ebook</li>
+                                    <li><i class="fas fa-check"></i> Lista de beneficios</li>
+                                    <li><i class="fas fa-check"></i> Formulario de descarga</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="option-card" data-value="evento">
+                        
+                        <div class="option-card" data-value="evento" data-price="200">
+                            <div class="option-price">$200</div>
                             <i class="fas fa-calendar-day"></i>
                             <h4>Página para Evento</h4>
+                            <div class="option-includes">
+                                <p><strong>Incluye:</strong></p>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Título impactante</li>
+                                    <li><i class="fas fa-check"></i> Fecha/hora/lugar</li>
+                                    <li><i class="fas fa-check"></i> Valor agregado</li>
+                                    <li><i class="fas fa-check"></i> Formulario de registro</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="option-card" data-value="marca">
+                        
+                        <div class="option-card" data-value="marca" data-price="200">
+                            <div class="option-price">$200</div>
                             <i class="fas fa-user-tie"></i>
                             <h4>Marca Personal</h4>
+                            <div class="option-includes">
+                                <p><strong>Incluye:</strong></p>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Logotipo o nombre</li>
+                                    <li><i class="fas fa-check"></i> Biografía con foto</li>
+                                    <li><i class="fas fa-check"></i> Muestra de trabajo</li>
+                                    <li><i class="fas fa-check"></i> Testimonios</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="option-card" data-value="otro">
+                        
+                        <div class="option-card" data-value="otro" data-price="0">
+                            <div class="option-price">Personalizado</div>
                             <i class="fas fa-ellipsis-h"></i>
                             <h4>Otro</h4>
+                            <div class="option-includes">
+                                <p><strong>Proyecto personalizado</strong></p>
+                                <p>Describe tu proyecto para una cotización específica</p>
+                            </div>
                         </div>
                     </div>
                     
@@ -1786,6 +1989,11 @@
                         </div>
                     </div>
                     
+                    <div id="multiple-types-container" style="display: none; margin-top: 1rem;">
+                        <p>Selecciona el tipo para cada landing page:</p>
+                        <div id="multiple-types-list"></div>
+                    </div>
+                    
                     <div class="form-navigation">
                         <button type="button" class="secondary-button prev-step" data-step="1">Anterior</button>
                         <button type="button" class="cta-button next-step" data-step="3">Siguiente</button>
@@ -1800,56 +2008,78 @@
                     
                     <div class="checkbox-grid">
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="seo"> SEO On-Page (+$50)
+                            <input type="checkbox" name="features" value="seo"> SEO On-Page
+                            <span class="feature-price">+$50</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="analytics"> Píxeles & Analytics (Meta/Google/GA4) (+$30)
+                            <input type="checkbox" name="features" value="analytics"> Píxeles & Analytics (Meta/Google/GA4)
+                            <span class="feature-price">+$30</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="gracias"> Página de Gracias (+$40)
+                            <input type="checkbox" name="features" value="gracias"> Página de Gracias
+                            <span class="feature-price">+$40</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="contador"> Contador de tiempo/Urgencia (+$25)
+                            <input type="checkbox" name="features" value="contador"> Contador de tiempo/Urgencia
+                            <span class="feature-price">+$25</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="popup"> Pop-up (WhatsApp, captura, oferta) (+$45)
+                            <input type="checkbox" name="features" value="popup"> Pop-up (WhatsApp, captura, oferta)
+                            <span class="feature-price">+$45</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="crm"> Integración a CRM/Email marketing (+$80)
+                            <input type="checkbox" name="features" value="crm"> Integración a CRM/Email marketing
+                            <span class="feature-price">+$80</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="pagos"> Integración a Pasarela de Pago/Checkout (+$100)
+                            <input type="checkbox" name="features" value="pagos"> Integración a Pasarela de Pago/Checkout
+                            <span class="feature-price">+$100</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="agenda"> Integración a Agenda/Calendario (+$70)
+                            <input type="checkbox" name="features" value="agenda"> Integración a Agenda/Calendario
+                            <span class="feature-price">+$70</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="copywriting"> Copywriting persuasivo con Neuromarketing (+$150)
+                            <input type="checkbox" name="features" value="copywriting"> Copywriting persuasivo con Neuromarketing
+                            <span class="feature-price">+$150</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="imagenes"> Imágenes premium/banco de stock (+$60)
+                            <input type="checkbox" name="features" value="imagenes"> Imágenes premium/banco de stock
+                            <span class="feature-price">+$60</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="testimonios"> Testimonios Pro (carrusel + logos) (+$50)
+                            <input type="checkbox" name="features" value="testimonios"> Testimonios Pro (carrusel + logos)
+                            <span class="feature-price">+$50</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="faq"> FAQ (Preguntas frecuentes) (+$40)
+                            <input type="checkbox" name="features" value="faq"> FAQ (Preguntas frecuentes)
+                            <span class="feature-price">+$40</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="cookies"> Cookies/Consentimiento legal (+$35)
+                            <input type="checkbox" name="features" value="cookies"> Cookies/Consentimiento legal
+                            <span class="feature-price">+$35</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="optimizacion"> Optimización de Velocidad + Accesibilidad (+$90)
+                            <input type="checkbox" name="features" value="optimizacion"> Optimización de Velocidad + Accesibilidad
+                            <span class="feature-price">+$90</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="multiidioma"> Multi-idioma (+$70 por idioma)
+                            <input type="checkbox" name="features" value="multiidioma"> Multi-idioma
+                            <span class="feature-price">+$70/idioma</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="descarga"> Entrega/Descarga segura (+$55)
+                            <input type="checkbox" name="features" value="descarga"> Entrega/Descarga segura
+                            <span class="feature-price">+$55</span>
                         </label>
                         <label class="checkbox-option">
-                            <input type="checkbox" name="features" value="express"> Entrega express (menos de 72hs) (+$120)
+                            <input type="checkbox" name="features" value="express"> Entrega express (menos de 72hs)
+                            <span class="feature-price">+$120</span>
                         </label>
+                    </div>
+                    
+                    <div id="multi-language-quantity" style="display: none; margin-top: 1rem;">
+                        <label for="language-count">¿Cuántos idiomas adicionales necesitás?</label>
+                        <input type="number" id="language-count" min="1" value="1" class="cta-input">
                     </div>
                     
                     <div class="form-navigation">
@@ -1858,7 +2088,7 @@
                     </div>
                 </div>
                 
-                <!-- Step 4: Summary and Price -->
+                <!-- Step 4: Summary and Action -->
                 <div class="form-step" id="step-4">
                     <h3 class="step-title">Resumen de tu cotización</h3>
                     <p class="step-description">Revisá los detalles y el precio final de tu landing page personalizada</p>
@@ -1887,29 +2117,23 @@
                     
                     <div class="transparency-note">
                         <p><i class="fas fa-check-circle"></i> Presupuesto transparente, sin costos ocultos. Solo pagás lo que necesitás.</p>
+                        <p><i class="fas fa-check-circle"></i> Todos los planes incluyen 1 año de hosting y dominio + 3 meses de mantenimiento básico.</p>
                     </div>
-                    
-                    <div class="form-navigation">
-                        <button type="button" class="secondary-button prev-step" data-step="3">Anterior</button>
-                        <button type="button" class="cta-button next-step" data-step="5">Continuar</button>
-                    </div>
-                </div>
-                
-                <!-- Step 5: Final Action -->
-                <div class="form-step" id="step-5">
-                    <h3 class="step-title">¡Perfecto! Tu cotización está lista</h3>
-                    <p class="step-description">¿Cómo querés continuar?</p>
                     
                     <div class="action-buttons">
-                        <button type="button" class="cta-button" id="hire-now">
+                        <button type="button" class="action-button primary" id="hire-now">
                             <i class="fas fa-credit-card"></i> Contratar ahora
                         </button>
-                        <button type="button" class="secondary-button" id="schedule-call">
+                        <button type="button" class="action-button secondary" id="email-quote">
+                            <i class="fas fa-envelope"></i> Recibir cotización por email
+                        </button>
+                        <button type="button" class="action-button secondary" id="schedule-call">
                             <i class="fas fa-phone"></i> Agendar una llamada
                         </button>
                     </div>
                     
                     <div id="contact-form" style="display: none; margin-top: 2rem;">
+                        <h4>Completá tus datos para continuar</h4>
                         <div class="form-group">
                             <label for="contact-name">Nombre completo</label>
                             <input type="text" id="contact-name" class="cta-input" required>
@@ -1922,9 +2146,9 @@
                             <label for="contact-phone">WhatsApp</label>
                             <div class="whatsapp-input-container">
                                 <select class="country-code" id="contact-country">
-                                    <option value="+1">+1 (US)</option>
-                                    <option value="+52">+52 (MX)</option>
                                     <option value="+54">+54 (AR)</option>
+                                    <option value="+52">+52 (MX)</option>
+                                    <option value="+1">+1 (US)</option>
                                     <option value="+56">+56 (CL)</option>
                                     <option value="+57">+57 (CO)</option>
                                     <option value="+58">+58 (VE)</option>
@@ -1942,7 +2166,55 @@
                     </div>
                     
                     <div class="form-navigation">
-                        <button type="button" class="secondary-button prev-step" data-step="4">Anterior</button>
+                        <button type="button" class="secondary-button prev-step" data-step="3">Anterior</button>
+                    </div>
+                </div>
+                
+                <!-- Special case for "Otro" type -->
+                <div class="form-step" id="step-other" style="display: none;">
+                    <h3 class="step-title">Proyecto personalizado</h3>
+                    <p class="step-description">Para proyectos especiales, necesitamos más información para ofrecerte la mejor solución</p>
+                    
+                    <div class="form-group">
+                        <label for="project-description">Describí tu proyecto en detalle</label>
+                        <textarea id="project-description" class="cta-input" rows="5" placeholder="Qué tipo de página necesitás, qué funcionalidades requiere, etc."></textarea>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h4>Dejanos tus datos para contactarte</h4>
+                        <div class="form-group">
+                            <label for="other-name">Nombre completo</label>
+                            <input type="text" id="other-name" class="cta-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="other-email">Correo electrónico</label>
+                            <input type="email" id="other-email" class="cta-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="other-phone">WhatsApp</label>
+                            <div class="whatsapp-input-container">
+                                <select class="country-code" id="other-country">
+                                    <option value="+54">+54 (AR)</option>
+                                    <option value="+52">+52 (MX)</option>
+                                    <option value="+1">+1 (US)</option>
+                                    <option value="+56">+56 (CL)</option>
+                                    <option value="+57">+57 (CO)</option>
+                                    <option value="+58">+58 (VE)</option>
+                                    <option value="+34">+34 (ES)</option>
+                                    <option value="+51">+51 (PE)</option>
+                                    <option value="+593">+593 (EC)</option>
+                                    <option value="+591">+591 (BO)</option>
+                                    <option value="+598">+598 (UY)</option>
+                                    <option value="+595">+595 (PY)</option>
+                                </select>
+                                <input type="tel" id="other-phone" class="whatsapp-input" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="secondary-button prev-step" data-step="1">Anterior</button>
+                        <button type="button" class="cta-button" id="submit-other">Enviar información</button>
                     </div>
                 </div>
             </form>
@@ -2053,9 +2325,9 @@
                         <label for="whatsapp">WhatsApp</label>
                         <div class="whatsapp-input-container">
                             <select class="country-code">
-                                <option value="+1">+1 (US)</option>
-                                <option value="+52">+52 (MX)</option>
                                 <option value="+54">+54 (AR)</option>
+                                <option value="+52">+52 (MX)</option>
+                                <option value="+1">+1 (US)</option>
                                 <option value="+56">+56 (CL)</option>
                                 <option value="+57">+57 (CO)</option>
                                 <option value="+58">+58 (VE)</option>
@@ -2144,7 +2416,7 @@
         mobileMenuBtn.addEventListener('click', function() {
             navLinks.classList.toggle('active');
             this.innerHTML = navLinks.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars'></i>';
         });
 
         // Sticky Header
@@ -2350,27 +2622,42 @@
         const styleOptions = document.querySelectorAll('.style-option');
         const featureCheckboxes = document.querySelectorAll('input[name="features"]');
         const hireNowButton = document.getElementById('hire-now');
+        const emailQuoteButton = document.getElementById('email-quote');
         const scheduleCallButton = document.getElementById('schedule-call');
         const submitContactButton = document.getElementById('submit-contact');
+        const submitOtherButton = document.getElementById('submit-other');
+        const multiLanguageCheckbox = document.querySelector('input[value="multiidioma"]');
+        const languageCountInput = document.getElementById('language-count');
         
         // Store form data
         const formData = {
             type: '',
+            basePrice: 0,
             quantity: 1,
             sameStyle: true,
+            landingTypes: [],
             features: [],
-            basePrice: 297,
             totalPrice: 0
         };
         
         // Pricing for different types
         const typePrices = {
-            'captura': 297,
-            'venta': 397,
-            'ebook': 347,
-            'evento': 447,
-            'marca': 397,
-            'otro': 497
+            'captura': 150,
+            'venta': 200,
+            'ebook': 190,
+            'evento': 200,
+            'marca': 200,
+            'otro': 0
+        };
+        
+        // Type names for display
+        const typeNames = {
+            'captura': 'Captura de Leads',
+            'venta': 'Página de Venta',
+            'ebook': 'Promoción de E-book',
+            'evento': 'Página para Evento',
+            'marca': 'Marca Personal',
+            'otro': 'Otro (Personalizado)'
         };
         
         // Feature prices
@@ -2392,6 +2679,36 @@
             'multiidioma': 70,
             'descarga': 55,
             'express': 120
+        };
+        
+        // Feature names for display
+        const featureNames = {
+            'seo': 'SEO On-Page',
+            'analytics': 'Píxeles & Analytics',
+            'gracias': 'Página de Gracias',
+            'contador': 'Contador de tiempo/Urgencia',
+            'popup': 'Pop-up (WhatsApp, captura, oferta)',
+            'crm': 'Integración a CRM/Email marketing',
+            'pagos': 'Integración a Pasarela de Pago',
+            'agenda': 'Integración a Agenda/Calendario',
+            'copywriting': 'Copywriting persuasivo',
+            'imagenes': 'Imágenes premium',
+            'testimonios': 'Testimonios Pro',
+            'faq': 'FAQ (Preguntas frecuentes)',
+            'cookies': 'Cookies/Consentimiento legal',
+            'optimizacion': 'Optimización de Velocidad',
+            'multiidioma': 'Multi-idioma',
+            'descarga': 'Entrega/Descarga segura',
+            'express': 'Entrega express (menos de 72hs)'
+        };
+        
+        // Default features for each type
+        const defaultFeatures = {
+            'captura': ['analytics'],
+            'venta': ['analytics', 'pagos'],
+            'ebook': ['analytics', 'descarga'],
+            'evento': ['analytics', 'agenda'],
+            'marca': ['analytics']
         };
         
         // Open modal
@@ -2416,6 +2733,34 @@
                 step.classList.remove('active', 'completed');
             });
             document.getElementById('step-1-indicator').classList.add('active');
+            
+            // Reset form data
+            resetFormData();
+        }
+        
+        function resetFormData() {
+            formData.type = '';
+            formData.basePrice = 0;
+            formData.quantity = 1;
+            formData.sameStyle = true;
+            formData.landingTypes = [];
+            formData.features = [];
+            formData.totalPrice = 0;
+            
+            // Reset UI selections
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('input[name="features"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            document.getElementById('custom-quantity').style.display = 'none';
+            document.getElementById('same-style-question').style.display = 'none';
+            document.getElementById('multiple-types-container').style.display = 'none';
+            document.getElementById('multi-language-quantity').style.display = 'none';
+            document.getElementById('contact-form').style.display = 'none';
         }
         
         // Next step navigation
@@ -2430,8 +2775,26 @@
                     return;
                 }
                 
+                // Special handling for "Otro" type
+                if (currentStep === '1' && formData.type === 'otro') {
+                    // Hide current step
+                    document.getElementById(`step-${currentStep}`).classList.remove('active');
+                    // Show special step for "Otro"
+                    document.getElementById('step-other').style.display = 'block';
+                    
+                    // Update progress indicators
+                    document.getElementById(`step-${currentStep}-indicator`).classList.remove('active');
+                    document.getElementById(`step-${currentStep}-indicator`).classList.add('completed');
+                    return;
+                }
+                
                 if (currentStep === '2' && !formData.quantity) {
                     alert('Por favor selecciona la cantidad de landing pages');
+                    return;
+                }
+                
+                if (currentStep === '2' && formData.quantity > 1 && !formData.sameStyle && formData.landingTypes.length !== formData.quantity) {
+                    alert('Por favor selecciona el tipo para cada landing page');
                     return;
                 }
                 
@@ -2459,6 +2822,17 @@
                 const currentStep = e.target.getAttribute('data-step');
                 const prevStep = parseInt(currentStep) - 1;
                 
+                // Special handling for "Otro" type
+                if (document.getElementById('step-other').style.display === 'block') {
+                    document.getElementById('step-other').style.display = 'none';
+                    document.getElementById('step-1').classList.add('active');
+                    
+                    // Update progress indicators
+                    document.getElementById('step-1-indicator').classList.add('active');
+                    document.getElementById('step-1-indicator').classList.remove('completed');
+                    return;
+                }
+                
                 // Hide current step
                 document.getElementById(`step-${currentStep}`).classList.remove('active');
                 // Show previous step
@@ -2475,19 +2849,29 @@
             card.addEventListener('click', () => {
                 // Remove selected class from all cards in the same step
                 const parentStep = card.closest('.form-step');
-                parentStep.querySelectorAll('.option-card').forEach(c => {
-                    c.classList.remove('selected');
-                });
+                if (parentStep) {
+                    parentStep.querySelectorAll('.option-card').forEach(c => {
+                        c.classList.remove('selected');
+                    });
+                }
                 
                 // Add selected class to clicked card
                 card.classList.add('selected');
                 
                 // Store the selected value
                 const value = card.getAttribute('data-value');
+                const price = parseInt(card.getAttribute('data-price'));
                 
                 if (parentStep.id === 'step-1') {
                     formData.type = value;
-                    formData.basePrice = typePrices[value] || 297;
+                    formData.basePrice = price;
+                    
+                    // Pre-select default features for this type
+                    if (value !== 'otro') {
+                        setTimeout(() => {
+                            preSelectDefaultFeatures(value);
+                        }, 100);
+                    }
                 } else if (parentStep.id === 'step-2') {
                     if (value === 'custom') {
                         document.getElementById('custom-quantity').style.display = 'block';
@@ -2501,12 +2885,78 @@
                     // Show same style question if more than 1 landing
                     if (formData.quantity > 1) {
                         document.getElementById('same-style-question').style.display = 'block';
+                        
+                        // If not same style, show type selection for each landing
+                        if (!formData.sameStyle) {
+                            showMultipleTypesSelection();
+                        } else {
+                            document.getElementById('multiple-types-container').style.display = 'none';
+                        }
                     } else {
                         document.getElementById('same-style-question').style.display = 'none';
+                        document.getElementById('multiple-types-container').style.display = 'none';
                     }
                 }
             });
         });
+        
+        // Pre-select default features based on landing type
+        function preSelectDefaultFeatures(type) {
+            // First uncheck all features
+            document.querySelectorAll('input[name="features"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            // Then check default features for this type
+            if (defaultFeatures[type]) {
+                defaultFeatures[type].forEach(feature => {
+                    const checkbox = document.querySelector(`input[value="${feature}"]`);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                        
+                        // Add to features array if not already there
+                        if (!formData.features.includes(feature)) {
+                            formData.features.push(feature);
+                        }
+                    }
+                });
+            }
+        }
+        
+        // Show multiple types selection when user has multiple landings with different styles
+        function showMultipleTypesSelection() {
+            document.getElementById('multiple-types-container').style.display = 'block';
+            const typesList = document.getElementById('multiple-types-list');
+            typesList.innerHTML = '';
+            
+            formData.landingTypes = [];
+            
+            for (let i = 0; i < formData.quantity; i++) {
+                const typeSelect = document.createElement('div');
+                typeSelect.className = 'form-group';
+                typeSelect.innerHTML = `
+                    <label for="landing-type-${i}">Landing page ${i + 1}:</label>
+                    <select id="landing-type-${i}" class="cta-input landing-type-select">
+                        <option value="captura">Captura de Leads ($150)</option>
+                        <option value="venta">Página de Venta ($200)</option>
+                        <option value="ebook">Promoción de E-book ($190)</option>
+                        <option value="evento">Página para Evento ($200)</option>
+                        <option value="marca">Marca Personal ($200)</option>
+                    </select>
+                `;
+                typesList.appendChild(typeSelect);
+                
+                // Set default value if already selected
+                if (formData.landingTypes[i]) {
+                    typeSelect.querySelector('select').value = formData.landingTypes[i];
+                }
+                
+                // Add change event listener
+                typeSelect.querySelector('select').addEventListener('change', (e) => {
+                    formData.landingTypes[i] = e.target.value;
+                });
+            }
+        }
         
         // Custom quantity input
         const landingQuantityInput = document.getElementById('landing-quantity');
@@ -2517,8 +2967,14 @@
                 // Show same style question if more than 1 landing
                 if (formData.quantity > 1) {
                     document.getElementById('same-style-question').style.display = 'block';
+                    
+                    // If not same style, show type selection for each landing
+                    if (!formData.sameStyle) {
+                        showMultipleTypesSelection();
+                    }
                 } else {
                     document.getElementById('same-style-question').style.display = 'none';
+                    document.getElementById('multiple-types-container').style.display = 'none';
                 }
             });
         }
@@ -2536,6 +2992,13 @@
                 
                 // Store the selection
                 formData.sameStyle = option.getAttribute('data-same') === 'true';
+                
+                // Show/hide multiple types selection
+                if (!formData.sameStyle && formData.quantity > 1) {
+                    showMultipleTypesSelection();
+                } else {
+                    document.getElementById('multiple-types-container').style.display = 'none';
+                }
             });
         });
         
@@ -2549,30 +3012,53 @@
                     if (!formData.features.includes(value)) {
                         formData.features.push(value);
                     }
+                    
+                    // Show additional options for multi-language
+                    if (value === 'multiidioma') {
+                        document.getElementById('multi-language-quantity').style.display = 'block';
+                    }
                 } else {
                     // Remove from features array
                     formData.features = formData.features.filter(f => f !== value);
+                    
+                    // Hide additional options for multi-language
+                    if (value === 'multiidioma') {
+                        document.getElementById('multi-language-quantity').style.display = 'none';
+                    }
                 }
             });
         });
         
+        // Multi-language quantity input
+        if (languageCountInput) {
+            languageCountInput.addEventListener('change', () => {
+                // This will be handled in the price calculation
+            });
+        }
+        
         // Calculate total price
         function calculatePrice() {
-            // Base price based on type
-            let total = formData.basePrice;
+            let total = 0;
             
-            // Multiply by quantity if same style, or add base price for each if different style
-            if (formData.quantity > 1) {
-                if (formData.sameStyle) {
-                    total *= formData.quantity;
-                } else {
-                    total += formData.basePrice * (formData.quantity - 1);
-                }
+            // Calculate base price
+            if (formData.sameStyle || formData.quantity === 1) {
+                // Same style or single landing: base price * quantity
+                total = formData.basePrice * formData.quantity;
+            } else {
+                // Different styles: sum of individual prices
+                total = formData.landingTypes.reduce((sum, type) => {
+                    return sum + typePrices[type];
+                }, 0);
             }
             
             // Add feature prices
             formData.features.forEach(feature => {
-                total += featurePrices[feature] || 0;
+                if (feature === 'multiidioma') {
+                    const languageCount = parseInt(document.getElementById('language-count').value) || 1;
+                    total += featurePrices[feature] * languageCount;
+                } else {
+                    total += featurePrices[feature] || 0;
+                }
             });
             
             formData.totalPrice = total;
@@ -2581,15 +3067,6 @@
         // Update summary in step 4
         function updateSummary() {
             // Update type
-            const typeNames = {
-                'captura': 'Captura de Leads',
-                'venta': 'Página de Venta',
-                'ebook': 'Promoción de E-book',
-                'evento': 'Página para Evento',
-                'marca': 'Marca Personal',
-                'otro': 'Otro'
-            };
-            
             document.getElementById('summary-type').textContent = typeNames[formData.type] || '-';
             document.getElementById('summary-quantity').textContent = formData.quantity;
             document.getElementById('summary-style').textContent = formData.sameStyle ? 'Sí' : 'No';
@@ -2603,30 +3080,21 @@
                     const featureItem = document.createElement('div');
                     featureItem.className = 'summary-item';
                     
-                    const featureNames = {
-                        'seo': 'SEO On-Page',
-                        'analytics': 'Píxeles & Analytics',
-                        'gracias': 'Página de Gracias',
-                        'contador': 'Contador de tiempo/Urgencia',
-                        'popup': 'Pop-up (WhatsApp, captura, oferta)',
-                        'crm': 'Integración a CRM/Email marketing',
-                        'pagos': 'Integración a Pasarela de Pago',
-                        'agenda': 'Integración a Agenda/Calendario',
-                        'copywriting': 'Copywriting persuasivo',
-                        'imagenes': 'Imágenes premium',
-                        'testimonios': 'Testimonios Pro',
-                        'faq': 'FAQ (Preguntas frecuentes)',
-                        'cookies': 'Cookies/Consentimiento legal',
-                        'optimizacion': 'Optimización de Velocidad',
-                        'multiidioma': 'Multi-idioma',
-                        'descarga': 'Entrega/Descarga segura',
-                        'express': 'Entrega express (menos de 72hs)'
-                    };
+                    let featurePrice = featurePrices[feature] || 0;
                     
-                    featureItem.innerHTML = `
-                        <span>${featureNames[feature]}:</span>
-                        <span>+$${featurePrices[feature]}</span>
-                    `;
+                    if (feature === 'multiidioma') {
+                        const languageCount = parseInt(document.getElementById('language-count').value) || 1;
+                        featurePrice = featurePrice * languageCount;
+                        featureItem.innerHTML = `
+                            <span>${featureNames[feature]} (${languageCount} idiomas):</span>
+                            <span>+$${featurePrice}</span>
+                        `;
+                    } else {
+                        featureItem.innerHTML = `
+                            <span>${featureNames[feature]}:</span>
+                            <span>+$${featurePrice}</span>
+                        `;
+                    }
                     
                     featuresSummary.appendChild(featureItem);
                 });
@@ -2640,12 +3108,21 @@
         hireNowButton.addEventListener('click', () => {
             document.getElementById('contact-form').style.display = 'block';
             hireNowButton.style.display = 'none';
+            emailQuoteButton.style.display = 'none';
+            scheduleCallButton.style.display = 'none';
+        });
+        
+        emailQuoteButton.addEventListener('click', () => {
+            document.getElementById('contact-form').style.display = 'block';
+            hireNowButton.style.display = 'none';
+            emailQuoteButton.style.display = 'none';
             scheduleCallButton.style.display = 'none';
         });
         
         scheduleCallButton.addEventListener('click', () => {
             document.getElementById('contact-form').style.display = 'block';
             hireNowButton.style.display = 'none';
+            emailQuoteButton.style.display = 'none';
             scheduleCallButton.style.display = 'none';
         });
         
@@ -2661,9 +3138,79 @@
             }
             
             // Here you would normally send the data to your server
+            // For now, we'll just show a success message
             alert('¡Gracias! Nos pondremos en contacto contigo pronto para continuar con el proceso.');
+            
+            // Here you would also save the form data to your spreadsheet
+            saveToSpreadsheet(name, email, countryCode + phone, 'cotización');
+            
             closeModal();
         });
+        
+        submitOtherButton.addEventListener('click', () => {
+            const description = document.getElementById('project-description').value;
+            const name = document.getElementById('other-name').value;
+            const email = document.getElementById('other-email').value;
+            const countryCode = document.getElementById('other-country').value;
+            const phone = document.getElementById('other-phone').value;
+            
+            if (!description || !name || !email || !phone) {
+                alert('Por favor completa todos los campos');
+                return;
+            }
+            
+            // Here you would normally send the data to your server
+            // For now, we'll just redirect to WhatsApp
+            const message = `Hola, estoy interesado en un proyecto personalizado. ${description}`;
+            const whatsappURL = `https://wa.me/${countryCode}${phone}?text=${encodeURIComponent(message)}`;
+            
+            // Save to spreadsheet
+            saveToSpreadsheet(name, email, countryCode + phone, 'proyecto personalizado', description);
+            
+            // Redirect to WhatsApp
+            window.open(whatsappURL, '_blank');
+            
+            closeModal();
+        });
+        
+        // Function to save data to spreadsheet (simulated)
+        function saveToSpreadsheet(name, email, phone, type, description = '') {
+            // In a real implementation, you would send this data to your server
+            // which would then save it to a spreadsheet or database
+            console.log('Saving to spreadsheet:', {
+                name,
+                email,
+                phone,
+                type,
+                description,
+                formData: formData.type === 'otro' ? 'Proyecto personalizado' : formData
+            });
+            
+            // Example of how you might send this data to Google Sheets using Google Apps Script:
+            /*
+            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+            const data = {
+                name,
+                email,
+                phone,
+                type,
+                description,
+                landingType: formData.type,
+                quantity: formData.quantity,
+                features: formData.features.join(', '),
+                totalPrice: formData.totalPrice
+            };
+            
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+            */
+        }
         
         // Make option cards and checkboxes more interactive
         document.querySelectorAll('.option-card, .checkbox-option').forEach(element => {
