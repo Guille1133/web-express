@@ -1121,12 +1121,14 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
+            color: white;
         }
         
         .cta p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
             opacity: 0.9;
+            color: white;
         }
         
         .cta-form {
@@ -1153,6 +1155,7 @@
             font-size: 0.9rem;
             opacity: 0.9;
             text-align: left;
+            color: white;
         }
         
         .whatsapp-input-container {
@@ -1243,12 +1246,14 @@
             opacity: 0.8;
             margin-bottom: 1.5rem;
             line-height: 1.6;
+            max-width: 300px;
         }
         
         .social-links {
             display: flex;
             gap: 1rem;
             margin-top: 1rem;
+            justify-content: center;
         }
         
         .social-link {
@@ -1271,6 +1276,7 @@
             font-weight: 600;
             margin-bottom: 1.5rem;
             position: relative;
+            color: white;
         }
         
         .footer-links h3::after {
@@ -1368,10 +1374,6 @@
             
             .hero-buttons {
                 justify-content: center;
-            }
-            
-            .device-mockup {
-                max-width: 80%;
             }
             
             .live-capture-demo {
@@ -1477,6 +1479,7 @@
     <div class="loader">
         <div class="loader-spinner"></div>
     </div>
+
     <!-- Header -->
     <header>
         <nav class="navbar">
@@ -1500,6 +1503,7 @@
             <a href="#pricing" class="cta-button">Comprar Ahora</a>
         </nav>
     </header>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -1576,6 +1580,7 @@
             </div>
         </div>
     </section>
+
     <!-- Stats Section -->
     <section class="stats">
         <div class="stats-container">
@@ -1595,6 +1600,7 @@
             </div>
         </div>
     </section>
+
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="section-header fade-in">
@@ -1652,6 +1658,7 @@
             </div>
         </div>
     </section>
+
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
         <div class="testimonials-container">
@@ -1683,7 +1690,7 @@
                     </div>
                 </div>
                 
-        <div class="testimonial-card fade-in">
+                <div class="testimonial-card fade-in">
                     <div class="testimonial-content">
                         "Increíble servicio al cliente y diseños que realmente funcionan. Hemos probado varias versiones y todas superan a nuestras páginas anteriores. ¡Recomendado 100%!"
                     </div>
@@ -1696,6 +1703,7 @@
             </div>
         </div>
     </section>
+
     <!-- Pricing Section -->
     <section class="pricing" id="pricing">
         <div class="section-header fade-in">
@@ -1706,6 +1714,7 @@
             </div>
         </div>
     </section>
+
     <!-- Quote Modal -->
     <div class="modal-overlay" id="quote-modal">
         <div class="quote-modal">
@@ -2014,6 +2023,7 @@
             </form>
         </div>
     </div>
+
     <!-- FAQ Section -->
     <section class="faq" id="faq">
         <div class="section-header fade-in">
@@ -2073,6 +2083,7 @@
             </div>
         </div>
     </section>
+
     <!-- Portfolio Section -->
     <section class="portfolio">
         <div class="section-header fade-in">
@@ -2094,6 +2105,7 @@
             </div>
         </div>
     </section>
+
     <!-- CTA Section -->
     <section class="cta" id="contact">
         <div class="cta-container">
@@ -2137,6 +2149,7 @@
             </form>
         </div>
     </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-container">
@@ -2189,54 +2202,58 @@
             <p>&copy; 2023 CapturePro. Todos los derechos reservados. | <a href="#">Política de Privacidad</a> | <a href="#">Términos de Servicio</a></p>
         </div>
     </footer>
+
     <script>
-        // Loader
-        document.addEventListener('DOMContentLoaded', function() {
+        // Loader simplificado y confiable
+        window.addEventListener('load', function() {
             const loader = document.querySelector('.loader');
-            
-            // Ocultar el loader después de 1 segundo (simulando carga)
-            setTimeout(function() {
-                loader.classList.add('fade-out');
-                
-                // Eliminar completamente el loader después de la animación
-                setTimeout(function() {
-                    loader.style.display = 'none';
-                }, 500);
-            }, 1000);
-            
-            // También asegurarse de que el loader se oculte si la página ya está cargada
-            if (document.readyState === 'complete') {
-                loader.classList.add('fade-out');
-                setTimeout(function() {
-                    loader.style.display = 'none';
-                }, 500);
+            if (loader) {
+                loader.style.display = 'none';
             }
         });
+
+        // También ocultar si ya está cargado
+        if (document.readyState === 'complete') {
+            const loader = document.querySelector('.loader');
+            if (loader) {
+                loader.style.display = 'none';
+            }
+        }
+
         // Mobile Menu
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
         
-        mobileMenuBtn.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            this.innerHTML = navLinks.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
+        if (mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.innerHTML = navLinks.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+        }
+
         // Sticky Header
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
-            header.classList.toggle('scrolled', window.scrollY > 50);
+            if (header) {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            }
         });
+
         // Rotating Title
         const rotatingTitle = document.getElementById('rotating-title');
-        const words = ['Captura', 'ventas', 'lazamientos', 'presentación'];
-        let currentIndex = 0;
-        
-        function rotateTitle() {
-            currentIndex = (currentIndex + 1) % words.length;
-            rotatingTitle.textContent = words[currentIndex];
+        if (rotatingTitle) {
+            const words = ['Captura', 'ventas', 'lanzamientos', 'presentación'];
+            let currentIndex = 0;
+            
+            function rotateTitle() {
+                currentIndex = (currentIndex + 1) % words.length;
+                rotatingTitle.textContent = words[currentIndex];
+            }
+            
+            setInterval(rotateTitle, 2000);
         }
-        
-        setInterval(rotateTitle, 2000);
+
         // FAQ Accordion
         const faqItems = document.querySelectorAll('.faq-item');
         
@@ -2255,6 +2272,7 @@
                 item.classList.toggle('active');
             });
         });
+
         // Animate on Scroll
         const fadeElements = document.querySelectorAll('.fade-in');
         
@@ -2274,6 +2292,7 @@
         
         // Check on scroll
         window.addEventListener('scroll', checkScroll);
+
         // Counter Animation
         const statNumbers = document.querySelectorAll('.stat-number');
         let countersStarted = false;
@@ -2316,6 +2335,8 @@
         const statsSection = document.querySelector('.stats');
         
         function startCountersWhenVisible() {
+            if (!statsSection) return;
+            
             const sectionTop = statsSection.getBoundingClientRect().top;
             const windowHeight = window.innerHeight;
             
@@ -2418,6 +2439,7 @@
             }
         `;
         document.head.appendChild(style);
+
         // Quote Form Functionality
         const quoteButton = document.getElementById('quote-button');
         const quoteModal = document.getElementById('quote-modal');
@@ -2785,14 +2807,29 @@
                     };
                     
                     let featurePrice = featurePrices[feature] || 0;
-                    let featureText = `${featureNames[feature]}: +
-{featurePrice}`;
+                    let featureText = `${featureNames[feature]}: +$${featurePrice}`;
+                    
+                    // Special handling for multi-idioma
+                    if (feature === 'multiidioma') {
+                        const languagesCount = parseInt(languagesCountInput.value) || 1;
+                        featurePrice = featurePrice * languagesCount;
+                        featureText = `${featureNames[feature]} (${languagesCount} idiomas): +$${featurePrice}`;
                     }
                     
                     featureItem.innerHTML = `
                         <span>${featureText}</span>
-                        <span>+
-{formData.totalPrice}`;
+                        <span>+$${featurePrice}</span>
+                    `;
+                    
+                    featuresSummary.appendChild(featureItem);
+                });
+            }
+            
+            // Update total price
+            if (formData.type === 'otro') {
+                document.getElementById('total-price').textContent = `Proyecto personalizado`;
+            } else {
+                document.getElementById('total-price').textContent = `$${formData.totalPrice}`;
             }
         }
         
@@ -2807,7 +2844,7 @@
         }
         
         if (emailQuoteButton) {
-            emailQuoteButton.addEventListener('click', () {
+            emailQuoteButton.addEventListener('click', () => {
                 document.getElementById('contact-form').style.display = 'block';
                 hireNowButton.style.display = 'none';
                 emailQuoteButton.style.display = 'none';
