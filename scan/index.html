@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscanner IA - Centraliza tus suscripciones</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-blue: #0a1128;
+            --black: #000013;
+            --violet: #7B61FF;
+            --electric-blue: #00E0FF;
+            --dark-gray: #1C1C1E;
+            --medium-gray: #2C2C2E;
+            --light-gray: #3A3A3C;
+            --neon-glow: 0 0 10px rgba(123, 97, 255, 0.7),
+                          0 0 20px rgba(0, 224, 255, 0.5);
+            --success: #00ff9d;
+            --warning: #ffa500;
+            --error: #ff4d4d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--black) 50%, #200428 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background: rgba(28, 28, 30, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, var(--electric-blue), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .header-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .header-link:hover {
+            color: white;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 3rem;
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--electric-blue), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        /* Auth buttons */
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .auth-btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 220px;
+            justify-content: center;
+        }
+
+        .auth-btn-primary {
+            background: var(--violet);
+            color: white;
+        }
+
+        .auth-btn-primary:hover {
+            background: var(--electric-blue);
+            box-shadow: var(--neon-glow);
+            transform: translateY(-2px);
+        }
+
+        .auth-btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .auth-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Features list */
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .feature-icon {
+            color: var(--electric-blue);
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(28, 28, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-icon {
+            color: var(--violet);
+        }
+
+        /* Permission list */
+        .permission-list {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .permission-item {
+            margin-bottom: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Checkbox */
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            margin: 1.5rem 0;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            appearance: none;
+            position: relative;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .checkbox:checked {
+            background: var(--violet);
+            border-color: var(--violet);
+        }
+
+        .checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .checkbox-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            margin: 1.5rem 0;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--violet), var(--electric-blue));
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: right;
+        }
+
+        /* Scan log */
+        .scan-log {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 1.5rem;
+        }
+
+        .log-entry {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .log-success {
+            color: var(--success);
+        }
+
+        .log-warning {
+            color: var(--warning);
+        }
+
+        .log-error {
+            color: var(--error);
+        }
+
+        /* Results grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .provider-card {
+            background: rgba(42, 42, 46, 0.7);
+            border-radius: 12px;
+            padding: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .provider-card:hover {
+            border-color: var(--violet);
+            box-shadow: 0 0 15px rgba(123, 97, 255, 0.3);
+        }
+
+        .provider-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .provider-info {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .provider-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(45deg, var(--violet), var(--electric-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .provider-name {
+            font-weight: 600;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--violet);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(18px);
+        }
+
+        .provider-details {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .detail-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .detail-value {
+            font-weight: 500;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--violet);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--electric-blue);
+            box-shadow: var(--neon-glow);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn:disabled:hover {
+            background: var(--violet);
+            box-shadow: none;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Modal */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal {
+            background: rgba(28, 28, 30, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 450px;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: white;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--violet);
+            box-shadow: 0 0 0 2px rgba(123, 97, 255, 0.3);
+        }
+
+        .modal-footer {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .modal-alternative {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .modal-link {
+            color: var(--electric-blue);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Toast */
+        .toast-area {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .toast {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            background: rgba(28, 28, 30, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .toast-success {
+            border-left: 4px solid var(--success);
+        }
+
+        .toast-warning {
+            border-left: 4px solid var(--warning);
+        }
+
+        .toast-error {
+            border-left: 4px solid var(--error);
+        }
+
+        .toast-icon {
+            font-size: 1.2rem;
+        }
+
+        .toast-success .toast-icon {
+            color: var(--success);
+        }
+
+        .toast-warning .toast-icon {
+            color: var(--warning);
+        }
+
+        .toast-error .toast-icon {
+            color: var(--error);
+        }
+
+        .toast-message {
+            flex: 1;
+            font-size: 0.9rem;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            text-align: center;
+            margin-top: 3rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--electric-blue), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Utility classes */
+        .hidden {
+            display: none;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .auth-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .auth-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 5rem 1rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-brain-circuit logo-icon"></i>
+            <span>Subscanner IA</span>
+        </div>
+        <div class="header-links">
+            <a href="#" class="header-link">Términos</a>
+            <a href="#" class="header-link">Privacidad</a>
+        </div>
+    </header>
+
+    <!-- Main container -->
+    <div class="container">
+        <!-- Hero section -->
+        <section class="hero">
+            <h1 class="hero-title">Centralizá tus suscripciones de IA</h1>
+            <p class="hero-subtitle">Conecta Gmail o tu email para descubrir gastos, usos y próximas renovaciones.</p>
+            
+            <div class="auth-buttons">
+                <button class="auth-btn auth-btn-primary" id="btn-google" data-action="oauth-gmail">
+                    <i class="fab fa-google"></i> Continuar con Google
+                </button>
+                <button class="auth-btn auth-btn-secondary" id="btn-email" data-action="open-magiclink">
+                    <i class="fas fa-envelope"></i> Continuar con Email
+                </button>
+            </div>
+            
+            <div class="features">
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>Escaneo automático de suscripciones activas</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>Detección de inactividad y alertas de renovación</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>Privacidad: solo lectura, sin contraseñas de terceros</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gmail Permissions Card (hidden by default) -->
+        <div class="card hidden" id="gmail-permissions">
+            <h2 class="card-title">
+                <i class="fas fa-shield-alt card-icon"></i>
+                Solicitud de permisos
+            </h2>
+            <p>Usaremos permisos de SOLO LECTURA para detectar recibos y suscripciones. No accedemos a tus contraseñas ni escribimos correos.</p>
+            
+            <ul class="permission-list">
+                <li class="permission-item">Leer asuntos y recibos de Stripe, PayPal y otros proveedores</li>
+                <li class="permission-item">Extraer monto, fecha, moneda y fechas de renovación</li>
+                <li class="permission-item">NO leemos contenido personal fuera de esos emails</li>
+                <li class="permission-item">No guardamos contraseñas ni información sensible</li>
+            </ul>
+            
+            <div class="checkbox-container">
+                <input type="checkbox" id="permission-checkbox" class="checkbox">
+                <label for="permission-checkbox" class="checkbox-label">Acepto otorgar permisos de solo lectura para escanear mis suscripciones</label>
+            </div>
+            
+            <button class="btn btn-primary" id="btn-connect-gmail" data-action="connect-gmail" disabled>Conectar con Google</button>
+        </div>
+
+        <!-- Scan Progress Card (hidden by default) -->
+        <div class="card hidden" id="scan-progress">
+            <h2 class="card-title">
+                <i class="fas fa-search card-icon"></i>
+                Escaneando tus suscripciones
+            </h2>
+            <p>Escaneando últimos 12 meses...</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="scan-bar" style="width: 0%"></div>
+                </div>
+                <div class="progress-text" id="progress-text">0%</div>
+            </div>
+            
+            <div class="scan-log" id="scan-log">
+                <div class="log-entry">
+                    <i class="fas fa-info-circle log-success"></i>
+                    <span>Iniciando escaneo de correos...</span>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-secondary" data-action="retry-scan">Reintentar</button>
+            </div>
+        </div>
+
+        <!-- Results Card (hidden by default) -->
+        <div class="card hidden" id="scan-results">
+            <h2 class="card-title">
+                <i class="fas fa-check-circle card-icon"></i>
+                Servicios detectados
+            </h2>
+            <p>Hemos encontrado estas suscripciones en tu correo. Selecciona las que quieras incluir en tu dashboard.</p>
+            
+            <div class="action-buttons">
+                <button class="btn btn-secondary" data-action="select-all">Seleccionar todas</button>
+            </div>
+            
+            <div class="results-grid">
+                <!-- Example provider card 1 -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div class="provider-info">
+                            <div class="provider-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="provider-name">ChatGPT Plus</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-include" data-provider="openai" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="provider-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Costo:</span>
+                            <span class="detail-value">$20.00</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Ciclo:</span>
+                            <span class="detail-value">Mensual</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Renovación:</span>
+                            <span class="detail-value">15/09/2023</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Fuente:</span>
+                            <span class="detail-value">Gmail</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Example provider card 2 -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div class="provider-info">
+                            <div class="provider-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="provider-name">Midjourney</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-include" data-provider="midjourney" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="provider-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Costo:</span>
+                            <span class="detail-value">$30.00</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Ciclo:</span>
+                            <span class="detail-value">Mensual</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Renovación:</span>
+                            <span class="detail-value">22/09/2023</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Fuente:</span>
+                            <span class="detail-value">Gmail</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Example provider card 3 -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div class="provider-info">
+                            <div class="provider-icon">
+                                <i class="fas fa-film"></i>
+                            </div>
+                            <div class="provider-name">Runway ML</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-include" data-provider="runway" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="provider-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Costo:</span>
+                            <span class="detail-value">$35.00</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Ciclo:</span>
+                            <span class="detail-value">Mensual</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Renovación:</span>
+                            <span class="detail-value">05/10/2023</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Fuente:</span>
+                            <span class="detail-value">Gmail</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-primary" data-action="confirm-selection">Confirmar y continuar</button>
+            </div>
+        </div>
+
+        <!-- Final CTA (hidden by default) -->
+        <div class="final-cta hidden" id="final-cta">
+            <h2 class="cta-title">¡Listo para empezar!</h2>
+            <p class="cta-subtitle">Tu dashboard está listo con todas las suscripciones seleccionadas. Ahora podrás hacer seguimiento de tus gastos, usos y próximas renovaciones.</p>
+            <button class="btn btn-primary" id="btn-go-dashboard" data-action="go-dashboard">Ir al Dashboard</button>
+        </div>
+    </div>
+
+    <!-- Magic Link Modal (hidden by default) -->
+    <div class="modal-backdrop hidden" id="modal-magiclink">
+        <div class="modal">
+            <h2 class="modal-title">
+                <span>Acceder con Email</span>
+                <button class="close-modal" data-action="close-magiclink">&times;</button>
+            </h2>
+            
+            <div class="input-group">
+                <label class="input-label" for="input-email">Tu dirección de email</label>
+                <input type="email" id="input-email" class="input-field" placeholder="nombre@ejemplo.com">
+            </div>
+            
+            <button class="btn btn-primary" data-action="send-magiclink" style="width: 100%;">Enviar enlace</button>
+            
+            <div class="modal-footer">
+                <div class="modal-alternative">
+                    ¿Problemas con el enlace? <a class="modal-link" data-action="open-code">Usar código de verificación</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Area -->
+    <div class="toast-area" id="toast-area">
+        <!-- Toasts will be added here dynamically -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const btnGoogle = document.getElementById('btn-google');
+            const btnEmail = document.getElementById('btn-email');
+            const modalMagicLink = document.getElementById('modal-magiclink');
+            const inputEmail = document.getElementById('input-email');
+            const btnConnectGmail = document.getElementById('btn-connect-gmail');
+            const permissionCheckbox = document.getElementById('permission-checkbox');
+            const scanProgress = document.getElementById('scan-progress');
+            const scanBar = document.getElementById('scan-bar');
+            const progressText = document.getElementById('progress-text');
+            const scanLog = document.getElementById('scan-log');
+            const scanResults = document.getElementById('scan-results');
+            const finalCta = document.getElementById('final-cta');
+            const gmailPermissions = document.getElementById('gmail-permissions');
+            const toastArea = document.getElementById('toast-area');
+            
+            // State management
+            let currentView = 'hero'; // 'hero', 'gmail-permissions', 'scan-progress', 'scan-results', 'final-cta'
+            
+            // Show view function
+            function showView(viewName) {
+                // Hide all views
+                document.querySelectorAll('.card, .final-cta, #gmail-permissions').forEach(el => {
+                    el.classList.add('hidden');
+                });
+                
+                // Show the requested view
+                currentView = viewName;
+                if (viewName === 'final-cta') {
+                    finalCta.classList.remove('hidden');
+                } else if (viewName === 'gmail-permissions') {
+                    gmailPermissions.classList.remove('hidden');
+                } else {
+                    document.getElementById(viewName).classList.remove('hidden');
+                }
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            // Show toast function
+            function showToast(message, type = 'success') {
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+                
+                let icon = 'fa-info-circle';
+                if (type === 'success') icon = 'fa-check-circle';
+                if (type === 'warning') icon = 'fa-exclamation-triangle';
+                if (type === 'error') icon = 'fa-exclamation-circle';
+                
+                toast.innerHTML = `
+                    <i class="fas ${icon} toast-icon"></i>
+                    <div class="toast-message">${message}</div>
+                    <button class="toast-close">&times;</button>
+                `;
+                
+                toastArea.appendChild(toast);
+                
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.style.opacity = '0';
+                        setTimeout(() => toast.remove(), 300);
+                    }
+                }, 5000);
+                
+                // Close on click
+                toast.querySelector('.toast-close').addEventListener('click', () => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300);
+                });
+            }
+            
+            // Simulate scan progress
+            function simulateScan() {
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 5;
+                    if (progress > 100) progress = 100;
+                    
+                    scanBar.style.width = `${progress}%`;
+                    progressText.textContent = `${Math.round(progress)}%`;
+                    
+                    // Add log entries at certain intervals
+                    if (progress > 10 && progress < 15) {
+                        addLogEntry('Buscando recibos Stripe...', 'success');
+                    }
+                    if (progress > 25 && progress < 30) {
+                        addLogEntry('Detectando OpenAI / ChatGPT Plus...', 'success');
+                    }
+                    if (progress > 40 && progress < 45) {
+                        addLogEntry('Detectando Runway / Midjourney...', 'success');
+                    }
+                    if (progress > 60 && progress < 65) {
+                        addLogEntry('Detectando Claude / Canva...', 'success');
+                    }
+                    if (progress > 80 && progress < 85) {
+                        addLogEntry('Detectando Adobe / Notion...', 'success');
+                    }
+                    
+                    if (progress === 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            showView('scan-results');
+                        }, 1000);
+                    }
+                }, 200);
+            }
+            
+            // Add log entry
+            function addLogEntry(message, type = 'info') {
+                const entry = document.createElement('div');
+                entry.className = 'log-entry';
+                
+                let icon = 'fa-info-circle';
+                if (type === 'success') icon = 'fa-check-circle';
+                if (type === 'warning') icon = 'fa-exclamation-triangle';
+                if (type === 'error') icon = 'fa-exclamation-circle';
+                
+                entry.innerHTML = `
+                    <i class="fas ${icon} log-${type}"></i>
+                    <span>${message}</span>
+                `;
+                
+                scanLog.appendChild(entry);
+                scanLog.scrollTop = scanLog.scrollHeight;
+            }
+            
+            // Event listeners
+            btnGoogle.addEventListener('click', function() {
+                // TODO: Conectar OAuth con Google
+                showToast('Iniciando autenticación con Google...', 'info');
+                showView('gmail-permissions');
+            });
+            
+            btnEmail.addEventListener('click', function() {
+                modalMagicLink.classList.remove('hidden');
+            });
+            
+            document.querySelector('[data-action="close-magiclink"]').addEventListener('click', function() {
+                modalMagicLink.classList.add('hidden');
+            });
+            
+            document.querySelector('[data-action="send-magiclink"]').addEventListener('click', function() {
+                const email = inputEmail.value;
+                if (!email || !email.includes('@')) {
+                    showToast('Por favor ingresa un email válido', 'error');
+                    return;
+                }
+                
+                // TODO: Enviar magic link
+                showToast(`Te enviamos un link a ${email}. Revisá tu bandeja.`, 'success');
+                modalMagicLink.classList.add('hidden');
+                
+                // Simulate successful connection
+                setTimeout(() => {
+                    showView('scan-progress');
+                    simulateScan();
+                }, 2000);
+            });
+            
+            permissionCheckbox.addEventListener('change', function() {
+                btnConnectGmail.disabled = !this.checked;
+            });
+            
+            btnConnectGmail.addEventListener('click', function() {
+                // TODO: Conectar con Gmail API
+                showToast('Conectando con Gmail...', 'info');
+                
+                // Simulate connection
+                setTimeout(() => {
+                    showView('scan-progress');
+                    simulateScan();
+                }, 1500);
+            });
+            
+            document.querySelector('[data-action="retry-scan"]').addEventListener('click', function() {
+                // TODO: Reintentar escaneo
+                showToast('Reintentando escaneo...', 'info');
+                scanLog.innerHTML = '<div class="log-entry"><i class="fas fa-info-circle log-success"></i><span>Iniciando escaneo de correos...</span></div>';
+                simulateScan();
+            });
+            
+            document.querySelector('[data-action="select-all"]').addEventListener('click', function() {
+                const toggles = document.querySelectorAll('.toggle-include');
+                toggles.forEach(toggle => {
+                    toggle.checked = true;
+                });
+                showToast('Todas las suscripciones seleccionadas', 'success');
+            });
+            
+            document.querySelector('[data-action="confirm-selection"]').addEventListener('click', function() {
+                // TODO: Confirmar selección
+                showToast('Guardando tus selecciones...', 'info');
+                
+                // Simulate save
+                setTimeout(() => {
+                    showView('final-cta');
+                }, 1000);
+            });
+            
+            document.getElementById('btn-go-dashboard').addEventListener('click', function() {
+                // TODO: Redirigir al dashboard
+                showToast('Redirigiendo al dashboard...', 'info');
+            });
+            
+            // Close modal when clicking outside
+            modalMagicLink.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
