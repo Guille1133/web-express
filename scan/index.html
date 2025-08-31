@@ -6,6 +6,8 @@
     <title>Subscanner IA - Centraliza tus suscripciones</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Cargar la API de Google para la autenticación -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
         :root {
             --dark-blue: #0a1128;
@@ -70,12 +72,12 @@
         .header-links {
             display: flex;
             gap: 1.5rem;
+            font-size: 0.9rem;
         }
 
         .header-link {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
@@ -158,6 +160,13 @@
             background: rgba(255, 255, 255, 0.2);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
+        }
+
+        /* Google Sign In Button customization */
+        .g_id_signin {
+            width: 220px !important;
+            height: 44px !important;
+            margin: 0 auto;
         }
 
         /* Features list */
@@ -730,6 +739,14 @@
             .container {
                 padding: 5rem 1rem 2rem;
             }
+            
+            .header {
+                padding: 1rem;
+            }
+            
+            .header-links {
+                gap: 1rem;
+            }
         }
     </style>
 </head>
@@ -754,12 +771,34 @@
             <p class="hero-subtitle">Conecta Gmail o tu email para descubrir gastos, usos y próximas renovaciones.</p>
             
             <div class="auth-buttons">
+                <!-- Botón de Google personalizado que activa el flujo de OAuth -->
                 <button class="auth-btn auth-btn-primary" id="btn-google" data-action="oauth-gmail">
                     <i class="fab fa-google"></i> Continuar con Google
                 </button>
                 <button class="auth-btn auth-btn-secondary" id="btn-email" data-action="open-magiclink">
                     <i class="fas fa-envelope"></i> Continuar con Email
                 </button>
+            </div>
+            
+            <!-- Div para el botón de Google Sign-In (oculto inicialmente) -->
+            <div id="g_id_onload"
+                data-client_id="821049862107-1v0d3iqcaovquhvvcf7jkif9b1hifvga.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="handleGoogleSignIn"
+                data-auto_prompt="false"
+                class="hidden">
+            </div>
+
+            <div class="google-signin-container hidden" id="google-signin-container">
+                <div class="g_id_signin"
+                    data-type="standard"
+                    data-shape="rectangular"
+                    data-theme="filled_blue"
+                    data-text="signin_with"
+                    data-size="large"
+                    data-logo_alignment="left">
+                </div>
             </div>
             
             <div class="features">
@@ -986,10 +1025,15 @@
     </div>
 
     <script>
+        // Configuración de Google OAuth
+        const GOOGLE_CLIENT_ID = '821049862107-1v0d3iqcaovquhvvcf7jkif9b1hifvga.apps.googleusercontent.com';
+        const GOOGLE_SCOPES = 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/userinfo.email';
+        
         document.addEventListener('DOMContentLoaded', function() {
             // Elements
             const btnGoogle = document.getElementById('btn-google');
             const btnEmail = document.getElementById('btn-email');
+            const googleSignInContainer = document.getElementById('google-signin-container');
             const modalMagicLink = document.getElementById('modal-magiclink');
             const inputEmail = document.getElementById('input-email');
             const btnConnectGmail = document.getElementById('btn-connect-gmail');
@@ -1005,6 +1049,7 @@
             
             // State management
             let currentView = 'hero'; // 'hero', 'gmail-permissions', 'scan-progress', 'scan-results', 'final-cta'
+            let googleUser = null;
             
             // Show view function
             function showView(viewName) {
@@ -1115,11 +1160,64 @@
                 scanLog.scrollTop = scanLog.scrollHeight;
             }
             
+            // Iniciar autenticación con Google
+            function initGoogleSignIn() {
+                googleSignInContainer.classList.remove('hidden');
+                
+                // Configurar Google Identity Services
+                if (typeof google !== 'undefined') {
+                    google.accounts.id.initialize({
+                        client_id: GOOGLE_CLIENT_ID,
+                        callback: handleGoogleSignIn,
+                        scope: GOOGLE_SCOPES
+                    });
+                    
+                    google.accounts.id.renderButton(
+                        document.querySelector('.google-signin-container'),
+                        { 
+                            theme: 'filled_blue', 
+                            size: 'large', 
+                            text: 'signin_with', 
+                            shape: 'rectangular',
+                            logo_alignment: 'left'
+                        }
+                    );
+                } else {
+                    showToast('Error: No se pudo cargar el servicio de Google', 'error');
+                }
+            }
+            
+            // Manejar la respuesta de Google Sign-In
+            function handleGoogleSignIn(response) {
+                // Decodificar el JWT para obtener información del usuario
+                const payload = parseJwt(response.credential);
+                googleUser = {
+                    token: response.credential,
+                    email: payload.email,
+                    name: payload.name,
+                    picture: payload.picture
+                };
+                
+                showToast(`Autenticado como ${googleUser.email}`, 'success');
+                
+                // Mostrar la solicitud de permisos de Gmail
+                showView('gmail-permissions');
+            }
+            
+            // Función para analizar un JWT
+            function parseJwt(token) {
+                try {
+                    return JSON.parse(atob(token.split('.')[1]));
+                } catch (e) {
+                    console.error('Error parsing JWT:', e);
+                    return null;
+                }
+            }
+            
             // Event listeners
             btnGoogle.addEventListener('click', function() {
-                // TODO: Conectar OAuth con Google
-                showToast('Iniciando autenticación con Google...', 'info');
-                showView('gmail-permissions');
+                // Mostrar el botón de Google Sign-In
+                initGoogleSignIn();
             });
             
             btnEmail.addEventListener('click', function() {
@@ -1153,7 +1251,12 @@
             });
             
             btnConnectGmail.addEventListener('click', function() {
-                // TODO: Conectar con Gmail API
+                if (!googleUser) {
+                    showToast('Error: No se ha autenticado con Google', 'error');
+                    return;
+                }
+                
+                // TODO: Conectar con Gmail API usando googleUser.token
                 showToast('Conectando con Gmail...', 'info');
                 
                 // Simulate connection
@@ -1168,7 +1271,7 @@
                 showToast('Reintentando escaneo...', 'info');
                 scanLog.innerHTML = '<div class="log-entry"><i class="fas fa-info-circle log-success"></i><span>Iniciando escaneo de correos...</span></div>';
                 simulateScan();
-            });
+            }
             
             document.querySelector('[data-action="select-all"]').addEventListener('click', function() {
                 const toggles = document.querySelectorAll('.toggle-include');
