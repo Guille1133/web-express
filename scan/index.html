@@ -6,7 +6,6 @@
     <title>Subscanner IA - Centraliza tus suscripciones</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Cargar la API de Google para la autenticación -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
         :root {
@@ -38,7 +37,6 @@
             overflow-x: hidden;
         }
 
-        /* Header */
         .header {
             display: flex;
             align-items: center;
@@ -85,14 +83,12 @@
             color: white;
         }
 
-        /* Main container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 6rem 2rem 3rem;
         }
 
-        /* Hero section */
         .hero {
             text-align: center;
             margin-bottom: 3rem;
@@ -115,7 +111,6 @@
             line-height: 1.6;
         }
 
-        /* Auth buttons */
         .auth-buttons {
             display: flex;
             gap: 1rem;
@@ -162,14 +157,12 @@
             transform: translateY(-2px);
         }
 
-        /* Google Sign In Button customization */
-        .g_id_signin {
-            width: 220px !important;
-            height: 44px !important;
-            margin: 0 auto;
+        .google-btn-container {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
         }
 
-        /* Features list */
         .features {
             display: flex;
             flex-direction: column;
@@ -190,7 +183,6 @@
             color: var(--electric-blue);
         }
 
-        /* Cards */
         .card {
             background: rgba(28, 28, 30, 0.7);
             backdrop-filter: blur(10px);
@@ -214,7 +206,6 @@
             color: var(--violet);
         }
 
-        /* Permission list */
         .permission-list {
             margin: 1.5rem 0;
             padding-left: 1.5rem;
@@ -225,7 +216,6 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Checkbox */
         .checkbox-container {
             display: flex;
             align-items: flex-start;
@@ -266,7 +256,6 @@
             line-height: 1.5;
         }
 
-        /* Progress bar */
         .progress-container {
             margin: 1.5rem 0;
         }
@@ -293,7 +282,6 @@
             text-align: right;
         }
 
-        /* Scan log */
         .scan-log {
             background: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
@@ -325,7 +313,6 @@
             color: var(--error);
         }
 
-        /* Results grid */
         .results-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -439,7 +426,6 @@
             font-weight: 500;
         }
 
-        /* Buttons */
         .btn {
             padding: 0.8rem 1.5rem;
             border-radius: 8px;
@@ -484,7 +470,6 @@
             margin-top: 1.5rem;
         }
 
-        /* Modal */
         .modal-backdrop {
             position: fixed;
             top: 0;
@@ -580,7 +565,6 @@
             text-decoration: underline;
         }
 
-        /* Toast */
         .toast-area {
             position: fixed;
             bottom: 2rem;
@@ -601,6 +585,7 @@
             align-items: center;
             gap: 0.7rem;
             animation: slideInRight 0.3s ease-out;
+            max-width: 400px;
         }
 
         .toast-success {
@@ -644,7 +629,6 @@
             font-size: 1.2rem;
         }
 
-        /* Final CTA */
         .final-cta {
             text-align: center;
             margin-top: 3rem;
@@ -667,7 +651,6 @@
             margin-right: auto;
         }
 
-        /* Utility classes */
         .hidden {
             display: none;
         }
@@ -680,14 +663,9 @@
             margin-top: 2rem;
         }
 
-        /* Animations */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes slideUp {
@@ -712,7 +690,6 @@
             }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2rem;
@@ -747,11 +724,19 @@
             .header-links {
                 gap: 1rem;
             }
+            
+            .toast-area {
+                right: 1rem;
+                left: 1rem;
+            }
+            
+            .toast {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="logo">
             <i class="fas fa-brain-circuit logo-icon"></i>
@@ -763,42 +748,22 @@
         </div>
     </header>
 
-    <!-- Main container -->
     <div class="container">
-        <!-- Hero section -->
         <section class="hero">
             <h1 class="hero-title">Centralizá tus suscripciones de IA</h1>
             <p class="hero-subtitle">Conecta Gmail o tu email para descubrir gastos, usos y próximas renovaciones.</p>
             
             <div class="auth-buttons">
-                <!-- Botón de Google personalizado que activa el flujo de OAuth -->
-                <button class="auth-btn auth-btn-primary" id="btn-google" data-action="oauth-gmail">
+                <button class="auth-btn auth-btn-primary" id="btn-google">
                     <i class="fab fa-google"></i> Continuar con Google
                 </button>
-                <button class="auth-btn auth-btn-secondary" id="btn-email" data-action="open-magiclink">
+                <button class="auth-btn auth-btn-secondary" id="btn-email">
                     <i class="fas fa-envelope"></i> Continuar con Email
                 </button>
             </div>
             
-            <!-- Div para el botón de Google Sign-In (oculto inicialmente) -->
-            <div id="g_id_onload"
-                data-client_id="821049862107-1v0d3iqcaovquhvvcf7jkif9b1hifvga.apps.googleusercontent.com"
-                data-context="signin"
-                data-ux_mode="popup"
-                data-callback="handleGoogleSignIn"
-                data-auto_prompt="false"
-                class="hidden">
-            </div>
-
-            <div class="google-signin-container hidden" id="google-signin-container">
-                <div class="g_id_signin"
-                    data-type="standard"
-                    data-shape="rectangular"
-                    data-theme="filled_blue"
-                    data-text="signin_with"
-                    data-size="large"
-                    data-logo_alignment="left">
-                </div>
+            <div class="google-btn-container hidden" id="google-signin-container">
+                <!-- Google Sign-In button will be rendered here -->
             </div>
             
             <div class="features">
@@ -817,7 +782,6 @@
             </div>
         </section>
 
-        <!-- Gmail Permissions Card (hidden by default) -->
         <div class="card hidden" id="gmail-permissions">
             <h2 class="card-title">
                 <i class="fas fa-shield-alt card-icon"></i>
@@ -837,10 +801,9 @@
                 <label for="permission-checkbox" class="checkbox-label">Acepto otorgar permisos de solo lectura para escanear mis suscripciones</label>
             </div>
             
-            <button class="btn btn-primary" id="btn-connect-gmail" data-action="connect-gmail" disabled>Conectar con Google</button>
+            <button class="btn btn-primary" id="btn-connect-gmail" disabled>Conectar con Google</button>
         </div>
 
-        <!-- Scan Progress Card (hidden by default) -->
         <div class="card hidden" id="scan-progress">
             <h2 class="card-title">
                 <i class="fas fa-search card-icon"></i>
@@ -863,11 +826,10 @@
             </div>
             
             <div class="action-buttons">
-                <button class="btn btn-secondary" data-action="retry-scan">Reintentar</button>
+                <button class="btn btn-secondary" id="retry-scan">Reintentar</button>
             </div>
         </div>
 
-        <!-- Results Card (hidden by default) -->
         <div class="card hidden" id="scan-results">
             <h2 class="card-title">
                 <i class="fas fa-check-circle card-icon"></i>
@@ -876,11 +838,10 @@
             <p>Hemos encontrado estas suscripciones en tu correo. Selecciona las que quieras incluir en tu dashboard.</p>
             
             <div class="action-buttons">
-                <button class="btn btn-secondary" data-action="select-all">Seleccionar todas</button>
+                <button class="btn btn-secondary" id="select-all">Seleccionar todas</button>
             </div>
             
             <div class="results-grid">
-                <!-- Example provider card 1 -->
                 <div class="provider-card">
                     <div class="provider-header">
                         <div class="provider-info">
@@ -914,7 +875,6 @@
                     </div>
                 </div>
                 
-                <!-- Example provider card 2 -->
                 <div class="provider-card">
                     <div class="provider-header">
                         <div class="provider-info">
@@ -948,7 +908,6 @@
                     </div>
                 </div>
                 
-                <!-- Example provider card 3 -->
                 <div class="provider-card">
                     <div class="provider-header">
                         <div class="provider-info">
@@ -984,24 +943,22 @@
             </div>
             
             <div class="action-buttons">
-                <button class="btn btn-primary" data-action="confirm-selection">Confirmar y continuar</button>
+                <button class="btn btn-primary" id="confirm-selection">Confirmar y continuar</button>
             </div>
         </div>
 
-        <!-- Final CTA (hidden by default) -->
         <div class="final-cta hidden" id="final-cta">
             <h2 class="cta-title">¡Listo para empezar!</h2>
             <p class="cta-subtitle">Tu dashboard está listo con todas las suscripciones seleccionadas. Ahora podrás hacer seguimiento de tus gastos, usos y próximas renovaciones.</p>
-            <button class="btn btn-primary" id="btn-go-dashboard" data-action="go-dashboard">Ir al Dashboard</button>
+            <button class="btn btn-primary" id="btn-go-dashboard">Ir al Dashboard</button>
         </div>
     </div>
 
-    <!-- Magic Link Modal (hidden by default) -->
     <div class="modal-backdrop hidden" id="modal-magiclink">
         <div class="modal">
             <h2 class="modal-title">
                 <span>Acceder con Email</span>
-                <button class="close-modal" data-action="close-magiclink">&times;</button>
+                <button class="close-modal">&times;</button>
             </h2>
             
             <div class="input-group">
@@ -1009,25 +966,21 @@
                 <input type="email" id="input-email" class="input-field" placeholder="nombre@ejemplo.com">
             </div>
             
-            <button class="btn btn-primary" data-action="send-magiclink" style="width: 100%;">Enviar enlace</button>
+            <button class="btn btn-primary" id="send-magiclink" style="width: 100%;">Enviar enlace</button>
             
             <div class="modal-footer">
                 <div class="modal-alternative">
-                    ¿Problemas con el enlace? <a class="modal-link" data-action="open-code">Usar código de verificación</a>
+                    ¿Problemas con el enlace? <a class="modal-link" id="open-code">Usar código de verificación</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Toast Area -->
-    <div class="toast-area" id="toast-area">
-        <!-- Toasts will be added here dynamically -->
-    </div>
+    <div class="toast-area" id="toast-area"></div>
 
     <script>
         // Configuración de Google OAuth
         const GOOGLE_CLIENT_ID = '821049862107-1v0d3iqcaovquhvvcf7jkif9b1hifvga.apps.googleusercontent.com';
-        const GOOGLE_SCOPES = 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/userinfo.email';
         
         document.addEventListener('DOMContentLoaded', function() {
             // Elements
@@ -1048,17 +1001,15 @@
             const toastArea = document.getElementById('toast-area');
             
             // State management
-            let currentView = 'hero'; // 'hero', 'gmail-permissions', 'scan-progress', 'scan-results', 'final-cta'
+            let currentView = 'hero';
             let googleUser = null;
             
             // Show view function
             function showView(viewName) {
-                // Hide all views
                 document.querySelectorAll('.card, .final-cta, #gmail-permissions').forEach(el => {
                     el.classList.add('hidden');
                 });
                 
-                // Show the requested view
                 currentView = viewName;
                 if (viewName === 'final-cta') {
                     finalCta.classList.remove('hidden');
@@ -1068,7 +1019,6 @@
                     document.getElementById(viewName).classList.remove('hidden');
                 }
                 
-                // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
             
@@ -1090,7 +1040,6 @@
                 
                 toastArea.appendChild(toast);
                 
-                // Auto remove after 5 seconds
                 setTimeout(() => {
                     if (toast.parentNode) {
                         toast.style.opacity = '0';
@@ -1098,7 +1047,6 @@
                     }
                 }, 5000);
                 
-                // Close on click
                 toast.querySelector('.toast-close').addEventListener('click', () => {
                     toast.style.opacity = '0';
                     setTimeout(() => toast.remove(), 300);
@@ -1115,7 +1063,6 @@
                     scanBar.style.width = `${progress}%`;
                     progressText.textContent = `${Math.round(progress)}%`;
                     
-                    // Add log entries at certain intervals
                     if (progress > 10 && progress < 15) {
                         addLogEntry('Buscando recibos Stripe...', 'success');
                     }
@@ -1160,36 +1107,38 @@
                 scanLog.scrollTop = scanLog.scrollHeight;
             }
             
-            // Iniciar autenticación con Google
+            // Initialize Google Sign-In
             function initGoogleSignIn() {
-                googleSignInContainer.classList.remove('hidden');
-                
-                // Configurar Google Identity Services
-                if (typeof google !== 'undefined') {
-                    google.accounts.id.initialize({
-                        client_id: GOOGLE_CLIENT_ID,
-                        callback: handleGoogleSignIn,
-                        scope: GOOGLE_SCOPES
-                    });
-                    
-                    google.accounts.id.renderButton(
-                        document.querySelector('.google-signin-container'),
-                        { 
-                            theme: 'filled_blue', 
-                            size: 'large', 
-                            text: 'signin_with', 
-                            shape: 'rectangular',
-                            logo_alignment: 'left'
-                        }
-                    );
-                } else {
-                    showToast('Error: No se pudo cargar el servicio de Google', 'error');
+                if (typeof google === 'undefined') {
+                    showToast('Error: No se pudo cargar el servicio de Google. Intenta recargar la página.', 'error');
+                    return;
                 }
+                
+                google.accounts.id.initialize({
+                    client_id: GOOGLE_CLIENT_ID,
+                    callback: handleGoogleSignIn,
+                    auto_select: false
+                });
+                
+                // Render the button
+                google.accounts.id.renderButton(
+                    googleSignInContainer,
+                    { 
+                        theme: "filled_blue", 
+                        size: "large", 
+                        text: "signin_with", 
+                        shape: "rectangular",
+                        logo_alignment: "left",
+                        width: 220
+                    }
+                );
+                
+                googleSignInContainer.classList.remove('hidden');
+                showToast('Selecciona una cuenta de Google para continuar', 'info');
             }
             
-            // Manejar la respuesta de Google Sign-In
+            // Handle Google Sign-In response
             function handleGoogleSignIn(response) {
-                // Decodificar el JWT para obtener información del usuario
                 const payload = parseJwt(response.credential);
                 googleUser = {
                     token: response.credential,
@@ -1199,12 +1148,10 @@
                 };
                 
                 showToast(`Autenticado como ${googleUser.email}`, 'success');
-                
-                // Mostrar la solicitud de permisos de Gmail
                 showView('gmail-permissions');
             }
             
-            // Función para analizar un JWT
+            // Parse JWT token
             function parseJwt(token) {
                 try {
                     return JSON.parse(atob(token.split('.')[1]));
@@ -1216,7 +1163,6 @@
             
             // Event listeners
             btnGoogle.addEventListener('click', function() {
-                // Mostrar el botón de Google Sign-In
                 initGoogleSignIn();
             });
             
@@ -1224,22 +1170,20 @@
                 modalMagicLink.classList.remove('hidden');
             });
             
-            document.querySelector('[data-action="close-magiclink"]').addEventListener('click', function() {
+            document.querySelector('.close-modal').addEventListener('click', function() {
                 modalMagicLink.classList.add('hidden');
             });
             
-            document.querySelector('[data-action="send-magiclink"]').addEventListener('click', function() {
+            document.getElementById('send-magiclink').addEventListener('click', function() {
                 const email = inputEmail.value;
                 if (!email || !email.includes('@')) {
                     showToast('Por favor ingresa un email válido', 'error');
                     return;
                 }
                 
-                // TODO: Enviar magic link
                 showToast(`Te enviamos un link a ${email}. Revisá tu bandeja.`, 'success');
                 modalMagicLink.classList.add('hidden');
                 
-                // Simulate successful connection
                 setTimeout(() => {
                     showView('scan-progress');
                     simulateScan();
@@ -1256,24 +1200,21 @@
                     return;
                 }
                 
-                // TODO: Conectar con Gmail API usando googleUser.token
                 showToast('Conectando con Gmail...', 'info');
                 
-                // Simulate connection
                 setTimeout(() => {
                     showView('scan-progress');
                     simulateScan();
                 }, 1500);
             });
             
-            document.querySelector('[data-action="retry-scan"]').addEventListener('click', function() {
-                // TODO: Reintentar escaneo
+            document.getElementById('retry-scan').addEventListener('click', function() {
                 showToast('Reintentando escaneo...', 'info');
                 scanLog.innerHTML = '<div class="log-entry"><i class="fas fa-info-circle log-success"></i><span>Iniciando escaneo de correos...</span></div>';
                 simulateScan();
-            }
+            });
             
-            document.querySelector('[data-action="select-all"]').addEventListener('click', function() {
+            document.getElementById('select-all').addEventListener('click', function() {
                 const toggles = document.querySelectorAll('.toggle-include');
                 toggles.forEach(toggle => {
                     toggle.checked = true;
@@ -1281,19 +1222,20 @@
                 showToast('Todas las suscripciones seleccionadas', 'success');
             });
             
-            document.querySelector('[data-action="confirm-selection"]').addEventListener('click', function() {
-                // TODO: Confirmar selección
+            document.getElementById('confirm-selection').addEventListener('click', function() {
                 showToast('Guardando tus selecciones...', 'info');
                 
-                // Simulate save
                 setTimeout(() => {
                     showView('final-cta');
                 }, 1000);
             });
             
             document.getElementById('btn-go-dashboard').addEventListener('click', function() {
-                // TODO: Redirigir al dashboard
                 showToast('Redirigiendo al dashboard...', 'info');
+            });
+            
+            document.getElementById('open-code').addEventListener('click', function() {
+                showToast('Función no implementada en esta demo', 'warning');
             });
             
             // Close modal when clicking outside
