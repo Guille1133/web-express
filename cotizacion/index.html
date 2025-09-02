@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización Instantánea - CapturePro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --secondary: #4a42e8;
+            --accent: #ff6584;
+            --dark: #2a2a72;
+            --light: #f8f9fa;
+            --success: #28a745;
+            --error: #dc3545;
+            --text: #333333;
+            --text-light: #6c757d;
+            --discount: #ff6b6b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .discount-badge {
+            background-color: var(--discount);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        
+        .discount-item {
+            color: var(--success);
+            font-weight: 600;
+        }
+        
+        .form-container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 900px;
+            overflow: hidden;
+        }
+        
+        .form-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .form-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-header p {
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .instant-badge {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .form-progress {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem;
+            position: relative;
+        }
+        
+        .form-progress::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #eee;
+            z-index: 1;
+        }
+        
+        .progress-step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            border: 2px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            font-weight: 600;
+        }
+        
+        .progress-step.active {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .progress-step.completed {
+            border-color: var(--success);
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .form-content {
+            padding: 0 2rem 2rem;
+        }
+        
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            text-align: center;
+        }
+        
+        .step-description {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .option-card {
+            border: 2px solid #eee;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .option-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.1);
+        }
+        
+        .option-card.selected {
+            border-color: var(--primary);
+            background-color: rgba(108, 99, 255, 0.05);
+        }
+        
+        .option-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .option-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .price-info {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .included-features {
+            margin-top: auto;
+        }
+        
+        .included-features small {
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+        
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checkbox-option:hover {
+            border-color: var(--primary);
+        }
+        
+        .checkbox-option input {
+            margin-right: 1rem;
+            transform: scale(1.2);
+        }
+        
+        .checkbox-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(108, 99, 255, 0.05);
+        }
+        
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .form-button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+            font-size: 1rem;
+        }
+        
+        .form-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .secondary-button {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .secondary-button:hover:not(:disabled) {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .primary-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+        
+        .primary-button:hover:not(:disabled) {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+        
+        .form-summary {
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eee;
+            color: var(--primary);
+        }
+        
+        .price-highlight {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.2rem;
+        }
+        
+        .transparency-note {
+            background-color: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        
+        .transparency-note i {
+            color: var(--success);
+            margin-right: 0.5rem;
+        }
+        
+        .info-card {
+            background-color: rgba(108, 99, 255, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        
+        .info-card i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+        
+        .error-message {
+            background-color: rgba(220, 53, 69, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            color: var(--error);
+            display: none;
+        }
+        
+        .error-message i {
+            color: var(--error);
+            margin-right: 0.5rem;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .action-button {
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .action-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .action-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .action-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .action-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+        }
+        
+        .form-input.error {
+            border-color: var(--error);
+            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+        }
+        
+        .whatsapp-input-container {
+            display: flex;
+            width: 100%;
+        }
+        
+        .country-code {
+            width: 100px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px 0 0 8px;
+            font-size: 1rem;
+            background-color: #f8f9fa;
+        }
+        
+        .whatsapp-input {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-left: none;
+            border-radius: 0 8px 8px 0;
+            font-size: 1rem;
+        }
+        
+        .instant-result {
+            background: linear-gradient(135deg, var(--success) 0%, #20c997 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .instant-result h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .additional-type-card .price-info {
+            display: none !important;
+        }
+        
+        .additional-type-card.selected {
+            border-color: var(--success);
+            background-color: rgba(40, 167, 69, 0.05);
+        }
+        
+        .additional-type-card.selected i {
+            color: var(--success);
+        }
+        
+        #additional-types-selection {
+            background-color: #f0f8ff;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .page-configuration {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            background-color: #fafafa;
+        }
+        
+        .page-config-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .page-config-header h4 {
+            color: var(--dark);
+            font-size: 1.3rem;
+        }
+        
+        .page-base-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .base-includes {
+            background-color: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+        
+        .base-includes i {
+            color: var(--success);
+            margin-right: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-progress {
+                margin: 1rem;
+            }
+            
+            .form-content {
+                padding: 0 1rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Cotización Personalizada</h1>
+            <p>Diseñamos landing pages a tu medida. Completa el formulario y recibe tu presupuesto personalizado.</p>
+            <div class="instant-badge">
+                <i class="fas fa-bolt"></i> Cotización Instantánea
+            </div>
+        </div>
+        
+        <div class="form-progress">
+            <div class="progress-step active" id="step-1-indicator">1</div>
+            <div class="progress-step" id="step-2-indicator">2</div>
+            <div class="progress-step" id="step-3-indicator">3</div>
+            <div class="progress-step" id="step-4-indicator">4</div>
+            <div class="progress-step" id="step-5-indicator">5</div>
+        </div>
+        
+        <div class="form-content">
+            <form id="quote-form">
+                <!-- Step 1: Contact Information -->
+                <div class="form-step active" id="step-1">
+                    <h3 class="step-title">Comencemos con tus datos</h3>
+                    <p class="step-description">Para enviarte la cotización personalizada necesitamos tus datos de contacto</p>
+                    
+                    <div class="info-card">
+                        <p><i class="fas fa-shield-alt"></i> Tus datos están protegidos. Solo los utilizamos para enviarte tu cotización instantánea y contactarte sobre tu proyecto.</p>
+                    </div>
+                    
+                    <div class="error-message" id="step1-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Por favor completa todos los campos obligatorios para continuar</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-name">Nombre completo *</label>
+                        <input type="text" id="contact-name" class="form-input" required placeholder="Tu nombre completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Correo electrónico *</label>
+                        <input type="email" id="contact-email" class="form-input" required placeholder="tu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-phone">WhatsApp *</label>
+                        <div class="whatsapp-input-container">
+                            <select class="country-code" id="contact-country">
+                                <option value="+1">+1 (US)</option>
+                                <option value="+52">+52 (MX)</option>
+                                <option value="+54">+54 (AR)</option>
+                                <option value="+56">+56 (CL)</option>
+                                <option value="+57" selected>+57 (CO)</option>
+                                <option value="+58">+58 (VE)</option>
+                                <option value="+34">+34 (ES)</option>
+                                <option value="+51">+51 (PE)</option>
+                            </select>
+                            <input type="tel" id="contact-phone" class="whatsapp-input" required placeholder="Número de WhatsApp">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="company-name">Empresa (opcional)</label>
+                        <input type="text" id="company-name" class="form-input" placeholder="Nombre de tu empresa">
+                    </div>
+                    
+                    <!-- Honeypot field -->
+                    <input type="text" id="hp_field" style="position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">
+                    
+                    <div class="form-group">
+                        <label class="checkbox-option" style="border:0; padding:0;">
+                            <input type="checkbox" id="consent" style="margin-right:.6rem;">
+                            Acepto la <a href="https://paginaya24.com/privacidad" target="_blank" rel="noopener">Política de Privacidad</a> y el uso de mis datos para enviarme esta cotización.
+                        </label>
+                        <small id="consent-error" class="error-message" style="display:none; margin-top:.6rem;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Debes aceptar la Política de Privacidad para continuar.
+                        </small>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="form-button secondary-button" id="close-form">Cancelar</button>
+                        <button type="button" class="form-button primary-button" id="next-step-1" disabled>Continuar</button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Landing Type -->
+                <div class="form-step" id="step-2">
+                    <h3 class="step-title">¿Qué tipo de landing page necesitás?</h3>
+                    <p class="step-description">Selecciona el objetivo principal de tu página</p>
+                    
+                    <div class="error-message" id="step2-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Por favor selecciona un tipo de landing page para continuar</span>
+                    </div>
+                    
+                    <div class="options-grid">
+                        <div class="option-card" data-value="marca">
+                            <i class="fas fa-user-tie"></i>
+                            <h4>Marca Personal</h4>
+                            <div class="price-info">$200 USD</div>
+                            <div class="included-features">
+                                <small>Incluye: logotipo o nombre, biografía con foto, portafolio, CTA de contacto</small>
+                            </div>
+                        </div>
+                        
+                        <div class="option-card" data-value="captura">
+                            <i class="fas fa-user-plus"></i>
+                            <h4>Captura de Leads</h4>
+                            <div class="price-info">$150 USD</div>
+                            <div class="included-features">
+                                <small>Incluye: diseño personalizado, titular, propuesta de valor, formulario breve, CTA claro</small>
+                            </div>
+                        </div>
+                        
+                        <div class="option-card" data-value="venta">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h4>Página de Venta</h4>
+                            <div class="price-info">$200 USD</div>
+                            <div class="included-features">
+                                <small>Incluye: encabezado atractivo, descripción del producto, beneficios, Botón dirigido al checkout</small>
+                            </div>
+                        </div>
+                        
+                        <div class="option-card" data-value="ebook">
+                            <i class="fas fa-book"></i>
+                            <h4>Promoción de E-book</h4>
+                            <div class="price-info">$150 USD</div>
+                            <div class="included-features">
+                                <small>Incluye: título convincente, descripción breve, portada del ebook, lista de beneficios y botón dirigido al checkout</small>
+                            </div>
+                        </div>
+                        
+                        <div class="option-card" data-value="evento">
+                            <i class="fas fa-calendar-day"></i>
+                            <h4>Página para Evento</h4>
+                            <div class="price-info">$200 USD</div>
+                            <div class="included-features">
+                                <small>Incluye: título impactante, fecha/hora/lugar, valor agregado, registro</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="form-button secondary-button" id="prev-step-2">Anterior</button>
+                        <button type="button" class="form-button primary-button" id="next-step-2" disabled>Siguiente</button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Number of Landings -->
+                <div class="form-step" id="step-3">
+                    <h3 class="step-title">¿Cuántas landing pages necesitás?</h3>
+                    <p class="step-description">Selecciona la cantidad</p>
+                    
+                    <div class="error-message" id="step3-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Por favor selecciona la cantidad de landing pages para continuar</span>
+                    </div>
+                    
+                    <div class="options-grid">
+                        <div class="option-card" data-value="1">
+                            <i class="fas fa-layer-group"></i>
+                            <h4>1 Landing Page</h4>
+                            <div class="price-info">Ideal para empezar</div>
+                        </div>
+                        
+                        <div class="option-card" data-value="2">
+                            <i class="fas fa-layer-group"></i>
+                            <h4>2 Landing Pages</h4>
+                            <div class="price-info">Para diferentes campañas</div>
+                            <span class="discount-badge">20% OFF en la 2da</span>
+                        </div>
+                        
+                        <div class="option-card" data-value="3">
+                            <i class="fas fa-layer-group"></i>
+                            <h4>3 Landing Pages</h4>
+                            <div class="price-info">Para múltiples productos</div>
+                            <span class="discount-badge">30% OFF en la 3ra</span>
+                        </div>
+                    </div>
+                    
+                    <div id="same-type-question" style="display: none; margin-top: 1.5rem;">
+                        <p style="margin-bottom: 1rem; font-weight: 500;">¿Todas las landing pages serán del mismo tipo?</p>
+                        <div class="error-message" id="step3-type-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Por favor selecciona si serán del mismo tipo o diferentes</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                            <div class="option-card" style="flex: 1; padding: 1rem;" data-same-type="true">
+                                <i class="fas fa-check-circle"></i>
+                                <h4>Sí, mismo tipo</h4>
+                            </div>
+                            <div class="option-card" style="flex: 1; padding: 1rem;" data-same-type="false">
+                                <i class="fas fa-times-circle"></i>
+                                <h4>No, diferentes tipos</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="additional-types-selection" style="display: none; margin-top: 1.5rem;">
+                        <p style="margin-bottom: 1rem; font-weight: 500;">Selecciona los tipos de las páginas adicionales:</p>
+                        <div class="error-message" id="step3-additional-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Por favor selecciona todos los tipos de páginas adicionales</span>
+                        </div>
+                        <div id="additional-types-grid" class="options-grid">
+                            <!-- Additional page type options will be populated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="form-button secondary-button" id="prev-step-3">Anterior</button>
+                        <button type="button" class="form-button primary-button" id="next-step-3" disabled>Siguiente</button>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Page Configuration (Individual Features) -->
+                <div class="form-step" id="step-4">
+                    <h3 class="step-title">Configuración por página</h3>
+                    <p class="step-description">Configura las funcionalidades para cada página</p>
+                    
+                    <div id="page-configurations">
+                        <!-- Individual page configurations will be populated here -->
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="form-button secondary-button" id="prev-step-4">Anterior</button>
+                        <button type="button" class="form-button primary-button" id="next-step-4">Ver Cotización</button>
+                    </div>
+                </div>
+                
+                <!-- Step 5: Additional Features (when same type) -->
+                <div class="form-step" id="step-5-features">
+                    <h3 class="step-title">Funcionalidades adicionales</h3>
+                    <p class="step-description">Selecciona todas las funcionalidades que necesites (opcional)</p>
+                    
+                    <div class="base-includes" id="base-includes">
+                        <!-- Base features will be shown here -->
+                    </div>
+                    
+                    <div class="transparency-note">
+                        <p><i class="fas fa-check-circle"></i> Todos los planes incluyen 1 año de hosting + dominio y 3 meses de mantenimiento. Sin costos ocultos.</p>
+                    </div>
+                    
+                    <div class="checkbox-grid">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="seo"> SEO On-Page (+$15)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="analytics"> Píxeles & Analytics (Meta/Google/GA4) (+$15)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="gracias"> Página de Gracias (+$30)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="contador"> Contador de tiempo/Urgencia (+$25)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="popup"> Pop-up (WhatsApp, captura, oferta) (+$15)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="crm"> Integración a CRM/Email marketing (+$40)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="pagos"> Integración a Pasarela de Pago/Checkout (+$25)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="agenda"> Integración a Agenda/Calendario (+$25)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="copywriting"> Copywriting persuasivo con Neuromarketing (+$15)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="imagenes"> Imágenes premium/banco de stock (+$20)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="testimonios"> Testimonios Pro (carrusel + logos) (+$40)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="faq"> FAQ (Preguntas frecuentes) (+$30)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="cookies"> Cookies/Consentimiento legal (+$35)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="leadmagnet"> Integración Lead Magnet (+$40)
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="features" value="express"> Entrega express (menos de 72hs) (+$90)
+                        </label>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="form-button secondary-button" id="prev-step-5-features">Anterior</button>
+                        <button type="button" class="form-button primary-button" id="next-step-5-features">Ver Cotización</button>
+                    </div>
+                </div>
+                
+                <!-- Step 5: Final Quote -->
+                <div class="form-step" id="step-5">
+                    <div class="instant-result">
+                        <h3><i class="fas fa-check-circle"></i> ¡Tu cotización está lista!</h3>
+                        <p>Cotización personalizada generada al instante</p>
+                    </div>
+                    
+                    <div class="form-summary">
+                        <div class="summary-item">
+                            <span><strong>Cliente:</strong></span>
+                            <span id="summary-client">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Tipo de landing:</span>
+                            <span id="summary-type">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Cantidad:</span>
+                            <span id="summary-quantity">-</span>
+                        </div>
+                        <div id="features-summary">
+                            <!-- Features will be added here -->
+                        </div>
+                        <div id="discounts-summary">
+                            <!-- Discounts will be added here -->
+                        </div>
+                        <div class="summary-total">
+                            <span>Total estimado:</span>
+                            <span id="total-price" class="price-highlight">$0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="transparency-note">
+                        <p><i class="fas fa-check-circle"></i> Presupuesto transparente, sin costos ocultos. Incluye 1 año de hosting + dominio y 3 meses de mantenimiento.</p>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button type="button" class="action-button action-primary" id="hire-now">
+                            <i class="fas fa-credit-card"></i> Contratar ahora
+                        </button>
+                        <button type="button" class="action-button action-secondary" id="talk-agent">
+                            <i class="fas fa-comments"></i> Hablar con un agente
+                        </button>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="form-button secondary-button" id="prev-step-5">Modificar cotización</button>
+                        <button type="button" class="form-button secondary-button" id="new-quote">Nueva cotización</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Constants for Supabase
+        const LEAD_ENDPOINT = 'https://pkqdyvjdnfqaigdegcwq.supabase.co/functions/v1/lead-start';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBrcWR5dmpkbmZxYWlnZGVnY3dxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3NDYwODksImV4cCI6MjA3MjMyMjA4OX0.1op8VMX7zbSKtLfDtgcH0YElbklVo4bIvWbLtIprEuk';
+        
+        // Form data
+        const formData = {
+            name: '', 
+            email: '', 
+            phone: '',
+            company: '',
+            type: '',
+            quantity: 0,
+            sameType: null,
+            additionalTypes: [],
+            pages: [], // Array to store configuration for each page
+            features: [],
+            basePrice: 150,
+            totalPrice: 0,
+            discounts: []
+        };
+        
+        // Pricing for different types
+        const typePrices = {
+            'captura': 150,
+            'venta': 200,
+            'ebook': 150,
+            'evento': 200,
+            'marca': 200
+        };
+        
+        // Feature prices (removed "descarga" as requested, updated CRM to $40)
+        const featurePrices = {
+            'seo': 15,
+            'analytics': 15,
+            'gracias': 30,
+            'contador': 25,
+            'popup': 15,
+            'crm': 40,
+            'pagos': 25,
+            'agenda': 25,
+            'copywriting': 15,
+            'imagenes': 20,
+            'testimonios': 40,
+            'faq': 30,
+            'cookies': 35,
+            'leadmagnet': 40,
+            'express': 90
+        };
+        
+        // Base features for each type (to avoid showing as additional if already included)
+        const baseFeatures = {
+            'marca': ['logotipo', 'biografia', 'portafolio', 'cta_contacto'],
+            'captura': ['diseño_personalizado', 'titular', 'propuesta_valor', 'formulario_breve', 'cta_claro'],
+            'venta': ['encabezado_atractivo', 'descripcion_producto', 'beneficios', 'boton_checkout'],
+            'ebook': ['titulo_convincente', 'descripcion_breve', 'portada_ebook', 'lista_beneficios', 'boton_checkout'],
+            'evento': ['titulo_impactante', 'fecha_hora_lugar', 'valor_agregado', 'registro']
+        };
+        
+        // Function to validate email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Function to validate phone
+        function isValidPhone(phone) {
+            const phoneRegex = /^\d{7,15}$/;
+            return phoneRegex.test(phone.replace(/\s+/g, ''));
+        }
+        
+        // Function to show base features for selected type
+        function showBaseFeatures(pageType) {
+            const baseIncludesDiv = document.getElementById('base-includes');
+            if (!baseIncludesDiv) return;
+            
+            const typeFeatures = {
+                'marca': 'logotipo o nombre, biografía con foto, portafolio, CTA de contacto',
+                'captura': 'diseño personalizado, titular, propuesta de valor, formulario breve, CTA claro',
+                'venta': 'encabezado atractivo, descripción del producto, beneficios, Botón dirigido al checkout',
+                'ebook': 'título convincente, descripción breve, portada del ebook, lista de beneficios y botón dirigido al checkout',
+                'evento': 'título impactante, fecha/hora/lugar, valor agregado, registro'
+            };
+            
+            const typeNames = {
+                'marca': 'Marca Personal',
+                'captura': 'Captura de Leads', 
+                'venta': 'Página de Venta',
+                'ebook': 'Promoción de E-book',
+                'evento': 'Página para Evento'
+            };
+            
+            baseIncludesDiv.innerHTML = `
+                <p><i class="fas fa-check-circle"></i> <strong>${typeNames[pageType]} incluye base:</strong> ${typeFeatures[pageType]}</p>
+            `;
+        }
+        
+        // Function to update button states
+        function updateButtonStates() {
+            // Step 1 validation
+            const step1NextButton = document.getElementById('next-step-1');
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const phone = document.getElementById('contact-phone').value.trim();
+            const consent = document.getElementById('consent').checked;
+            
+            if (name && email && isValidEmail(email) && phone && isValidPhone(phone) && consent) {
+                step1NextButton.disabled = false;
+            } else {
+                step1NextButton.disabled = true;
+            }
+            
+            // Step 2 validation
+            const step2NextButton = document.getElementById('next-step-2');
+            if (formData.type) {
+                step2NextButton.disabled = false;
+            } else {
+                step2NextButton.disabled = true;
+            }
+            
+            // Step 3 validation
+            const step3NextButton = document.getElementById('next-step-3');
+            let canProceedStep3 = formData.quantity > 0;
+            
+            // If multiple pages, check if same type option is selected
+            if (formData.quantity > 1 && formData.sameType === null) {
+                canProceedStep3 = false;
+            }
+            
+            // If different types selected, check if correct number of additional types selected
+            if (formData.quantity > 1 && formData.sameType === false) {
+                const requiredAdditional = formData.quantity - 1;
+                canProceedStep3 = formData.additionalTypes.length === requiredAdditional;
+            }
+            
+            if (step3NextButton) {
+                step3NextButton.disabled = !canProceedStep3;
+            }
+        }
+        
+        // Function to send lead data to Supabase
+        async function sendLeadToSupabase(leadData) {
+            try {
+                const res = await fetch(LEAD_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    },
+                    body: JSON.stringify(leadData)
+                });
+
+                if (!res.ok) {
+                    const text = await res.text().catch(() => '');
+                    throw new Error(`HTTP ${res.status} ${text}`);
+                }
+
+                const data = await res.json();
+                // Esperamos: { success: true, lead_id, resume_token } (si tu función devuelve esto)
+                if (data?.lead_id) localStorage.setItem('lead_id', data.lead_id);
+                if (data?.resume_token) localStorage.setItem('resume_token', data.resume_token);
+                return data;
+            } catch (err) {
+                console.error('Error enviando lead a Supabase:', err);
+                return null; // no bloquear el flujo
+            }
+        }
+        
+        // Function to save quote data to Supabase
+        async function saveQuote() {
+            try {
+                const leadId = localStorage.getItem('lead_id');
+                if (!leadId) {
+                    console.warn('No lead_id found in localStorage, skipping quote save');
+                    return null;
+                }
+
+                const quoteData = {
+                    lead_id: leadId,
+                    quote_data: {
+                        type: formData.type,
+                        quantity: formData.quantity,
+                        totalPrice: formData.totalPrice,
+                        pages: formData.pages.map(p => ({
+                            type: p.type,
+                            title: p.title,
+                            price: p.price,
+                            features: p.features
+                        })),
+                        discounts: formData.discounts
+                    }
+                };
+
+                const res = await fetch(QUOTE_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    },
+                    body: JSON.stringify(quoteData)
+                });
+
+                if (!res.ok) {
+                    const text = await res.text().catch(() => '');
+                    throw new Error(`HTTP ${res.status} ${text}`);
+                }
+
+                const data = await res.json();
+                // Guardar quote_id o resume_token si los devuelve la función
+                if (data?.quote_id) localStorage.setItem('quote_id', data.quote_id);
+                if (data?.resume_token) localStorage.setItem('resume_token', data.resume_token);
+                return data;
+            } catch (err) {
+                console.error('Error guardando cotización:', err);
+                return null; // no bloquear el flujo
+            }
+        }
+        
+        // Function to populate additional page types
+        function populateAdditionalTypes() {
+            console.log('populateAdditionalTypes called');
+            console.log('formData.quantity:', formData.quantity);
+            console.log('formData.type:', formData.type);
+            
+            const additionalTypesGrid = document.getElementById('additional-types-grid');
+            if (!additionalTypesGrid) {
+                console.error('additional-types-grid not found');
+                return;
+            }
+            
+            const requiredSelections = formData.quantity - 1;
+            console.log('requiredSelections:', requiredSelections);
+            
+            additionalTypesGrid.innerHTML = '';
+            
+            // Available types (excluding the main type already selected)
+            const allTypes = [
+                { value: 'marca', title: 'Marca Personal', icon: 'fas fa-user-tie' },
+                { value: 'captura', title: 'Captura de Leads', icon: 'fas fa-user-plus' },
+                { value: 'venta', title: 'Página de Venta', icon: 'fas fa-shopping-cart' },
+                { value: 'ebook', title: 'Promoción de E-book', icon: 'fas fa-book' },
+                { value: 'evento', title: 'Página para Evento', icon: 'fas fa-calendar-day' }
+            ];
+            
+            const availableTypes = allTypes.filter(type => type.value !== formData.type);
+            console.log('availableTypes:', availableTypes);
+            
+            availableTypes.forEach(type => {
+                const typeCard = document.createElement('div');
+                typeCard.className = 'option-card additional-type-card';
+                typeCard.setAttribute('data-additional-type', type.value);
+                typeCard.innerHTML = `
+                    <i class="${type.icon}"></i>
+                    <h4>${type.title}</h4>
+                `;
+                
+                typeCard.addEventListener('click', function() {
+                    console.log('Additional type clicked:', type.value);
+                    const value = this.getAttribute('data-additional-type');
+                    const isSelected = this.classList.contains('selected');
+                    
+                    if (isSelected) {
+                        // Deselect
+                        this.classList.remove('selected');
+                        formData.additionalTypes = formData.additionalTypes.filter(t => t !== value);
+                        console.log('Deselected, additionalTypes now:', formData.additionalTypes);
+                    } else {
+                        // Select, but check limit
+                        if (formData.additionalTypes.length < requiredSelections) {
+                            this.classList.add('selected');
+                            formData.additionalTypes.push(value);
+                            console.log('Selected, additionalTypes now:', formData.additionalTypes);
+                        } else {
+                            alert(`Solo puedes seleccionar ${requiredSelections} tipo${requiredSelections > 1 ? 's' : ''} adicional${requiredSelections > 1 ? 'es' : ''}.`);
+                        }
+                    }
+                    
+                    document.getElementById('step3-additional-error').style.display = 'none';
+                    updateButtonStates();
+                });
+                
+                additionalTypesGrid.appendChild(typeCard);
+                console.log('Added type card:', type.title);
+            });
+        }
+        
+        // Function to go to next step
+        function goToStep(stepNumber) {
+            // mostrar el paso
+            const stepId = typeof stepNumber === 'string' ? `step-${stepNumber}` : `step-${stepNumber}`;
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById(stepId).classList.add('active');
+
+            // calcular índice para el progreso
+            let progressNumber = stepNumber === '5-features' ? 4 : Number(stepNumber);
+
+            document.querySelectorAll('.progress-step').forEach((indicator, idx) => {
+                indicator.classList.remove('active', 'completed');
+                if (idx + 1 < progressNumber) indicator.classList.add('completed');
+                else if (idx + 1 === progressNumber) indicator.classList.add('active');
+            });
+        }
+        
+        // Function to calculate price with discounts (20% off 2nd page when 2 total, 30% off 3rd page when 3 total)
+        function calculatePrice() {
+            let total = 0;
+            formData.discounts = [];
+            
+            // Calculate base prices for each page
+            formData.pages.forEach((page, index) => {
+                let pagePrice = page.price;
+                
+                // Add features cost to base price first
+                page.features.forEach(feature => {
+                    pagePrice += featurePrices[feature] || 0;
+                });
+                
+                // Apply discounts based on quantity and page position
+                if (index === 1 && formData.quantity === 2) { // Second page when total is exactly 2
+                    const discountAmount = pagePrice * 0.2;
+                    pagePrice -= discountAmount;
+                    formData.discounts.push({
+                        description: `20% OFF en la página completa ${index + 1}`,
+                        amount: discountAmount
+                    });
+                } else if (index === 2 && formData.quantity === 3) { // Third page when total is exactly 3
+                    const discountAmount = pagePrice * 0.3;
+                    pagePrice -= discountAmount;
+                    formData.discounts.push({
+                        description: `30% OFF en la página completa ${index + 1}`,
+                        amount: discountAmount
+                    });
+                }
+                
+                total += pagePrice;
+            });
+            
+            formData.totalPrice = total;
+        }
+        
+        // Function to update summary
+        function updateSummary() {
+            const typeNames = {
+                'captura': 'Captura de Leads',
+                'venta': 'Página de Venta',
+                'ebook': 'Promoción de E-book',
+                'evento': 'Página para Evento',
+                'marca': 'Marca Personal'
+            };
+            
+            const clientName = formData.company ? `${formData.name} (${formData.company})` : formData.name;
+            document.getElementById('summary-client').textContent = clientName;
+            document.getElementById('summary-type').textContent = typeNames[formData.type] || '-';
+            document.getElementById('summary-quantity').textContent = formData.quantity;
+            
+            // Update features summary - organized by page when multiple pages
+            const featuresSummary = document.getElementById('features-summary');
+            featuresSummary.innerHTML = '';
+            
+            const featureNames = {
+                'seo': 'SEO On-Page',
+                'analytics': 'Píxeles & Analytics',
+                'gracias': 'Página de Gracias',
+                'contador': 'Contador de tiempo/Urgencia',
+                'popup': 'Pop-up',
+                'crm': 'Integración a CRM',
+                'pagos': 'Integración a Pasarela de Pago',
+                'agenda': 'Integración a Agenda',
+                'copywriting': 'Copywriting persuasivo',
+                'imagenes': 'Imágenes premium',
+                'testimonios': 'Testimonios Pro',
+                'faq': 'FAQ',
+                'cookies': 'Cookies/Consentimiento legal',
+                'leadmagnet': 'Integración Lead Magnet',
+                'express': 'Entrega express'
+            };
+            
+            // Check if we have multiple pages or any features
+            let hasAnyFeatures = false;
+            formData.pages.forEach(page => {
+                if (page.features && page.features.length > 0) {
+                    hasAnyFeatures = true;
+                }
+            });
+            
+            if (formData.quantity > 1 || hasAnyFeatures) {
+                if (formData.quantity > 1) {
+                    // Multiple pages - organize by page
+                    formData.pages.forEach((page, index) => {
+                        // Create page header
+                        const pageHeader = document.createElement('div');
+                        pageHeader.style.cssText = 'font-weight: 600; color: var(--primary); margin: 1rem 0 0.5rem 0; padding-bottom: 0.5rem; border-bottom: 1px solid #ddd;';
+                        pageHeader.textContent = `Página ${index + 1}: ${page.title}`;
+                        featuresSummary.appendChild(pageHeader);
+                        
+                        // Add base price (full price, no discount applied here)
+                        const baseItem = document.createElement('div');
+                        baseItem.className = 'summary-item';
+                        baseItem.innerHTML = `
+                            <span style="margin-left: 1rem;">Base ${page.title}</span>
+                            <span>${page.price.toFixed(2)} USD</span>
+                        `;
+                        featuresSummary.appendChild(baseItem);
+                        
+                        // Add features for this page (full price)
+                        if (page.features && page.features.length > 0) {
+                            page.features.forEach(feature => {
+                                const featureItem = document.createElement('div');
+                                featureItem.className = 'summary-item';
+                                featureItem.innerHTML = `
+                                    <span style="margin-left: 1rem;">+ ${featureNames[feature]}</span>
+                                    <span>+${featurePrices[feature]} USD</span>
+                                `;
+                                featuresSummary.appendChild(featureItem);
+                            });
+                        }
+                        
+                        // Calculate subtotal for this page
+                        let pageSubtotal = page.price;
+                        if (page.features) {
+                            page.features.forEach(feature => {
+                                pageSubtotal += featurePrices[feature] || 0;
+                            });
+                        }
+                        
+                        // Add subtotal for this page
+                        const subtotalItem = document.createElement('div');
+                        subtotalItem.className = 'summary-item';
+                        subtotalItem.style.cssText = 'border-top: 1px solid #ddd; margin-top: 0.5rem; padding-top: 0.5rem; font-weight: 500;';
+                        subtotalItem.innerHTML = `
+                            <span style="margin-left: 1rem;">Subtotal Página ${index + 1}</span>
+                            <span>${pageSubtotal.toFixed(2)} USD</span>
+                        `;
+                        featuresSummary.appendChild(subtotalItem);
+                    });
+                } else {
+                    // Single page - show features normally
+                    const page = formData.pages[0];
+                    if (page && page.features && page.features.length > 0) {
+                        page.features.forEach(feature => {
+                            const featureItem = document.createElement('div');
+                            featureItem.className = 'summary-item';
+                            featureItem.innerHTML = `
+                                <span>${featureNames[feature]}</span>
+                                <span>+${featurePrices[feature]} USD</span>
+                            `;
+                            featuresSummary.appendChild(featureItem);
+                        });
+                    }
+                }
+            }
+            
+            // Update discounts summary - show at the end
+            const discountsSummary = document.getElementById('discounts-summary');
+            discountsSummary.innerHTML = '';
+            
+            if (formData.discounts.length > 0) {
+                // Add a separator before discounts if we have other items
+                if (formData.quantity > 1 || hasAnyFeatures) {
+                    const separator = document.createElement('div');
+                    separator.style.cssText = 'border-top: 2px solid var(--primary); margin: 1rem 0 0.5rem 0; padding-top: 1rem;';
+                    separator.innerHTML = '<strong style="color: var(--primary);">Descuentos Aplicados:</strong>';
+                    discountsSummary.appendChild(separator);
+                }
+                
+                formData.discounts.forEach(discount => {
+                    const discountItem = document.createElement('div');
+                    discountItem.className = 'summary-item discount-item';
+                    discountItem.innerHTML = `
+                        <span>${discount.description}</span>
+                        <span>-${discount.amount.toFixed(2)} USD</span>
+                    `;
+                    discountsSummary.appendChild(discountItem);
+                });
+            }
+            
+            document.getElementById('total-price').textContent = `${formData.totalPrice.toFixed(2)} USD`;
+        }
+        
+        // Function to create page configurations
+        function createPageConfigurations() {
+            console.log('createPageConfigurations called');
+            const pageConfigurationsDiv = document.getElementById('page-configurations');
+            if (!pageConfigurationsDiv) {
+                console.error('page-configurations div not found');
+                return;
+            }
+            
+            pageConfigurationsDiv.innerHTML = '';
+            formData.pages = [];
+            
+            // Create page objects
+            const typeNames = {
+                'captura': 'Captura de Leads',
+                'venta': 'Página de Venta', 
+                'ebook': 'Promoción de E-book',
+                'evento': 'Página para Evento',
+                'marca': 'Marca Personal'
+            };
+            
+            // Add main page
+            formData.pages.push({
+                type: formData.type,
+                title: typeNames[formData.type],
+                price: typePrices[formData.type],
+                features: []
+            });
+            
+            // Add additional pages
+            if (formData.sameType === false) {
+                formData.additionalTypes.forEach(type => {
+                    formData.pages.push({
+                        type: type,
+                        title: typeNames[type],
+                        price: typePrices[type],
+                        features: []
+                    });
+                });
+            } else if (formData.sameType === true) {
+                // Add remaining pages of same type
+                for (let i = 1; i < formData.quantity; i++) {
+                    formData.pages.push({
+                        type: formData.type,
+                        title: typeNames[formData.type],
+                        price: typePrices[formData.type],
+                        features: []
+                    });
+                }
+            }
+            
+            console.log('Created pages:', formData.pages);
+            
+            // Create UI for each page
+            formData.pages.forEach((page, index) => {
+                const pageConfig = document.createElement('div');
+                pageConfig.className = 'page-configuration';
+                
+                // Add discount badge for 2nd and 3rd pages based on total quantity
+                let discountBadge = '';
+                if (index === 1 && formData.quantity === 2) {
+                    discountBadge = '<span class="discount-badge">20% OFF</span>';
+                } else if (index === 2 && formData.quantity === 3) {
+                    discountBadge = '<span class="discount-badge">30% OFF</span>';
+                }
+                
+                // Get base features for this page type
+                const baseIncluded = getBaseIncludedText(page.type);
+                
+                // Add same features option if there are multiple pages and this is not the first page
+                let sameFeatureOption = '';
+                if (formData.quantity > 1 && index > 0) {
+                    sameFeatureOption = `
+                        <div style="margin: 1rem 0; padding: 1rem; background-color: #f8f9fa; border-radius: 10px; border-left: 4px solid var(--primary);">
+                            <label class="checkbox-option same-features-option" style="margin-bottom: 0; font-weight: 500;">
+                                <input type="checkbox" class="same-features-checkbox" data-target-page="${index}"> 
+                                Usar los mismos adicionales que la Página ${index}
+                            </label>
+                        </div>
+                    `;
+                }
+                
+                pageConfig.innerHTML = `
+                    <div class="page-config-header">
+                        <h4>Página ${index + 1}: ${page.title} ${discountBadge}</h4>
+                        <div class="page-base-price">Base: ${page.price} USD</div>
+                    </div>
+                    <div class="base-includes">
+                        <p><i class="fas fa-check-circle"></i> <strong>Incluye base:</strong> ${baseIncluded}</p>
+                    </div>
+                    ${sameFeatureOption}
+                    <div class="checkbox-grid" data-page-index="${index}" id="features-grid-${index}">
+                        ${createFeatureCheckboxes(index)}
+                    </div>
+                `;
+                pageConfigurationsDiv.appendChild(pageConfig);
+            });
+            
+            // Attach event listeners for same features checkboxes
+            attachSameFeaturesListeners();
+            
+            // Attach event listeners
+            attachPageFeatureListeners();
+        }
+        
+        // Function to get base included text for each type
+        function getBaseIncludedText(pageType) {
+            const typeFeatures = {
+                'marca': 'logotipo o nombre, biografía con foto, portafolio, CTA de contacto',
+                'captura': 'diseño personalizado, titular, propuesta de valor, formulario breve, CTA claro',
+                'venta': 'encabezado atractivo, descripción del producto, beneficios, Botón dirigido al checkout',
+                'ebook': 'título convincente, descripción breve, portada del ebook, lista de beneficios y botón dirigido al checkout',
+                'evento': 'título impactante, fecha/hora/lugar, valor agregado, registro'
+            };
+            
+            return typeFeatures[pageType] || '';
+        }
+        
+        // Function to create feature checkboxes for a specific page (removed descarga feature, updated CRM to $40)
+        function createFeatureCheckboxes(pageIndex) {
+            const features = [
+                { value: 'seo', name: 'SEO On-Page', price: 15 },
+                { value: 'analytics', name: 'Píxeles & Analytics (Meta/Google/GA4)', price: 15 },
+                { value: 'gracias', name: 'Página de Gracias', price: 30 },
+                { value: 'contador', name: 'Contador de tiempo/Urgencia', price: 25 },
+                { value: 'popup', name: 'Pop-up (WhatsApp, captura, oferta)', price: 15 },
+                { value: 'crm', name: 'Integración a CRM/Email marketing', price: 40 },
+                { value: 'pagos', name: 'Integración a Pasarela de Pago/Checkout', price: 25 },
+                { value: 'agenda', name: 'Integración a Agenda/Calendario', price: 25 },
+                { value: 'copywriting', name: 'Copywriting persuasivo con Neuromarketing', price: 15 },
+                { value: 'imagenes', name: 'Imágenes premium/banco de stock', price: 20 },
+                { value: 'testimonios', name: 'Testimonios Pro (carrusel + logos)', price: 40 },
+                { value: 'faq', name: 'FAQ (Preguntas frecuentes)', price: 30 },
+                { value: 'cookies', name: 'Cookies/Consentimiento legal', price: 35 },
+                { value: 'leadmagnet', name: 'Integración Lead Magnet', price: 40 },
+                { value: 'express', name: 'Entrega express (menos de 72hs)', price: 90 }
+            ];
+            
+            return features.map(feature => `
+                <label class="checkbox-option">
+                    <input type="checkbox" name="features-page-${pageIndex}" value="${feature.value}" data-page="${pageIndex}">
+                    ${feature.name} (+${feature.price})
+                </label>
+            `).join('');
+        }
+        
+        // Function to attach same features listeners
+        function attachSameFeaturesListeners() {
+            const sameFeatureCheckboxes = document.querySelectorAll('.same-features-checkbox');
+            sameFeatureCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const targetPageIndex = parseInt(this.getAttribute('data-target-page'));
+                    const sourcePageIndex = targetPageIndex - 1; // Previous page
+                    const featuresGrid = document.getElementById(`features-grid-${targetPageIndex}`);
+                    
+                    if (this.checked) {
+                        // Disable manual selection of features
+                        featuresGrid.style.opacity = '0.5';
+                        featuresGrid.style.pointerEvents = 'none';
+                        
+                        // Add note about automatic sync
+                        let syncNote = document.getElementById(`sync-note-${targetPageIndex}`);
+                        if (!syncNote) {
+                            syncNote = document.createElement('div');
+                            syncNote.id = `sync-note-${targetPageIndex}`;
+                            syncNote.style.cssText = 'margin-top: 0.5rem; padding: 0.5rem; background-color: rgba(40, 167, 69, 0.1); border-radius: 5px; font-size: 0.9rem; color: var(--success);';
+                            syncNote.innerHTML = '<i class="fas fa-sync"></i> Las funcionalidades se sincronizan automáticamente con la página anterior';
+                            featuresGrid.parentNode.insertBefore(syncNote, featuresGrid.nextSibling);
+                        }
+                        
+                        // Automatically sync features from previous page
+                        syncFeaturesFromPreviousPage(targetPageIndex, sourcePageIndex);
+                        
+                    } else {
+                        // Re-enable manual selection
+                        featuresGrid.style.opacity = '1';
+                        featuresGrid.style.pointerEvents = 'auto';
+                        
+                        // Remove sync note
+                        const syncNote = document.getElementById(`sync-note-${targetPageIndex}`);
+                        if (syncNote) {
+                            syncNote.remove();
+                        }
+                        
+                        // Clear current features but don't uncheck boxes (let user decide)
+                        formData.pages[targetPageIndex].features = [];
+                    }
+                });
+            });
+        }
+        
+        // Function to sync features from previous page
+        function syncFeaturesFromPreviousPage(targetPageIndex, sourcePageIndex) {
+            // Get source page features
+            const sourceFeatures = formData.pages[sourcePageIndex].features || [];
+            
+            // Clear target page features first
+            formData.pages[targetPageIndex].features = [];
+            
+            // Uncheck all checkboxes for target page
+            const targetCheckboxes = document.querySelectorAll(`input[data-page="${targetPageIndex}"]`);
+            targetCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.closest('.checkbox-option').classList.remove('selected');
+            });
+            
+            // Copy features and check corresponding checkboxes
+            sourceFeatures.forEach(feature => {
+                // Add to target page data
+                formData.pages[targetPageIndex].features.push(feature);
+                
+                // Check the corresponding checkbox
+                const targetCheckbox = document.querySelector(`input[data-page="${targetPageIndex}"][value="${feature}"]`);
+                if (targetCheckbox) {
+                    targetCheckbox.checked = true;
+                    targetCheckbox.closest('.checkbox-option').classList.add('selected');
+                }
+            });
+            
+            console.log(`Auto-synced features from page ${sourcePageIndex} to page ${targetPageIndex}:`, sourceFeatures);
+        }
+        
+        // Function to attach feature listeners for page configurations (updated to handle auto-sync)
+        function attachPageFeatureListeners() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"][data-page]');
+            console.log('Attaching listeners to', checkboxes.length, 'checkboxes');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const pageIndex = parseInt(this.getAttribute('data-page'));
+                    const featureValue = this.value;
+                    const parent = this.closest('.checkbox-option');
+                    
+                    if (this.checked) {
+                        parent.classList.add('selected');
+                        if (!formData.pages[pageIndex].features.includes(featureValue)) {
+                            formData.pages[pageIndex].features.push(featureValue);
+                        }
+                    } else {
+                        parent.classList.remove('selected');
+                        formData.pages[pageIndex].features = formData.pages[pageIndex].features.filter(f => f !== featureValue);
+                    }
+                    
+                    // If this is a source page for auto-sync, update the target pages
+                    const targetPages = [];
+                    for (let i = pageIndex + 1; i < formData.pages.length; i++) {
+                        const sameFeatureCheckbox = document.querySelector(`.same-features-checkbox[data-target-page="${i}"]`);
+                        if (sameFeatureCheckbox && sameFeatureCheckbox.checked) {
+                            targetPages.push(i);
+                        }
+                    }
+                    
+                    // Auto-sync to target pages
+                    targetPages.forEach(targetIndex => {
+                        syncFeaturesFromPreviousPage(targetIndex, pageIndex);
+                    });
+                    
+                    console.log(`Page ${pageIndex} features:`, formData.pages[pageIndex].features);
+                });
+            });
+        }
+            
+        // Initialize form
+        document.addEventListener('DOMContentLoaded', function() {
+            // Step 1 inputs (including consent checkbox)
+            const contactInputs = [
+                document.getElementById('contact-name'),
+                document.getElementById('contact-email'),
+                document.getElementById('contact-phone'),
+                document.getElementById('consent')
+            ];
+            
+            contactInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    updateButtonStates();
+                    document.getElementById('step1-error').style.display = 'none';
+                    document.getElementById('consent-error').style.display = 'none';
+                    this.classList.remove('error');
+                });
+                
+                // Also handle change event for checkbox
+                input.addEventListener('change', function() {
+                    updateButtonStates();
+                    document.getElementById('step1-error').style.display = 'none';
+                    document.getElementById('consent-error').style.display = 'none';
+                    this.classList.remove('error');
+                });
+            });
+            
+            // Step 1 next button
+            document.getElementById('next-step-1').addEventListener('click', async function() {
+                const name = document.getElementById('contact-name').value.trim();
+                const email = document.getElementById('contact-email').value.trim();
+                const phone = document.getElementById('contact-phone').value.trim();
+                const consent = document.getElementById('consent').checked;
+                const countryCode = document.getElementById('contact-country').value;
+                const company = document.getElementById('company-name').value.trim();
+                
+                let hasErrors = false;
+                
+                contactInputs.forEach(input => input.classList.remove('error'));
+                
+                if (!name) {
+                    document.getElementById('contact-name').classList.add('error');
+                    hasErrors = true;
+                }
+                if (!email || !isValidEmail(email)) {
+                    document.getElementById('contact-email').classList.add('error');
+                    hasErrors = true;
+                }
+                if (!phone || !isValidPhone(phone)) {
+                    document.getElementById('contact-phone').classList.add('error');
+                    hasErrors = true;
+                }
+                if (!consent) {
+                    document.getElementById('consent').classList.add('error');
+                    document.getElementById('consent-error').style.display = 'block';
+                    hasErrors = true;
+                }
+                
+                if (hasErrors) {
+                    document.getElementById('step1-error').style.display = 'block';
+                    return;
+                }
+                
+                // Store data
+                formData.name = name;
+                formData.email = email;
+                formData.phone = phone;
+                formData.company = company;
+                
+                // Prepare data for Supabase
+                const leadData = {
+                    name: name,
+                    email: email,
+                    phone: `${countryCode}${phone}`,
+                    country_code: countryCode,
+                    company: company || null,
+                    consent: true,
+                    consent_version: "v1-2025-09",
+                    privacy_url: "https://paginaya24.com/privacidad",
+                    source: "cotizador_web",
+                    utm: (window.__utm || null),
+                    honeypot: document.getElementById('hp_field')?.value || ""
+                };
+                
+                // Send to Supabase (non-blocking)
+                await sendLeadToSupabase(leadData);
+                
+                goToStep(2);
+            });
+            
+            // Step 2 option cards
+            document.querySelectorAll('#step-2 .option-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove selection from all cards
+                    document.querySelectorAll('#step-2 .option-card').forEach(c => {
+                        c.classList.remove('selected');
+                    });
+                    
+                    // Select clicked card
+                    this.classList.add('selected');
+                    
+                    // Store selection
+                    formData.type = this.getAttribute('data-value');
+                    formData.basePrice = typePrices[formData.type];
+                    
+                    // Hide error and update button
+                    document.getElementById('step2-error').style.display = 'none';
+                    updateButtonStates();
+                });
+            });
+            
+            // Step 2 navigation
+            document.getElementById('prev-step-2').addEventListener('click', function() {
+                goToStep(1);
+            });
+            
+            document.getElementById('next-step-2').addEventListener('click', function() {
+                if (!formData.type) {
+                    document.getElementById('step2-error').style.display = 'block';
+                    return;
+                }
+                goToStep(3);
+            });
+            
+            // Step 3 option cards
+            document.querySelectorAll('#step-3 .option-card[data-value]').forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove selection from all quantity cards
+                    document.querySelectorAll('#step-3 .option-card[data-value]').forEach(c => {
+                        c.classList.remove('selected');
+                    });
+                    
+                    // Select clicked card
+                    this.classList.add('selected');
+                    
+                    // Store selection
+                    formData.quantity = parseInt(this.getAttribute('data-value'));
+                    
+                    // Reset same type selection when quantity changes
+                    formData.sameType = null;
+                    formData.additionalTypes = [];
+                    document.querySelectorAll('#step-3 .option-card[data-same-type]').forEach(c => {
+                        c.classList.remove('selected');
+                    });
+                    document.getElementById('step3-type-error').style.display = 'none';
+                    document.getElementById('step3-additional-error').style.display = 'none';
+                    
+                    // Show/hide same type question
+                    const sameTypeDiv = document.getElementById('same-type-question');
+                    const additionalTypesDiv = document.getElementById('additional-types-selection');
+                    if (formData.quantity > 1) {
+                        sameTypeDiv.style.display = 'block';
+                        additionalTypesDiv.style.display = 'none';
+                    } else {
+                        sameTypeDiv.style.display = 'none';
+                        additionalTypesDiv.style.display = 'none';
+                        formData.sameType = true; // Default for single page
+                    }
+                    
+                    // Hide error and update button
+                    document.getElementById('step3-error').style.display = 'none';
+                    updateButtonStates();
+                });
+            });
+            
+            // Same type option cards
+            document.querySelectorAll('#step-3 .option-card[data-same-type]').forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove selection from all same type cards
+                    document.querySelectorAll('#step-3 .option-card[data-same-type]').forEach(c => {
+                        c.classList.remove('selected');
+                    });
+                    
+                    // Select clicked card
+                    this.classList.add('selected');
+                    
+                    // Store selection
+                    formData.sameType = this.getAttribute('data-same-type') === 'true';
+                    
+                    // Show/hide additional types selection
+                    const additionalTypesDiv = document.getElementById('additional-types-selection');
+                    if (formData.sameType === false) {
+                        additionalTypesDiv.style.display = 'block';
+                        populateAdditionalTypes();
+                        // Reset previous selections
+                        formData.additionalTypes = [];
+                    } else {
+                        additionalTypesDiv.style.display = 'none';
+                        formData.additionalTypes = [];
+                    }
+                    
+                    // Hide error and update button
+                    document.getElementById('step3-type-error').style.display = 'none';
+                    document.getElementById('step3-additional-error').style.display = 'none';
+                    updateButtonStates();
+                });
+            });
+            
+            // Step 3 navigation
+            document.getElementById('prev-step-3').addEventListener('click', function() {
+                goToStep(2);
+            });
+            
+            document.getElementById('next-step-3').addEventListener('click', function() {
+                if (!formData.quantity) {
+                    document.getElementById('step3-error').style.display = 'block';
+                    return;
+                }
+                
+                // If multiple pages, validate same type selection
+                if (formData.quantity > 1 && formData.sameType === null) {
+                    document.getElementById('step3-type-error').style.display = 'block';
+                    document.getElementById('step3-type-error').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+                
+                // If different types selected, validate additional types selection
+                if (formData.quantity > 1 && formData.sameType === false) {
+                    const requiredAdditional = formData.quantity - 1;
+                    if (formData.additionalTypes.length !== requiredAdditional) {
+                        const errorEl = document.getElementById('step3-additional-error');
+                        const errorSpan = errorEl.querySelector('span');
+                        errorSpan.textContent = `Por favor selecciona ${requiredAdditional} tipo${requiredAdditional > 1 ? 's' : ''} adicional${requiredAdditional > 1 ? 'es' : ''}`;
+                        errorEl.style.display = 'block';
+                        errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        return;
+                    }
+                }
+                
+                // Decide which step to go to next
+                if (formData.sameType === false || (formData.sameType === true && formData.quantity > 1)) {
+                    // Go to individual page configuration for different types OR same types with multiple pages
+                    createPageConfigurations();
+                    goToStep(4);
+                } else {
+                    // Go to general features only for single page
+                    showBaseFeatures(formData.type);
+                    goToStep('5-features');
+                }
+            });
+            
+            // Step 4 feature checkboxes
+            document.querySelectorAll('#step-5-features input[name="features"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const value = this.value;
+                    const parent = this.closest('.checkbox-option');
+                    
+                    if (this.checked) {
+                        if (!formData.features.includes(value)) {
+                            formData.features.push(value);
+                        }
+                        parent.classList.add('selected');
+                    } else {
+                        formData.features = formData.features.filter(f => f !== value);
+                        parent.classList.remove('selected');
+                    }
+                });
+            });
+            
+            // Step 4 navigation
+            document.getElementById('prev-step-4').addEventListener('click', function() {
+                goToStep(3);
+            });
+            
+            document.getElementById('next-step-4').addEventListener('click', async function() {
+                calculatePrice();
+                updateSummary();
+                await saveQuote();
+                goToStep(5);
+            });
+            
+            // Step 5-features navigation
+            document.getElementById('prev-step-5-features').addEventListener('click', function() {
+                goToStep(3);
+            });
+            
+            document.getElementById('next-step-5-features').addEventListener('click', async function() {
+                // For same type pages, create the pages array
+                if (formData.sameType === true) {
+                    formData.pages = [];
+                    const typeNames = {
+                        'captura': 'Captura de Leads',
+                        'venta': 'Página de Venta', 
+                        'ebook': 'Promoción de E-book',
+                        'evento': 'Página para Evento',
+                        'marca': 'Marca Personal'
+                    };
+                    
+                    // Add all pages of the same type
+                    for (let i = 0; i < formData.quantity; i++) {
+                        formData.pages.push({
+                            type: formData.type,
+                            title: typeNames[formData.type],
+                            price: typePrices[formData.type],
+                            features: formData.features // Add selected features to all pages
+                        });
+                    }
+                }
+                
+                calculatePrice();
+                updateSummary();
+                await saveQuote();
+                goToStep(5);
+            });
+            
+            // Step 5 navigation
+            document.getElementById('prev-step-5').addEventListener('click', function() {
+                if (formData.sameType === false) {
+                    goToStep(4);
+                } else {
+                    goToStep('5-features');
+                }
+            });
+            
+            // Final actions
+            document.getElementById('hire-now').addEventListener('click', function() {
+                const message = `¡Hola! Quiero contratar mi landing page:\n\n` +
+                    `Nombre: ${formData.name}\n` +
+                    `Email: ${formData.email}\n` +
+                    `Tipo: ${document.getElementById('summary-type').textContent}\n` +
+                    `Cantidad: ${formData.quantity}\n` +
+                    `Total: ${document.getElementById('total-price').textContent}\n\n` +
+                    `¿Podemos proceder?`;
+                
+                const whatsappUrl = `https://wa.me/17377100382?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+            
+            document.getElementById('talk-agent').addEventListener('click', function() {
+                const message = `¡Hola! Tengo interés en una landing page:\n\n` +
+                    `Nombre: ${formData.name}\n` +
+                    `Email: ${formData.email}\n` +
+                    `Cotización: ${document.getElementById('total-price').textContent}\n\n` +
+                    `¿Pueden contactarme?`;
+                
+                const whatsappUrl = `https://wa.me/17377100382?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+            
+            document.getElementById('new-quote').addEventListener('click', function() {
+                location.reload();
+            });
+            
+            document.getElementById('close-form').addEventListener('click', function() {
+                if (confirm('¿Estás seguro de que quieres cerrar el formulario?')) {
+                    window.close();
+                }
+            });
+            
+            // Initialize
+            updateButtonStates();
+        });
+    </script>
+</body>
+</html>
