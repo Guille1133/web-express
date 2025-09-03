@@ -629,6 +629,39 @@ body.embed .form-content{
 /* Mantén los paddings internos del contenido como están
    (si lo quieres un poco más compacto al embebido, descomenta)
 .embed .form-content{ padding: 0 1rem 1rem; } */
+/* === EMBED: sin recuadro externo pero con interior blanco === */
+.embed .form-container{
+  background: transparent !important;  /* quita la card externa */
+  box-shadow: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  overflow: visible;
+}
+
+/* Mantén el header morado y remata arriba */
+.embed .form-header{
+  border-radius: 18px 18px 0 0;
+}
+
+/* Fondo blanco para lo de adentro (pasos + contenido) */
+.embed .form-progress,
+.embed .form-content{
+  background: #ffffff !important;      /* <- esto devuelve el “fondo de dentro” */
+}
+
+/* Ajustes de spacing para que parezca una sola pieza */
+.embed .form-progress{
+  margin: 0 !important;
+  padding: 1rem 2rem !important;
+  border-bottom: 1px solid #eee;
+}
+
+.embed .form-content{
+  padding: 1.5rem 2rem !important;
+  border-radius: 0 0 18px 18px;         /* bordes abajo */
+}
 
     </style>
     <script>
