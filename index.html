@@ -757,18 +757,7 @@
             visibility: visible;
         }
         
-        .quote-modal {
-            background-color: white;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
+     
         .modal-close {
             position: absolute;
             top: 1rem;
@@ -1624,6 +1613,7 @@ body.modal-open{
 
 
     </style>
+    <link rel="prefetch" href="/cotizacion/">
 </head>
 <body>
     <!-- Loader -->
@@ -2197,6 +2187,8 @@ const suffix = raw.includes('X') ? 'X' : (raw.includes('+') ? '+' : '');
         }
         
         window.addEventListener('scroll', startCountersWhenVisible);
+        startCountersWhenVisible();
+
         
         // Live Demo Interactions
         const demoCta = document.querySelector('.demo-cta');
@@ -2327,7 +2319,7 @@ if (closeBtn) requestAnimationFrame(() => closeBtn.focus({ preventScroll: true }
     // limpiar y crear iframe
     mount.innerHTML = '';
     const iframe = document.createElement('iframe');
-    iframe.src = '/cotizacion/';
+    iframe.src = '/cotizacion/?embed=1';
     iframe.loading = 'lazy';
     iframe.title = 'Cotizador';
     iframe.style.width = '100%';
