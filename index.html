@@ -1610,6 +1610,15 @@ body.modal-open{
 
 /* Evita gestos táctiles que propaguen scroll mientras el modal está activo */
 .modal-overlay.active{ touch-action: none; }
+/* Fija el offset de las anclas para el header fijo */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* alto aprox. del header */
+}
+
+@media (max-width: 768px){
+  html { scroll-padding-top: 80px; } /* en tu sitio el header móvil es ~80px */
+}
 
 
     </style>
