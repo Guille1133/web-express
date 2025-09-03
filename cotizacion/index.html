@@ -606,8 +606,38 @@ body.embed .form-content{
 @media (max-width: 768px){
   body.embed .form-content{ padding: .75rem !important; }
 }
+/* ===== MODO EMBED: sin “recuadro” externo, con fondos internos intactos ===== */
+.embed body{
+  background: transparent !important;  /* se ve el fondo del modal padre */
+  padding: 0 !important;               /* sin márgenes alrededor */
+}
+
+.embed .form-container{
+  background: transparent !important;  /* quita la card blanca */
+  box-shadow: none !important;         /* sin sombra de card */
+  border-radius: 0 !important;         /* el redondeo lo hace el contenedor padre */
+  max-width: 100% !important;
+  width: 100% !important;
+  overflow: visible;                    /* deja que el header use todo el ancho */
+}
+
+/* (Opcional) redondeo visual del header si el padre NO recorta bordes */
+.embed .form-header{
+  border-radius: 18px 18px 0 0;         /* mismo radio que el mount del modal */
+}
+
+/* Mantén los paddings internos del contenido como están
+   (si lo quieres un poco más compacto al embebido, descomenta)
+.embed .form-content{ padding: 0 1rem 1rem; } */
 
     </style>
+    <script>
+  (function () {
+    const params = new URLSearchParams(location.search);
+    if (params.has('embed')) document.documentElement.classList.add('embed');
+  })();
+</script>
+
 </head>
 <body>
     <div class="form-container">
@@ -2042,12 +2072,21 @@ body.embed .form-content{
                 location.reload();
             });
             
-            document.getElementById('close-form').addEventListener('click', function() {
-                if (confirm('¿Estás seguro de que quieres cerrar el formulario?')) {
-                    window.close();
-                }
-            });
-            
+           const cancelBtn = document.getElementById('close-form');
+if (cancelBtn) {
+  cancelBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (confirm('¿Estás seguro de que quieres cerrar el formulario?')) {
+      // Si está embebido en el modal de la landing, avisa al padre para cerrar
+      try { window.parent.postMessage('close-embed-quote', '*'); } catch (_) {}
+
+      // Si NO está embebido (abierto directo en /cotizacion/), vuelve al inicio
+      if (window.self === window.top) location.href = '/';
+    }
+  });
+}
+
+      
             // Initialize
             updateButtonStates();
         });
