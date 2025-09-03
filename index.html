@@ -1546,6 +1546,75 @@
     border-radius: 0;
   }
 }
+/* === Modal Pro (overrides) === */
+
+/* Oculta el título redundante del contenedor (el cotizador ya lo muestra) */
+#cotizador-title { display: none; }
+
+/* Fondo: leve oscurecido + blur para enfoque profesional */
+.modal-overlay {
+  background: rgba(12,14,20,.55);
+  backdrop-filter: blur(6px);
+}
+
+/* Contenedor del modal sin fondo ni padding: el iframe ocupa todo */
+.quote-modal{
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;            /* el radio irá en el mount */
+}
+
+/* Borde redondeado y sombra al bloque del iframe */
+#cotizador-mount{
+  flex: 1;
+  border-radius: 18px;
+  overflow: hidden;            /* recorta el iframe en las esquinas */
+  box-shadow: 0 30px 90px rgba(0,0,0,.35);
+}
+
+/* Iframe a pantalla dentro del modal */
+#cotizador-mount iframe{
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Botón cerrar: flotante, circular y con vidrio esmerilado */
+.modal-close{
+  top: -14px;
+  right: -14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(22,22,30,.7);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  backdrop-filter: blur(8px);
+}
+.modal-close:hover{ transform: translateY(-1px) scale(1.03); }
+
+/* Animación de entrada sutil */
+.modal-overlay.active .quote-modal{
+  animation: modalIn .22s ease-out;
+}
+@keyframes modalIn{
+  from{ opacity: 0; transform: translateY(8px) scale(.985); }
+  to  { opacity: 1; transform: none; }
+}
+
+/* Respeta accesibilidad: menos movimiento si el usuario lo pide */
+@media (prefers-reduced-motion: reduce){
+  .modal-overlay.active .quote-modal{ animation: none; }
+  .modal-overlay{ backdrop-filter: none; }
+}
+
+/* OPCIONAL: si no quieres oscurecer el fondo en absoluto */
+.modal-overlay.no-dim{ background: transparent; backdrop-filter: none; }
 
     </style>
 </head>
@@ -2226,6 +2295,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const openModal = () => {
     modal.classList.add('active');
+    modal.classList.add('no-dim'); // <-- SIN FONDO (ni oscurecido ni blur)
     document.body.style.overflow = 'hidden';
 
     // limpiar y crear iframe
@@ -2271,7 +2341,6 @@ window.addEventListener('DOMContentLoaded', () => {
 <div class="modal-overlay" id="cotizador-modal">
   <div class="quote-modal" role="dialog" aria-modal="true" aria-labelledby="cotizador-title">
     <button class="modal-close" aria-label="Cerrar">&times;</button>
-    <h3 id="cotizador-title" class="step-title" style="margin-top:0;">Cotización personalizada</h3>
     <div id="cotizador-mount"></div>
   </div>
 </div>
