@@ -2352,6 +2352,11 @@ if (closeBtn) requestAnimationFrame(() => closeBtn.focus({ preventScroll: true }
   window.addEventListener('popstate', (e) => {
     if (!(e.state && e.state.cotizador)) closeModal();
   });
+    window.addEventListener('message', (ev) => {
+  if (ev.data === 'close-embed-quote') {
+    closeModal();
+  }
+});
 });
     </script>
     <!-- Modal Cotizador -->
