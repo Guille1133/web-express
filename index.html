@@ -1622,7 +1622,7 @@
     <section class="stats">
         <div class="stats-container">
             <div class="stat-item fade-in">
-                <div class="stat-number" data-count="50">50+</div>
+                <div class="stat-number" data-count="50+">50+</div>
                 <div class="stat-label">Proyectos entregados con éxito</div>
                 <div class="stat-sublabel">Y cada uno hecho a medida, sin plantillas.</div>
             </div>
@@ -2031,8 +2031,16 @@
             countersStarted = true;
             
             statNumbers.forEach(statNumber => {
-                const target = parseInt(statNumber.getAttribute('data-count'));
-                const hasPlus = statNumber.getAttribute('data-count').includes('+') || statNumber.getAttribute('data-count').includes('X') || statNumber.getAttribute('data-count').includes('≤');
+               const raw = statNumber.getAttribute('data-count') || '';
+// si no empieza con dígitos, mostrar tal cual y salir
+if (!/^\d+/.test(raw)) { 
+  statNumber.textContent = raw; 
+  return; 
+}
+const target = parseInt(raw, 10);
+// detectar sufijo real (X o +); si no hay, cadena vacía
+const suffix = raw.includes('X') ? 'X' : (raw.includes('+') ? '+' : '');
+
                 let count = 0;
                 
                 // Para valores no numéricos, mostrarlos directamente
@@ -2051,10 +2059,10 @@
                     }
                     
                     if (count >= target) {
-                        statNumber.innerText = target + (hasPlus ? '+' : '');
+                        statNumber.innerText = target + suffix;
                         clearInterval(timer);
                     } else {
-                        statNumber.innerText = count + (hasPlus ? '+' : '');
+                        statNumber.innerText = count + suffix;
                     }
                 }, 50);
             });
