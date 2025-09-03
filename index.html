@@ -1546,15 +1546,13 @@
     border-radius: 0;
   }
 }
-/* === Modal Pro (overrides) === */
-
-/* Oculta el título redundante del contenedor (el cotizador ya lo muestra) */
-
-/* Fondo: leve oscurecido + blur para enfoque profesional */
-.modal-overlay {
-  background: rgba(12,14,20,.55);
-  backdrop-filter: blur(6px);
+/* Fondo oscuro + blur del modal */
+.modal-overlay{
+  background: rgba(0,0,0,.60);      /* sube a .70 si lo quieres más oscuro */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
+
 
 /* Contenedor del modal sin fondo ni padding: el iframe ocupa todo */
 .quote-modal{
@@ -2294,7 +2292,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const openModal = () => {
     modal.classList.add('active');
-    modal.classList.add('no-dim'); // <-- SIN FONDO (ni oscurecido ni blur)
     document.body.style.overflow = 'hidden';
 
     // limpiar y crear iframe
