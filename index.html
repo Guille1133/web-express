@@ -1862,7 +1862,6 @@ body.modal-open{
             <div class="custom-plans">
                 <p>No todos los negocios son iguales, por eso diseñamos landing pages a tu medida. Responde unas preguntas y recibe un presupuesto personalizado al instante.</p>
                 <a href="/cotizacion/" class="cta-button" id="quote-button" style="padding: 1rem 2rem; font-size: 1.2rem;">Cotización al instante</a>
-<section id="cotizador-container" style="display:none; margin-top: 1.5rem;"></section>
 
             </div>
         </div>
@@ -2339,8 +2338,7 @@ if (closeBtn) requestAnimationFrame(() => closeBtn.focus({ preventScroll: true }
     // reflejar URL (opcional)
     try { history.pushState({ cotizador: true }, '', '/cotizacion/'); } catch (_) {}
 
-    // enfoque visual
-    mount.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  
   };
 
   const closeModal = () => {
