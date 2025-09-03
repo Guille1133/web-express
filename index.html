@@ -1549,7 +1549,6 @@
 /* === Modal Pro (overrides) === */
 
 /* Oculta el título redundante del contenedor (el cotizador ya lo muestra) */
-#cotizador-title { display: none; }
 
 /* Fondo: leve oscurecido + blur para enfoque profesional */
 .modal-overlay {
@@ -2339,7 +2338,7 @@ window.addEventListener('DOMContentLoaded', () => {
     </script>
     <!-- Modal Cotizador -->
 <div class="modal-overlay" id="cotizador-modal">
-  <div class="quote-modal" role="dialog" aria-modal="true" aria-labelledby="cotizador-title">
+  <div class="quote-modal" role="dialog" aria-modal="true" aria-label="Cotización personalizada">
     <button class="modal-close" aria-label="Cerrar">&times;</button>
     <div id="cotizador-mount"></div>
   </div>
