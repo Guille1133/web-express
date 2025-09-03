@@ -743,7 +743,6 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1609,9 +1608,20 @@
   .modal-overlay.active .quote-modal{ animation: none; }
   .modal-overlay{ backdrop-filter: none; }
 }
+/* (4) iOS/Android: evita “rebote” de scroll detrás del modal */
+html, body { height: 100%; }
 
-/* OPCIONAL: si no quieres oscurecer el fondo en absoluto */
-.modal-overlay.no-dim{ background: transparent; backdrop-filter: none; }
+body.modal-open{
+  overflow: hidden;               /* evita que se mueva el fondo */
+  overscroll-behavior: contain;   /* corta el bounce */
+  -webkit-overflow-scrolling: auto;
+  position: fixed;                /* fija el body */
+  width: 100%;
+}
+
+/* Evita gestos táctiles que propaguen scroll mientras el modal está activo */
+.modal-overlay.active{ touch-action: none; }
+
 
     </style>
 </head>
@@ -2289,11 +2299,32 @@ window.addEventListener('DOMContentLoaded', () => {
   const mount = document.getElementById('cotizador-mount');
   const closeBtn = modal ? modal.querySelector('.modal-close') : null;
   if (!quoteButton || !modal || !mount) return;
+// --- iOS scroll lock helpers ---
+let _scrollY = 0;
+const lockBodyScroll = () => {
+  _scrollY = window.scrollY || window.pageYOffset;
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${_scrollY}px`;
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.width = '100%';
+  document.body.classList.add('modal-open');
+};
+const unlockBodyScroll = () => {
+  const y = Math.abs(parseInt(document.body.style.top || '0')) || 0;
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.width = '';
+  document.body.classList.remove('modal-open');
+  window.scrollTo(0, y);
+};
 
   const openModal = () => {
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-
+    lockBodyScroll();
+if (closeBtn) requestAnimationFrame(() => closeBtn.focus({ preventScroll: true }));
     // limpiar y crear iframe
     mount.innerHTML = '';
     const iframe = document.createElement('iframe');
@@ -2314,7 +2345,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const closeModal = () => {
     modal.classList.remove('active');
-    document.body.style.overflow = '';
+    unlockBodyScroll();
     mount.innerHTML = '';
     try { if (history.state && history.state.cotizador) history.back(); } catch (_) {}
   };
