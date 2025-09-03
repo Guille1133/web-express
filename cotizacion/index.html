@@ -568,6 +568,45 @@
                 padding: 0 1rem 1rem;
             }
         }
+        /* === MODO EMBED (iframe) === */
+html.embed,
+body.embed{
+  background: transparent !important;     /* sin fondo gris */
+}
+
+body.embed{
+  padding: 0 !important;                  /* sin padding del body */
+  margin: 0 !important;
+  display: block !important;              /* quita el centradito flex */
+  min-height: auto !important;
+}
+
+/* Quita la “tarjeta” blanca */
+body.embed .form-container{
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Mantén el header morado. Si lo quisieras también transparente, descomenta: */
+/*
+body.embed .form-header{
+  background: transparent !important;
+  color: var(--dark) !important;
+}
+*/
+
+body.embed .form-content{
+  padding: 1rem !important;               /* un poco menos de padding interno */
+}
+
+@media (max-width: 768px){
+  body.embed .form-content{ padding: .75rem !important; }
+}
+
     </style>
 </head>
 <body>
@@ -2013,5 +2052,29 @@
             updateButtonStates();
         });
     </script>
+    <script>
+(function () {
+  var qs = new URLSearchParams(location.search);
+  var embedded = qs.get('embed') === '1' || window.self !== window.top;
+
+  if (!embedded) return;
+
+  // Marca html/body con la clase "embed"
+  document.documentElement.classList.add('embed');
+  document.addEventListener('DOMContentLoaded', function () {
+    document.body.classList.add('embed');
+
+    // (Opcional) En embed, hacer que "Cancelar" cierre el modal del padre
+    var cancel = document.getElementById('close-form');
+    if (cancel) {
+      cancel.addEventListener('click', function (ev) {
+        ev.preventDefault();
+        try { window.parent.postMessage('close-embed-quote', '*'); } catch(_){}
+      });
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
