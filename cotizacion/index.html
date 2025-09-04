@@ -78,6 +78,7 @@
         .form-header p {
             opacity: 0.9;
             margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
         
         .instant-badge {
@@ -543,6 +544,21 @@
             margin-right: 0.5rem;
         }
         
+        .consent-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .consent-text a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .consent-text a:hover {
+            text-decoration: underline;
+        }
+        
         @media (max-width: 768px) {
             body {
                 padding: 1rem;
@@ -567,110 +583,86 @@
             .form-content {
                 padding: 0 1rem 1rem;
             }
+            
+            .form-header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .step-title {
+                font-size: 1.3rem;
+            }
         }
+        
         /* === MODO EMBED (iframe) === */
-html.embed,
-body.embed{
-  background: transparent !important;     /* sin fondo gris */
-}
+        html.embed,
+        body.embed{
+          background: transparent !important;
+        }
 
-body.embed{
-  padding: 0 !important;                  /* sin padding del body */
-  margin: 0 !important;
-  display: block !important;              /* quita el centradito flex */
-  min-height: auto !important;
-}
+        body.embed{
+          padding: 0 !important;
+          margin: 0 !important;
+          display: block !important;
+          min-height: auto !important;
+        }
 
-/* Quita la “tarjeta” blanca */
-body.embed .form-container{
-  background: transparent !important;
-  box-shadow: none !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  max-width: 100% !important;
-  width: 100% !important;
-}
+        body.embed .form-container{
+          background: transparent !important;
+          box-shadow: none !important;
+          border: 0 !important;
+          border-radius: 0 !important;
+          max-width: 100% !important;
+          width: 100% !important;
+        }
 
-/* Mantén el header morado. Si lo quisieras también transparente, descomenta: */
-/*
-body.embed .form-header{
-  background: transparent !important;
-  color: var(--dark) !important;
-}
-*/
+        body.embed .form-content{
+          padding: 1rem !important;
+        }
 
-body.embed .form-content{
-  padding: 1rem !important;               /* un poco menos de padding interno */
-}
+        @media (max-width: 768px){
+          body.embed .form-content{ padding: .75rem !important; }
+        }
+        
+        .embed body{
+          background: transparent !important;
+          padding: 0 !important;
+        }
 
-@media (max-width: 768px){
-  body.embed .form-content{ padding: .75rem !important; }
-}
-/* ===== MODO EMBED: sin “recuadro” externo, con fondos internos intactos ===== */
-.embed body{
-  background: transparent !important;  /* se ve el fondo del modal padre */
-  padding: 0 !important;               /* sin márgenes alrededor */
-}
+        .embed .form-container{
+          background: transparent !important;
+          box-shadow: none !important;
+          border-radius: 0 !important;
+          max-width: 100% !important;
+          width: 100% !important;
+          overflow: visible;
+        }
 
-.embed .form-container{
-  background: transparent !important;  /* quita la card blanca */
-  box-shadow: none !important;         /* sin sombra de card */
-  border-radius: 0 !important;         /* el redondeo lo hace el contenedor padre */
-  max-width: 100% !important;
-  width: 100% !important;
-  overflow: visible;                    /* deja que el header use todo el ancho */
-}
+        .embed .form-header{
+          border-radius: 18px 18px 0 0;
+        }
 
-/* (Opcional) redondeo visual del header si el padre NO recorta bordes */
-.embed .form-header{
-  border-radius: 18px 18px 0 0;         /* mismo radio que el mount del modal */
-}
+        .embed .form-progress,
+        .embed .form-content{
+          background: #ffffff !important;
+        }
 
-/* Mantén los paddings internos del contenido como están
-   (si lo quieres un poco más compacto al embebido, descomenta)
-.embed .form-content{ padding: 0 1rem 1rem; } */
-/* === EMBED: sin recuadro externo pero con interior blanco === */
-.embed .form-container{
-  background: transparent !important;  /* quita la card externa */
-  box-shadow: none !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  max-width: 100% !important;
-  width: 100% !important;
-  overflow: visible;
-}
+        .embed .form-progress{
+          margin: 0 !important;
+          padding: 1rem 2rem !important;
+          border-bottom: 1px solid #eee;
+        }
 
-/* Mantén el header morado y remata arriba */
-.embed .form-header{
-  border-radius: 18px 18px 0 0;
-}
-
-/* Fondo blanco para lo de adentro (pasos + contenido) */
-.embed .form-progress,
-.embed .form-content{
-  background: #ffffff !important;      /* <- esto devuelve el “fondo de dentro” */
-}
-
-/* Ajustes de spacing para que parezca una sola pieza */
-.embed .form-progress{
-  margin: 0 !important;
-  padding: 1rem 2rem !important;
-  border-bottom: 1px solid #eee;
-}
-
-.embed .form-content{
-  padding: 1.5rem 2rem !important;
-  border-radius: 0 0 18px 18px;         /* bordes abajo */
-}
-
+        .embed .form-content{
+          padding: 1.5rem 2rem !important;
+          border-radius: 0 0 18px 18px;
+        }
     </style>
     <script>
-  (function () {
-    const params = new URLSearchParams(location.search);
-    if (params.has('embed')) document.documentElement.classList.add('embed');
-  })();
-</script>
-
+        (function () {
+            const params = new URLSearchParams(location.search);
+            if (params.has('embed')) document.documentElement.classList.add('embed');
+        })();
+    </script>
 </head>
 <body>
     <div class="form-container">
@@ -741,11 +733,11 @@ body.embed .form-content{
                     <div class="form-group">
                         <label class="checkbox-option" style="border:0; padding:0;">
                             <input type="checkbox" id="consent" style="margin-right:.6rem;">
-                            Acepto la <a href="https://paginaya24.com/privacidad" target="_blank" rel="noopener">Política de Privacidad</a> y el uso de mis datos para enviarme esta cotización.
+                            <span class="consent-text">Acepto la <a href="https://paginaya24.com/privacidad" target="_blank" rel="noopener">Política de Privacidad</a> y los <a href="https://paginaya24.com/terminos_de_servicio/" target="_blank" rel="noopener">Términos de Servicio</a>, y el uso de mis datos para enviarme esta cotización.</span>
                         </label>
                         <small id="consent-error" class="error-message" style="display:none; margin-top:.6rem;">
                             <i class="fas fa-exclamation-circle"></i>
-                            Debes aceptar la Política de Privacidad para continuar.
+                            Debes aceptar la Política de Privacidad y Términos de Servicio para continuar.
                         </small>
                     </div>
                     
@@ -808,6 +800,16 @@ body.embed .form-content{
                             <div class="price-info">$200 USD</div>
                             <div class="included-features">
                                 <small>Incluye: título impactante, fecha/hora/lugar, valor agregado, registro</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Nueva opción "Otro" -->
+                        <div class="option-card" data-value="otro">
+                            <i class="fas fa-question-circle"></i>
+                            <h4>Otro tipo</h4>
+                            <div class="price-info">Personalizado</div>
+                            <div class="included-features">
+                                <small>Si necesitas algo diferente, contáctanos para una cotización personalizada</small>
                             </div>
                         </div>
                     </div>
@@ -1024,7 +1026,7 @@ body.embed .form-content{
     <script>
         // Constants for Supabase
         const LEAD_ENDPOINT = 'https://pkqdyvjdnfqaigdegcwq.supabase.co/functions/v1/lead-start';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBrcWR5dmpkbmZxYWlnZGVnY3dxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3NDYwODksImV4cCI6MjA3MjMyMjA4OX0.1op8VMX7zbSKtLfDtgcH0YElbklVo4bIvWbLtIprEuk';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhbmFzZSIsInJlZiI6InBrcWR5dmpkbmZxYWlnZGVnY3dxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3NDYwODksImV4cCI6MjA3MjMyMjA4OX0.1op8VMX7zbSKtLfDtgcH0YElbklVo4bIvWbLtIprEuk';
         
         // Form data
         const formData = {
@@ -1049,10 +1051,11 @@ body.embed .form-content{
             'venta': 200,
             'ebook': 150,
             'evento': 200,
-            'marca': 200
+            'marca': 200,
+            'otro': 0 // No base price for custom type
         };
         
-        // Feature prices (removed "descarga" as requested, updated CRM to $40)
+        // Feature prices
         const featurePrices = {
             'seo': 15,
             'analytics': 15,
@@ -1071,13 +1074,14 @@ body.embed .form-content{
             'express': 90
         };
         
-        // Base features for each type (to avoid showing as additional if already included)
+        // Base features for each type
         const baseFeatures = {
             'marca': ['logotipo', 'biografia', 'portafolio', 'cta_contacto'],
             'captura': ['diseño_personalizado', 'titular', 'propuesta_valor', 'formulario_breve', 'cta_claro'],
             'venta': ['encabezado_atractivo', 'descripcion_producto', 'beneficios', 'boton_checkout'],
             'ebook': ['titulo_convincente', 'descripcion_breve', 'portada_ebook', 'lista_beneficios', 'boton_checkout'],
-            'evento': ['titulo_impactante', 'fecha_hora_lugar', 'valor_agregado', 'registro']
+            'evento': ['titulo_impactante', 'fecha_hora_lugar', 'valor_agregado', 'registro'],
+            'otro': [] // No base features for custom type
         };
         
         // Function to validate email
@@ -1102,7 +1106,8 @@ body.embed .form-content{
                 'captura': 'diseño personalizado, titular, propuesta de valor, formulario breve, CTA claro',
                 'venta': 'encabezado atractivo, descripción del producto, beneficios, Botón dirigido al checkout',
                 'ebook': 'título convincente, descripción breve, portada del ebook, lista de beneficios y botón dirigido al checkout',
-                'evento': 'título impactante, fecha/hora/lugar, valor agregado, registro'
+                'evento': 'título impactante, fecha/hora/lugar, valor agregado, registro',
+                'otro': 'Personalizado según tus necesidades específicas'
             };
             
             const typeNames = {
@@ -1110,7 +1115,8 @@ body.embed .form-content{
                 'captura': 'Captura de Leads', 
                 'venta': 'Página de Venta',
                 'ebook': 'Promoción de E-book',
-                'evento': 'Página para Evento'
+                'evento': 'Página para Evento',
+                'otro': 'Tipo Personalizado'
             };
             
             baseIncludesDiv.innerHTML = `
@@ -1179,13 +1185,12 @@ body.embed .form-content{
                 }
 
                 const data = await res.json();
-                // Esperamos: { success: true, lead_id, resume_token } (si tu función devuelve esto)
                 if (data?.lead_id) localStorage.setItem('lead_id', data.lead_id);
                 if (data?.resume_token) localStorage.setItem('resume_token', data.resume_token);
                 return data;
             } catch (err) {
                 console.error('Error enviando lead a Supabase:', err);
-                return null; // no bloquear el flujo
+                return null;
             }
         }
         
@@ -1214,6 +1219,7 @@ body.embed .form-content{
                     }
                 };
 
+                const QUOTE_ENDPOINT = 'https://pkqdyvjdnfqaigdegcwq.supabase.co/functions/v1/save-quote';
                 const res = await fetch(QUOTE_ENDPOINT, {
                     method: 'POST',
                     headers: {
@@ -1229,31 +1235,21 @@ body.embed .form-content{
                 }
 
                 const data = await res.json();
-                // Guardar quote_id o resume_token si los devuelve la función
                 if (data?.quote_id) localStorage.setItem('quote_id', data.quote_id);
                 if (data?.resume_token) localStorage.setItem('resume_token', data.resume_token);
                 return data;
             } catch (err) {
                 console.error('Error guardando cotización:', err);
-                return null; // no bloquear el flujo
+                return null;
             }
         }
         
         // Function to populate additional page types
         function populateAdditionalTypes() {
-            console.log('populateAdditionalTypes called');
-            console.log('formData.quantity:', formData.quantity);
-            console.log('formData.type:', formData.type);
-            
             const additionalTypesGrid = document.getElementById('additional-types-grid');
-            if (!additionalTypesGrid) {
-                console.error('additional-types-grid not found');
-                return;
-            }
+            if (!additionalTypesGrid) return;
             
             const requiredSelections = formData.quantity - 1;
-            console.log('requiredSelections:', requiredSelections);
-            
             additionalTypesGrid.innerHTML = '';
             
             // Available types (excluding the main type already selected)
@@ -1266,7 +1262,6 @@ body.embed .form-content{
             ];
             
             const availableTypes = allTypes.filter(type => type.value !== formData.type);
-            console.log('availableTypes:', availableTypes);
             
             availableTypes.forEach(type => {
                 const typeCard = document.createElement('div');
@@ -1278,7 +1273,6 @@ body.embed .form-content{
                 `;
                 
                 typeCard.addEventListener('click', function() {
-                    console.log('Additional type clicked:', type.value);
                     const value = this.getAttribute('data-additional-type');
                     const isSelected = this.classList.contains('selected');
                     
@@ -1286,13 +1280,11 @@ body.embed .form-content{
                         // Deselect
                         this.classList.remove('selected');
                         formData.additionalTypes = formData.additionalTypes.filter(t => t !== value);
-                        console.log('Deselected, additionalTypes now:', formData.additionalTypes);
                     } else {
                         // Select, but check limit
                         if (formData.additionalTypes.length < requiredSelections) {
                             this.classList.add('selected');
                             formData.additionalTypes.push(value);
-                            console.log('Selected, additionalTypes now:', formData.additionalTypes);
                         } else {
                             alert(`Solo puedes seleccionar ${requiredSelections} tipo${requiredSelections > 1 ? 's' : ''} adicional${requiredSelections > 1 ? 'es' : ''}.`);
                         }
@@ -1303,20 +1295,22 @@ body.embed .form-content{
                 });
                 
                 additionalTypesGrid.appendChild(typeCard);
-                console.log('Added type card:', type.title);
             });
         }
         
         // Function to go to next step
         function goToStep(stepNumber) {
-            // mostrar el paso
-            const stepId = typeof stepNumber === 'string' ? `step-${stepNumber}` : `step-${stepNumber}`;
+            // Hide all steps
             document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            
+            // Show the requested step
+            const stepId = typeof stepNumber === 'string' ? `step-${stepNumber}` : `step-${stepNumber}`;
             document.getElementById(stepId).classList.add('active');
 
-            // calcular índice para el progreso
+            // Calculate progress indicator
             let progressNumber = stepNumber === '5-features' ? 4 : Number(stepNumber);
 
+            // Update progress indicators
             document.querySelectorAll('.progress-step').forEach((indicator, idx) => {
                 indicator.classList.remove('active', 'completed');
                 if (idx + 1 < progressNumber) indicator.classList.add('completed');
@@ -1324,7 +1318,7 @@ body.embed .form-content{
             });
         }
         
-        // Function to calculate price with discounts (20% off 2nd page when 2 total, 30% off 3rd page when 3 total)
+        // Function to calculate price with discounts
         function calculatePrice() {
             let total = 0;
             formData.discounts = [];
@@ -1339,14 +1333,14 @@ body.embed .form-content{
                 });
                 
                 // Apply discounts based on quantity and page position
-                if (index === 1 && formData.quantity === 2) { // Second page when total is exactly 2
+                if (index === 1 && formData.quantity === 2) {
                     const discountAmount = pagePrice * 0.2;
                     pagePrice -= discountAmount;
                     formData.discounts.push({
                         description: `20% OFF en la página completa ${index + 1}`,
                         amount: discountAmount
                     });
-                } else if (index === 2 && formData.quantity === 3) { // Third page when total is exactly 3
+                } else if (index === 2 && formData.quantity === 3) {
                     const discountAmount = pagePrice * 0.3;
                     pagePrice -= discountAmount;
                     formData.discounts.push({
@@ -1368,7 +1362,8 @@ body.embed .form-content{
                 'venta': 'Página de Venta',
                 'ebook': 'Promoción de E-book',
                 'evento': 'Página para Evento',
-                'marca': 'Marca Personal'
+                'marca': 'Marca Personal',
+                'otro': 'Tipo Personalizado'
             };
             
             const clientName = formData.company ? `${formData.name} (${formData.company})` : formData.name;
@@ -1376,7 +1371,7 @@ body.embed .form-content{
             document.getElementById('summary-type').textContent = typeNames[formData.type] || '-';
             document.getElementById('summary-quantity').textContent = formData.quantity;
             
-            // Update features summary - organized by page when multiple pages
+            // Update features summary
             const featuresSummary = document.getElementById('features-summary');
             featuresSummary.innerHTML = '';
             
@@ -1416,7 +1411,7 @@ body.embed .form-content{
                         pageHeader.textContent = `Página ${index + 1}: ${page.title}`;
                         featuresSummary.appendChild(pageHeader);
                         
-                        // Add base price (full price, no discount applied here)
+                        // Add base price
                         const baseItem = document.createElement('div');
                         baseItem.className = 'summary-item';
                         baseItem.innerHTML = `
@@ -1425,7 +1420,7 @@ body.embed .form-content{
                         `;
                         featuresSummary.appendChild(baseItem);
                         
-                        // Add features for this page (full price)
+                        // Add features for this page
                         if (page.features && page.features.length > 0) {
                             page.features.forEach(feature => {
                                 const featureItem = document.createElement('div');
@@ -1473,7 +1468,7 @@ body.embed .form-content{
                 }
             }
             
-            // Update discounts summary - show at the end
+            // Update discounts summary
             const discountsSummary = document.getElementById('discounts-summary');
             discountsSummary.innerHTML = '';
             
@@ -1502,12 +1497,8 @@ body.embed .form-content{
         
         // Function to create page configurations
         function createPageConfigurations() {
-            console.log('createPageConfigurations called');
             const pageConfigurationsDiv = document.getElementById('page-configurations');
-            if (!pageConfigurationsDiv) {
-                console.error('page-configurations div not found');
-                return;
-            }
+            if (!pageConfigurationsDiv) return;
             
             pageConfigurationsDiv.innerHTML = '';
             formData.pages = [];
@@ -1518,7 +1509,8 @@ body.embed .form-content{
                 'venta': 'Página de Venta', 
                 'ebook': 'Promoción de E-book',
                 'evento': 'Página para Evento',
-                'marca': 'Marca Personal'
+                'marca': 'Marca Personal',
+                'otro': 'Tipo Personalizado'
             };
             
             // Add main page
@@ -1550,8 +1542,6 @@ body.embed .form-content{
                     });
                 }
             }
-            
-            console.log('Created pages:', formData.pages);
             
             // Create UI for each page
             formData.pages.forEach((page, index) => {
@@ -1612,13 +1602,14 @@ body.embed .form-content{
                 'captura': 'diseño personalizado, titular, propuesta de valor, formulario breve, CTA claro',
                 'venta': 'encabezado atractivo, descripción del producto, beneficios, Botón dirigido al checkout',
                 'ebook': 'título convincente, descripción breve, portada del ebook, lista de beneficios y botón dirigido al checkout',
-                'evento': 'título impactante, fecha/hora/lugar, valor agregado, registro'
+                'evento': 'título impactante, fecha/hora/lugar, valor agregado, registro',
+                'otro': 'Personalizado según tus necesidades específicas'
             };
             
             return typeFeatures[pageType] || '';
         }
         
-        // Function to create feature checkboxes for a specific page (removed descarga feature, updated CRM to $40)
+        // Function to create feature checkboxes for a specific page
         function createFeatureCheckboxes(pageIndex) {
             const features = [
                 { value: 'seo', name: 'SEO On-Page', price: 15 },
@@ -1718,14 +1709,11 @@ body.embed .form-content{
                     targetCheckbox.closest('.checkbox-option').classList.add('selected');
                 }
             });
-            
-            console.log(`Auto-synced features from page ${sourcePageIndex} to page ${targetPageIndex}:`, sourceFeatures);
         }
         
-        // Function to attach feature listeners for page configurations (updated to handle auto-sync)
+        // Function to attach feature listeners for page configurations
         function attachPageFeatureListeners() {
             const checkboxes = document.querySelectorAll('input[type="checkbox"][data-page]');
-            console.log('Attaching listeners to', checkboxes.length, 'checkboxes');
             
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
@@ -1756,10 +1744,20 @@ body.embed .form-content{
                     targetPages.forEach(targetIndex => {
                         syncFeaturesFromPreviousPage(targetIndex, pageIndex);
                     });
-                    
-                    console.log(`Page ${pageIndex} features:`, formData.pages[pageIndex].features);
                 });
             });
+        }
+        
+        // Function to redirect to WhatsApp when "Otro" is selected
+        function redirectToWhatsApp() {
+            const name = formData.name || 'Cliente';
+            const phone = formData.phone || '';
+            const countryCode = document.getElementById('contact-country').value;
+            
+            const message = `¡Hola! Soy ${name}. Necesito una landing page personalizada que no está en las opciones del formulario. ¿Podrían ayudarme con una cotización?`;
+            
+            const whatsappUrl = `https://wa.me/17377100382?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
         }
             
         // Initialize form
@@ -1883,6 +1881,13 @@ body.embed .form-content{
                     document.getElementById('step2-error').style.display = 'block';
                     return;
                 }
+                
+                // If "Otro" is selected, redirect to WhatsApp
+                if (formData.type === 'otro') {
+                    redirectToWhatsApp();
+                    return;
+                }
+                
                 goToStep(3);
             });
             
@@ -2047,7 +2052,8 @@ body.embed .form-content{
                         'venta': 'Página de Venta', 
                         'ebook': 'Promoción de E-book',
                         'evento': 'Página para Evento',
-                        'marca': 'Marca Personal'
+                        'marca': 'Marca Personal',
+                        'otro': 'Tipo Personalizado'
                     };
                     
                     // Add all pages of the same type
@@ -2105,48 +2111,46 @@ body.embed .form-content{
                 location.reload();
             });
             
-           const cancelBtn = document.getElementById('close-form');
-if (cancelBtn) {
-  cancelBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    if (confirm('¿Estás seguro de que quieres cerrar el formulario?')) {
-      // Si está embebido en el modal de la landing, avisa al padre para cerrar
-      try { window.parent.postMessage('close-embed-quote', '*'); } catch (_) {}
+            const cancelBtn = document.getElementById('close-form');
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (confirm('¿Estás seguro de que quieres cerrar el formulario?')) {
+                        // Si está embebido en el modal de la landing, avisa al padre para cerrar
+                        try { window.parent.postMessage('close-embed-quote', '*'); } catch (_) {}
 
-      // Si NO está embebido (abierto directo en /cotizacion/), vuelve al inicio
-      if (window.self === window.top) location.href = '/';
-    }
-  });
-}
+                        // Si NO está embebido (abierto directo en /cotizacion/), vuelve al inicio
+                        if (window.self === window.top) location.href = '/';
+                    }
+                });
+            }
 
-      
             // Initialize
             updateButtonStates();
         });
     </script>
     <script>
-(function () {
-  var qs = new URLSearchParams(location.search);
-  var embedded = qs.get('embed') === '1' || window.self !== window.top;
+        (function () {
+            var qs = new URLSearchParams(location.search);
+            var embedded = qs.get('embed') === '1' || window.self !== window.top;
 
-  if (!embedded) return;
+            if (!embedded) return;
 
-  // Marca html/body con la clase "embed"
-  document.documentElement.classList.add('embed');
-  document.addEventListener('DOMContentLoaded', function () {
-    document.body.classList.add('embed');
+            // Marca html/body con la clase "embed"
+            document.documentElement.classList.add('embed');
+            document.addEventListener('DOMContentLoaded', function () {
+                document.body.classList.add('embed');
 
-    // (Opcional) En embed, hacer que "Cancelar" cierre el modal del padre
-    var cancel = document.getElementById('close-form');
-    if (cancel) {
-      cancel.addEventListener('click', function (ev) {
-        ev.preventDefault();
-        try { window.parent.postMessage('close-embed-quote', '*'); } catch(_){}
-      });
-    }
-  });
-})();
-</script>
-
+                // (Opcional) En embed, hacer que "Cancelar" cierre el modal del padre
+                var cancel = document.getElementById('close-form');
+                if (cancel) {
+                    cancel.addEventListener('click', function (ev) {
+                        ev.preventDefault();
+                        try { window.parent.postMessage('close-embed-quote', '*'); } catch(_){}
+                    });
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
