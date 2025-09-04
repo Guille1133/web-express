@@ -1500,30 +1500,38 @@
 /* Modal casi fullscreen */
 .modal-overlay { padding: 1rem; }              /* deja un pequeño margen alrededor */
 
+/* 1) Modal más angosto */
 .quote-modal{
-  width: 95vw;                                  /* casi todo el ancho */
-  max-width: 1200px;                            /* opcional: límite en desktop grande */
-  height: 90vh;                                 /* casi todo el alto */
+  width: 95vw;
+  max-width: 1000px;   /* 980px si lo querés aún más compacto */
+  height: 90vh;
   max-height: none;
-  display: flex;                                /* para que el iframe se estire */
+  display: flex;
   flex-direction: column;
   padding: 1rem;
   border-radius: 16px;
-  overflow: hidden;                             /* oculta scroll del contenedor */
-}
-
-/* El contenedor donde se monta el iframe */
-#cotizador-mount{
-  flex: 1;                                      /* ocupa todo el alto disponible */
   overflow: hidden;
 }
 
-/* El iframe del cotizador a pantalla casi completa dentro del modal */
+/* 2) ÚNICO bloque para #cotizador-mount (reemplaza a los otros) */
+#cotizador-mount{
+  flex: 1;
+  overflow: hidden;
+  max-width: 1000px;   /* mismo valor que el modal */
+  width: 100%;
+  margin: 0 auto;      /* centra dentro del modal */
+  border-radius: 18px;
+  box-shadow: 0 30px 90px rgba(0,0,0,.35);
+}
+
+/* 3) Iframe dentro del mount (dejalo) */
 #cotizador-mount iframe{
+  display: block;
   width: 100%;
   height: 100%;
   border: 0;
 }
+
 
 /* En móviles: realmente fullscreen */
 @media (max-width: 768px){
