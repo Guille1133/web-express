@@ -668,12 +668,14 @@
             background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 100%);
             transition: height 0.3s;
             z-index: -1;
+            border-radius: 0 0 12px 12px;
         }
         
         .feature-card:hover::before {
             height: 100%;
             width: 100%;
             opacity: 0.1;
+            border-radius: 12px;
         }
         
         .feature-icon {
@@ -703,7 +705,7 @@
         
         /* Testimonials Section con carrusel de dos niveles */
         .testimonials {
-            padding: 6rem 5%;
+            padding: 6rem 0;
             background: linear-gradient(135deg, var(--dark-card) 0%, #16163a 100%);
             color: white;
             position: relative;
@@ -722,8 +724,7 @@
         }
         
         .testimonials-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            width: 100%;
             position: relative;
             z-index: 1;
         }
@@ -763,11 +764,11 @@
         
         @keyframes scroll-left {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-330px * 6)); }
+            100% { transform: translateX(calc(-330px * 8)); }
         }
         
         @keyframes scroll-right {
-            0% { transform: translateX(calc(-330px * 6)); }
+            0% { transform: translateX(calc(-330px * 8)); }
             100% { transform: translateX(0); }
         }
         
@@ -1023,16 +1024,16 @@
         }
         
         /* CTA Section */
-        .cta {
+        .final-cta {
             padding: 5rem 5%;
-            background: linear-gradient(135deg, var(--dark-card) 0%, #1a1a4a 100%);
+            background: linear-gradient(135deg, var(--neon-purple) 0%, var(--neon-pink) 100%);
             color: white;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
         
-        .cta::before {
+        .final-cta::before {
             content: '';
             position: absolute;
             top: 0;
@@ -1040,19 +1041,19 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(10, 240, 252, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.1) 0%, transparent 50%);
             z-index: 0;
         }
         
-        .cta-container {
+        .final-cta-container {
             max-width: 800px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
         
-        .cta h2 {
+        .final-cta h2 {
             font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
@@ -1060,105 +1061,65 @@
             text-transform: uppercase;
         }
         
-        .cta p {
+        .final-cta p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.9);
         }
         
-        .cta-form {
+        .cta-buttons {
             display: flex;
-            flex-direction: column;
-            max-width: 500px;
-            margin: 0 auto;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
         }
         
-        .form-row {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        
-        .form-group label {
-            font-size: 0.9rem;
-            text-align: left;
-            color: var(--text-primary);
-        }
-        
-        .whatsapp-input-container {
-            display: flex;
-            width: 100%;
-        }
-        
-        .country-code {
-            width: 80px;
-            padding: 1rem;
-            border: none;
-            border-radius: 8px 0 0 8px;
-            font-size: 1rem;
-            outline: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .whatsapp-input {
-            flex: 1;
-            padding: 1rem;
-            border: none;
-            border-radius: 0 8px 8px 0;
-            font-size: 1rem;
-            outline: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-left: none;
-        }
-        
-        .cta-input {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .cta-input::placeholder,
-        .whatsapp-input::placeholder {
-            color: var(--text-secondary);
-        }
-        
-        .cta-submit {
-            background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 100%);
-            color: white;
-            border: none;
-            padding: 1.2rem 2rem;
+        .cta-button-primary {
+            background: white;
+            color: var(--neon-pink);
+            padding: 1rem 2rem;
             border-radius: 8px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 1rem;
-            margin-top: 1rem;
+            font-size: 1.1rem;
             font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 0 20px rgba(10, 240, 252, 0.5);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            border: none;
+            text-decoration: none;
+            display: inline-block;
         }
         
-        .cta-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 25px rgba(10, 240, 252, 0.7);
+        .cta-button-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-button-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 0 2px white inset;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 0 0 2px white inset, 0 8px 25px rgba(0, 0, 0, 0.2);
         }
         
         /* Footer */
@@ -1305,14 +1266,35 @@
             opacity: 1;
         }
         
+        /* Nuevos estilos para el título principal */
+        .title-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .title-line-1 {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .title-de {
+            color: var(--neon-cyan);
+            margin-right: 0.5rem;
+            font-size: 4rem;
+        }
+        
+        .title-changing {
+            color: var(--neon-pink);
+            font-size: 4rem;
+            min-width: 300px;
+            text-shadow: 0 0 15px rgba(255, 42, 109, 0.7);
+        }
+        
         /* Responsive Design */
         @media (max-width: 1200px) {
-            .hero h1 .main-title {
+            .title-de, .title-changing {
                 font-size: 3.5rem;
-            }
-            
-            .hero h1 .subtitle {
-                font-size: 2rem;
             }
         }
         
@@ -1348,6 +1330,14 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .title-line-1 {
+                justify-content: center;
+            }
+            
+            .title-de, .title-changing {
+                font-size: 3rem;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1378,12 +1368,8 @@
                 margin: 1.5rem 0;
             }
             
-            .hero h1 .main-title {
-                font-size: 2.8rem;
-            }
-            
-            .hero h1 .subtitle {
-                font-size: 1.8rem;
+            .title-de, .title-changing {
+                font-size: 2.5rem;
             }
             
             .hero p {
@@ -1415,33 +1401,15 @@
                 width: 100%;
             }
             
-            .cta-form {
+            .cta-buttons {
                 flex-direction: column;
+                align-items: center;
             }
             
-            .form-row {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .cta-input, 
-            .whatsapp-input-container {
+            .cta-button-primary, .cta-button-secondary {
                 width: 100%;
-            }
-            
-            .cta-input {
-                border-radius: 8px;
-                margin-bottom: 0;
-            }
-            
-            .cta-submit {
-                border-radius: 8px;
-                padding: 1rem;
-            }
-            
-            .stats-container {
-                flex-direction: column;
-                gap: 3rem;
+                max-width: 300px;
+                text-align: center;
             }
         }
         
@@ -1450,20 +1418,15 @@
                 padding-top: 10rem;
             }
             
-            .hero h1 .main-title {
-                font-size: 2.2rem;
-                line-height: 1.1;
-            }
-            
-            .hero h1 .subtitle {
-                font-size: 1.5rem;
+            .title-de, .title-changing {
+                font-size: 2rem;
             }
             
             .section-header h2 {
                 font-size: 1.8rem;
             }
             
-            .cta h2 {
+            .final-cta h2 {
                 font-size: 2rem;
             }
             
@@ -1486,12 +1449,15 @@
             .feature-card h3 {
                 font-size: 1.4rem;
             }
-        }
-        
-        /* Fix for title line breaks */
-        .hero h1 {
-            display: flex;
-            flex-direction: column;
+            
+            .title-line-1 {
+                flex-direction: column;
+            }
+            
+            .title-de {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
         }
         
         /* Efectos de texto neón */
@@ -1563,7 +1529,13 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="fade-in">
-                    <span class="main-title">TU NUEVA PAGINA DE <span id="rotating-title">CAPTURA</span></span>
+                    <div class="title-container">
+                        <div class="title-line-1">
+                            <span class="main-title">TU NUEVA PAGINA</span>
+                            <span class="title-de">DE</span>
+                        </div>
+                        <div class="title-changing" id="rotating-title">CAPTURA</div>
+                    </div>
                     <span class="subtitle">LISTA EN 72HS O ES GRATIS</span>
                 </h1>
                 <p class="fade-in">Creamos sitios web modernos y estratégicos que activan la decisión de compra en segundos.<br>
@@ -1724,7 +1696,7 @@
             <div class="section-header light fade-in">
                 <h2>Lo que otros ya están experimentando…</h2>
                 <p>Empresarios, marcas y emprendedores como tú ya están viendo más clics, más leads y más ventas gracias to nuestras páginas diseñadas para convertir desde el primer vistazo.</p>
-                <p>No lo decimos nosotros. Lo dicen los resultados. Y quienes ya lo viven… no vuelven atrás.</p>
+                <p>No lo decimos nosotros. Lo dicen los resultados. And quienes ya lo viven… no vuelven atrás.</p>
             </div>
             
             <div class="testimonials-slider">
@@ -1774,10 +1746,52 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="testimonial-track bottom">
-                    <!-- Testimonios nivel inferior -->
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-content">
+                            "La combinación de diseño atractivo y principios de NeuroMarketing es simplemente imbatible. Nuestras tasas de conversión nunca habían sido tan altas."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Roberto Silva">
+                            </div>
+                            <div class="author-info">
+                                <h4>Roberto Silva</h4>
+                                <p>Director de Ventas</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-content">
+                            "El proceso fue rápido y sin complicaciones. En menos de 72 horas teníamos una página que no solo se veía genial, sino que convertía mucho mejor que nuestra página anterior."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Laura Méndez">
+                            </div>
+                            <div class="author-info">
+                                <h4>Laura Méndez</h4>
+                                <p>Fundadora, WellnessCo</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-content">
+                            "Invertir en NeuroCapture fue la mejor decisión para mi negocio. En una semana ya había recuperado la inversión con las nuevas ventas."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Sofía Ramírez">
+                            </div>
+                            <div class="author-info">
+                                <h4>Sofía Ramírez</h4>
+                                <p>Dueña de Negocio</p>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="testimonial-card fade-in">
                         <div class="testimonial-content">
                             "La velocidad de carga es impresionante. Noté una reducción inmediata en la tasa de rebote y un aumento en el tiempo en página."
@@ -1807,18 +1821,126 @@
                             </div>
                         </div>
                     </div>
-                    
+                </div>
+                
+                <div class="testimonial-track bottom">
+                    <!-- Testimonios nivel inferior -->
                     <div class="testimonial-card fade-in">
                         <div class="testimonial-content">
-                            "Invertir en NeuroCapture fue la mejor decisión para mi negocio. En una semana ya había recuperado la inversión con las nuevas ventas."
+                            "El soporte post-venta es excepcional. Siempre están disponibles para ayudar con cualquier ajuste o pregunta que tengamos."
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar">
-                                <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Sofía Ramírez">
+                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Javier López">
                             </div>
                             <div class="author-info">
-                                <h4>Sofía Ramírez</h4>
-                                <p>Dueña de Negocio</p>
+                                <h4>Javier López</h4>
+                                <p>Gerente de Proyectos</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-content">
+                            "Nunca imaginé que un cambio de diseño podría tener un impacto tan significativo en mis resultados. Mis clientes ahora encuentran lo que buscan más fácilmente."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/56.jpg" alt="Elena Castro">
+                            </div>
+                            <div class="author-info">
+                                <h4>Elena Castro</h4>
+                                <p>Consultora Independiente</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-content">
+                            "La garantía de 72 horas me dio la confianza para probar el servicio. Cumplieron y superaron mis expectativas."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/78.jpg" alt="Diego Fernández">
+                            </div>
+                            <div class="author-info">
+                                <h4>Diego Fernández</h4>
+                                <p>Emprendedor</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-content">
+                            "El diseño responsive es perfecto. Mi página se ve increíble en cualquier dispositivo, lo que es crucial hoy en día."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/34.jpg" alt="Mónica Reyes">
+                            </div>
+                            <div class="author-info">
+                                <h4>Mónica Reyes</h4>
+                                <p>Diseñadora Freelance</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-content">
+                            "Los principios de NeuroMarketing aplicados realmente funcionan. Puedo ver cómo los visitantes interactúan de manera diferente con mi página."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/29.jpg" alt="Andrés Morales">
+                            </div>
+                            <div class="author-info">
+                                <h4>Andrés Morales</h4>
+                                <p>Especialista en Marketing</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-content">
+                            "El proceso de brief fue sencillo y guiado. En poco tiempo tenían toda la información necesaria para crear exactamente lo que necesitaba."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/47.jpg" alt="Patricia Soto">
+                            </div>
+                            <div class="author-info">
+                                <h4>Patricia Soto</h4>
+                                <p>Coach de Vida</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-content">
+                            "La integración con mis redes sociales y otras plataformas fue perfecta. Todo funciona como un reloj suizo."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/51.jpg" alt="Ricardo Vargas">
+                            </div>
+                            <div class="author-info">
+                                <h4>Ricardo Vargas</h4>
+                                <p>Influencer Digital</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-content">
+                            "Recomiendo NeuroCapture a todos mis colegas. El retorno de inversión es inmediato y los resultados son tangibles."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/62.jpg" alt="Verónica Mendoza">
+                            </div>
+                            <div class="author-info">
+                                <h4>Verónica Mendoza</h4>
+                                <p>Consultora de Negocios</p>
                             </div>
                         </div>
                     </div>
@@ -1855,7 +1977,7 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>El tiempo de entrega varía según la complejidad del proyecto. Para la mayoría de nuestros clientes, la entrega inicial se realiza en 5-7 días hábiles. Si necesitas una entrega más rápida, ofrecemos el servicio express con entrega en menos de 72 horas.</p>
+                    <p>En menos de 72 horas. Y si no cumplimos… te la quedas gratis.</p>
                 </div>
             </div>
             
@@ -1865,7 +1987,7 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>Sí, todos nuestros planes incluyen 3 meses de mantenimiento básico, durante los cuales puedes solicitar ajustes y cambios menores sin costo adicional.</p>
+                    <p>Sí. Todos nuestros planes incluyen 3 meses de mantenimiento básico, con ajustes y cambios menores sin costo adicional.</p>
                 </div>
             </div>
             
@@ -1875,7 +1997,78 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>Necesitaremos: 1) Tu logotipo (si tienes uno), 2) Los textos que deseas incluir (titulares, descripciones, llamados a acción), 3) Imágenes que deseas utilizar (o podemos sugerir bancos de imágenes), 4) Información sobre tu público objetivo y 5) Ejemplos de páginas que te gusten (opcional).</p>
+                    <p>Solo necesitas completar un brief rápido y guiado donde nos cuentas sobre tu negocio, tu cliente ideal y tus objetivos. Con eso, nosotros nos encargamos del resto.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Las páginas son realmente optimizadas para conversión?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutamente. Cada página está diseñada con principios probados de NeuroMarketing, psicología del color y UX/UI estratégico. Usamos técnicas como: CTAs con contraste visual, secuencia lógica de información, testimonios ubicados estratégicamente y elementos de urgencia y escasez cuando aplica.<br><br>
+                    Todo está pensado para una sola cosa: convertir más con cada visita.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Ofrecen servicio de hosting y dominio?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, todos nuestros planes incluyen dominio y hosting por 1 año. Tu página estará 100% online desde el primer día, sin que tengas que preocuparte por configuraciones técnicas.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Qué pasa si no me gusta el diseño final?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Ofrecemos revisiones para asegurarnos de que estés 100% satisfecho. No avanzamos sin tu aprobación.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Qué diferencia sus páginas de una plantilla común?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nuestras páginas no son plantillas genéricas. Están diseñadas estratégicamente con principios de conversión, psicología y NeuroMarketing para tu negocio específico.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Puedo usar mi propio dominio y hosting?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí. Si ya tienes dominio o hosting, podemos integrarlo sin problema, aunque esto demora el tiempo de entrega. Si no, lo incluimos en el plan.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Qué tipo de negocios pueden usar estas páginas?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Emprendedores, infoproductores, coaches, agencias, médicos, inmobiliarias… cualquier negocio que necesite convertir visitantes en clientes.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <span>¿Qué incluye exactamente el servicio?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Diseño personalizado, copy optimizado para conversión, dominio, hosting, integración con formularios, más lo que desees agregar. Todo listo para vender.</p>
                 </div>
             </div>
         </div>
@@ -1899,46 +2092,25 @@
                 <div class="portfolio-item fade-in">
                     <img src="https://via.placeholder.com/300x200/12122a/ffffff?text=E-commerce+Premium" alt="E-commerce Premium" class="portfolio-image">
                 </div>
+                <div class="portfolio-item fade-in">
+                    <img src="https://via.placeholder.com/300x200/12122a/ffffff?text=Landing+Page+Conversión" alt="Landing Page Conversión" class="portfolio-image">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="contact">
-        <div class="cta-container">
-            <h2 class="fade-in">¿Listo para aumentar tus conversiones?</h2>
-            <p class="fade-in">Déjanos tus datos y te contactaremos en menos de 24 horas para discutir cómo podemos crear la página de captura perfecta para tu negocio.</p>
+    <!-- Final CTA Section -->
+    <section class="final-cta" id="contact">
+        <div class="final-cta-container">
+            <h2 class="fade-in">Lanza tu página de captura en 72 horas — o te la llevas GRATIS.</h2>
+            <p class="fade-in">Olvídate de esperar semanas y gastar de más en diseños que no convienden.<br>
+            Con NeuroCapture, tu página estará lista en solo 3 días: moderna, optimizada y diseñada para vender.<br>
+            Y si no cumplimos… te la quedas sin pagar. Garantía sin riesgo. Resultados garantizados.</p>
             
-            <form class="cta-form fade-in">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="fullname">Nombre completo</label>
-                        <input type="text" id="fullname" placeholder="Tu nombre completo" class="cta-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" id="email" placeholder="Tu correo electrónico" class="cta-input" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="whatsapp">WhatsApp</label>
-                        <div class="whatsapp-input-container">
-                            <select class="country-code">
-                                <option value="+1">+1 (US)</option>
-                                <option value="+52">+52 (MX)</option>
-                                <option value="+54">+54 (AR)</option>
-                                <option value="+56">+56 (CL)</option>
-                                <option value="+57">+57 (CO)</option>
-                                <option value="+58">+58 (VE)</option>
-                                <option value="+34">+34 (ES)</option>
-                            </select>
-                            <input type="tel" id="whatsapp" placeholder="Tu WhatsApp" class="whatsapp-input" required>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="cta-submit">Enviar Datos</button>
-            </form>
+            <div class="cta-buttons fade-in">
+                <a href="#pricing" class="cta-button-primary">Quiero mi página en 72 horas</a>
+                <a href="#" class="cta-button-secondary">Hablar con un experto ahora</a>
+            </div>
         </div>
     </section>
 
@@ -2033,13 +2205,29 @@
         // Rotating Title
         const rotatingTitle = document.getElementById('rotating-title');
         if (rotatingTitle) {
-            const words = ['CAPTURA', 'LANZAMIENTOS', 'MARCA PERSONAL', 'PRESENTACIÓN'];
+            const words = ['CAPTURA', 'LANZAMIENTOS', 'MARCA PERSONAL', 'PRESENTACIÓN', 'VENTAS'];
             let currentIndex = 0;
             
             function rotateTitle() {
                 currentIndex = (currentIndex + 1) % words.length;
                 rotatingTitle.textContent = words[currentIndex];
+                
+                // Cambiar color según la palabra
+                const colors = [
+                    'var(--neon-pink)',
+                    'var(--neon-cyan)',
+                    'var(--neon-green)',
+                    'var(--neon-purple)',
+                    '#ffcc00'
+                ];
+                
+                rotatingTitle.style.color = colors[currentIndex];
+                rotatingTitle.style.textShadow = `0 0 15px ${colors[currentIndex]}`;
             }
+            
+            // Iniciar con un color
+            rotatingTitle.style.color = 'var(--neon-pink)';
+            rotatingTitle.style.textShadow = '0 0 15px rgba(255, 42, 109, 0.7)';
             
             setInterval(rotateTitle, 2000);
         }
@@ -2239,16 +2427,6 @@
             }
         `;
         document.head.appendChild(style);
-        
-        // Form submission
-        const ctaForm = document.querySelector('.cta-form');
-        if (ctaForm) {
-            ctaForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('¡Gracias por tu interés! Nos pondremos en contacto contigo pronto.');
-                this.reset();
-            });
-        }
     </script>
 </body>
 </html>
